@@ -80,7 +80,9 @@ $config['ENVIRONMENT']             = 'development';
 | WARNING: You MUST set this value!
 |
 */
-$config['base_url'] 				= '';
+$config['base_url'] 				= 'http://localhost/a2/';
+
+//$config['base_url'] 				= '  https://a06b2f1aa16d6c.lhrtunnel.link/';
 
 /*
 |--------------------------------------------------------------------------
@@ -145,7 +147,7 @@ $config['charset']					= 'UTF-8';
 | This config will be used in the Router Class inside kernel.
 |
 */
-$config['default_controller'] 		= 'Welcome';
+$config['default_controller'] 		= 'Hr';
 $config['default_method'] 			= 'index';
 
 /*
