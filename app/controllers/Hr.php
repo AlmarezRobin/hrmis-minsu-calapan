@@ -44,7 +44,7 @@ class Hr extends Controller {
 	// ! selects all data frm employment_status tbl
 	public function view_employement_status(){
 		$data = $this->Utility_model->employment_stat();
-		$this->call->view('hr/utility_settings/employment_status',$data);
+		$this->call->view('hr/employment_status',$data);
 	}
 
 	// ! adds employment status
@@ -66,14 +66,14 @@ class Hr extends Controller {
                 }
             }
         }
-		$this->call->view('hr/utility_settings/emp_stat_add');
+		$this->call->view('hr/emp_stat_add');
 	}
 
 	// ! get single employement status
 	public function get_single_emp_stat(){
 		if($this->form_validation->run()){
 			$data = $this->Utility_model->get_single_emp_stat($this->io->post('status_id'));
-			$this->call->view('hr/utility_settings/emp_stat_add', $data);
+			$this->call->view('hr/emp_stat_add', $data);
 			
 		}
 	}
@@ -111,7 +111,7 @@ class Hr extends Controller {
 	#region designation
 	public function view_designation(){
 		$data = $this->Utility_model->designation();
-		$this->call->view('hr/utility_settings/designation',$data);
+		$this->call->view('hr/designation',$data);
 	}
 
 	public function add_designation(){
@@ -137,13 +137,13 @@ class Hr extends Controller {
                 }
             }
         }
-		$this->call->view('hr/utility_settings/desig_add');
+		$this->call->view('hr/desig_add');
 	}
 
 	public function get_single_designation(){
 		if ($this->form_validation->run()) {
 			$data = $this->Utility_model->get_single_designation($this->io->post('designation_id'));
-			$this->call->view('hr/utility_settings/desig_add',$data);
+			$this->call->view('hr/desig_add',$data);
 		}
 	}
 
@@ -192,7 +192,7 @@ class Hr extends Controller {
 	
 	public function view_department(){
 		$data = $this->Utility_model->department();
-		$this->call->view('hr/utility_settings/department',$data);
+		$this->call->view('hr/department',$data);
 	}
 
 	public function add_department(){
@@ -214,13 +214,13 @@ class Hr extends Controller {
 										}
             }
         }
-		$this->call->view('hr/utility_settings/dept_add');
+		$this->call->view('hr/dept_add');
 	}
 
 	public function get_single_dept(){
 		if ($this->form_validation->run()) {
 			$data = $this->Utility_model->get_single_dept($this->io->post('dept_id'));
-			$this->call->view('hr/utility_settings/dept_add',$data);
+			$this->call->view('hr/dept_add',$data);
 		}
 	}
 
@@ -258,12 +258,12 @@ class Hr extends Controller {
 	public function view_office_add(){
 
 		$data = $this->Utility_model->get_dept_data();
-		$this->call->view('hr/utility_settings/office_add',$data);
+		$this->call->view('hr/office_add',$data);
 	}
 	public function view_office(){
 
 		$data = $this->Utility_model->office();
-		$this->call->view('hr/utility_settings/office',$data);
+		$this->call->view('hr/office',$data);
 	}
 
 	public function add_office(){
@@ -301,7 +301,7 @@ class Hr extends Controller {
 
 
 
-			$this->call->view('hr/utility_settings/office_update',$data);
+			$this->call->view('hr/office_update',$data);
 		}
 	}
 
@@ -340,7 +340,7 @@ class Hr extends Controller {
 	#region deduction
 	public function view_deduction(){
 		$data = $this->Utility_model->deduction();
-		$this->call->view('hr/utility_settings/deduction',$data);
+		$this->call->view('hr/deduction',$data);
 	}
 
 	public function add_deduction(){
@@ -362,13 +362,13 @@ class Hr extends Controller {
                 }
             }
         }
-		$this->call->view('hr/utility_settings/deduction_add');
+		$this->call->view('hr/deduction_add');
 	}
 
 	public function get_single_deduction(){
 		if($this->form_validation->run()){
 			$data = $this->Utility_Model->get_single_deduction($this->io->post('deduction_id'));
-			$this->call->view('hr/utility_settings/deduction_add', $data);
+			$this->call->view('hr/deduction_add', $data);
 		}
 	}
 
@@ -404,11 +404,11 @@ class Hr extends Controller {
 
 	#region leave
 	public function view_leave(){
-		$this->call->view('hr/utility_settings/leave');
+		$this->call->view('hr/leave');
 	}
 
 	public function view_leave_add(){
-		$this->call->view('hr/utility_settings/leave_add');
+		$this->call->view('hr/leave_add');
 	}
 
 	#endregion

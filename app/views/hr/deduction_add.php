@@ -5,28 +5,26 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
 <html lang="en" class="h-100">
 
-<?php require_once('C:\xampp\htdocs\a2\app\views\hr\includes\head.php'); ?>
+<?php require_once('includes\head.php'); ?>
 
 <body class="d-flex flex-column h-100">
     <!-- topbar -->
-    <?php require_once('C:\xampp\htdocs\a2\app\views\hr\includes\topbar.php'); ?>
+    <?php require_once('includes\topbar.php'); ?>
     <!-- end topbar -->
         <!-- Container - Fluid -->
         <div class="container-fluid pt-5">
             <!-- Row -->
             <div class="row">
                 <!-- sidebar -->
-                <?php require_once('C:\xampp\htdocs\a2\app\views\hr\includes\sidebar.php'); ?>
+                <?php require_once('includes\sidebar.php'); ?>
                 <!-- end side bar -->
             <!-- Main -->
             <!-- <main class="col-md-9 ms-sm-auto col-lg-10 px-md-2 bg-white maincontent"> -->
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-2 maincontent">
                 <!-- title -->
                 <div class="justify-content-between align-items-center pt-1 pb-2 mb-3 border-bottom mx-2">
-                    
-                    <h5 class="h5 mt-3 mb-0 color-darkgray"> 
-                        <a href=""> <i class=" fa fa-solid fa-arrow-left fa-lg"></i></a>
-                    &nbsp;Employee's Status <small></small></h5>
+                    <h5 class="h5 mt-3 mb-0 color-darkgray"> <i class=" fa fa-solid fa-arrow-left fa-lg"></i></a>
+                    &nbsp;Deductions <small></small></h5>
                 </div>
                 <!-- end title -->
                 <!-- container-fluid -->
@@ -38,51 +36,54 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                         <div class="d-flex justify-content-center">
                             <div class="card">
                                 <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseTable"
-                                    aria-expanded="true" aria-controls="collapseTable">
+                                    aria-expanded="true" aria-controls="collapseTable" >
                                     <span class="card-icon"><i class="fa fa-plus"></i></span>
-                                    Add Employee's Status
+                                    Add New Deductions
                                 </div>
                                 <div class="card-body accordion-collapse collapse show" id="collapseTable-d">
-                                <?php if(isset($data['status_id'])): ?>
-                                    <form action="<?=site_url('Hr/update_emp_stat');?>" method="POST">
-                                        <div class="row">
-                                            <input type="hidden" name="stat_id" value="<?= $data['status_id']?>">
-                                            <div class="col-md-12 mb-2">
-                                                <label for="f1" class="form-label">Status Code</label>
-                                                <input type="text" class="form-control form-control-sm" name="stat_code" id="" value="<?= $data['status_code']?>" required>
+                                    <?php if(isset($data['deduction_id'])): ?>
+                                        <form action="<?=site_url('Hr/update_deduction');?>" method="POST">
+                                            <input type="hidden" name="deduction_id" value="<?= $data['deduction_id']?>">
+                                            <div class="row">
+                                                <div class="col-md-12 mb-2">
+                                                    <label for="f1" class="form-label">Deduction Name</label>
+                                                    <input type="text" class="form-control form-control-sm" name="deduction_name" id="" value="<?= $data['deduction_name']?>" required>
+                                                </div>
+                                                <div class="col-md-12 mb-2">
+                                                    <label for="f1" class="form-label">Base Amount</label>
+                                                    <input type="text" class="form-control form-control-sm" name="deduction_base_amount" id="" value="<?= $data['deduction_base_amount']?>" required>
+                                                </div>
+                                                <div class="row ">
+                                                    <div class="col-md-12">
+                                                        <input type="submit" class="btn btn-sm btn-success pull-right"
+                                                            name="submit" value="Update">
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="col-md-12 mb-2">
-                                                <label for="f1" class="form-label">Status Description</label>
-                                                <input type="text" class="form-control form-control-sm" name="stat_desc" id="" value="<?= $data['status_desc']?>" required>
+                                        </form>
+                                    <?php else: ?>
+                                        <form action="<?=site_url('Hr/add_deduction');?>" method="POST">
+                                            <div class="row">
+                                                <div class="col-md-12 mb-2">
+                                                    <label for="f1" class="form-label">Deduction Name</label>
+                                                    <input type="text" class="form-control form-control-sm" name="deduction_name" id="" required>
+                                                </div>
+                                                <div class="col-md-12 mb-2">
+                                                    <label for="f1" class="form-label">Base Amount</label>
+                                                    <input type="text" class="form-control form-control-sm" name="deduction_base_amount" id="" required>
+                                                </div>
+                                            </div>
+                                            <div class="row ">
+                                                <div class="col-md-12">
+                                                    <input type="submit" class="btn btn-sm btn-success pull-right"
+                                                        name="submit" value="Add">
+                                                </div>
                                             </div>
                                             
-                                        </div>
-                                        <div class="row ">
-                                            <div class="col-md-12">
-                                                <input type="submit" class="btn btn-sm btn-success pull-right" name="submit" value="Update">
-                                            </div>
-                                        </div>
-                                    </form>
-                                <?php else: ?>
-                                    <form action="<?=site_url('Hr/add_employment_status');?>" method="POST">
-                                        <div class="row">
-                                            <div class="col-md-12 mb-2">
-                                                <label for="f1" class="form-label">Status Code</label>
-                                                <input type="text" class="form-control form-control-sm" name="stat_code" id="" required>
-                                            </div>
-                                            <div class="col-md-12 mb-2">
-                                                <label for="f1" class="form-label">Status Description</label>
-                                                <input type="text" class="form-control form-control-sm" name="stat_desc" id="" required>
-                                            </div>
-                                            
-                                        </div>
-                                        <div class="row ">
-                                            <div class="col-md-12">
-                                                <input type="submit" class="btn btn-sm btn-success pull-right" name="submit" value="Add">
-                                            </div>
-                                        </div>
-                                    </form>
-                                <?php endif; ?>
+                                        </form>
+                                    <?php endif; ?>
+                                   
+
                                 </div>
                             </div>
                         </div>
@@ -94,7 +95,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                 <!-- End container-fluid -->
 
                 <!-- Footer -->
-                <?php require_once('C:\xampp\htdocs\a2\app\views\hr\includes\footbar.php'); ?>
+                <?php require_once('includes\footbar.php'); ?>
                 <!-- End Footer -->
             </main>
             <!-- End Main -->
@@ -102,7 +103,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
         <!-- End Row -->
     </div>
     <!-- End Container - Fluid -->
-    <?php require_once('C:\xampp\htdocs\a2\app\views\hr\includes\footer.php'); ?>
+    <?php require_once('includes\footer.php'); ?>
     <script>
     function consent() {
         //CONSENT

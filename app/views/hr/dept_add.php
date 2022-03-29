@@ -5,26 +5,26 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
 <html lang="en" class="h-100">
 
-<?php require_once('C:\xampp\htdocs\a2\app\views\hr\includes\head.php'); ?>
+<?php require_once('includes\head.php'); ?>
 
 <body class="d-flex flex-column h-100">
     <!-- topbar -->
-    <?php require_once('C:\xampp\htdocs\a2\app\views\hr\includes\topbar.php'); ?>
+    <?php require_once('includes\topbar.php'); ?>
     <!-- end topbar -->
         <!-- Container - Fluid -->
         <div class="container-fluid pt-5">
             <!-- Row -->
             <div class="row">
                 <!-- sidebar -->
-                <?php require_once('C:\xampp\htdocs\a2\app\views\hr\includes\sidebar.php'); ?>
+                <?php require_once('includes\sidebar.php'); ?>
                 <!-- end side bar -->
             <!-- Main -->
             <!-- <main class="col-md-9 ms-sm-auto col-lg-10 px-md-2 bg-white maincontent"> -->
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-2 maincontent">
                 <!-- title -->
                 <div class="justify-content-between align-items-center pt-1 pb-2 mb-3 border-bottom mx-2">
-                    <h5 class="h5 mt-3 mb-0 color-darkgray"><i class=" fa fa-solid fa-arrow-left fa-lg"></i></a>
-                    &nbsp;Update Office  <small></small></h5>
+                    <h5 class="h5 mt-3 mb-0 color-darkgray"> <a href=""> <i class=" fa fa-solid fa-arrow-left fa-lg"></i></a>
+                    &nbsp; Departments<small></small></h5>
                 </div>
                 <!-- end title -->
                 <!-- container-fluid -->
@@ -36,44 +36,54 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                         <div class="d-flex justify-content-center">
                             <div class="card">
                                 <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseTable"
-                                    aria-expanded="true" aria-controls="collapseTable" >
+                                    aria-expanded="true" aria-controls="collapseTable">
                                     <span class="card-icon"><i class="fa fa-plus"></i></span>
-                                    Registered New Employee<i class="fa fa-caret-down pull-right"></i>
+                                    Add New Department
                                 </div>
                                 <div class="card-body accordion-collapse collapse show" id="collapseTable-d">
-                                    <form action="<?=site_url('Hr/update_office');?>" method="POST">
-                                        <div class="row">
-                                            <input type="hidden" name="office_id"
-                                                value="<?= $data['office']['office_id']?>">
-                                            <div class="col-md-12 mb-2">
-                                                <label for="f1" class="form-label">Department</label>
-                                                <select class="form-control form-control-sm" name="dept_id" id="" data-toggle="tooltip" data-placement="right" title="" required>
-                                                    <option value="<?= $data['office']['dept_id']?>">
-                                                        <?= $data['office']['dept_id']?>
-                                                    </option>
-                                                    <?php foreach($data['dept'] as $datum): ?>
-                                                        <option value="<?php echo $datum['dept_id']?>">    <?= $datum['dept_code']?>
-                                                    </option>
-                                                    <?php endforeach; ?>
-                                                </select>
+                                    <?php if (isset($data['dept_id'])): ?>
+                                        <form action="<?=site_url('Hr/update_department');?>" method="POST">
+                                            <input type="hidden" name="dept_id" value="<?= $data['dept_id']?>">
+                                            <div class="row">
+                                                <div class="col-md-12 mb-2">
+                                                    <label for="f1" class="form-label">Department Code</label>
+                                                    <input type="text" class="form-control form-control-sm" name="dept_code" id="" value="<?= $data['dept_code']?>" required>
+                                                </div>
+                                                <div class="col-md-12 mb-2">
+                                                    <label for="f1" class="form-label">Department Description</label>
+                                                    <input type="text" class="form-control form-control-sm" name="dept_description" id="" value="<?= $data['dept_description']?>" required>
+                                                </div>
+                                                
                                             </div>
-                                            <div class="col-md-12 mb-2">
-                                                <label for="f1" class="form-label">Office Code</label>
-                                                <input type="text" class="form-control form-control-sm" name="office_code" id="" value="<?= $data['office']['office_code'] ?>" required>
+                                            <div class="row ">
+                                                <div class="col-md-12">
+                                                    <input type="submit" class="btn btn-sm btn-success pull-right"
+                                                        name="submit" value="Update">
+                                                </div>
                                             </div>
-                                            <div class="col-md-12 mb-2">
-                                                <label for="f1" class="form-label">Office Description</label>
-                                                <input type="text" class="form-control form-control-sm" name="office_description" id="" value="<?= $data['office']['office_description'] ?>" required>
+                                        </form>
+                                    <?php else: ?>
+                                        <form action="<?=site_url('Hr/add_department');?>" method="POST">
+                                            <div class="row">
+                                                <div class="col-md-12 mb-2">
+                                                    <label for="f1" class="form-label">Department Code</label>
+                                                    <input type="text" class="form-control form-control-sm" name="dept_code" id="" required>
+                                                </div>
+                                                <div class="col-md-12 mb-2">
+                                                    <label for="f1" class="form-label">Department Description</label>
+                                                    <input type="text" class="form-control form-control-sm" name="dept_description" id="" required>
+                                                </div>
+                                                
                                             </div>
-                                            
-                                        </div>
-                                        <div class="row ">
-                                            <div class="col-md-12">
-                                                <input type="submit" class="btn btn-sm btn-success pull-right"
-                                                    name="submit" value="Update">
+                                            <div class="row ">
+                                                <div class="col-md-12">
+                                                    <input type="submit" class="btn btn-sm btn-success pull-right"
+                                                        name="submit" value="Add">
+                                                </div>
                                             </div>
-                                        </div>
-                                    </form>
+                                        </form>
+                                    <?php endif; ?>
+
                                 </div>
                             </div>
                         </div>
@@ -85,7 +95,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                 <!-- End container-fluid -->
 
                 <!-- Footer -->
-                <?php require_once('C:\xampp\htdocs\a2\app\views\hr\includes\footbar.php'); ?>
+                <?php require_once('includes\footbar.php'); ?>
                 <!-- End Footer -->
             </main>
             <!-- End Main -->
@@ -93,7 +103,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
         <!-- End Row -->
     </div>
     <!-- End Container - Fluid -->
-    <?php require_once('C:\xampp\htdocs\a2\app\views\hr\includes\footer.php'); ?>
+    <?php require_once('includes\footer.php'); ?>
     <script>
     function consent() {
         //CONSENT
