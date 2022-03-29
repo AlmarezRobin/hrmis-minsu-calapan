@@ -80,7 +80,7 @@ $config['ENVIRONMENT']             = 'development';
 | WARNING: You MUST set this value!
 |
 */
-$config['base_url'] 				= 'http://localhost/a2/';
+$config['base_url'] 				= 'http://localhost/hrmis-minsu-calapan/';
 
 //$config['base_url'] 				= '  https://a06b2f1aa16d6c.lhrtunnel.link/';
 
