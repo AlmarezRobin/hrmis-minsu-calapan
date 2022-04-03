@@ -5,25 +5,25 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
 <html lang="en" class="h-100">
 
-<?php require_once('includes\head.php'); ?>
+<?php require_once(APP_DIR . 'views/hr/includes/head.php'); ?>
 
 <body class="d-flex flex-column h-100">
     <!-- topbar -->
-    <?php require_once('includes\topbar.php'); ?>
+    <?php require_once(APP_DIR . 'views/hr/includes/topbar.php'); ?>
     <!-- end topbar -->
         <!-- Container - Fluid -->
         <div class="container-fluid pt-5">
             <!-- Row -->
             <div class="row">
                 <!-- sidebar -->
-                <?php require_once('includes\sidebar.php'); ?>
+                <?php require_once(APP_DIR . 'views/hr/includes/sidebar.php'); ?>
                 <!-- end side bar -->
             <!-- Main -->
             <!-- <main class="col-md-9 ms-sm-auto col-lg-10 px-md-2 bg-white maincontent"> -->
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-2 maincontent">
                 <!-- title -->
                 <div class="justify-content-between align-items-center pt-1 pb-2 mb-3 border-bottom mx-2">
-                    <h5 class="h5 mt-3 mb-0 color-darkgray"> Employee's Designation <small></small></h5>
+                    <h5 class="h5 mt-3 mb-0 color-darkgray"> Registered Employee's <small></small></h5>
                 </div>
                 <!-- end title -->
                 <!-- container-fluid -->
@@ -33,12 +33,13 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                     <!-- Col- -->
                     <div class="col-md-12 float-sm-start">
                         <div class="col-md-12 p-2 float-sm-start">
+
                             <div class="card">
 
                                 <div class="card-header">
                                     <span class="card-icon"><i class="fa fa-th"></i></span>
-                                    List of Designatition
-                                    <a href="<?=site_url('Hr/add_designation');?>"  data-toogle="tooltip" title="ADD DESIGNATIONS" > <i class="fa fa-icon fa-plus fa-lg pull-right"></i> </a>
+                                    List of Departments
+                                    <a href="<?=site_url('Hr/add_department');?>"  data-toogle="tooltip" title="ADD DEPARTMENT" > <i class="fa fa-icon fa-plus fa-lg pull-right"></i> </a>
 
                                 </div>
                                 <div class="card-body accordion-collapse collapse show p-0" id="collapseTable">
@@ -51,11 +52,9 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
                                             <thead>
                                                 <tr>
-                                                    <th>Designation ID</th>
-                                                    <th>Designation Description</th>
-                                                    <th>Salary Grade</th>
-                                                    <th>Salary Rate Category</th>
-                                                    <th>Salary Rate Amount</th>
+                                                    <th>Department ID</th>
+                                                    <th>Department Code</th>
+                                                    <th>Department Description</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
@@ -63,36 +62,34 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                             <tbody>
                                                 <?php foreach($data as $datum) : ?>
                                                     <tr>
-                                                        <td><?php echo $datum['designation_id'];  ?></td>
-                                                        <td><?php echo $datum['designation_desc'];  ?></td>
-                                                        <td><?php echo $datum['salary_grade']; ?></td>
-                                                        <td><?php echo $datum['salary_rate_cat'];?></td>
-                                                        <td><?php echo $datum['salary_rate_amount'];?></td>
+                                                        <td><?php echo $datum['dept_id'];  ?></td>
+                                                        <td><?php echo $datum['dept_code'] ?></td>
+                                                        <td><?php echo $datum['dept_description'];?></td>
                                                         <td>
-                                                            <form action="<?= site_url('hr/delete_designation')?>" method="post" class="d-inline">
-                                                                <input type="hidden" name="designation_id" value="<?= $datum['designation_id']?>">
-                                                                <button class = "btn btn-mini btn-danger" onclick="return confirm('are you ure');" >
-                                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                            <form action="<?= site_url('hr/delete_department')?>" method="post" class="d-inline">
+                                                                <input type="hidden" name="dept_id" value="<?= $datum['dept_id']?>">
+                                                                <button class="btn btn-mini btn-danger" onclick="return confirm('are you sure');" >
+                                                                <i class="fa fa-trash" aria-hidden="true"></i>
                                                                 </button>
                                                             </form>
-                                                            <form action="<?= site_url('hr/get_single_designation')?>" method="post" class="d-inline">
-                                                                <input type="hidden" name="designation_id" value="<?= $datum['designation_id']?>">
-                                                                <button class = "btn btn-mini btn-success">
+                                                            <form action="<?= site_url('hr/get_single_dept')?>" method="post" class="d-inline">
+                                                                <input type="hidden" name="dept_id" value="<?= $datum['dept_id']?>">
+                                                                <button class="btn btn-mini btn-success">
                                                                 <i class="fa fa-eye" aria-hidden="true"></i>
                                                                 </button>
                                                             </form>
                                                         </td>
+
                                                     </tr>
+
                                                 <?php endforeach; ?>
                                             </tbody>
 
                                             <tfoot>
                                                 <tr>
-                                                    <th>Designation ID</th>
-                                                    <th>Designation Description</th>
-                                                    <th>Salary Grade</th>
-                                                    <th>Salary Rate Category</th>
-                                                    <th>Salary Rate Amount</th>
+                                                    <th>Department ID</th>
+                                                    <th>Department Code</th>
+                                                    <th>Department Description</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </tfoot>
@@ -116,7 +113,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                 <!-- End container-fluid -->
 
                 <!-- Footer -->
-                <?php require_once('includes\footbar.php'); ?>
+                <?php require_once(APP_DIR . 'views/hr/includes/footbar.php'); ?>
                 <!-- End Footer -->
             </main>
             <!-- End Main -->
@@ -124,7 +121,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
         <!-- End Row -->
     </div>
     <!-- End Container - Fluid -->
-    <?php require_once('includes\footer.php'); ?>
+    <?php require_once(APP_DIR . 'views/hr/includes/footer.php'); ?>
     <script>
     function consent() {
         //CONSENT

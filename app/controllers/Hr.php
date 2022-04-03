@@ -8,6 +8,56 @@ class Hr extends Controller {
 		$this->call->view('hr/index');
 	}
 
+
+	public function view_admin(){
+		$this->call->view('hr/registered_admin');
+	}
+	public function add_admin(){
+		if ($this->form_validation->submitted()) 
+            {
+                $this->form_validation
+									->name('admin_id')->required()
+									->name('admin_role')->required()
+									->name('admin_email')->required()
+									->name('admin_usename')->required()
+									->name('admin_password')->required()
+									->name('admin_name')->required()
+									->name('admin_midname')->required()
+									->name('admin_lname')->required()
+									->name('admin_office')->required();
+									if ($this->form_validation->run()) 
+                {
+                  $this->auth->register(
+									$this->io->post('admin_id'),
+									$this->io->post('admin_role'),
+									$this->io->post('admin_email'),
+									$this->io->post('admin_username'), 
+									$this->io->post('admin_password'),
+									$this->io->post('admin_name'),
+									$this->io->post('admin_midname'), 
+									$this->io->post('admin_lname'),
+									$this->io->post('admin_office'));
+										redirect('Hr/view_employee');
+                }
+
+                
+            }
+		$this->call->view('hr/register_admin');
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	// ! selects all employee registered
 	public function view_employee(){
 		$data = $this->Employee_model->select_all_employee();
@@ -40,11 +90,12 @@ class Hr extends Controller {
 	}
 	#endregion
 
+
 	#region employee status
 	// ! selects all data frm employment_status tbl
 	public function view_employment_status(){
 		$data = $this->Utility_model->employment_stat();
-		$this->call->view('hr/employment_status',$data);
+		$this->call->view('hr/utility_settings/employment_status',$data);
 	}
 
 	// ! adds employment status
@@ -61,7 +112,7 @@ class Hr extends Controller {
 								strtoupper($this->io->post('stat_desc'))))
                 {
                     // $this->session->set_flashdata(array('status'=>'Inserted Succesfully'));
-                    redirect('Hr/view_employment_status');
+                    redirect('Hr/utility_settings/view_employement_status');
                     exit;
                 }
             }
@@ -73,7 +124,7 @@ class Hr extends Controller {
 	public function get_single_emp_stat(){
 		if($this->form_validation->run()){
 			$data = $this->Utility_model->get_single_emp_stat($this->io->post('status_id'));
-			$this->call->view('hr/emp_stat_add', $data);
+			$this->call->view('hr/utility_settings/emp_stat_add', $data);
 			
 		}
 	}
@@ -90,7 +141,7 @@ class Hr extends Controller {
                 if($this->Utility_model->update_emp_stat($this->io->post('stat_id'),strtoupper($this->io->post('stat_code')),strtoupper($this->io->post('stat_desc'))))
                 {
                     // $this->session->set_flashdata(array('status'=>'Inserted Succesfully'));
-                    redirect('Hr/view_employement_status');
+                    redirect('Hr/utility_settings/view_employement_status');
                     exit;
                 }
             }
@@ -101,7 +152,7 @@ class Hr extends Controller {
 	public function delete_emp_stat(){
 		if($this->form_validation->run()){
 			$this->Utility_model->delete_emp_stat($this->io->post('status_id'));
-			redirect('Hr/view_employment_status');
+			redirect('hr/vieutility_settings/w_employment_status');
 			exit();
 		}
 	}
@@ -111,7 +162,7 @@ class Hr extends Controller {
 	#region designation
 	public function view_designation(){
 		$data = $this->Utility_model->designation();
-		$this->call->view('hr/designation',$data);
+		$this->call->view('hr/utility_settings/designation',$data);
 	}
 
 	public function add_designation(){
@@ -132,7 +183,7 @@ class Hr extends Controller {
 									strtoupper($this->io->post('salary_rate_amount'))))
                 {
                     // $this->session->set_flashdata(array('status'=>'Inserted Succesfully'));
-                    redirect('Hr/view_designation');
+                    redirect('Hr/utility_settings/view_designation');
                     exit;
                 }
             }
@@ -143,7 +194,7 @@ class Hr extends Controller {
 	public function get_single_designation(){
 		if ($this->form_validation->run()) {
 			$data = $this->Utility_model->get_single_designation($this->io->post('designation_id'));
-			$this->call->view('hr/desig_add',$data);
+			$this->call->view('hr/utility_settings/desig_add',$data);
 		}
 	}
 
@@ -167,7 +218,7 @@ class Hr extends Controller {
 							strtoupper($this->io->post('salary_rate_amount'))))
                 {
                     // $this->session->set_flashdata(array('status'=>'Inserted Succesfully'));
-                    redirect('Hr/view_designation');
+                    redirect('Hr/utility_settings/view_designation');
 					exit;
                     
                 }
@@ -182,7 +233,7 @@ class Hr extends Controller {
 	public function delete_designation(){
 		if ($this->form_validation->run()) {
 			$this->Utility_model->delete_designation($this->io->post('designation_id'));
-			redirect('hr/view_designation');
+			redirect('hr/utility_settings/view_designation');
 			exit();
 		}
 	}
@@ -209,7 +260,7 @@ class Hr extends Controller {
 									strtoupper($this->io->post('dept_description'))))
 										{
 											// $this->session->set_flashdata(array('status'=>'Inserted Succesfully'));
-											redirect('Hr/view_department');
+											redirect('Hr/utility_settings/view_department');
 											exit;
 										}
             }
@@ -220,7 +271,7 @@ class Hr extends Controller {
 	public function get_single_dept(){
 		if ($this->form_validation->run()) {
 			$data = $this->Utility_model->get_single_dept($this->io->post('dept_id'));
-			$this->call->view('hr/dept_add',$data);
+			$this->call->view('hr/utility_settings/dept_add',$data);
 		}
 	}
 
@@ -238,7 +289,7 @@ class Hr extends Controller {
 									strtoupper($this->io->post('dept_description'))))
 										{
 												// $this->session->set_flashdata(array('status'=>'Inserted Succesfully'));
-												redirect('Hr/view_department');
+												redirect('Hr/utility_settings/');
 												exit;
 										}
             }
@@ -248,7 +299,7 @@ class Hr extends Controller {
 	public function delete_department(){
 		if ($this->form_validation->run()) {
 			$this->Utility_model->delete_department($this->io->post('dept_id'));
-			redirect('Hr/view_department');
+			redirect('Hr/utility_settings/view_department');
 			exit;
 		}
 	}
@@ -258,12 +309,12 @@ class Hr extends Controller {
 	public function view_office_add(){
 
 		$data = $this->Utility_model->get_dept_data();
-		$this->call->view('hr/office_add',$data);
+		$this->call->view('hr/utility_settings/office_add',$data);
 	}
 	public function view_office(){
 
 		$data = $this->Utility_model->office();
-		$this->call->view('hr/office',$data);
+		$this->call->view('hr/utility_settings/office',$data);
 	}
 
 	public function add_office(){
@@ -282,7 +333,7 @@ class Hr extends Controller {
 									strtoupper($this->io->post('office_description'))))
                 {
                     // $this->session->set_flashdata(array('status'=>'Inserted Succesfully'));
-                    redirect('Hr/view_office');
+                    redirect('Hr/utility_settings/view_office');
                     exit;
                 }
             }
@@ -300,7 +351,7 @@ class Hr extends Controller {
 
 
 
-			$this->call->view('hr/office_update',$data);
+			$this->call->view('hr/utility_settings/office_update',$data);
 		}
 	}
 
@@ -320,7 +371,7 @@ class Hr extends Controller {
 										strtoupper($this->io->post('office_description'))))
 										{
 											// $this->session->set_flashdata(array('status'=>'Inserted Succesfully'));
-											redirect('Hr/view_office');
+											redirect('Hr/utility_settings/view_office');
 											exit;
 										}
             }
@@ -330,7 +381,7 @@ class Hr extends Controller {
 	public function delete_office(){
 		if ($this->form_validation->run()) {
 			$this->Utility_model->delete_office($this->io->post('office_id'));
-			redirect('hr/view_office');
+			redirect('hr/utility_settings/view_office');
 			exit;
 		}
 	}
@@ -339,7 +390,7 @@ class Hr extends Controller {
 	#region deduction
 	public function view_deduction(){
 		$data = $this->Utility_model->deduction();
-		$this->call->view('hr/deduction',$data);
+		$this->call->view('hr/utility_settings/deduction',$data);
 	}
 
 	public function add_deduction(){
@@ -356,7 +407,7 @@ class Hr extends Controller {
 									strtoupper($this->io->post('deduction_base_amount'))))
                 {
                     // $this->session->set_flashdata(array('status'=>'Inserted Succesfully'));
-                    redirect('Hr/view_deduction');
+                    redirect('Hr/utility_settings/view_deduction');
                     exit;
                 }
             }
@@ -367,7 +418,7 @@ class Hr extends Controller {
 	public function get_single_deduction(){
 		if($this->form_validation->run()){
 			$data = $this->Utility_Model->get_single_deduction($this->io->post('deduction_id'));
-			$this->call->view('hr/deduction_add', $data);
+			$this->call->view('hr/utility_settings/deduction_add', $data);
 		}
 	}
 
@@ -385,7 +436,7 @@ class Hr extends Controller {
 									strtoupper($this->io->post('deduction_base_amount'))))
                 {
                     // $this->session->set_flashdata(array('status'=>'Inserted Succesfully'));
-                    redirect('Hr/view_deduction');
+                    redirect('Hr/utility_settings/view_deduction');
                     exit;
                 }
             }
@@ -395,7 +446,7 @@ class Hr extends Controller {
 	public function delete_deduction(){
 		if ($this->form_validation->run()) {
 			$this->Utility_model->delete_office($this->io->post('deduction_id'));
-			redirect('hr/view_deduction');
+			redirect('hr/utility_settings/view_deduction');
 			exit;
 		}
 	}
@@ -403,26 +454,11 @@ class Hr extends Controller {
 
 	#region leave
 	public function view_leave(){
-		$data = $this->Utility_model->leave();
-		$this->call->view('hr/leave', $data);
+		$this->call->view('hr/utility_settings/leave');
 	}
 
-	public function leave_add(){
-		if($this->form_validation->submitted()){
-			$this->form_validation->name('leave_description')->required()
-								->name('no_of_days')->required()
-								->name('leave_specification')->required();
-			if ($this->form_validation->run()) {
-				if($this->Utility_model->add_leave(
-					strtoupper($this->io->post('leave_description')),
-					$this->io->post('no_of_days'),
-					strtoupper($this->io->post('leave_specification'))
-				))
-				redirect('Hr/view_leave');
-				exit;
-			}
-		}
-		$this->call->view('hr/leave_add');
+	public function view_leave_add(){
+		$this->call->view('hr/utility_settings/leave_add');
 	}
 
 	public function get_single_leave(){

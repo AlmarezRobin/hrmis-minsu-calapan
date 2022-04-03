@@ -5,18 +5,18 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
 <html lang="en" class="h-100">
 
-<?php require_once('includes/head.php') ; ?>
+<?php require_once(APP_DIR . 'views/hr/includes/head.php') ; ?>
 
 <body class="d-flex flex-column h-100">
     <!-- topbar -->
-    <?php require_once('includes\topbar.php'); ?>
+    <?php require_once(APP_DIR . 'views/hr/includes/topbar.php'); ?>
     <!-- end topbar -->
         <!-- Container - Fluid -->
         <div class="container-fluid pt-5">
             <!-- Row -->
             <div class="row">
                 <!-- sidebar -->
-                <?php require_once('includes\sidebar.php'); ?>
+                <?php require_once(APP_DIR . 'views/hr/includes/sidebar.php'); ?>
                 <!-- end side bar -->
             <!-- Main -->
             <!-- <main class="col-md-9 ms-sm-auto col-lg-10 px-md-2 bg-white maincontent"> -->
@@ -111,7 +111,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                 <!-- End container-fluid -->
 
                 <!-- Footer -->
-                <?php require_once('includes\footbar.php'); ?>
+                <?php require_once(APP_DIR . 'views/hr/includes/footbar.php'); ?>
                 <!-- End Footer -->
             </main>
             <!-- End Main -->
@@ -119,7 +119,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
         <!-- End Row -->
     </div>
     <!-- End Container - Fluid -->
-    <?php require_once('includes\footer.php'); ?>
+    <?php require_once(APP_DIR . 'views/hr/includes/footer.php'); ?>
     <script>
     function consent() {
         //CONSENT

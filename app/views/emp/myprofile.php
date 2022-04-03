@@ -2,13 +2,13 @@
 
 <html lang="en" class="h-100">
 
-<?php require_once('C:\xampp\htdocs\a2\app\views\emp\includes\head.php'); ?>
+<?php require_once('includes\head.php'); ?>
 
 <body class="d-flex flex-column h-100">
 
 
     <!-- topbar -->
-    <?php require_once('C:\xampp\htdocs\a2\app\views\emp\includes\topbar.php'); ?>
+    <?php require_once('includes\topbar.php'); ?>
     <!-- end topbar -->
 
     <!-- Container - Fluid -->
@@ -18,7 +18,7 @@
 
 
             <!-- sidebar -->
-            <?php require_once('C:\xampp\htdocs\a2\app\views\emp\includes\sidebar.php'); ?>
+            <?php require_once('includes\sidebar.php'); ?>
             <!-- end side bar -->
 
 
@@ -90,7 +90,7 @@
 
 
                 <!-- Footer -->
-                <?php require_once('C:\xampp\htdocs\a2\app\views\emp\includes\footbar.php'); ?>
+                <?php require_once('includes\footbar.php'); ?>
                 <!-- End Footer -->
 
 
@@ -105,7 +105,7 @@
     </div>
     <!-- End Container - Fluid -->
 
-    <?php require_once('C:\xampp\htdocs\a2\app\views\emp\includes\footer.php'); ?>
+    <?php require_once('includes\footer.php'); ?>
 
 <style>
 /*

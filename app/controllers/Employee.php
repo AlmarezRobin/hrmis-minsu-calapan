@@ -7,31 +7,53 @@ class Employee extends Controller {
 		$this->call->view('emp/index');
 	}
 
-	public function view_myprofile(){
-		$this->call->view('emp/myprofile');
-	}
+	// public function view_myprofile(){
+	// 	$this->call->view('emp/index');
+	// }
 	public function view_edit_profile(){
-		$this->call->view('emp/myprofile_edit');
+		$this->call->view('emp/emp_profile/myprofile_edit');
 	}
 
-	public function view_pds(){
-		$this->call->view('emp/personal_data_sheet');
+	public function view_emp_designation_edit(){
+
+		$designation = $this->Utility_model->designation();
+		$this->call->view('emp/emp_designation_edit',$designation);
 	}
 
-	public function view_locator(){
-		$this->call->view('emp/locator/locator_history');
+	public function update_profile(){
+		if ($this->form_validation->submitted()) 
+            {
+                $this->form_validation
+									->name('fname')->required()
+									->name('mname')->required()
+									->name('lname')->required()
+									->name('xname')
+									->name('dob')->required()
+									->name('sex')->required()
+									->name('cstat')->required()
+									->name('tnumber')->required()
+									->name('cnumber')->required();
+									
+									if ($this->form_validation->run()) 
+                {
+                  $this->Employee_model->insert_user_profile(
+									
+									$this->io->post('fname'),
+									$this->io->post('mname'),
+									$this->io->post('lname'),
+									$this->io->post('xname'),
+									$this->io->post('dob'), 
+									$this->io->post('sex'),
+									$this->io->post('cstat'),
+									$this->io->post('tnumber'),
+									$this->io->post('cnumber'));
+										redirect('Employee');
+                }
+
+                
+            }
+		// $this->call->view('hr/register_admin');
 	}
-	public function view_create_locator(){
-		$this->call->view('emp/locator/create_new_locator');
-	}
-
-
-
-
-
-
-
-
 
 
 

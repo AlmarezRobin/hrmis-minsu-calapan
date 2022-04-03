@@ -82,7 +82,7 @@ $config['ENVIRONMENT']             = 'development';
 */
 $config['base_url'] 				= 'http://localhost/hrmis-minsu-calapan/';
 
-//$config['base_url'] 				= '  https://a06b2f1aa16d6c.lhrtunnel.link/';
+// $config['base_url'] 				= '   https://bac7195d84b4b0.lhrtunnel.link/';
 
 /*
 |--------------------------------------------------------------------------
@@ -147,7 +147,7 @@ $config['charset']					= 'UTF-8';
 | This config will be used in the Router Class inside kernel.
 |
 */
-$config['default_controller'] 		= 'Hr';
+$config['default_controller'] 		= 'Login';
 $config['default_method'] 			= 'index';
 
 /*
