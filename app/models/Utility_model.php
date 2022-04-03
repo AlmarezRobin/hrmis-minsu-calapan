@@ -164,18 +164,18 @@
 
     #region leave
     public function leave(){
-      $this->db->table('leave')->get_all();
+      return $this->db->table('leave_tbl')->get_all();
     }
     
 
     public function add_leave($desc, $days, $spec){
       $leave = array('leave_desc'=>$desc, 'no_of_days'=>$days, 'leave_specification'=> $spec);
-      return $this->db->table('leave')->insert($leave)->exec();
+      return $this->db->table('leave_tbl')->insert($leave)->exec();
 
     }
 
     public function get_single_leave($id){
-      return $this->db->table('leave')->where('leave_id', $id)->get();
+      return $this->db->table('leave_tbl')->where('leave_id', $id)->get();
     }
 
     public function update_leave($id, $desc, $days, $spec){
@@ -184,11 +184,11 @@
         'no_of_days' => $days,
         'leave_specification' => $spec
       ];
-      return $this->db->table('leave')->where('leave_id', $id)->update($data)->exec();
+      return $this->db->table('leave_tbl')->where('leave_id', $id)->update($data)->exec();
     }
 
     public function delete_leave($id){
-      return $this->db->table('leave')->where('leave_id', $id)->delete()->exec();
+      return $this->db->table('leave_tbl')->where('leave_id', $id)->delete()->exec();
     }
     #endregion
   }

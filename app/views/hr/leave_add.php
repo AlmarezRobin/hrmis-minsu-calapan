@@ -41,12 +41,12 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                 </div>
                                 <div class="card-body accordion-collapse collapse show" id="collapseTable-d">
                                     <?php if(isset($data['leave_id'])): ?>
-                                        <form action="<?=site_url('Hr/update_leave');?>" method="POST">
+                                        <form action="<?=site_url('Hr/leave_update');?>" method="POST">
                                             <input type="hidden" name="leave_id" value="<?= $data['leave_id'] ?>">
                                             <div class="row">
                                                 <div class="col-md-12 mb-2">
                                                     <label for="f1" class="form-label">Leave Description</label>
-                                                    <input type="text" class="form-control form-control-sm" name="leave_description" id="" value="<?= $data['leave_description'] ?>" required>
+                                                    <input type="text" class="form-control form-control-sm" name="leave_description" id="" value="<?= $data['leave_desc'] ?>" required>
                                                 </div>
                                                 <div class="col-md-12 mb-2">
                                                     <label for="f1" class="form-label">Number of Days</label>
@@ -65,7 +65,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                             </div>
                                         </form>
                                     <?php else: ?>
-                                        <form action="<?=site_url('Hr/add_leave');?>" method="POST">
+                                        <form action="<?=site_url('Hr/leave_add');?>" method="POST">
                                             <div class="row">
                                                 <div class="col-md-12 mb-2">
                                                     <label for="f1" class="form-label">Leave Description</label>

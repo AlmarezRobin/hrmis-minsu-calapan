@@ -68,13 +68,12 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                         <div class="row">
                                             <div class="col-md-12 mb-2">
                                                 <label for="f1" class="form-label">Status Code</label>
-                                                <input type="text" class="form-control form-control-sm" name="stat_code" id="" required>
+                                                <input type="text" class="form-control form-control-sm" name="stat_code" id="" >
                                             </div>
                                             <div class="col-md-12 mb-2">
                                                 <label for="f1" class="form-label">Status Description</label>
-                                                <input type="text" class="form-control form-control-sm" name="stat_desc" id="" required>
+                                                <input type="text" class="form-control form-control-sm" name="stat_desc" id="" >
                                             </div>
-                                            
                                         </div>
                                         <div class="row ">
                                             <div class="col-md-12">

@@ -71,7 +71,7 @@
                 <ul class="btn-toggle-nav list-unstyled fw-normal medium mb-1">
                     
                     <li class="bg-light ps-4 sub-link">
-                        <a href="<?=site_url('Hr/view_employement_status');?>">
+                        <a href="<?=site_url('Hr/view_employment_status');?>">
                             <i class="fa fa-icon fa-plus me-1"></i>
                             Employment Status
                         </a>

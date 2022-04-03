@@ -74,8 +74,8 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                                                 </button>
                                                             </form>
                                                             <form action="<?= site_url('hr/get_single_office')?>" method="post" class="d-inline">
-                                                                <input type="hidden" name="dept_id" value="<?= $datum['office_id']?>">
-                                                                <input type="hidden" name="office_id" value="<?= $datum['dept_id']?>">
+                                                                <input type="hidden" name="office_id" value="<?= $datum['office_id']?>">
+                                                                <input type="hidden" name="dept_id" value="<?= $datum['dept_id']?>">
                                                                 <button class="btn btn-mini btn-success" >
                                                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                                                 </button>

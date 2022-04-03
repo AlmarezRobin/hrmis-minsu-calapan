@@ -720,6 +720,6 @@ if ( ! function_exists('_attributes_to_string'))
     function validation_errors() {
         $LAVA =& lava_instance();
     	$LAVA->call->library('form_validation');
-        return $LAVA->form_validation->errors();
+        return $LAVA->form_validation->get_errors();
     }
 }

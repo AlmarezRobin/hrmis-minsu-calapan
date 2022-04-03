@@ -39,7 +39,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                 <div class="card-header">
                                     <span class="card-icon"><i class="fa fa-th"></i></span>
                                     List of Departments
-                                    <a href="<?=site_url('Hr/view_leave_add');?>" c data-toogle="tooltip" title="ADD LEAVE" > <i class="fa fa-icon fa-plus fa-lg pull-right"></i> </a>
+                                    <a href="<?=site_url('Hr/leave_add');?>" c data-toogle="tooltip" title="ADD LEAVE" > <i class="fa fa-icon fa-plus fa-lg pull-right"></i> </a>
 
                                 </div>
                                 <div class="card-body accordion-collapse collapse show p-0" id="collapseTable">
@@ -68,14 +68,14 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                                         <td><?php echo $datum['no_of_days'];?></td>
                                                         <td><?php echo $datum['leave_specification'];?></td>
                                                         <td>
-                                                        <<form action="<?= site_url('hr/delete_leave')?>" method="post" class="d-inline">
-                                                                <input type="hidden" name="deduction_id" value="<?= $datum['leave_id']?>">
+                                                        <form action="<?= site_url('hr/leave_delete')?>" method="post" class="d-inline">
+                                                                <input type="hidden" name="leave_id" value="<?= $datum['leave_id']?>">
                                                                 <button class="btn btn-mini btn-danger" onclick="return confirm('are you sure');" >
                                                                 <i class="fa fa-trash" aria-hidden="true"></i>
                                                                 </button>
                                                             </form>
                                                             <form action="<?= site_url('hr/get_single_leave')?>" method="post" class="d-inline">
-                                                                <input type="hidden" name="deduction_id" value="<?= $datum['deduction_id']?>">
+                                                                <input type="hidden" name="leave_id" value="<?= $datum['leave_id']?>">
                                                                 <button class="btn btn-mini btn-success">
                                                                 <i class="fa fa-eye" aria-hidden="true"></i>
                                                                 </button>

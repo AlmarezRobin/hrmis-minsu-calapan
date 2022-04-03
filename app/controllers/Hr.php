@@ -42,7 +42,7 @@ class Hr extends Controller {
 
 	#region employee status
 	// ! selects all data frm employment_status tbl
-	public function view_employement_status(){
+	public function view_employment_status(){
 		$data = $this->Utility_model->employment_stat();
 		$this->call->view('hr/employment_status',$data);
 	}
@@ -52,8 +52,8 @@ class Hr extends Controller {
 		if($this->form_validation->submitted())
         {
             $this->form_validation
-							->name('stat_code')->required()
-							->name('stat_desc')->required();
+							->name('stat_code')->required('Status code is required')
+							->name('stat_desc')->required('Status Description is required');
 							
             if($this->form_validation->run())
             {
@@ -61,7 +61,7 @@ class Hr extends Controller {
 								strtoupper($this->io->post('stat_desc'))))
                 {
                     // $this->session->set_flashdata(array('status'=>'Inserted Succesfully'));
-                    redirect('Hr/view_employement_status');
+                    redirect('Hr/view_employment_status');
                     exit;
                 }
             }
@@ -101,7 +101,7 @@ class Hr extends Controller {
 	public function delete_emp_stat(){
 		if($this->form_validation->run()){
 			$this->Utility_model->delete_emp_stat($this->io->post('status_id'));
-			redirect('hr/view_employment_status');
+			redirect('Hr/view_employment_status');
 			exit();
 		}
 	}
@@ -291,7 +291,6 @@ class Hr extends Controller {
 
 	public function get_single_office(){
 		if ($this->form_validation->run()) {
-			$data1 = 
 			
 			$data=[
 				'office' =>$this->Utility_model->get_single_office($this->io->post('office_id')),
@@ -404,12 +403,62 @@ class Hr extends Controller {
 
 	#region leave
 	public function view_leave(){
-		$this->call->view('hr/leave');
+		$data = $this->Utility_model->leave();
+		$this->call->view('hr/leave', $data);
 	}
 
-	public function view_leave_add(){
+	public function leave_add(){
+		if($this->form_validation->submitted()){
+			$this->form_validation->name('leave_description')->required()
+								->name('no_of_days')->required()
+								->name('leave_specification')->required();
+			if ($this->form_validation->run()) {
+				if($this->Utility_model->add_leave(
+					strtoupper($this->io->post('leave_description')),
+					$this->io->post('no_of_days'),
+					strtoupper($this->io->post('leave_specification'))
+				))
+				redirect('Hr/view_leave');
+				exit;
+			}
+		}
 		$this->call->view('hr/leave_add');
 	}
+
+	public function get_single_leave(){
+		if ($this->form_validation->run()) {
+			$data = $this->Utility_model->get_single_leave($this->io->post('leave_id'));
+			$this->call->view('hr/leave_add', $data);
+		}
+	}
+	
+	public function leave_update(){
+		if($this->form_validation->submitted()){
+			$this->form_validation->name('leave_description')->required()
+								->name('no_of_days')->required()
+								->name('leave_specification')->required();
+			if ($this->form_validation->run()) {
+				if($this->Utility_model->update_leave(
+					$this->io->post('leave_id'),
+					strtoupper($this->io->post('leave_description')),
+					$this->io->post('no_of_days'),
+					strtoupper($this->io->post('leave_specification'))
+				))
+				redirect('Hr/view_leave');
+				exit;
+			}
+		}
+	}
+
+	public function leave_delete(){
+		if($this->form_validation->run()){
+			$this->Utility_model->delete_leave($this->io->post('leave_id'));
+			redirect('hr/view_leave');
+			exit;
+		}
+	}
+
+
 
 	#endregion
 
@@ -430,4 +479,3 @@ class Hr extends Controller {
             redirect('Login');
         }
 }
-?>
