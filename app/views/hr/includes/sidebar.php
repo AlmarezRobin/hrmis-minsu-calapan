@@ -51,7 +51,7 @@
                         <a href="<?=site_url('Hr/view_employee');?>" class="text-black "><i class="fa fa-icon fa-users me-1"></i> Manage Employee's</a>
                     </li>
                     <li class="bg-light ps-4 sub-link">
-                        <a href="<?=site_url('');?>" class="text-black "><i class="fa fa-icon fa-user me-1"></i> Manage Admins</a>
+                        <a href="<?=site_url('Hr/view_admin');?>" class="text-black "><i class="fa fa-icon fa-user me-1"></i> Manage Admins</a>
                     </li>
 
                 </ul>

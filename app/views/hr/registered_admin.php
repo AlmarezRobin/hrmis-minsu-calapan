@@ -32,15 +32,18 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
                     <!-- Col- -->
                     <div class="col-md-12 float-sm-start">
+
                         <div class="col-md-12 p-2 float-sm-start">
 
                             <div class="card">
 
-                                <div class="card-header">
+                                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseTable"
+                                    aria-expanded="true" aria-controls="collapseTable">
                                     <span class="card-icon"><i class="fa fa-th"></i></span>
-                                    List of Departments
-                                    <a href="<?=site_url('Hr/add_department');?>"  data-toogle="tooltip" title="ADD DEPARTMENT" > <i class="fa fa-icon fa-plus fa-lg pull-right"></i> </a>
+                                    List of Registered Employee's
 
+                                    <a href="<?=site_url('Hr/add_admin');?>"> <i class="fa fa-icon fa-plus fa-lg float-sm-end pull-right"></i> </a>
+                                    
                                 </div>
                                 <div class="card-body accordion-collapse collapse show p-0" id="collapseTable">
 
@@ -52,9 +55,19 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
                                             <thead>
                                                 <tr>
-                                                    <th>Department ID</th>
-                                                    <th>Department Code</th>
-                                                    <th>Department Description</th>
+                                                    <th>#</th>
+                                                    <th>Office</th>
+                                                    <th>Email</th>
+                                                    <th>Username</th>
+                                                    <th>Password</th>
+                                                    <th>Firstname</th>
+                                                    <th>Lastname</th>
+                                                    <th>Middlename</th>
+                                                    <th>Status</th>
+                                                    <th>Token</th>
+                                                    <th>Esign</th>
+                                                    <th>Role</th>
+                                                     <th>Date Registered</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
@@ -62,23 +75,6 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                             <tbody>
                                                 <?php foreach($data as $datum) : ?>
                                                     <tr>
-                                                        <td><?php echo $datum['dept_id'];  ?></td>
-                                                        <td><?php echo $datum['dept_code'] ?></td>
-                                                        <td><?php echo $datum['dept_description'];?></td>
-                                                        <td>
-                                                            <form action="<?= site_url('hr/delete_department')?>" method="post" class="d-inline">
-                                                                <input type="hidden" name="dept_id" value="<?= $datum['dept_id']?>">
-                                                                <button class="btn btn-mini btn-danger" onclick="return confirm('are you sure');" >
-                                                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                                                </button>
-                                                            </form>
-                                                            <form action="<?= site_url('hr/get_single_dept')?>" method="post" class="d-inline">
-                                                                <input type="hidden" name="dept_id" value="<?= $datum['dept_id']?>">
-                                                                <button class="btn btn-mini btn-success">
-                                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                                </button>
-                                                            </form>
-                                                        </td>
 
                                                     </tr>
 
@@ -87,9 +83,19 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
                                             <tfoot>
                                                 <tr>
-                                                    <th>Department ID</th>
-                                                    <th>Department Code</th>
-                                                    <th>Department Description</th>
+                                                <th>#</th>
+                                                    <th>Office</th>
+                                                    <th>Email</th>
+                                                    <th>Username</th>
+                                                    <th>Password</th>
+                                                    <th>Firstname</th>
+                                                    <th>Lastname</th>
+                                                    <th>Middlename</th>
+                                                    <th>Status</th>
+                                                    <th>Token</th>
+                                                    <th>Esign</th>
+                                                    <th>Role</th>
+                                                     <th>Date Registered</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </tfoot>
@@ -123,56 +129,6 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
     <!-- End Container - Fluid -->
     <?php require_once('includes\footer.php'); ?>
     <script>
-    function consent() {
-        //CONSENT
-        var submit = document.getElementById('submit');
-        var CONSENT = document.getElementById('CONSENT');
-        if (CONSENT.checked) {
-            submit.disabled = false;
-        } else {
-            submit.disabled = true;
-        }
-    }
-
-    function CopyAdd() {
-
-        var BRTHHOUSENO = document.getElementById('BRTHHOUSENO');
-        var BRTHSTREET = document.getElementById('BRTHSTREET');
-        var BRTHBRGY = document.getElementById('BRTHBRGY');
-        var BRTHTOWN = document.getElementById('BRTHTOWN');
-        var BRTHZIPCODE = document.getElementById('BRTHZIPCODE');
-        var BRTHPROVINCE = document.getElementById('BRTHPROVINCE');
-        var BRTHCOUNTRY = document.getElementById('BRTHCOUNTRY');
-
-        var ADDHOUSENO = document.getElementById('ADDHOUSENO');
-        var ADDSTREET = document.getElementById('ADDSTREET');
-        var ADDBRGY = document.getElementById('ADDBRGY');
-        var ADDTOWN = document.getElementById('ADDTOWN');
-        var ADDZIPCODE = document.getElementById('ADDZIPCODE');
-        var ADDPROVINCE = document.getElementById('ADDPROVINCE');
-        var ADDCOUNTRY = document.getElementById('ADDCOUNTRY');
-
-        var same = document.getElementById('same');
-        if (same.checked) {
-            ADDHOUSENO.value = BRTHHOUSENO.value;
-            ADDSTREET.value = BRTHSTREET.value;
-            ADDBRGY.value = BRTHBRGY.value;
-            ADDTOWN.value = BRTHTOWN.value;
-            ADDZIPCODE.value = BRTHZIPCODE.value;
-            ADDPROVINCE.value = BRTHPROVINCE.value;
-            ADDCOUNTRY.value = BRTHCOUNTRY.value;
-
-        } else {
-            ADDHOUSENO.value = '';
-            ADDSTREET.value = '';
-            ADDBRGY.value = '';
-            ADDTOWN.value = '';
-            ADDZIPCODE.value = '';
-            ADDPROVINCE.value = '';
-            ADDCOUNTRY.value = '';
-        }
-    }
-    </script>
 
      <!-- DATA TABES SCRIPT -->
         <script src="<?php echo BASE_URL . PUBLIC_DIR?>/public/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
@@ -217,3 +173,16 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
         border-radius: 0px 5px 5px 0px
     }
 </style>
+
+    <!-- script para sa default pass show -->
+    <script>
+            function showpass(){
+                var x = document.getElementById("default_pass");
+                if(x.type ==="password"){
+                    x.type = "text";
+                }
+                else{
+                    x.type="password";
+                }
+            }
+        </script>

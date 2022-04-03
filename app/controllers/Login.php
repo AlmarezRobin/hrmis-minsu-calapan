@@ -19,7 +19,7 @@ class Login extends Controller {
 					   	$this->auth->set_logged_in($data);
 								
 						// echo $this->session->userdata('username');
-						redirect('Hr');
+						redirect('Employee');
 				   }
 				else{
 					$this->session->set_flashdata(array('status' => 'Invalid Username or Password.'));

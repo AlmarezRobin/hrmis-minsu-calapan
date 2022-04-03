@@ -125,56 +125,6 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
     <!-- End Container - Fluid -->
     <?php require_once('includes\footer.php'); ?>
     <script>
-    function consent() {
-        //CONSENT
-        var submit = document.getElementById('submit');
-        var CONSENT = document.getElementById('CONSENT');
-        if (CONSENT.checked) {
-            submit.disabled = false;
-        } else {
-            submit.disabled = true;
-        }
-    }
-
-    function CopyAdd() {
-
-        var BRTHHOUSENO = document.getElementById('BRTHHOUSENO');
-        var BRTHSTREET = document.getElementById('BRTHSTREET');
-        var BRTHBRGY = document.getElementById('BRTHBRGY');
-        var BRTHTOWN = document.getElementById('BRTHTOWN');
-        var BRTHZIPCODE = document.getElementById('BRTHZIPCODE');
-        var BRTHPROVINCE = document.getElementById('BRTHPROVINCE');
-        var BRTHCOUNTRY = document.getElementById('BRTHCOUNTRY');
-
-        var ADDHOUSENO = document.getElementById('ADDHOUSENO');
-        var ADDSTREET = document.getElementById('ADDSTREET');
-        var ADDBRGY = document.getElementById('ADDBRGY');
-        var ADDTOWN = document.getElementById('ADDTOWN');
-        var ADDZIPCODE = document.getElementById('ADDZIPCODE');
-        var ADDPROVINCE = document.getElementById('ADDPROVINCE');
-        var ADDCOUNTRY = document.getElementById('ADDCOUNTRY');
-
-        var same = document.getElementById('same');
-        if (same.checked) {
-            ADDHOUSENO.value = BRTHHOUSENO.value;
-            ADDSTREET.value = BRTHSTREET.value;
-            ADDBRGY.value = BRTHBRGY.value;
-            ADDTOWN.value = BRTHTOWN.value;
-            ADDZIPCODE.value = BRTHZIPCODE.value;
-            ADDPROVINCE.value = BRTHPROVINCE.value;
-            ADDCOUNTRY.value = BRTHCOUNTRY.value;
-
-        } else {
-            ADDHOUSENO.value = '';
-            ADDSTREET.value = '';
-            ADDBRGY.value = '';
-            ADDTOWN.value = '';
-            ADDZIPCODE.value = '';
-            ADDPROVINCE.value = '';
-            ADDCOUNTRY.value = '';
-        }
-    }
-    </script>
 
      <!-- DATA TABES SCRIPT -->
         <script src="<?php echo BASE_URL . PUBLIC_DIR?>/public/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>

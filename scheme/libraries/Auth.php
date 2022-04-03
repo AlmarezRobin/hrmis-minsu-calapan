@@ -98,7 +98,7 @@ class Auth {
     					->get();
 		if($row)
 		{
-			if(password_verify($password, $row['password']))
+			if(password_verify($password, $row['_password']))
 			{
 				return $row['username'];
 			} else {
