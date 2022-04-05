@@ -73,7 +73,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 |
 |	$autoload['libraries'] = array('database', 'email', 'session');
 */
-$autoload['libraries'] = array('database', 'email', 'session','auth','form_validation');
+$autoload['libraries'] = array('database', 'email', 'session','Auth','form_validation');
 
 /*
 | -------------------------------------------------------------------
@@ -93,5 +93,5 @@ $autoload['helpers'] = array('url','form',);
 |
 |	$autoload['model'] = array('model1', 'model2')
 */
-$autoload['models'] = array('Employee_model','Utility_model');
+$autoload['models'] = array('Employee_model','Utility_model','Hr_model');
 ?>

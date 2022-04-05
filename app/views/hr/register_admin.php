@@ -44,9 +44,83 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                         Register New Admin
                                     </div>
                                     <div class="card-body accordion-collapse collapse show" id="collapseTable-d">
-                                        <form action="<?=site_url('Hr/add_adminloyee');?>" method="POST">
+
+                                    <?php if (isset($data['admin_id'])): ?>
+
+                                        <form action="<?=site_url('Hr/update_admin');?>" method="POST">
+                                        <input type="hidden" name="admin_id" value="<?= $data['admin_id']?>">
+                                            <div class="row">
+                                                
+                                                <div class="col-md-6 mb-2">
+                                                    <label for="field_name" class="form-label">Role *</label>
+                                                    <select name="admin_role" id="field_name"
+                                                        class="form-control form-control-line mb-0"  value="<?= $data['role']?>" required>
+                                                        <option value="HR">HR</option>
+                                                        <option value="CASHIER">Cashier</option>
+                                                        <option value="EXECUTIVE">Executive</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 mb-2">
+                                                    <label for="field_name" class="form-label">Office *</label>
+                                                    <select name="admin_office" id="field_name"
+                                                        class="form-control form-control-line mb-0" value="<?= $data['office']?>" required>
+                                                        <option value="<?= $data['office']?>"><?= $data['office']?></option>
+                                                        <option value="office1">Office 1</option>
+                                                        <option value="office2">Office 2</option>
+                                                        <option value="office3">Office 3</option>
+                                                    </select>
+                                                </div>
+                                                
+                                                <div class="col-md-6 mb-2">
+                                                    <label for="f1" class="form-label">Admin's Email</label>
+                                                    <input type="email" class="form-control form-control-line" value="<?= $data['email']?>"name="admin_email" id="" required>
+                                                </div>
+                                                <div class="col-md-6 mb-2">
+                                                    <label for="f1" class="form-label">Admin's Username</label>
+                                                    <input type="text" class="form-control form-control-line" value="<?= $data['username']?>"name="admin_username" id="" required>
+                                                </div>
+                                                <div class="col-md-6 mb-2">
+                                                    <label for="f1" class="form-label">Admin's Password</label>
+                                                    <input type="password" class="form-control form-control-line" value="<?= $data['_password']?>" name="_password" id="default_pass" readonly>
+                                                    <input type="checkbox" name="chkpass" id="" onclick="showpass()">
+                                                    <label for="chkpass">Show Password</label>
+                                                </div>
+
+                                                <div class="col-md-6 mb-2">
+                                                    <label for="f1" class="form-label">Fist Name</label>
+                                                    <input type="text" class="form-control form-control-line" name="admin_name" value="<?= $data['fname']?>" id="" required>
+                                                </div>
+                                                <div class="col-md-6 mb-2">
+                                                    <label for="f1" class="form-label">Middle Name</label>
+                                                    <input type="text" class="form-control form-control-line" value="<?= $data['mname']?>" name="admin_midname" id="" required>
+                                                </div>
+                                                <div class="col-md-6 mb-2">
+                                                    <label for="f1" class="form-label">Last Name</label>
+                                                    <input type="text" class="form-control form-control-line" value="<?= $data['lname']?>"  name="admin_lname" id="" required>
+                                                </div>
+
+                                                <!-- <div class="col-md-6 mb-2">
+                                                    <label  class="form-label">e-sign </label>
+                                                    <input type="file" readonly  name="admin_sign" class="form-control" value=""> 
+                                                </div>  -->
+                                                <div class="col-md-12 float-sm-left">
+                                                    <input type="submit" class="btn btn-sm btn-success pull-right"
+                                                        name="submit" value="Update">
+                                                </div>
+                                            </div>
+                                           
+                                        </form>
+                                    <?php else: ?>
 
 
+
+
+
+
+
+
+
+                                        <form action="<?=site_url('Hr/add_admin');?>" method="POST">
                                             <div class="row">
                                                 
                                                 <div class="col-md-6 mb-2">
@@ -63,6 +137,9 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                                     <select name="admin_office" id="field_name"
                                                         class="form-control form-control-line mb-0" required>
                                                         <option value="">--office--</option>
+                                                        <option value="office1">Office 1</option>
+                                                        <option value="office2">Office 2</option>
+                                                        <option value="office3">Office 3</option>
                                                     </select>
                                                 </div>
                                                 
@@ -105,6 +182,9 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                             </div>
                                            
                                         </form>
+                                        <?php endif; ?>
+
+
 
                                     </div>
                                 </div>
