@@ -23,7 +23,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-2 maincontent">
                 <!-- title -->
                 <div class="justify-content-between align-items-center pt-1 pb-2 mb-3 border-bottom mx-2">
-                    <h5 class="h5 mt-3 mb-0 color-darkgray"> Registered Employee's <small></small></h5>
+                    <h5 class="h5 mt-3 mb-0 color-darkgray"> Registered Admin's <small></small></h5>
                 </div>
                 <!-- end title -->
                 <!-- container-fluid -->
@@ -40,7 +40,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                 <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseTable"
                                     aria-expanded="true" aria-controls="collapseTable">
                                     <span class="card-icon"><i class="fa fa-th"></i></span>
-                                    List of Registered Employee's
+                                    List of Registered Admin's
 
                                     <a href="<?=site_url('Hr/add_admin');?>"> <i class="fa fa-icon fa-plus fa-lg float-sm-end pull-right"></i> </a>
                                     
@@ -56,17 +56,15 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Office</th>
+                                                    
+                                                     <th>Username</th>
                                                     <th>Email</th>
-                                                    <th>Username</th>
                                                     <th>Password</th>
                                                     <th>Firstname</th>
-                                                    <th>Lastname</th>
                                                     <th>Middlename</th>
-                                                    <th>Status</th>
-                                                    <th>Token</th>
-                                                    <th>Esign</th>
+                                                    <th>Lastname</th>
                                                     <th>Role</th>
+                                                    <th>Office</th>
                                                      <th>Date Registered</th>
                                                     <th>Actions</th>
                                                 </tr>
@@ -75,28 +73,49 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                             <tbody>
                                                 <?php foreach($data as $datum) : ?>
                                                     <tr>
+                                                        <td><?php echo $datum['admin_id'];  ?></td>
+                                                         <td><?php echo $datum['username']; ?></td>
+                                                        <td><?php echo $datum['email'];    ?></td>
+                                                        <td><?php echo $datum['_password'];?></td>
+                                                        <td><?php echo $datum['fname'];?></td>
+                                                        <td><?php echo $datum['mname'];?></td>
+                                                        <td><?php echo $datum['lname'];?></td>
+                                                        <td><?php echo $datum['role'];     ?></td>
+                                                        <td><?php echo $datum['office'] ?></td>
+
+                                                        <td><?php echo $datum['date_registered'];?></td>
+                                                        <td>
+                                                        <form action="<?= site_url('Hr/get_single_admin')?>" method="post" class="d-inline">
+                                                                <input type="hidden" name="admin_id" value="<?= $datum['admin_id']?>">
+                                                                <button class="btn btn-success" >
+                                                                <i class="fa fa-edit" aria-hidden="true"></i>
+                                                                </button>
+                                                            </form>
+                                                            <form action="<?= site_url('Hr/delete_admin')?>" method="post" class="d-inline">
+                                                                <input type="hidden" name="admin_id" value="<?= $datum['admin_id']?>">
+                                                                <button class="btn btn-danger" onclick="return confirm('are you sure your want to delete this admin?');" >
+                                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                                </button>
+                                                            </form>
+                                                        </td>
 
                                                     </tr>
 
                                                 <?php endforeach; ?>
                                             </tbody>
-
                                             <tfoot>
                                                 <tr>
-                                                <th>#</th>
-                                                    <th>Office</th>
-                                                    <th>Email</th>
+                                                    <th>#</th>
                                                     <th>Username</th>
-                                                    <th>Password</th>
-                                                    <th>Firstname</th>
-                                                    <th>Lastname</th>
-                                                    <th>Middlename</th>
-                                                    <th>Status</th>
-                                                    <th>Token</th>
-                                                    <th>Esign</th>
-                                                    <th>Role</th>
-                                                     <th>Date Registered</th>
-                                                    <th>Actions</th>
+                                                   <th>Email</th>
+                                                   <th>Password</th>
+                                                   <th>Firstname</th>
+                                                   <th>Middlename</th>
+                                                   <th>Lastname</th>
+                                                   <th>Role</th>
+                                                   <th>Office</th>
+                                                    <th>Date Registered</th>
+                                                   <th>Actions</th>
                                                 </tr>
                                             </tfoot>
 
