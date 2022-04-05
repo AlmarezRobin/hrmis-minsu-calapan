@@ -16,7 +16,23 @@ class Login extends Controller {
                 
                	if($data = $this->auth->login($username, $password))
 				   {
+					   	// start change user-profile-crud jcd Apr. 5, 2022
+						$sess_log = $this->Employee_model->sess_log($username, $password);
+						$this->session->set_userdata(array(
+							'user_id' => $sess_log['user_id'],
+							'username' => $sess_log['username'],
+							'profile_id' => $sess_log['profile_id'],
+							'user_role' => $sess_log['role']
+							)
+						);
+						// echo '<pre> <br>';
+						// var_dump($sess_log);
+						// echo '</pre>';
+						// exit;
+						// end change user-profile-crud jcd Apr. 5, 2022
 					   	$this->auth->set_logged_in($data);
+						
+						
 								
 						// echo $this->session->userdata('username');
 						redirect('Employee');

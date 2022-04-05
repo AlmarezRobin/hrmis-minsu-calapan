@@ -78,112 +78,200 @@
                                                             </div>                                                    
                                                         </div>
                                                         <div class="col-md-8">
-                                                            <form class="row" action="<?=site_url('Employee/update_profile');?>" method="post" enctype="multipart/form-data">
+                                                            <?php if(isset($data['profile_id'])): ?>
+                                                                <form class="row" method="post" action="<?=site_url('Employee/update_profile');?>" enctype="multipart/form-data">
+                                                                    <input type="hidden" name="profile_id" value="<?= $data['profile_id']?>">
+                                                                    <div class="form-group col-md-4 m-t-10">
+                                                                        <label for="firstname" class="form-label">First Name*</label>
+                                                                        <input type="text" class="form-control  " name="fname"
+                                                                            id="firstname" placeholder="" maxlength="50" size="50"
+                                                                            data-toggle="tooltip" data-placement="right" title="First Name"
+                                                                            required value="<?= $data['f_name'] ?>">
+                                                                    </div>
+                                                                    <div class="form-group col-md-4 m-t-10">
+                                                                        <label for="midddlename" class="form-label">Middle Name</label>
+                                                                        <input type="text" class="form-control" name="mname"
+                                                                            id="midddlename" placeholder="" maxlength="30" size="30"
+                                                                            data-toggle="tooltip" data-placement="right" title="Middle Name" value="<?= $data['m_name'] ?>">
+                                                                    </div>
+                                                                    <div class="form-group col-md-4 m-t-10">
+                                                                        <label for="lastname" class="form-label">Last Name*</label>
+                                                                        <input type="text" class="form-control" name="lname"
+                                                                            id="lastname" placeholder="" maxlength="30" size="30"
+                                                                            data-toggle="tooltip" data-placement="right" title="Last Name"
+                                                                            required value="<?= $data['l_name'] ?>">
+                                                                    </div>
+                                                                    <div class="form-group col-md-4 m-t-10">
+                                                                        <label for="nameex" class="form-label">Name extension </label>
+                                                                        <input type="text" class="form-control" name="xname"
+                                                                            id="nameex" placeholder="" maxlength="3" size="3"
+                                                                            data-toggle="tooltip" data-placement="right" title="Name Extension" value="<?= $data['name_ex'] ?>">
+                                                                    </div>
+                                                                    <div class="form-group col-md-4 m-t-10">
+                                                                        <label>Gender </label>
+                                                                        <select name="sex"  class="form-control custom-select">
+                                                                            <option><?= $data['sex'] ?></option>
+                                                                        </select>
+                                                                    </div>
                                                                 
-                                                            
-                                                            <!-- <input type="hidden" name="id" value="2"> -->
-                                                                <div class="form-group col-md-4 m-t-10">
-                                                                    <label for="firstname" class="form-label">First Name*</label>
-                                                                    <input type="text" class="form-control  " name="fname"
-                                                                        id="firstname" placeholder="" maxlength="50" size="50"
-                                                                        data-toggle="tooltip" data-placement="right" title="First Name"
-                                                                        required>
-                                                                    <small class="form-text text-muted">
-                                                                        Given Name
-                                                                    </small>
-                                                                </div>
-                                                                <div class="form-group col-md-4 m-t-10">
-                                                                    <label for="midddlename" class="form-label">Middle Name</label>
-                                                                    <input type="text" class="form-control" name="mname"
-                                                                        id="midddlename" placeholder="" maxlength="30" size="30"
-                                                                        data-toggle="tooltip" data-placement="right" title="Middle Name">
-                                                                </div>
-                                                                <div class="form-group col-md-4 m-t-10">
-                                                                    <label for="lastname" class="form-label">Last Name*</label>
-                                                                    <input type="text" class="form-control" name="lname"
-                                                                        id="lastname" placeholder="" maxlength="30" size="30"
-                                                                        data-toggle="tooltip" data-placement="right" title="Last Name"
-                                                                        required>
-                                                                    <small class="form-text text-muted">
-                                                                        Family Name
-                                                                    </small>
-                                                                </div>
-                                                                <div class="form-group col-md-4 m-t-10">
-                                                                    <label for="nameex" class="form-label">Name extension </label>
-                                                                    <input type="text" class="form-control" name="xname"
-                                                                        id="nameex" placeholder="" maxlength="3" size="3"
-                                                                        data-toggle="tooltip" data-placement="right" title="Name Extension">
-                                                                    <small class="form-text text-muted">
-                                                                        ex: (Sr., Jr., I, II, etc.) leave it blank if none
-                                                                    </small>
-                                                                </div>
-                                                                <div class="form-group col-md-4 m-t-10">
-                                                                    <label>Gender </label>
-                                                                    <select name="sex"  class="form-control custom-select">
-                                                                        <option value=""></option>
-                                                                        <option value="Male">Male</option>
-                                                                        <option value="Female">Female</option>
-                                                                    </select>
-                                                                </div>
-                                                            
-                                                                <div class="form-group col-md-4 m-t-10">
-                                                                    <label for="civilstatus" class="form-label">Civil Status*</label>
-                                                                    <select class="form-control custom-select"  name="cstat"
-                                                                        id="civilstatus" data-toggle="tooltip" data-placement="right"
-                                                                        title="Civil Status" required>
-                                                                        <option value="single">Single</option>
-                                                                        <option value="married">Married</option>
-                                                                        <option value="seperated">Separated</option>
-                                                                        <option value="widower">Widow/er</option>
-                                                                    </select>
-                                                                </div>
-                                                                                                                    
-                                                                <div class="form-group col-md-4 m-t-10">
-                                                                    <label>Date Of Birth </label>
-                                                                    <input type="date" id="example-email2" name="dob" class="form-control" placeholder="" value=" " required> 
-                                                                </div>
-                                                                <div class="form-group col-md-4 m-t-10">
-                                                                    <label for="phonenumber" class="form-label">Contact Number*</label>
-                                                                    <input type="number" class="form-control " name="cnumber"
-                                                                        id="phonenumber" placeholder="" pattern="[0-9]{10}"
-                                                                        data-toggle="tooltip" data-placement="right"
-                                                                        title="Cellphone Number" required>
-                                                                    <small class="form-text text-muted">
-                                                                        ex: 9770011001
-                                                                    </small>
-                                                                </div>
-                                                                <div class="form-group col-md-4 m-t-10">
-                                                                    <label for="phonenumber" class="form-label">Telephone Number*</label>
-                                                                    <input type="number" class="form-control " name="tnumber"
-                                                                        id="phonenumber" placeholder="" pattern="[0-9]{10}"
-                                                                        data-toggle="tooltip" data-placement="right"
-                                                                        title="Cellphone Number" required>
-                                                                    <small class="form-text text-muted">
-                                                                        ex: 9770011001
-                                                                    </small >
-                                                                </div>
-                                                                <div class="form-group col-md-12 m-t-10 mb-2">
-                                                                    <img src="" class="img-circle" width="150" />
-                                                                    <img src="" class="img-circle" width="150"/>                                   
+                                                                    <div class="form-group col-md-4 m-t-10">
+                                                                        <label for="civilstatus" class="form-label">Civil Status*</label>
+                                                                        <select class="form-control custom-select"  name="cstat"
+                                                                            id="civilstatus" data-toggle="tooltip" data-placement="right"
+                                                                            title="Civil Status" required value="<?= $data['civil_status'] ?>">
+                                                                            <option value="single">Single</option>
+                                                                            <option value="married">Married</option>
+                                                                            <option value="seperated">Separated</option>
+                                                                            <option value="widower">Widow/er</option>
+                                                                        </select>
+                                                                    </div>
+                                                                                                                        
+                                                                    <div class="form-group col-md-4 m-t-10">
+                                                                        <label>Date Of Birth </label>
+                                                                        <input type="date" id="example-email2" name="dob" class="form-control" placeholder="" required value="<?= $data['date_of_birth'] ?>"> 
+                                                                    </div>
+                                                                    <div class="form-group col-md-4 m-t-10">
+                                                                        <label for="phonenumber" class="form-label">Contact Number*</label>
+                                                                        <input type="number" class="form-control " name="cnumber"
+                                                                            id="phonenumber" placeholder="" pattern="[0-9]{10}"
+                                                                            data-toggle="tooltip" data-placement="right"
+                                                                            title="Cellphone Number" required value="<?= $data['mobile'] ?>">
+                                                                    </div>
+                                                                    <div class="form-group col-md-4 m-t-10">
+                                                                        <label for="phonenumber" class="form-label">Telephone Number*</label>
+                                                                        <input type="number" class="form-control " name="tnumber"
+                                                                            id="phonenumber" placeholder="" pattern="[0-9]{10}"
+                                                                            data-toggle="tooltip" data-placement="right"
+                                                                            title="Cellphone Number" required value="<?= $data['telephone'] ?>">
+                                                                    </div>
+                                                                    <div class="form-group col-md-12 m-t-10 mb-2">
+                                                                        <img src="" class="img-circle" width="150" />
+                                                                        <img src="" class="img-circle" width="150"/>                                   
+                                                                        
+                                                                        <label  class="form-label">Image </label>
+                                                                        <input type="file" readonly  name="image_url" class="form-control" value=""> 
+                                                                    </div>
+                                                                    <div class="form-group col-md-12 m-t-10 mb-2">
+                                                                        <img src="" class="img-circle" width="150" />
+                                                                        <img src="" class="img-circle" width="150"/>                                   
+                                                                        
+                                                                        <label  class="form-label">e-sign </label>
+                                                                        <input type="file" readonly  name="image_url" class="form-control" value=""> 
+                                                                    </div>
+                                                                    <div class="form-actions col-md-12">
+                                                                        <!-- <input type="hidden" name="emid" value=""> -->
+                                                                        <input type="submit" value="Save" name="submit" class="btn btn-success">
+                                                                        
+                                                                    </div>
                                                                     
-                                                                    <label  class="form-label">Image </label>
-                                                                    <input type="file" readonly  name="image_url" class="form-control" value=""> 
-                                                                </div>
-                                                                <div class="form-group col-md-12 m-t-10 mb-2">
-                                                                    <img src="" class="img-circle" width="150" />
-                                                                    <img src="" class="img-circle" width="150"/>                                   
-                                                                    
-                                                                    <label  class="form-label">e-sign </label>
-                                                                    <input type="file" readonly  name="image_url" class="form-control" value=""> 
-                                                                </div>
-                                                            
-                                                                <div class="form-actions col-md-12">
-                                                                    <!-- <input type="hidden" name="emid" value=""> -->
-                                                                    <input type="submit" value="Save" name="submit" class="btn btn-success">
-                                                                    
-                                                                </div>
+                                                                </form>
+                                                            <?php else: ?>
+                                                                <form class="row" action="<?=site_url('Employee/insert_profile');?>" method="post" enctype="multipart/form-data">
+                                                                <!-- <input type="hidden" name="id" value="2"> -->
+                                                                    <div class="form-group col-md-4 m-t-10">
+                                                                        <label for="firstname" class="form-label">First Name*</label>
+                                                                        <input type="text" class="form-control  " name="fname"
+                                                                            id="firstname" placeholder="" maxlength="50" size="50"
+                                                                            data-toggle="tooltip" data-placement="right" title="First Name"
+                                                                            required>
+                                                                        <small class="form-text text-muted">
+                                                                            Given Name
+                                                                        </small>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4 m-t-10">
+                                                                        <label for="midddlename" class="form-label">Middle Name</label>
+                                                                        <input type="text" class="form-control" name="mname"
+                                                                            id="midddlename" placeholder="" maxlength="30" size="30"
+                                                                            data-toggle="tooltip" data-placement="right" title="Middle Name" required>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4 m-t-10">
+                                                                        <label for="lastname" class="form-label">Last Name*</label>
+                                                                        <input type="text" class="form-control" name="lname"
+                                                                            id="lastname" placeholder="" maxlength="30" size="30"
+                                                                            data-toggle="tooltip" data-placement="right" title="Last Name"
+                                                                            required>
+                                                                        <small class="form-text text-muted">
+                                                                            Family Name
+                                                                        </small>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4 m-t-10">
+                                                                        <label for="nameex" class="form-label">Name extension </label>
+                                                                        <input type="text" class="form-control" name="xname"
+                                                                            id="nameex" placeholder="" maxlength="3" size="3"
+                                                                            data-toggle="tooltip" data-placement="right" title="Name Extension" required>
+                                                                        <small class="form-text text-muted">
+                                                                            ex: (Sr., Jr., I, II, etc.) leave it blank if none
+                                                                        </small>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4 m-t-10">
+                                                                        <label>Gender </label>
+                                                                        <select name="sex"  class="form-control custom-select" required>
+                                                                            <option value=""></option>
+                                                                            <option value="Male">Male</option>
+                                                                            <option value="Female">Female</option>
+                                                                        </select>
+                                                                    </div>
                                                                 
-                                                            </form>
+                                                                    <div class="form-group col-md-4 m-t-10">
+                                                                        <label for="civilstatus" class="form-label">Civil Status*</label>
+                                                                        <select class="form-control custom-select"  name="cstat"
+                                                                            id="civilstatus" data-toggle="tooltip" data-placement="right"
+                                                                            title="Civil Status" required>
+                                                                            <option value="single">Single</option>
+                                                                            <option value="married">Married</option>
+                                                                            <option value="seperated">Separated</option>
+                                                                            <option value="widower">Widow/er</option>
+                                                                        </select>
+                                                                    </div>
+                                                                                                                        
+                                                                    <div class="form-group col-md-4 m-t-10">
+                                                                        <label>Date Of Birth </label>
+                                                                        <input type="date" id="example-email2" name="dob" class="form-control" placeholder="" value=" " required> 
+                                                                    </div>
+                                                                    <div class="form-group col-md-4 m-t-10">
+                                                                        <label for="phonenumber" class="form-label">Contact Number*</label>
+                                                                        <input type="number" class="form-control " name="cnumber"
+                                                                            id="phonenumber" placeholder="" pattern="[0-9]{10}"
+                                                                            data-toggle="tooltip" data-placement="right"
+                                                                            title="Cellphone Number" required>
+                                                                        <small class="form-text text-muted">
+                                                                            ex: 9770011001
+                                                                        </small>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4 m-t-10">
+                                                                        <label for="phonenumber" class="form-label">Telephone Number*</label>
+                                                                        <input type="number" class="form-control " name="tnumber"
+                                                                            id="phonenumber" placeholder="" pattern="[0-9]{10}"
+                                                                            data-toggle="tooltip" data-placement="right"
+                                                                            title="Cellphone Number" required>
+                                                                        <small class="form-text text-muted">
+                                                                            ex: 9770011001
+                                                                        </small >
+                                                                    </div>
+                                                                    <div class="form-group col-md-12 m-t-10 mb-2">
+                                                                        <img src="" class="img-circle" width="150" />
+                                                                        <img src="" class="img-circle" width="150"/>                                   
+                                                                        
+                                                                        <label  class="form-label">Image </label>
+                                                                        <input type="file" readonly  name="image_url" class="form-control" value=""> 
+                                                                    </div>
+                                                                    <div class="form-group col-md-12 m-t-10 mb-2">
+                                                                        <img src="" class="img-circle" width="150" />
+                                                                        <img src="" class="img-circle" width="150"/>                                   
+                                                                        
+                                                                        <label  class="form-label">e-sign </label>
+                                                                        <input type="file" readonly  name="image_url" class="form-control" value=""> 
+                                                                    </div>
+                                                                
+                                                                    <div class="form-actions col-md-12">
+                                                                        <!-- <input type="hidden" name="emid" value=""> -->
+                                                                        <input type="submit" value="Save" name="submit" class="btn btn-success">
+                                                                        
+                                                                    </div>
+                                                                    
+                                                                </form>
+
+                                                            <?php endif; ?>
 
                                                            
                                                         </div>

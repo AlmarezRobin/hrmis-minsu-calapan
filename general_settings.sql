@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 29, 2022 at 03:12 PM
+-- Generation Time: Apr 03, 2022 at 02:39 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -112,8 +112,7 @@ CREATE TABLE `designation` (
 
 INSERT INTO `designation` (`designation_id`, `designation_desc`, `salary_grade`, `salary_rate_cat`, `salary_rate_amount`) VALUES
 (1, 'SAMPLE1', 'SALARY GRA', 'MONTHLY', 1.00),
-(2, 'SAMPLE2', 'SALARY GRA', 'MONTHLY', 1.00),
-(3, 'SAMPLE2', 'SALARY GRA', 'MONTHLY', 1.00);
+(2, 'SAMPLE2', 'SALARY GRA', 'MONTHLY', 1.00);
 
 -- --------------------------------------------------------
 
@@ -190,7 +189,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `id_number`, `email`, `username`, `_password`, `token`, `is_activated`, `role`, `date_created`) VALUES
-(2, 'C19-0651', 'almarez24662@gmail.com', 'almarez', '$2y$04$yTUw34YsVNfDy5OkwggLBOsC1sRjaLxgyxDbeZ4JVWSvgkj/W9dl2', NULL, NULL, 'Teaching', '2022-03-25 08:42:51');
+(6, 'C19-0651', 'almarezrobin24662@gmail.com', 'almarez', '$2y$04$KbB3Xy3mVj/krNNvAQCfk.xasonund7ztUTuk.Xi.dFNcTmdvG0Ai', NULL, NULL, 'Teaching', '2022-04-03 13:18:53');
 
 -- --------------------------------------------------------
 
@@ -214,11 +213,11 @@ CREATE TABLE `user_deduction` (
 CREATE TABLE `user_profile` (
   `profile_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `residential_address_id` int(11) NOT NULL,
-  `permanent_address_id` int(11) NOT NULL,
-  `birth_place_address_id` int(11) NOT NULL,
-  `designation_id` int(11) NOT NULL,
-  `office_id` int(11) NOT NULL,
+  `residential_address_id` int(11) DEFAULT NULL,
+  `permanent_address_id` int(11) DEFAULT NULL,
+  `birth_place_address_id` int(11) DEFAULT NULL,
+  `designation_id` int(11) DEFAULT NULL,
+  `office_id` int(11) DEFAULT NULL,
   `f_name` varchar(50) NOT NULL,
   `m_name` varchar(50) NOT NULL,
   `l_name` varchar(50) NOT NULL,
@@ -226,15 +225,23 @@ CREATE TABLE `user_profile` (
   `date_of_birth` date NOT NULL,
   `sex` varchar(10) NOT NULL,
   `civil_status` varchar(25) NOT NULL,
-  `citizenship` varchar(25) NOT NULL,
-  `citizenship_country` varchar(50) NOT NULL,
-  `telephone` varchar(15) NOT NULL,
-  `mobile` varchar(15) NOT NULL,
+  `citizenship` varchar(25) DEFAULT NULL,
+  `citizenship_country` varchar(50) DEFAULT NULL,
+  `telephone` varchar(15) DEFAULT NULL,
+  `mobile` varchar(15) DEFAULT NULL,
   `photo` blob DEFAULT NULL,
-  `e_sign` blob NOT NULL,
-  `salary_rate_cat` varchar(10) NOT NULL,
-  `salary_rate_amount` double(6,2) NOT NULL
+  `e_sign` blob DEFAULT NULL,
+  `salary_rate_cat` varchar(10) DEFAULT NULL,
+  `salary_rate_amount` double(6,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user_profile`
+--
+
+INSERT INTO `user_profile` (`profile_id`, `user_id`, `residential_address_id`, `permanent_address_id`, `birth_place_address_id`, `designation_id`, `office_id`, `f_name`, `m_name`, `l_name`, `name_ex`, `date_of_birth`, `sex`, `civil_status`, `citizenship`, `citizenship_country`, `telephone`, `mobile`, `photo`, `e_sign`, `salary_rate_cat`, `salary_rate_amount`) VALUES
+(5, 6, NULL, NULL, NULL, NULL, NULL, 'ALMAREZ', 'MARANAN', 'ROBIN', 'ALM', '0000-00-00', '2001-01-01', 'Male', NULL, NULL, '0995006183', '0995006183', NULL, NULL, NULL, NULL),
+(6, 6, NULL, NULL, NULL, NULL, NULL, 'ALMAREZ', 'ROBIN', 'MARANAN', 'ALM', '2002-01-01', 'Male', 'single', NULL, NULL, '0995006183', '995006183', NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -372,7 +379,7 @@ ALTER TABLE `office`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user_deduction`
@@ -384,7 +391,7 @@ ALTER TABLE `user_deduction`
 -- AUTO_INCREMENT for table `user_profile`
 --
 ALTER TABLE `user_profile`
-  MODIFY `profile_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `profile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables

@@ -95,7 +95,7 @@
     #region office
     public function office(){
       // ? pwede mag left or inner join dine
-      return $this->db->table('office')->get_all();
+      return $this->db->table('department')->inner_join('office', 'department.dept_id = office.dept_id')->get_all();
     }
 
     public function add_office($dept_id, $office_code,$office_description){
@@ -109,16 +109,16 @@
 
     // function para sa pag didisplay ng * department galing database
     public function get_dept_data(){
-      // return $this->db->table('department')->get_all();
       return $this->db->table('department')->select('dept_id, dept_code')->get_all();
     }
 
+    // start change user-profile-crud jcd Apr. 5, 2022
     public function get_single_office($id){
-      return $this->db->table('office')->where('office_id', $id)->get();
+      return $this->db->table('department')->select('department.dept_id, department.dept_code, office.office_id, office.office_code, office.office_description')->inner_join('office', 'department.dept_id = office.dept_id')->where('office_id', $id)->get();
     }
+    // end change user-profile-crud jcd Apr. 5, 2022
 
     public function update_office($id, $dept_id, $code, $desc){
-      // ? pwede gumamit ng left or inner join siguro dine sa pag update
       $office = [
         'dept_id' => $dept_id,
         'office_code' => $code,

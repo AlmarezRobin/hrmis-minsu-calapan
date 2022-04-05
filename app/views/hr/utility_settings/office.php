@@ -38,7 +38,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                 <div class="card-header">
                                     <span class="card-icon"><i class="fa fa-th"></i></span>
                                     List of Offices
-                                    <a href="<?=site_url('Hr/view_office_add');?>"  data-toogle="tooltip" title="ADD OFFICE" > <i class="fa fa-icon fa-plus fa-lg pull-right"></i> </a>
+                                    <a href="<?=site_url('Hr/add_office');?>"  data-toogle="tooltip" title="ADD OFFICE" > <i class="fa fa-icon fa-plus fa-lg pull-right"></i> </a>
 
                                 </div>
                                 <div class="card-body accordion-collapse collapse show p-0" id="collapseTable">
@@ -63,7 +63,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                                 <?php foreach($data as $datum) : ?>
                                                     <tr>
                                                         <td><?php echo $datum['office_id'];  ?></td>
-                                                        <td><?php echo $datum['dept_id'];  ?></td>
+                                                        <td><?php echo $datum['dept_code'];  ?></td>
                                                         <td><?php echo $datum['office_code'] ?></td>
                                                         <td><?php echo $datum['office_description'];?></td>
                                                         <td>

@@ -49,7 +49,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                                 <label for="f1" class="form-label">Department</label>
                                                 <select class="form-control form-control-sm" name="dept_id" id="" data-toggle="tooltip" data-placement="right" title="" required>
                                                     <option value="<?= $data['office']['dept_id']?>">
-                                                        <?= $data['office']['dept_id']?>
+                                                        <?= $data['office']['dept_code']?>
                                                     </option>
                                                     <?php foreach($data['dept'] as $datum): ?>
                                                         <option value="<?php echo $datum['dept_id']?>">    <?= $datum['dept_code']?>

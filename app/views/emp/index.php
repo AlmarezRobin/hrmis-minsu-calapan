@@ -43,42 +43,104 @@
                         <div class="col-md-12 float-sm-start p-2">
                             <!-- Alert -->
                         </div>
-                        
-                                            <!-- Name -->
-                                            <div class="row mb-2">
-                                                <!-- Uploaded image area-->
-                                                <div class="col-md-5">
-                                                    <div class="profile-img">
-                                                        <!-- <div  class="image-area"> -->
-                                                            <img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block" 
-                                                            style="width: 15em;height:15em;">
-                                                        <!-- </div> -->
-                                                        <div class="file btn btn-lg btn-primary" >
-
-                                                            <input id="upload" type="file" data-toogle="tooltip" title="Edit Your Picture" onchange="readURL(this);"/>
-                                                            <i class="fa fa-camera"  aria-hidden="true"></i>
-
-                                                        </div>
-                                                        <h6>UPLOAD YOUR PHOTO</h6>
-
-                                                    </div>
-                                                </div>
-
-                                            
-                                                <div class="col-md-6">
-                                                    <h5>FULL NAME:  <br> ALMAREZ ROBIN MARANAN</h5>
-                                                    
-
-                                                </div>
-                                                
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <center class="m-t-30">
+                                                    <img src="<?php echo BASE_URL . PUBLIC_DIR ?>/images/bg1.jpg" alt="" srcset="" class="img-circle" width="150">
+                                                    <h2> <?php echo $this->session->userdata('username') ?> </h2>
+                                                    <h3><?php echo $this->session->userdata('user_role') ?></h3>
+                                                </center>
                                             </div>
-                                            <!-- end name -->
-                    
-                                            <div class="row mb-2">
-                                                <div class="col-md-12 text-center">
-                                                    <a href="<?=site_url('Employee/view_edit_profile');?>" class="btn btn-success">EDIT MY PROFILE</a>
-                                                </div>
-                                            </div>          
+                                        </div>                                                    
+                                    </div>
+                                    <div class="col-md-8">
+                                        <form class="row"method="post" enctype="multipart/form-data">
+                                            
+                                        
+                                        <!-- <input type="hidden" name="id" value="2"> -->
+                                            <div class="form-group col-md-4 m-t-10">
+                                                <label for="firstname" class="form-label">First Name*</label>
+                                                <input type="text" class="form-control  " name="fname"
+                                                    id="firstname" placeholder="" maxlength="50" size="50"
+                                                    data-toggle="tooltip" data-placement="right" title="First Name"
+                                                    required disabled value="<?= $data['f_name'] ?>">
+                                            </div>
+                                            <div class="form-group col-md-4 m-t-10">
+                                                <label for="midddlename" class="form-label">Middle Name</label>
+                                                <input type="text" class="form-control" name="mname"
+                                                    id="midddlename" placeholder="" maxlength="30" size="30"
+                                                    data-toggle="tooltip" data-placement="right" title="Middle Name" disabled value="<?= $data['m_name'] ?>">
+                                            </div>
+                                            <div class="form-group col-md-4 m-t-10">
+                                                <label for="lastname" class="form-label">Last Name*</label>
+                                                <input type="text" class="form-control" name="lname"
+                                                    id="lastname" placeholder="" maxlength="30" size="30"
+                                                    data-toggle="tooltip" data-placement="right" title="Last Name"
+                                                    required disabled value="<?= $data['l_name'] ?>">
+                                            </div>
+                                            <div class="form-group col-md-4 m-t-10">
+                                                <label for="nameex" class="form-label">Name extension </label>
+                                                <input type="text" class="form-control" name="xname"
+                                                    id="nameex" placeholder="" maxlength="3" size="3"
+                                                    data-toggle="tooltip" data-placement="right" title="Name Extension" disabled value="<?= $data['name_ex'] ?>">
+                                            </div>
+                                            <div class="form-group col-md-4 m-t-10">
+                                                <label>Gender </label>
+                                                <select name="sex"  class="form-control custom-select" disabled>
+                                                    <option><?= $data['sex'] ?></option>
+                                                </select>
+                                            </div>
+                                        
+                                            <div class="form-group col-md-4 m-t-10">
+                                                <label for="civilstatus" class="form-label">Civil Status*</label>
+                                                <select class="form-control custom-select"  name="cstat"
+                                                    id="civilstatus" data-toggle="tooltip" data-placement="right"
+                                                    title="Civil Status" required disabled value="<?= $data['civil_status'] ?>">
+                                                    <option value="single">Single</option>
+                                                    <option value="married">Married</option>
+                                                    <option value="seperated">Separated</option>
+                                                    <option value="widower">Widow/er</option>
+                                                </select>
+                                            </div>
+                                                                                                
+                                            <div class="form-group col-md-4 m-t-10">
+                                                <label>Date Of Birth </label>
+                                                <input type="date" id="example-email2" name="dob" class="form-control" placeholder="" required disabled value="<?= $data['date_of_birth'] ?>"> 
+                                            </div>
+                                            <div class="form-group col-md-4 m-t-10">
+                                                <label for="phonenumber" class="form-label">Contact Number*</label>
+                                                <input type="number" class="form-control " name="cnumber"
+                                                    id="phonenumber" placeholder="" pattern="[0-9]{10}"
+                                                    data-toggle="tooltip" data-placement="right"
+                                                    title="Cellphone Number" required disabled value="<?= $data['mobile'] ?>">
+                                            </div>
+                                            <div class="form-group col-md-4 m-t-10">
+                                                <label for="phonenumber" class="form-label">Telephone Number*</label>
+                                                <input type="number" class="form-control " name="tnumber"
+                                                    id="phonenumber" placeholder="" pattern="[0-9]{10}"
+                                                    data-toggle="tooltip" data-placement="right"
+                                                    title="Cellphone Number" required disabled value="<?= $data['telephone'] ?>">
+                                            </div>
+                                            <div class="form-actions col-md-12">
+                                                
+                                                <a href="<?=site_url('Employee/view_edit_profile');?>" class="btn btn-success">EDIT MY PROFILE</a>
+                                            </div>
+                                            
+                                        </form>
+
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <div class="row mb-2">
+
+                        </div>          
                     
                     
 

@@ -306,11 +306,8 @@ class Hr extends Controller {
 	#endregion
 
 	#region office
-	public function view_office_add(){
 
-		$data = $this->Utility_model->get_dept_data();
-		$this->call->view('hr/utility_settings/office_add',$data);
-	}
+    // start change user-profile-crud jcd Apr. 5, 2022
 	public function view_office(){
 
 		$data = $this->Utility_model->office();
@@ -338,6 +335,8 @@ class Hr extends Controller {
                 }
             }
         }
+		$data = $this->Utility_model->get_dept_data();
+		$this->call->view('hr/utility_settings/office_add',$data);
 	}
 
 	public function get_single_office(){
@@ -348,12 +347,10 @@ class Hr extends Controller {
 				'dept' => $this->Utility_model->get_dept_data($this->io->post('dept_id'))
 
 			];
-
-
-
 			$this->call->view('hr/utility_settings/office_update',$data);
 		}
 	}
+	// end change user-profile-crud jcd Apr. 5, 2022
 
 	public function update_office(){
 		if($this->form_validation->submitted())
@@ -371,7 +368,7 @@ class Hr extends Controller {
 										strtoupper($this->io->post('office_description'))))
 										{
 											// $this->session->set_flashdata(array('status'=>'Inserted Succesfully'));
-											redirect('Hr/utility_settings/view_office');
+											redirect('Hr/view_office');
 											exit;
 										}
             }
@@ -454,10 +451,25 @@ class Hr extends Controller {
 
 	#region leave
 	public function view_leave(){
-		$this->call->view('hr/utility_settings/leave');
+		$data = $this->Utility_model->leave();
+		$this->call->view('hr/utility_settings/leave', $data);
 	}
 
-	public function view_leave_add(){
+	public function leave_add(){
+		if($this->form_validation->submitted()){
+			$this->form_validation->name('leave_description')->required()
+								->name('no_of_days')->required()
+								->name('leave_specification')->required();
+			if ($this->form_validation->run()) {
+				if($this->Utility_model->add_leave(
+					strtoupper($this->io->post('leave_description')),
+					$this->io->post('no_of_days'),
+					strtoupper($this->io->post('leave_specification'))
+				))
+				redirect('Hr/view_leave');
+				exit;
+			}
+		}
 		$this->call->view('hr/utility_settings/leave_add');
 	}
 

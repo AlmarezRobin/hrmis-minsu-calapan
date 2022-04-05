@@ -93,7 +93,7 @@ class Auth {
 	 */
 	public function login($username, $password)
 	{
-    	$row = $this->LAVA->db->table('user') 					
+    	$row = $this->LAVA->db->table('user')					
     					->where('username', $username)
     					->get();
 		if($row)
