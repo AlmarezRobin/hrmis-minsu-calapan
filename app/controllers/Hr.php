@@ -570,7 +570,7 @@ class Hr extends Controller {
 
 	public function logout()
         {
-            $this->auth->set_logged_out();
+            $this->Auth->set_logged_out();
             redirect('Login');
         }
 }

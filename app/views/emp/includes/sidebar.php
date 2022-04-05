@@ -19,7 +19,7 @@
 
             <div style="text-align:center; background-color: rgb(212, 212, 212); border-bottom: 2px solid rgb(12, 114, 56)">
                 <div class="pt-1">
-                    <strong class="pt-2"><?php echo $this->auth->get_username(); ?></strong>
+                    <strong class="pt-2"><?php echo $this->Auth->get_username(); ?></strong>
                 </div>
                 <div class="pb-1 small"><i>Developer</i>
                 </div>

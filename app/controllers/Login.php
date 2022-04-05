@@ -14,7 +14,7 @@ class Login extends Controller {
                 $username = trim($this->io->post('username'));
                 $password = trim($this->io->post('password'));
                 
-               	if($data = $this->auth->login($username, $password))
+               	if($data = $this->Auth->login($username, $password))
 				   {
 					   	// start change user-profile-crud jcd Apr. 5, 2022
 						$sess_log = $this->Employee_model->sess_log($username, $password);
@@ -30,7 +30,7 @@ class Login extends Controller {
 						// echo '</pre>';
 						// exit;
 						// end change user-profile-crud jcd Apr. 5, 2022
-					   	$this->auth->set_logged_in($data);
+					   	$this->Auth->set_logged_in($data);
 						
 						
 								
