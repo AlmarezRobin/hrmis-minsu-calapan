@@ -4,36 +4,401 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
 class Pds extends Controller {
 
-	public function __construct()
-	{
-		parent::__construct();
-		if(! is_logged_in()) {
-			redirect('Login');
+
+
+	public function view_finished_pds(){
+		$data['emp_profile'] = $this->Employee_model->emp_profile($this->session->userdata('user_id'));
+		$this->call->view('emp/emp_pds/pds',$data);
+	}
+
+
+	public function view_other_information(){
+		$data=[
+			'insert_skills'=>$this->Pds_model->get_skills(),
+			'get_skills'=>$this->Pds_model->get_skills(),
+			'get_distinctions'=> $this->Pds_model->get_distinctions(),
+			'get_ref'=>$this->Pds_model->get_ref()
+		];
+		$this->call->view('emp/emp_profile/otherinformation',$data);
+	}
+	#region for special skills
+	public function insert_skill(){
+		if ($this->form_validation->submitted()) {
+			$this->form_validation->name('skill');
+			if ($this->form_validation->run()) {
+				$this->Pds_model->insert_skills($this->io->post('skill'));
+				redirect('Pds/view_other_information');
+			}
 		}
+	}
 
-		$this->session->userdata('role') != 'Admin' ?? redirect('Admin');
-		$this->session->userdata('role') != 'Admin' ?? redirect('Staff');
+	public function udpate_skill(){
+		if ($this->form_validation->submitted()) {
+			$this->form_validation->name('skill');
+			if ($this->form_validation->run()) {
+				$this->Pds_model->update_skills($this->io->post('skill'));
+				redirect('Pds/view_other_information');
+			}
+		}
+	}
+
+	public function delete_skill(){
+		if ($this->form_validation->run()) {
+			$this->Pds_model->delete_skills($this->io->post('ss_id'));
+			redirect('Pds/view_other_information');
+			exit();
+		}
+	}
+
+	#endregion
+
+	#region for non acad distinctions and recognition
+	public function insert_acad_recognition(){
+		if ($this->form_validation->submitted()) 
+		{
+			$this->form_validation->name('distinction');
+			if ($this->form_validation->run()) 
+			{
+				$this->Pds_model->insert_distinctions($this->io->post('distinction'));
+				redirect('Pds/view_other_information');
+			}
+		}
+	}
+	public function delete_distinctions(){
+		if ($this->form_validation->run()) {
+			$this->Pds_model->delete_distinctions($this->io->post('recognition_id'));
+			redirect('Pds/view_other_information');
+			exit();
+		}
+	}
+	#endregion
+
+
+
+	public function insert_membership(){
+		if ($this->form_validation->submitted()) 
+		{
+			$this->form_validation->name('name')->name('add');
+			if ($this->form_validation->run()) 
+			{
+				$this->Pds_model->insert_membership($this->io->post('name'),$this->io->post('add'));
+				redirect('Pds/view_other_information');
+			}
+		}
 	}
 
 
-	public function index() {
+	#region for references
+	public function insert_references(){
+		if ($this->form_validation->submitted()) 
+		{
+			$this->form_validation->name('fname')->name('mname')->name('lname')->name('tel');
+			if ($this->form_validation->run()) 
+			{
+				$this->Pds_model->insert_references($this->io->post('fname'),$this->io->post('mname'),$this->io->post('lname'),$this->io->post('tel'));
+				redirect('Pds/view_other_information');
+			}
+		}
+	}
+	public function delete_references(){
+		if ($this->form_validation->run()) {
+			$this->Pds_model->delete_references($this->io->post('references_id'));
+			redirect('Pds/view_other_information');
+			exit();
+		}
+	}
+	#endregion
 
-		
+
+
+
+
+	
+	#region relative information
+	public function insert_relative(){
+		if ($this->form_validation->submitted()) 
+		{
+			$this->form_validation->name('34a')->name('34b')->name('34byes');
+			if ($this->form_validation->run()) 
+			{
+				$this->Pds_model->insert_rel($this->io->post('34a'),$this->io->post('34b'),$this->io->post('34byes'));
+				redirect('Pds/view_lastpage');
+			}
+		}
+	}
+	public function update_relative(){
+		if ($this->form_validation->submitted()) 
+		{
+			$this->form_validation->name('34a')->name('34b')->name('34byes');
+			if ($this->form_validation->run()) 
+			{
+				$this->Pds_model->update_rel($this->io->post('34a'),$this->io->post('34b'),$this->io->post('34byes'));
+				redirect('Pds/view_lastpage');
+			}
+		}
+	}
+	#endregion relative information
+
+	#region for violation
+
+	public function insert_violation(){
+		if ($this->form_validation->submitted()) 
+		{
+			$this->form_validation
+				->name('35a')
+				->name('35ayes')
+				->name('35b')
+				->name('detail')
+				->name('35bfiled')
+				->name('35bstatus');
+			if ($this->form_validation->run()) 
+			{
+				$this->Pds_model->insert_violation(
+					$this->io->post('35a'),
+					$this->io->post('35ayes'),
+					$this->io->post('35b'),
+					$this->io->post('detail'),
+					$this->io->post('35bfiled'),
+					$this->io->post('35bstatus'));
+				redirect('Pds/view_lastpage');
+			}
+		}
 	}
 
-
-	public function view_father_info(){
-		$this->call->view('emp/emp_profile/family_background/father_info');
+	public function update_violation(){
+		if ($this->form_validation->submitted()) 
+		{
+			$this->form_validation
+				->name('35a')
+				->name('35ayes')
+				->name('35b')
+				->name('detail')
+				->name('35bfiled')
+				->name('35bstatus');
+			if ($this->form_validation->run()) 
+			{
+				$this->Pds_model->update_violation(
+					$this->io->post('35a'),
+					$this->io->post('35ayes'),
+					$this->io->post('35b'),
+					$this->io->post('detail'),
+					$this->io->post('35bfiled'),
+					$this->io->post('35bstatus'));
+				redirect('Pds/view_lastpage');
+			}
+		}
 	}
 
+	#endregion
 
-	public function view_mother_info(){
-		$this->call->view('emp/mother_info');
+	#region for conviction
+	public function insert_conviction(){
+		if ($this->form_validation->submitted()) 
+		{
+			$this->form_validation
+				->name('36yes')
+				->name('36txtyes');
+			if ($this->form_validation->run()) 
+			{
+				$this->Pds_model->insert_conviction(
+					$this->io->post('36yes'),
+					$this->io->post('36txtyes'));
+				redirect('Pds/view_lastpage');
+			}
+		}
 	}
 
-
-	public function view_child_info(){
-		$this->call->view('emp/children_info');
+	public function update_conviction(){
+		if ($this->form_validation->submitted()) 
+		{
+			$this->form_validation
+				->name('36yes')
+				->name('36txtyes');
+			if ($this->form_validation->run()) 
+			{
+				$this->Pds_model->update_conviction(
+					$this->io->post('36yes'),
+					$this->io->post('36txtyes'));
+				redirect('Pds/view_lastpage');
+			}
+		}
 	}
+	#endregion
+
+	#region for separation
+	public function insert_separation(){
+		if ($this->form_validation->submitted()) 
+		{
+			$this->form_validation
+				->name('37yes')
+				->name('37txtyes');
+			if ($this->form_validation->run()) 
+			{
+				$this->Pds_model->insert_separation(
+					$this->io->post('37yes'),
+					$this->io->post('37txtyes'));
+				redirect('Pds/view_lastpage');
+			}
+		}
+	}
+
+	public function update_separation(){
+		if ($this->form_validation->submitted()) 
+		{
+			$this->form_validation
+				->name('37yes')
+				->name('37txtyes');
+			if ($this->form_validation->run()) 
+			{
+				$this->Pds_model->update_separation(
+					$this->io->post('37yes'),
+					$this->io->post('37txtyes'));
+				redirect('Pds/view_lastpage');
+			}
+		}
+	}
+	#endregion
+
+	#region for candidacy
+	public function insert_candidacy(){
+		if ($this->form_validation->submitted()) 
+		{
+			$this->form_validation
+				->name('38ayes')
+				->name('38atxtyes')
+				->name('38byes')
+				->name('38btxtyes');
+			if ($this->form_validation->run()) 
+			{
+				$this->Pds_model->insert_candidacy(
+					$this->io->post('38ayes'),
+					$this->io->post('38atxtyes'),
+					$this->io->post('38byes'),
+					$this->io->post('38btxtyes'));
+				redirect('Pds/view_lastpage');
+			}
+		}
+	}
+
+	public function update_candidacy(){
+		if ($this->form_validation->submitted()) 
+		{
+			$this->form_validation
+				->name('38ayes')
+				->name('38atxtyes')
+				->name('38byes')
+				->name('38btxtyes');
+			if ($this->form_validation->run()) 
+			{
+				$this->Pds_model->update_candidacy(
+					$this->io->post('38ayes'),
+					$this->io->post('38atxtyes'),
+					$this->io->post('38byes'),
+					$this->io->post('38btxtyes'));
+				redirect('Pds/view_lastpage');
+			}
+		}
+	}
+	#endregion
+
+	#region for immigrant
+	public function insert_immigrant(){
+		if ($this->form_validation->submitted()) 
+		{
+			$this->form_validation
+				->name('39yes')
+				->name('39txtyes');
+			if ($this->form_validation->run()) 
+			{
+				$this->Pds_model->insert_immigrant(
+					$this->io->post('39yes'),
+					$this->io->post('39txtyes'));
+				redirect('Pds/view_lastpage');
+			}
+		}
+	}
+
+	public function update_immigrant(){
+		if ($this->form_validation->submitted()) 
+		{
+			$this->form_validation
+				->name('39yes')
+				->name('39txtyes');
+			if ($this->form_validation->run()) 
+			{
+				$this->Pds_model->update_immigrant(
+					$this->io->post('39yes'),
+					$this->io->post('39txtyes'));
+				redirect('Pds/view_lastpage');
+			}
+		}
+	}
+	#endregion
+
+
+	#region for candidacy
+	public function insert_previlage(){
+		if ($this->form_validation->submitted()) 
+		{
+			$this->form_validation
+				->name('40ayes')
+				->name('40atxtyes')
+				->name('40byes')
+				->name('40btxtyes')
+				->name('40cyes')
+				->name('40ctxtyes');
+			if ($this->form_validation->run()) 
+			{
+				$this->Pds_model->insert_previlage(
+					$this->io->post('40ayes'),
+					$this->io->post('40atxtyes'),
+					$this->io->post('40byes'),
+					$this->io->post('40btxtyes'),
+					$this->io->post('40cyes'),
+					$this->io->post('40ctxtyes'));
+				redirect('Pds/view_lastpage');
+			}
+		}
+	}
+	public function update_previlage(){
+		if ($this->form_validation->submitted()) 
+		{
+			$this->form_validation
+				->name('40ayes')
+				->name('40atxtyes')
+				->name('40byes')
+				->name('40btxtyes')
+				->name('40cyes')
+				->name('40ctxtyes');
+			if ($this->form_validation->run()) 
+			{
+				$this->Pds_model->update_previlage(
+					$this->io->post('40ayes'),
+					$this->io->post('40atxtyes'),
+					$this->io->post('40byes'),
+					$this->io->post('40btxtyes'),
+					$this->io->post('40cyes'),
+					$this->io->post('40ctxtyes'));
+				redirect('Pds/view_lastpage');
+			}
+		}
+	}
+
+	#endregion
+	public function view_lastpage(){
+
+		$data = [
+			'get_rel_info'=>$this->Pds_model->get_rel_info(),
+			'get_violation_info'=>$this->Pds_model->get_violation_info(),
+			'get_conviction_info'=>$this->Pds_model->get_conviction_info(),
+			'get_separation_info'=>$this->Pds_model->get_separation_info(),
+			'get_candidacy_info'=>$this->Pds_model->get_candidacy_info(),
+			'get_immigrant_info'=>$this->Pds_model->get_immigrant_info(),
+			'get_previlage_info'=>$this->Pds_model->get_previlage_info()
+		];
+		$this->call->view('emp/emp_profile/lastpage',$data);
+	}
+
+	
 }
 ?>

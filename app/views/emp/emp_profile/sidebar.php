@@ -113,7 +113,7 @@
                     </div>
                 </div>
             </a>
-            <a href="<?=site_url('Employee/view_other_information');?>" class="list-group-item list-group-item-action lh-tight side-menu">
+            <a href="<?=site_url('Pds/view_other_information');?>" class="list-group-item list-group-item-action lh-tight side-menu">
                 <div class="d-flex w-100 align-items-center justify-content-between">
                     <div class="mb-0">
                     <i class="fa fa-icon fa-edit me-1"></i>Other Information
@@ -135,16 +135,15 @@
                 </div>
             </a>
 
+            <a href="<?=site_url('Pds/view_lastpage');?>" class="list-group-item list-group-item-action lh-tight side-menu">
+                <div class="d-flex w-100 align-items-center justify-content-between">
+                    <div class="mb-0">
+                    <i class="fa fa-icon fa-edit me-1"></i>Last Page
+                    </div>
+                </div>
+            </a>
 
-
-
-
-
-          
-
-
-
-            <a href="<?=site_url('login/logout');?>" class="list-group-item list-group-item-action lh-tight side-menu">
+            <a href="<?=site_url('Login/logout');?>" class="list-group-item list-group-item-action lh-tight side-menu">
                 <div class="d-flex w-100 align-items-center justify-content-between">
                     <div class="mb-0">
                         <i class="fa fa-icon fa-key me-2"></i> Logout

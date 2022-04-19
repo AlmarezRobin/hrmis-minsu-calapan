@@ -38,14 +38,19 @@
 
                 <!-- container-fluid -->
                 <div class="container-fluid-xxl pb-2">
-                    <!-- COL 12 -->
-                    <div class="col-md-12 float-sm-start">
-                        <div class="row">       
-                            <div class="col-lg-12 col-xlg-12 col-md-12">
-                                <div class="card-body">
-                                    <label for=""><h4>TRAININNG PROGRAM ATTENDED</h4></label>
-                                    <hr>
-                                        <!-- Table Div -->
+                    <!-- container-fluid -->
+                    <div class="container-fluid-xxl pb-2">
+                        <!-- start table for Work Experience -->
+                        <div class="col-md-12 p-2 float-sm-start">
+                            <div class="card">
+                                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseTable"
+                                    aria-expanded="true" aria-controls="collapseTable">
+                                    <span class="card-icon"><i class="fa fa-table"></i></span>
+                                    Trainings
+                                    <button type="button" class="btn btn-sm btn-primary float-sm-end" data-bs-toggle="modal" data-bs-target="#adding">Add Trainings</button>
+                                </div>
+                                <div class="card-body accordion-collapse collapse show p-0" id="collapseTable-d">
+                                    <!-- Table Div -->
                                     <div class="table-responsive m-3">
 
                                         <!-- Table -->
@@ -67,7 +72,7 @@
                                             <tbody>
                                                 <?php foreach($data as $datum): ?>
                                                     <tr class="odd">
-                                                        <td><?php echo $datum['trainings_id'] ?></td>
+                                                        <td><?php echo $datum['ldi_id'] ?></td>
                                                         <td><?php echo $datum['title'] ?></td>
                                                         <td><?php echo $datum['_from'] ?></td>
                                                         <td><?php echo $datum['_to'] ?></td>
@@ -94,47 +99,16 @@
 
                                     </div>
                                     <!-- End Table Div -->
-                                    <form class="row" action="<?=site_url('Employee/insert_trainings');?>" method="post" enctype="multipart/form-data">
-                                        <div class="form-group col-md-4 m-t-20">
-                                            <label>TRANING PROGRAMS</label>
-                                            <input type="text" class="form-control" name="title" value="" required > 
-                                        </div>
-                                        <div class="form-group col-md-4 m-t-20">
-                                            <label>FROM</label>
-                                            <input type="date" class="form-control" name="from" value="" required > 
-                                        </div>
-                                        <div class="form-group col-md-4 m-t-20">
-                                            <label>TO</label>
-                                            <input type="date" class="form-control" name="to" value="" required > 
-                                        </div>
-                                        <div class="form-group col-md-4 m-t-20">
-                                            <label>NUMBER OF HOURS</label>
-                                            <input type="number" class="form-control" name="hours" value="" required > 
-                                        </div>
-                                        <div class="form-group col-md-4 m-t-20">
-                                            <label>TYPE OF LD</label>
-                                            <input type="text" class="form-control" name="type" value="" required > 
-                                        </div>
-                                        <div class="form-group col-md-4 m-t-20">
-                                            <label>SPONSORED BY</label>
-                                            <input type="text" class="form-control" name="spon" value="" required > 
-                                        </div>
-                                        
-                                        
-                                        <div class="form-actions mt-2 col-md-12">
-                                            <input type="hidden" name="emid" value="">                                                   
-                                            <button type="submit" class="btn btn-success pull-right"> <i class="fa fa-check"></i> Add</button>
-                                        </div>
-                                        
-                                    </form>
+
+                                    
                                 </div>
-                                
+
                             </div>
-                            <!-- Column -->
                         </div>
-                        <!-- End container-fluid -->
+
+                        <!-- start table for Work Experience  -->
                     </div>
-                        <!-- END COL 12 -->
+                    <!-- End container-fluid -->
                 </div>
                 <!-- End container-fluid -->
 
@@ -157,3 +131,54 @@
     <!-- End Container - Fluid -->
     <?php require_once(APP_DIR . 'views/emp/includes/footer.php'); ?>
     
+
+<!-- modal for adding workexperience -->
+<div class="modal fade" id="adding">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Add Work Experience</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form class="row" action="<?=site_url('Employee/insert_trainings');?>" method="post" enctype="multipart/form-data">
+                    <div class="form-group col-md-12 m-t-20">
+                        <label>TRANING PROGRAMS</label>
+                        <input type="text" class="form-control" name="title" value="" required > 
+                    </div>
+                    <div class="form-group col-md-6 m-t-20">
+                        <label>FROM</label>
+                        <input type="date" class="form-control" name="from" value="" required > 
+                    </div>
+                    <div class="form-group col-md-6 m-t-20">
+                        <label>TO</label>
+                        <input type="date" class="form-control" name="to" value="" required > 
+                    </div>
+                    <div class="form-group col-md-12 m-t-20">
+                        <label>NUMBER OF HOURS</label>
+                        <input type="number" class="form-control" name="hours" value="" required > 
+                    </div>
+                    <div class="form-group col-md-12 m-t-20">
+                        <label>TYPE OF LD</label>
+                        <input type="text" class="form-control" name="type" value="" required > 
+                    </div>
+                    <div class="form-group col-md-12 m-t-20">
+                        <label>SPONSORED BY</label>
+                        <input type="text" class="form-control" name="spon" value="" required > 
+                    </div>
+                    
+                    
+                    <div class="form-actions mt-2 col-md-12">
+                        <input type="hidden" name="emid" value="">                                                   
+                        <button type="submit" class="btn btn-success pull-right"> <i class="fa fa-check"></i> Add</button>
+                    </div>
+                    
+                </form>
+               
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end modal for adding workexperience -->

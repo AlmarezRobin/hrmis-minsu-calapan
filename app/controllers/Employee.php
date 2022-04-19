@@ -3,16 +3,6 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
 class Employee extends Controller {
 	
-	public function __construct(){
-		parent::__construct();
-		// if(! is_logged_in()) {
-		// 	redirect('Login');
-		// }
-
-		// $this->session->userdata('role') != 'Teaching' ?? redirect('Login');
-		// $this->session->userdata('role') != 'Non-Teaching' ?? redirect('Login');
-	}
-
 	public function index() {
 		$data['emp_profile'] = $this->Employee_model->emp_profile($this->session->userdata('user_id'));
 		$this->call->view('emp/index', $data);
@@ -22,7 +12,7 @@ class Employee extends Controller {
 
 	public function view_upload(){
 		$data['emp_profile'] = $this->Employee_model->emp_profile($this->session->userdata('user_id'));
-		$this->call->view('emp/fileupload/photo', $data);
+		$this->call->view('emp/fileupload/photo',$data);
 	}
 
 
@@ -94,6 +84,10 @@ class Employee extends Controller {
 
 			}
 		}
+
+
+		
+
 	}
 
 	#endregion 
@@ -113,7 +107,7 @@ class Employee extends Controller {
 	// }
 	//-----------after-------------
 	public function view_edit_profile(){
-		$data = $this->Employee_model->emp_profile($this->session->userdata('user_id'));
+		$data['emp_profile'] = $this->Employee_model->emp_profile($this->session->userdata('user_id'));
 		$this->call->view('emp/emp_profile/personalinformation', $data);
 	}
 
@@ -169,6 +163,12 @@ class Employee extends Controller {
 									->name('dob')->required()
 									->name('sex')->required()
 									->name('cstat')->required()
+
+									// added 4-16-22 rma 
+									// ->name('citizenship')
+									// ->name('dualby')
+									// ->name('country')
+
 									->name('tnumber')->required()
 									->name('cnumber')->required();
 									
@@ -182,6 +182,13 @@ class Employee extends Controller {
 									$this->io->post('dob'), 
 									strtoupper($this->io->post('sex')),
 									strtoupper($this->io->post('cstat')),
+
+									// added 4-16-22 rma
+									// strtoupper($this->io->post('citizenship')),
+									// strtoupper($this->io->post('dualby')),
+									// strtoupper($this->io->post('country')),
+
+
 									$this->io->post('tnumber'),
 									$this->io->post('cnumber'),
 									$this->io->post('profile_id')						 );
@@ -198,18 +205,10 @@ class Employee extends Controller {
 
 	#region start of family background
 	public function view_spouse(){
-		$this->call->view('emp/emp_profile/family_background/spouse_info');
+		$data['get_spouse_info'] = $this->Pds_model->get_spouse_info();
+		$this->call->view('emp/emp_profile/family_background/spouse_info',$data);
 	}
-	public function view_father(){
-		$this->call->view('emp/emp_profile/family_background/father_info');
-	}
-	public function view_mother(){
-		$this->call->view('emp/emp_profile/family_background/mother_info');
-	}
-	public function view_child(){
-		$child = $this->Pds_model->get_all_child($this->session->userdata('user_id'));
-		$this->call->view('emp/emp_profile/family_background/child_info',$child);
-	}
+
 	public function insert_spouse(){
 
 		if ($this->form_validation->submitted()) {
@@ -217,7 +216,6 @@ class Employee extends Controller {
 				->name('sfname')->required()
 				->name('smname')->required()
 				->name('slname')->required()
-				->name('sxname')
 				->name('occupation')
 				->name('bname')
 				->name('baddress')
@@ -228,7 +226,6 @@ class Employee extends Controller {
 					strtoupper($this->io->post('sfname')),
 					strtoupper($this->io->post('smname')),
 					strtoupper($this->io->post('slname')),
-					strtoupper($this->io->post('sxname')),
 					strtoupper($this->io->post('occupation')),
 					strtoupper($this->io->post('bname')),
 					strtoupper($this->io->post('baddress')),
@@ -238,12 +235,39 @@ class Employee extends Controller {
 			}
 		}
 	}
+	public function update_spouse(){
 
+		if ($this->form_validation->submitted()) {
+			$this->form_validation
+				->name('sfname')->required()
+				->name('smname')->required()
+				->name('slname')->required()
+				->name('occupation')
+				->name('bname')
+				->name('baddress')
+				->name('tnumber');
 
+			if ($this->form_validation->run()) {
+				$this->Pds_model->update_spouse(
+					strtoupper($this->io->post('sfname')),
+					strtoupper($this->io->post('smname')),
+					strtoupper($this->io->post('slname')),
+					strtoupper($this->io->post('occupation')),
+					strtoupper($this->io->post('bname')),
+					strtoupper($this->io->post('baddress')),
+					$this->io->post('tnumber')
+				);
+				redirect('Employee/view_spouse');
+			}
+		}
+	}
+	//------------------------------------------------------------------------------------------------------------------------
+	//------------------------------------------------------------------------------------------------------------------------
 
-
-
-
+	public function view_father(){
+		$data['get_father_info'] = $this->Pds_model->get_father_info();
+		$this->call->view('emp/emp_profile/family_background/father_info',$data);
+	}
 
 	public function insert_father(){
 
@@ -265,7 +289,34 @@ class Employee extends Controller {
 			}
 		}
 	}
+	public function update_father(){
 
+		if ($this->form_validation->submitted()) {
+			$this->form_validation
+				->name('fafname')->required()
+				->name('famname')->required()
+				->name('falname')->required()
+				->name('faxname');
+
+			if ($this->form_validation->run()) {
+				$this->Pds_model->update_father(
+					strtoupper($this->io->post('fafname')),
+					strtoupper($this->io->post('famname')),
+					strtoupper($this->io->post('falname')),
+					strtoupper($this->io->post('faxname'))
+				);
+				redirect('Employee/view_father');
+			}
+		}
+	}
+	//------------------------------------------------------------------------------------------------------------------------
+	//------------------------------------------------------------------------------------------------------------------------
+
+
+	public function view_mother(){
+		$data['get_mother_info'] = $this->Pds_model->get_mother_info();
+		$this->call->view('emp/emp_profile/family_background/mother_info',$data);
+	}
 	public function insert_mother(){
 		if ($this->form_validation->submitted()) 
 		{
@@ -286,6 +337,39 @@ class Employee extends Controller {
 				redirect('Employee/view_mother');
 			}
 		}
+	}
+	public function update_mother(){
+		if ($this->form_validation->submitted()) 
+		{
+			$this->form_validation
+				->name('momainame')->required()
+				->name('mofname')->required()
+				->name('momname')->required()
+				->name('molname')->required();
+
+			if ($this->form_validation->run()) 
+			{
+				$this->Pds_model->update_mother(
+					strtoupper($this->io->post('momainame')),
+					strtoupper($this->io->post('mofname')),
+					strtoupper($this->io->post('momname')),
+					strtoupper($this->io->post('molname'))
+				);
+				redirect('Employee/view_mother');
+			}
+		}
+	}
+
+	//------------------------------------------------------------------------------------------------------------------------
+	//------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+	public function view_child(){
+		$child = $this->Pds_model->get_all_child($this->session->userdata('user_id'));
+		$this->call->view('emp/emp_profile/family_background/child_info',$child);
 	}
 
 	public function insert_child(){
@@ -310,6 +394,7 @@ class Employee extends Controller {
 			}
 		}
 	}
+	
 
 
 	#endregion start of family background
@@ -511,28 +596,16 @@ class Employee extends Controller {
 
 
 //----------------------------------------------------------
-	public function view_other_information(){
-		$data = $this->Pds_model->get_other_info($this->session->userdata('user_id'));
+	
 
-		$this->call->view('emp/emp_profile/otherinformation',$data);
+
+	#region lastpage of pds rma 4/15/22
+
+	
+	public function view_references(){
+		$this->call->view('emp/emp_profile/references');
 	}
-	 public function insert_other_info(){
-		 if($this->form_validation->submitted()){
-			 $this->form_validation->name('skills')->name('recog')->name('mship');
-
-			 if($this->form_validation->run())
-			 {
-				 $this->Pds_model->insert_other_info(
-					 $this->io->post('skills'),$this->io->post('recog'),$this->io->post('mship')
-					
-				 );
-				  redirect('Employee/view_other_information');
-			 }
-		 }
-	 }
-
-
-
+	#endregion of the last page of pds
 
 
 

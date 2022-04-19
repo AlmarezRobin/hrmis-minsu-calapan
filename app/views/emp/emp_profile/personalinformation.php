@@ -34,8 +34,6 @@
                         
                     User  <small>Profile</small></h5>
                 </div>
-
-       
                 <!-- end title -->
                 <!-- container-fluid -->
                 <div class="container-fluid-xxl pb-2">
@@ -47,9 +45,9 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <?php if(isset($data['user_id'])): ?>
+                                                <?php if(isset($emp_profile['profile_id'])): ?>
                                                     <form class="row" method="post" action="<?=site_url('Employee/update_profile');?>" enctype="multipart/form-data">
-                                                        <input type="hidden" name="profile_id" value="<?= $data['profile_id']?>">
+                                                        <input type="hidden" name="profile_id" value="<?= $emp_profile['profile_id']?>">
                                                         <div class="row">
 
                                                         
@@ -58,33 +56,31 @@
                                                                 <input type="text" class="form-control  " name="fname"
                                                                     id="firstname" placeholder="" maxlength="50" size="50"
                                                                     data-toggle="tooltip" data-placement="right" title="First Name"
-                                                                    required value="<?= $data['f_name'] ?>">
+                                                                    required value="<?= $emp_profile['f_name'] ?>">
                                                             </div>
                                                             <div class="form-group col-md-4 m-t-10">
                                                                 <label for="midddlename" class="form-label">Middle Name</label>
                                                                 <input type="text" class="form-control" name="mname"
                                                                     id="midddlename" placeholder="" maxlength="30" size="30"
-                                                                    data-toggle="tooltip" data-placement="right" title="Middle Name" value="<?= $data['m_name'] ?>">
+                                                                    data-toggle="tooltip" data-placement="right" title="Middle Name" value="<?= $emp_profile['m_name'] ?>">
                                                             </div>
                                                             <div class="form-group col-md-4 m-t-10">
                                                                 <label for="lastname" class="form-label">Last Name*</label>
                                                                 <input type="text" class="form-control" name="lname"
                                                                     id="lastname" placeholder="" maxlength="30" size="30"
                                                                     data-toggle="tooltip" data-placement="right" title="Last Name"
-                                                                    required value="<?= $data['l_name'] ?>">
+                                                                    required value="<?= $emp_profile['l_name'] ?>">
                                                             </div>
                                                             <div class="form-group col-md-4 m-t-10">
                                                                 <label for="nameex" class="form-label">Name extension </label>
                                                                 <input type="text" class="form-control" name="xname"
                                                                     id="nameex" placeholder="" maxlength="3" size="3"
-                                                                    data-toggle="tooltip" data-placement="right" title="Name Extension" value="<?= $data['name_ex'] ?>">
+                                                                    data-toggle="tooltip" data-placement="right" title="Name Extension" value="<?= $emp_profile['name_ex'] ?>">
                                                             </div>
                                                             <div class="form-group col-md-4 m-t-10">
                                                                 <label>Gender </label>
                                                                 <select name="sex"  class="form-control custom-select">
-                                                                    <option value="<?= $data['sex'] ?>"><?= $data['sex'] ?></option>
-                                                                    <option value="Male">Male</option>
-                                                                    <option value="Female">Female</option>
+                                                                    <option><?= $emp_profile['sex'] ?></option>
                                                                 </select>
                                                             </div>
                                                         
@@ -92,7 +88,7 @@
                                                                 <label for="civilstatus" class="form-label">Civil Status*</label>
                                                                 <select class="form-control custom-select"  name="cstat"
                                                                     id="civilstatus" data-toggle="tooltip" data-placement="right"
-                                                                    title="Civil Status" required value="<?= $data['civil_status'] ?>">
+                                                                    title="Civil Status" required value="<?= $emp_profile['civil_status'] ?>">
                                                                     <option value="single">Single</option>
                                                                     <option value="married">Married</option>
                                                                     <option value="seperated">Separated</option>
@@ -102,28 +98,25 @@
                                                                                                                 
                                                             <div class="form-group col-md-4 m-t-10">
                                                                 <label>Date Of Birth </label>
-                                                                <input type="date" id="example-email2" name="dob" class="form-control" placeholder="" required value="<?= $data['date_of_birth'] ?>"> 
+                                                                <input type="date" id="" name="dob" class="form-control" placeholder="" required value="<?= $emp_profile['date_of_birth'] ?>"> 
                                                             </div>
                                                             <div class="form-group col-md-4 m-t-10">
                                                                 <label for="phonenumber" class="form-label">Contact Number*</label>
                                                                 <input type="number" class="form-control " name="cnumber"
                                                                     id="phonenumber" placeholder="" pattern="[0-9]{10}"
                                                                     data-toggle="tooltip" data-placement="right"
-                                                                    title="Cellphone Number" required value="<?= $data['mobile'] ?>">
+                                                                    title="Cellphone Number" required value="<?= $emp_profile['mobile'] ?>">
                                                             </div>
                                                             <div class="form-group col-md-4 m-t-10">
                                                                 <label for="phonenumber" class="form-label">Telephone Number*</label>
                                                                 <input type="number" class="form-control " name="tnumber"
                                                                     id="phonenumber" placeholder="" pattern="[0-9]{10}"
                                                                     data-toggle="tooltip" data-placement="right"
-                                                                    title="Cellphone Number" required value="<?= $data['telephone'] ?>">
+                                                                    title="Cellphone Number" required value="<?= $emp_profile['telephone'] ?>">
                                                             </div>
                                                         </div>
-
                                                         <div class="form-actions mt-2 col-md-12">
-                                                            <!-- <input type="hidden" name="emid" value=""> -->
                                                             <input type="submit" value="Update" name="submit" class="btn btn-success">
-                                                            
                                                         </div>
                                                         
                                                     </form>
@@ -210,6 +203,70 @@
                                                                 ex: 9770011001
                                                             </small >
                                                         </div>
+
+
+
+                                                        <hr>
+                                                            <div class="form-group col-md-4 m-t-10">
+                                                                <label for="" class="form-label">Citizenship</label>
+
+                                                                <select name="citizenship" id="citizenship" class="form-control" onchange = 'enable()'>
+                                                                    <option>--select--</option>
+                                                                    <option value="filipino">FILIPINO</option>
+                                                                    <option value="dual citizenship">DUAL CITIZENSHIP</option>
+
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group col-md-4 m-t-10">
+                                                                <label for="" class="form-label">Dual Citizenship by: </label>
+                                                            <select  name="dualby" id="dualby" class="form-control" onchange = 'enable()' disabled>
+                                                                <option>--select--</option>
+                                                                <option value="BY BIRTH">BY BIRTH</option>
+                                                                <option value="BY NATURALIZATION">BY NATURALIZATION</option>
+                                                            </select>
+                                                            </div>
+                                                            <div class="form-group col-md-4 m-t-10">
+                                                            <label for="phonenumber" class="form-label">Please indicate country*</label>
+                                                            <input type="text" class="form-control " name="country" id="country"
+                                                                id="phonenumber" placeholder="" 
+                                                                data-toggle="tooltip" data-placement="right"
+                                                                title="Country" disabled >
+                                                        </div>
+
+                                                        <script type="text/javascript">
+                                                            function enable(){
+                                                                if (document.getElementById('citizenship').value === "dual citizenship") {
+                                                                    document.getElementById('dualby').disabled = false;
+                                                                    document.getElementById('country').disabled = false;
+                                                                }
+                                                                else {
+                                                                    document.getElementById('dualby').disabled = true;
+                                                                    document.getElementById('country').disabled = true;
+                                                                }
+                                                            }
+                                                            
+                                                        </script>
+
+
+
+
+
+
+
+                                                         
+
+
+
+
+
+
+
+
+
+
+
+
+
                                                         <div class="form-actions mt-2 col-md-12">
                                                             <!-- <input type="hidden" name="emid" value=""> -->
                                                             <input type="submit" value="Save" name="submit" class="btn btn-success">

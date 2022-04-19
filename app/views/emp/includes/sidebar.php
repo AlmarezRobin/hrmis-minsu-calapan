@@ -37,6 +37,14 @@
                 </div>
             </a>
 
+            <a href="<?=site_url('Pds/view_finished_pds');?>" class="list-group-item list-group-item-action lh-tight side-menu">
+                <div class="d-flex w-100 align-items-center justify-content-between">
+                    <div class="mb-0">
+                    <i class="fa fa-user me-2" aria-hidden="true"></i> Personal Data Sheet
+                    </div>
+                </div>
+            </a>
+
 
             <a href="<?=site_url('Employee/view_locator');?>" class="list-group-item list-group-item-action lh-tight side-menu">
                 <div class="d-flex w-100 align-items-center justify-content-between">

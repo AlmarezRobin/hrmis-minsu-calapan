@@ -38,63 +38,124 @@
 
                 <!-- container-fluid -->
                 <div class="container-fluid-xxl pb-2">
-                    <div class="col-md-12">
-                        <div class="d-flex justify-content-center">
-                            <div class="card">
-                                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseTable"
-                                    aria-expanded="true" aria-controls="collapseTable">
-                                    <span class="card-icon"><i class="fa fa-plus"></i></span>
-                                    SERVICE ELIGIBILITY
+                    <!-- modal for add eligibility -->
+                    <div class="modal fade" id="add">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">eligibility</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                 </div>
-                                <div class="card-body accordion-collapse collapse show" id="collapseTable-d">
-                                        
+                                <!-- Modal body -->
+                                <div class="modal-body">
                                     <form class="row" action="" method="post" enctype="multipart/form-data">
-                                        <div class="form-group col-md-4 m-t-20">
+                                        <div class="form-group col-md-12 mb-2 m-t-20">
                                             <label>SERVICE</label>
                                             <input type="text" class="form-control" name="service" value="" required minlength="6"> 
                                         </div>
-                                        <div class="form-group col-md-4 m-t-20">
+                                        <div class="form-group col-md-12 mb-2 m-t-20">
                                             <label>RATING</label>
                                             <input type="text" id="" name="rating" class="form-control " required > 
                                         </div>
-                                        <div class="form-group col-md-4 m-t-20">
+                                        <div class="form-group col-md-12 mb-2 m-t-20">
                                             <label>DATE OF CONFERMENT</label>
                                             <input type="date" class="form-control" name="date" value="" required minlength="6"> 
                                         </div>
-                                        <div class="form-group col-md-4 m-t-20">
+                                        <div class="form-group col-md-12 mb-2 m-t-20">
                                             <label>PLACE OF CONFERMENT</label>
                                             <input type="text" id="" name="place" class="form-control " required minlength="6"> 
                                         </div>
-                                        <div class="form-group col-md-4 m-t-20">
+                                        <div class="form-group col-md-12 mb-2 m-t-20">
                                             <label>NUMBER</label>
                                             <input type="number" class="form-control" name="number" value="" required minlength="6"> 
                                         </div>
-                                        <div class="form-group col-md-4 m-t-20">
+                                        <div class="form-group col-md-12 mb-2 m-t-20">
                                             <label>DATE OF VALIDITY </label>
                                             <input type="date" id="" name="validity" class="form-control " required minlength="6"> 
                                         </div>
-                                        
-                                        
                                         <div class="form-actions mt-2 col-md-12">
                                             <input type="hidden" name="emid" value="">                                                   
                                             <button type="submit" class="btn btn-success pull-right"> <i class="fa fa-check"></i> Add</button>
                                         </div>
                                         
                                     </form>
-                                
-
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!-- end modal for addd eligibility -->
+
+                    <!-- modal for updating eligibility -->
+                    <div class="modal fade" id="edit">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">eligibility</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <form class="row" action="" method="post" enctype="multipart/form-data">
+                                        <div class="form-group col-md-12 mb-2 m-t-20">
+                                            <label>SERVICE</label>
+                                            <input type="text" class="form-control" name="service" value="" required minlength="6"> 
+                                        </div>
+                                        <div class="form-group col-md-12 mb-2 m-t-20">
+                                            <label>RATING</label>
+                                            <input type="text" id="" name="rating" class="form-control " required > 
+                                        </div>
+                                        <div class="form-group col-md-12 mb-2 m-t-20">
+                                            <label>DATE OF CONFERMENT</label>
+                                            <input type="date" class="form-control" name="date" value="" required minlength="6"> 
+                                        </div>
+                                        <div class="form-group col-md-12 mb-2 m-t-20">
+                                            <label>PLACE OF CONFERMENT</label>
+                                            <input type="text" id="" name="place" class="form-control " required minlength="6"> 
+                                        </div>
+                                        <div class="form-group col-md-12 mb-2 m-t-20">
+                                            <label>NUMBER</label>
+                                            <input type="number" class="form-control" name="number" value="" required minlength="6"> 
+                                        </div>
+                                        <div class="form-group col-md-12 mb-2 m-t-20">
+                                            <label>DATE OF VALIDITY </label>
+                                            <input type="date" id="" name="validity" class="form-control " required minlength="6"> 
+                                        </div>
+                                        <div class="form-actions mt-2 col-md-12">
+                                            <input type="hidden" name="emid" value="">                                                   
+                                            <button type="submit" class="btn btn-success pull-right"> <i class="fa fa-check"></i> Add</button>
+                                        </div>
+                                        
+                                    </form>
+<<<<<<< HEAD
+=======
+                                
+
+>>>>>>> hrmis-v3.3
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+<<<<<<< HEAD
+                    <!-- end modal for updating eligibility -->
+
+                     <!-- start table for eligibility -->
+=======
 
                      <!-- start table for Educational Background -->
+>>>>>>> hrmis-v3.3
                      <div class="col-md-12 p-2 float-sm-start">
                         <div class="card">
                             <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseTable"
                                 aria-expanded="true" aria-controls="collapseTable">
                                 <span class="card-icon"><i class="fa fa-table"></i></span>
+<<<<<<< HEAD
+                                Current Rice Production Status
+                                <button type="button" class="btn btn-sm btn-primary float-sm-end" data-bs-toggle="modal" data-bs-target="#add">Add eligibility</button>
+=======
                                 Current Rice Production Status<i class="fa fa-caret-down pull-right"></i>
+>>>>>>> hrmis-v3.3
                             </div>
                             <div class="card-body accordion-collapse collapse show p-0" id="collapseTable-d">
 
@@ -149,7 +210,11 @@
                         </div>
                     </div>
 
+<<<<<<< HEAD
+                    <!-- start table for eligibility -->
+=======
                     <!-- start table for Educational Background -->
+>>>>>>> hrmis-v3.3
 
 
 

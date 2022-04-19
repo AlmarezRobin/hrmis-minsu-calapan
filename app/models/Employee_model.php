@@ -15,6 +15,58 @@ class Employee_model extends Model{
       
    }
     
+<<<<<<< HEAD
+#region user profile
+    
+public function insert_user_profile($fnam, $mname, $lname, $xname, $bday, $sex, $cstat, $cnumber, $tnumber)
+{
+   $bind = array(
+      'user_id' =>$this->session->userdata('user_id'),
+      'f_name'=>$fnam,
+      'm_name'=>$mname,
+      'l_name'=>$lname,
+      'name_ex'=>$xname, 
+      'date_of_birth'=>$bday,
+      'sex'=>$sex,
+      'civil_status'=>$cstat,
+
+      // 4/16/22 rma
+      // 'citizenship'=>$citezenship,
+      // 'ship_by'=>$shipby,
+      // 'citizenship_country'=>$country,
+      
+      'telephone'=>$tnumber,
+      'mobile'=>$cnumber
+      
+   );
+   return $this->db->table('user_profile')->insert($bind);
+}
+
+public function update_user_profile($fnam, $mname, $lname, $xname, $bday, $sex, $cstat , $cnumber, $tnumber, $profile_id)
+{
+   $bind = array(
+      'f_name'=>$fnam,
+      'm_name'=>$mname,
+      'l_name'=>$lname,
+      'name_ex'=>$xname, 
+      'date_of_birth'=>$bday,
+      'sex'=>$sex,
+      'civil_status'=>$cstat,
+
+      // added 4/16/22 rma
+      // 'citizenship'=>$citezenship,
+      // 'ship_by'=>$shipby,
+      // 'citizenship_country'=>$country,
+
+      'telephone'=>$tnumber,
+      'mobile'=>$cnumber
+      
+   );
+   return $this->db->table('user_profile')->where('user_id', $this->session->userdata('user_id'))->update($bind);
+}
+
+#endregion
+=======
    public function insert_user_profile($fnam, $mname, $lname, $xname, $bday, $sex, $cstat, $cnumber, $tnumber)
 	{
 		$bind = array(
@@ -34,6 +86,7 @@ class Employee_model extends Model{
 	}
 
    
+>>>>>>> hrmis-v3.3
 
 
    public function insert_emp_desig($designation){
@@ -44,6 +97,27 @@ class Employee_model extends Model{
    }
 
 
+<<<<<<< HEAD
+   
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=======
+>>>>>>> hrmis-v3.3
 
 
    //4/7/2022 rma
@@ -54,8 +128,19 @@ class Employee_model extends Model{
 
 
    public function uploadsignature($sign){
+<<<<<<< HEAD
+      $sign = [
+         'e_sign'=>$sign
+      ];
+
+      return $this->db->table('user_profile')->where('user_id',$this->session->userdata('user_id'))->update($sign);
+   }
+
+
+=======
       return $this->db->table('user_profile')->where('user_id',$this->session->userdata('user_id'))->update(array('e_sign'=>$sign));
    }
+>>>>>>> hrmis-v3.3
    // public function displaysign($id=6){
    //    return $this->table('user_profile')->select('photo')->where('user_id',$id)->get();
    // }
@@ -68,6 +153,8 @@ class Employee_model extends Model{
 
 
 
+<<<<<<< HEAD
+=======
 
 
    public function update_user_profile($fname, $mname, $lname, $xname, $bday, 
@@ -89,6 +176,7 @@ class Employee_model extends Model{
 	}
 
 
+>>>>>>> hrmis-v3.3
    public function add_educ($level,$school_name,$degree,	$from_date,	$to_date,	
    $highest_level,	$year_graduated,	$honors_received){
 
@@ -111,11 +199,23 @@ class Employee_model extends Model{
 
 
 
+<<<<<<< HEAD
+   public function passwordhash($password)
+   {
+        $options = array('cost' => 4, );
+        return password_hash($password, PASSWORD_BCRYPT, $options);
+   }
+
+public function change_password($pass){
+   $bind = [
+      '_password'=>$this->Employee_model->passwordhash($pass)
+=======
 
 
 public function change_password($pass){
    $bind = [
       '_password'=>$this->Auth->passwordhash($pass)
+>>>>>>> hrmis-v3.3
    ];
 //   return $this->db->table('user')->where('user_id',$this->session->userdata('user_id')->update($bind));
   return $this->db->table('user')->where('user_id',$this->session->userdata('user_id'))->update($bind);

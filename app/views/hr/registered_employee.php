@@ -75,10 +75,14 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                                         <td><?php echo $datum['_password'];?></td>
                                                         <td><?php echo $datum['role'];     ?></td>
                                                         <td>
+<<<<<<< HEAD
+                                                            <a href="<?=site_url(''.$datum['id_number']); ?>" class="btn btn-mini btn-info">View</a>
+=======
                                                             <form action="<?= site_url('hr/view_assign_emp') ?>" method="POST">
                                                                 <input type="hidden" name="user_id" value="<?= $datum['user_id']?>">
                                                                 <button type="submit" class="btn btn-primary btn-mini">Assign</button>
                                                             </form>
+>>>>>>> hrmis-v3.3
                                                             <a href="<?=site_url(''.$datum['id_number']); ?>" class="btn btn-mini btn-warning" >Delete</a>
                                                         </td>
 
@@ -127,6 +131,10 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
     </div>
     <!-- End Container - Fluid -->
     <?php require_once('includes\footer.php'); ?>
+<<<<<<< HEAD
+    <script>
+=======
+>>>>>>> hrmis-v3.3
 
      <!-- DATA TABES SCRIPT -->
         <script src="<?php echo BASE_URL . PUBLIC_DIR?>/public/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>

@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 <?php
 defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
@@ -9,6 +11,7 @@ redirect('Admin');
 ?>
 
 
+>>>>>>> hrmis-v3.3
 <!DOCTYPE html>
 
 <html lang="en" class="h-100">

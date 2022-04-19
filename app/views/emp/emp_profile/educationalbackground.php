@@ -42,7 +42,7 @@
                    
 
                 
-                    <div class="col-md-12">
+                    <!-- <div class="col-md-12">
                         <div class="d-flex justify-content-center">
                             <div class="card">
                                 <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseTable"
@@ -122,15 +122,16 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
-                     <!-- start table for Educational Background -->
-                     <div class="col-md-12 p-2 float-sm-start">
+                    <!-- start table for Work Experience -->
+                    <div class="col-md-12 p-2 float-sm-start">
                         <div class="card">
                             <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseTable"
                                 aria-expanded="true" aria-controls="collapseTable">
                                 <span class="card-icon"><i class="fa fa-table"></i></span>
-                                Current Rice Production Status<i class="fa fa-caret-down pull-right"></i>
+                                Current Rice Production Status
+                                <button type="button" class="btn btn-sm btn-primary float-sm-end" data-bs-toggle="modal" data-bs-target="#adding">Add educational background</button>
                             </div>
                             <div class="card-body accordion-collapse collapse show p-0" id="collapseTable-d">
 
@@ -191,7 +192,181 @@
                         </div>
                     </div>
 
-                    <!-- start table for Educational Background -->
+                    <!-- start table for Work Experience  -->
+
+
+                    <!-- modal for adding educational background -->
+                    <div class="modal fade" id="adding">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Update child information</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <form action="" method="POST">
+                                        <div class="row">
+                                            <div class="col-md-12 mb-2">
+                                                <label>Level</label>
+                                                <select name="level" id="level" name="level" onChange="other();"class="form-control form-control-line">
+                                                    <option>option</option>
+                                                    <option value="ELEMENTARY">ELEMENTARY</option>
+                                                    <option value="SECONDARY">SECONDARY</option>
+                                                    <option value="TERTIARY">TERTIARY</option>
+                                                    <option value="ELEMENTARY">ELEMENTARY</option>
+                                                    <option value="K-12 PROGRAM">K-12 PROGRAM</option>
+                                                    <option value="VOCATIONAL">VOCATIONAL</option>
+                                                    <option value="OTHER">OTHER</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-12 mb-2">
+                                                <label>If Other</label>
+                                                <input type="text" id="specify" class="form-control form-control-line" placeholder="Please Specify the level" disabled>
+                                            </div>
+                                            <script type="text/javascript">
+                                                $('#level').change(function() {
+                                                    if( $(this).val() == "OTHER") {
+                                                        $('#specify').prop( "disabled", false );
+                                                    } else {       
+                                                        $('#specify').prop( "disabled", true );
+                                                    }
+                                                });
+                                                </script>
+
+                                            <div class="col-md-12 mb-2">
+                                                <label>Name of School</label>
+                                                <input type="text"id="" name="name" class="form-control form-control-line" placeholder="NAME OF SCHOOL (write in full)">
+                                            </div>
+                                            <div class="col-md-12 mb-2">
+                                                <label>Basic Education/Degree/Course of School</label>
+                                                <input type="text" id="" name="degree" class="form-control form-control-line" placeholder="Basic Education/Degree/Course of School (write in full)"> 
+                                            </div>
+                                            <div class="col-md-6 mb-2">
+                                                <label>Period of Attendace</label>
+                                                <input type="month" id="" name ="from"class="form-control form-control-line" placeholder="From">  
+                                            </div>
+                                            <div class="col-md-6 mb-2">
+                                                <label for=""></label>
+                                                <input type="month" id="" name="to" class="form-control form-control-line" placeholder="To"> 
+                                            </div>
+                                            <div class="col-md-12 mb-2">
+                                                <label>Highest Level Unit Earned</label>
+                                                <input type="text" id=""  name="unit_earned" class="form-control form-control-line" data-toogle="tooltip" title="HIGHEST LEVEL UNIT EARNED (if not graduated)" placeholder="">
+                                            </div>
+                                            <div class="col-md-12 mb-2"> 
+                                                <label>Year graduated</label>
+                                                <input type="text" id="" name="year_grad" class="form-control form-control-line">
+                                            </div>
+                                            <div class="col-md-12 mb-2"> 
+                                                <label>Scholarship/Academic honors received</label>
+                                                <input type="text" id="" name="honors"class="form-control form-control-line" >
+                                            </div>
+                                        </div>
+                                        <div class="row ">
+                                            <div class="form-actions mt-2 float-sm-end col-md-12 pull-right">
+                                                <input type="hidden" name="emid" value="">
+                                                <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> insert</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal for adding educational background -->
+
+
+
+
+                    <!-- modal for adding educational background -->
+                    <div class="modal fade" id="adding">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Update child information</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <form action="" method="POST">
+                                        <div class="row">
+                                            <div class="col-md-12 mb-2">
+                                                <label>Level</label>
+                                                <select name="level" id="level" name="level" onChange="other();"class="form-control form-control-line">
+                                                    <option>option</option>
+                                                    <option value="ELEMENTARY">ELEMENTARY</option>
+                                                    <option value="SECONDARY">SECONDARY</option>
+                                                    <option value="TERTIARY">TERTIARY</option>
+                                                    <option value="ELEMENTARY">ELEMENTARY</option>
+                                                    <option value="K-12 PROGRAM">K-12 PROGRAM</option>
+                                                    <option value="VOCATIONAL">VOCATIONAL</option>
+                                                    <option value="OTHER">OTHER</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-12 mb-2">
+                                                <label>If Other</label>
+                                                <input type="text" id="specify" class="form-control form-control-line" placeholder="Please Specify the level" disabled>
+                                            </div>
+                                            <script type="text/javascript">
+                                                $('#level').change(function() {
+                                                    if( $(this).val() == "OTHER") {
+                                                        $('#specify').prop( "disabled", false );
+                                                    } else {       
+                                                        $('#specify').prop( "disabled", true );
+                                                    }
+                                                });
+                                                </script>
+
+                                            <div class="col-md-12 mb-2">
+                                                <label>Name of School</label>
+                                                <input type="text"id="" name="name" class="form-control form-control-line" placeholder="NAME OF SCHOOL (write in full)">
+                                            </div>
+                                            <div class="col-md-12 mb-2">
+                                                <label>Basic Education/Degree/Course of School</label>
+                                                <input type="text" id="" name="degree" class="form-control form-control-line" placeholder="Basic Education/Degree/Course of School (write in full)"> 
+                                            </div>
+                                            <div class="col-md-6 mb-2">
+                                                <label>Period of Attendace</label>
+                                                <input type="month" id="" name ="from"class="form-control form-control-line" placeholder="From">  
+                                            </div>
+                                            <div class="col-md-6 mb-2">
+                                                <label for=""></label>
+                                                <input type="month" id="" name="to" class="form-control form-control-line" placeholder="To"> 
+                                            </div>
+                                            <div class="col-md-12 mb-2">
+                                                <label>Highest Level Unit Earned</label>
+                                                <input type="text" id=""  name="unit_earned" class="form-control form-control-line" data-toogle="tooltip" title="HIGHEST LEVEL UNIT EARNED (if not graduated)" placeholder="">
+                                            </div>
+                                            <div class="col-md-12 mb-2"> 
+                                                <label>Year graduated</label>
+                                                <input type="text" id="" name="year_grad" class="form-control form-control-line">
+                                            </div>
+                                            <div class="col-md-12 mb-2"> 
+                                                <label>Scholarship/Academic honors received</label>
+                                                <input type="text" id="" name="honors"class="form-control form-control-line" >
+                                            </div>
+                                        </div>
+                                        <div class="row ">
+                                            <div class="form-actions mt-2 float-sm-end col-md-12 pull-right">
+                                                <input type="hidden" name="emid" value="">
+                                                <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> insert</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal for adding educational background -->
+
+
+
+                    
 
 
 

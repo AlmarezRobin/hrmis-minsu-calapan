@@ -29,7 +29,6 @@
                 <!-- title -->
                 <div class="justify-content-between align-items-center pt-1 pb-2 mb-3 border-bottom mx-2">
                     <h5 class="h5 mt-3 mb-0 color-darkgray"> USER PROFILE
-                    <!-- <a href="Employee/edit_user_profile" class="btn btn-sm btn-success float-sm-end">Edit Profile</a> -->
                     </h5>
                 </div>
                 <!-- end title -->
@@ -63,33 +62,21 @@
                                     </div>
                                     <div class="col-md-8">
                                         <form class="row"method="post" enctype="multipart/form-data">
-                                            
-                                        
                                             <div class="form-group col-md-4 m-t-10">
                                                 <label for="firstname" class="form-label">First Name*</label>
-                                                <input type="text" class="form-control  " name="fname"
-                                                    id="firstname" placeholder="" maxlength="50" size="50"
-                                                    data-toggle="tooltip" data-placement="right" title="First Name"
-                                                    required disabled value="<?= $emp_profile['f_name'] ?>">
+                                                <input type="text" class="form-control " disabled value="<?= $emp_profile['f_name'] ?>">
                                             </div>
                                             <div class="form-group col-md-4 m-t-10">
                                                 <label for="midddlename" class="form-label">Middle Name</label>
-                                                <input type="text" class="form-control" name="mname"
-                                                    id="midddlename" placeholder="" maxlength="30" size="30"
-                                                    data-toggle="tooltip" data-placement="right" title="Middle Name" disabled value="<?= $emp_profile['m_name'] ?>">
+                                                <input type="text" class="form-control"  disabled value="<?= $emp_profile['m_name'] ?>">
                                             </div>
                                             <div class="form-group col-md-4 m-t-10">
                                                 <label for="lastname" class="form-label">Last Name*</label>
-                                                <input type="text" class="form-control" name="lname"
-                                                    id="lastname" placeholder="" maxlength="30" size="30"
-                                                    data-toggle="tooltip" data-placement="right" title="Last Name"
-                                                    required disabled value="<?= $emp_profile['l_name'] ?>">
+                                                <input type="text" class="form-control" disabled value="<?= $emp_profile['l_name'] ?>">
                                             </div>
                                             <div class="form-group col-md-4 m-t-10">
                                                 <label for="nameex" class="form-label">Name extension </label>
-                                                <input type="text" class="form-control" name="xname"
-                                                    id="nameex" placeholder="" maxlength="3" size="3"
-                                                    data-toggle="tooltip" data-placement="right" title="Name Extension" disabled value="<?= $emp_profile['name_ex'] ?>">
+                                                <input type="text" class="form-control" disabled value="<?= $emp_profile['name_ex'] ?>">
                                             </div>
                                             <div class="form-group col-md-4 m-t-10">
                                                 <label>Gender </label>
@@ -100,59 +87,40 @@
                                         
                                             <div class="form-group col-md-4 m-t-10">
                                                 <label for="civilstatus" class="form-label">Civil Status*</label>
-                                                <select class="form-control custom-select"  name="cstat"
-                                                    id="civilstatus" data-toggle="tooltip" data-placement="right"
-                                                    title="Civil Status" required disabled value="<?= $emp_profile['civil_status'] ?>">
-                                                    <option value="single">Single</option>
-                                                    <option value="married">Married</option>
-                                                    <option value="seperated">Separated</option>
-                                                    <option value="widower">Widow/er</option>
-                                                </select>
+                                                <input type="text" class="form-control" disabled value="<?= $emp_profile['civil_status'] ?>">
                                             </div>
                                                                                                 
                                             <div class="form-group col-md-4 m-t-10">
                                                 <label>Date Of Birth </label>
-                                                <input type="date" id="example-email2" name="dob" class="form-control" placeholder="" required disabled value="<?= $emp_profile['date_of_birth'] ?>"> 
+                                                <input type="date" class="form-control"  disabled value="<?= $emp_profile['date_of_birth'] ?>"> 
                                             </div>
                                             <div class="form-group col-md-4 m-t-10">
                                                 <label for="phonenumber" class="form-label">Contact Number*</label>
-                                                <input type="number" class="form-control " name="cnumber"
-                                                    id="phonenumber" placeholder="" pattern="[0-9]{10}"
-                                                    data-toggle="tooltip" data-placement="right"
-                                                    title="Cellphone Number" required disabled value="<?= $emp_profile['mobile'] ?>">
+                                                <input type="number" class="form-control " disabled value="<?= $emp_profile['mobile'] ?>">
                                             </div>
                                             <div class="form-group col-md-4 m-t-10">
                                                 <label for="phonenumber" class="form-label">Telephone Number*</label>
-                                                <input type="number" class="form-control " name="tnumber"
-                                                    id="phonenumber" placeholder="" pattern="[0-9]{10}"
-                                                    data-toggle="tooltip" data-placement="right"
-                                                    title="Cellphone Number" required disabled value="<?= $emp_profile['telephone'] ?>">
-                                            </div>
-                                            <div class="form-group col-md-4 m-t-10">
-                                                <label for="emp_status" class="form-label">Employment Status*</label>
-                                                <input type="number" class="form-control " name="emp_status"
-                                                    data-toggle="tooltip" data-placement="right"
-                                                    title="Employment Status" required disabled value="<?= $emp_profile['status_id'] ?>">
-                                            </div>
-                                            <div class="form-group col-md-4 m-t-10">
-                                                <label for="office" class="form-label">Office*</label>
-                                                <input type="number" class="form-control " name="tnumber"
-                                                    data-toggle="tooltip" data-placement="right"
-                                                    title="Office" required disabled value="<?= $emp_profile['office_id'] ?>">
-                                            </div>
-                                            <div class="form-group col-md-4 m-t-10">
-                                                <label for="Designation" class="form-label">Designation*</label>
-                                                <input type="number" class="form-control " name="tnumber"
-                                                    data-toggle="tooltip" data-placement="right"
-                                                    title="Designation" required disabled value="<?= $emp_profile['designation_id'] ?>">
+                                                <input type="number" class="form-control " disabled value="<?= $emp_profile['telephone'] ?>">
                                             </div>
 
-                                            <div class="form-actions col-md-12 mt-3">
+                                            <!-- data edited and addedd 4-17 rma -->
+                                            <div class="form-group col-md-4 m-t-10">
+                                                <label for="civilstatus" class="form-label">Civil Status*</label>
+                                                <input type="text" class="form-control" disabled value="<?= $emp_profile['civil_status'] ?>">
+                                            </div>
+                                            <div class="form-group col-md-4 m-t-10">
+                                                <label for="phonenumber" class="form-label">Contact Number*</label>
+                                                <input type="number" class="form-control " disabled value="<?= $emp_profile['mobile'] ?>">
+                                            </div>
+                                            <div class="form-group col-md-4 m-t-10 mb-2">
+                                                <label for="phonenumber" class="form-label">Telephone Number*</label>
+                                                <input type="number" class="form-control " disabled value="<?= $emp_profile['telephone'] ?>">
+                                            </div>
+                                            <div class="form-actions col-md-12 ">
                                                 <a href="<?=site_url('Employee/view_edit_profile');?>" class="btn btn-success">EDIT MY PROFILE</a>
                                             </div>
-                                            
                                         </form>
-
+                                        
                                     </div>
                                 </div>
                             </div>

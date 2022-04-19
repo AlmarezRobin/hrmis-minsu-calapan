@@ -3,16 +3,6 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
 class Utility_Settings extends Controller {
 
-	public function __construct()
-	{
-		parent::__construct();
-		if(! is_logged_in()) {
-			redirect('Admin');
-		}
-		$this->session->userdata('role') != 'Admin' ?? redirect('Admin');
-		$this->session->userdata('role') != 'Staff' ?? redirect('Admin');
-	}
-	
 	#region employee status
 	// ! selects all data frm employment_status tbl
 	public function view_employment_status(){
@@ -47,7 +37,6 @@ class Utility_Settings extends Controller {
 		if($this->form_validation->run()){
 			$data = $this->Utility_model->get_single_emp_stat($this->io->post('status_id'));
 			$this->call->view('hr/utility_settings/emp_stat_add', $data);
-			
 		}
 	}
 	// ! updates employee status
