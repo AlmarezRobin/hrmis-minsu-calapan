@@ -1,10 +1,15 @@
+<?php
+    defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
-<?php 
-// if (!$this->auth->is_logged_in()){
-//     redirect('Login');
-// }
-
+    if ($this->session->userdata('role') != 'Teaching') {
+        redirect('Login');
+    }
+    // elseif($this->session->userdata('role') != 'Non-Teaching'){
+    //     redirect('Login');
+    // }
 ?>
+
+
 <!-- sidebar -->
 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse overflow-auto scrollbar-success border-e">
     <div class="position-sticky">

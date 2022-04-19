@@ -3,10 +3,13 @@
 
     class Admin extends Controller {
 
-  
+         public function __construct() {
+            parent::__construct();
+        }
 
         // start change jcd April 15, 2022
         public function index(){
+            
             $this->call->view('admin/login/login');
         }
         
@@ -16,9 +19,9 @@
                 $username = $this->io->post('username');
                 $password = trim($this->io->post('password'));
 
-                $this->call->model('auth/admin_model');
+                $this->call->model('auth/Admin_model');
 
-                $data = $this->admin_model->login_admin($username, $password);
+                $data = $this->Admin_model->login_admin($username, $password);
                 if (empty($data)) {
                     set_flash_alert('danger', 'Wrong username or password.');
                     redirect('Admin');
@@ -111,9 +114,9 @@
                     ->matches('pass', 'This field must match with the Password.');
                 if ($this->form_validation->run()) {
                     
-                    $this->call->model('auth/admin_model');
+                    $this->call->model('auth/Admin_model');
                     
-                    if ($this->admin_model->update_pass($this->session->userdata('email'), $pass)) {
+                    if ($this->Admin_model->update_pass($this->session->userdata('email'), $pass)) {
                         $this->session->sess_destroy();
                         redirect('Admin');
                     }

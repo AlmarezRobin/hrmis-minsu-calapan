@@ -3,7 +3,6 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
 class Utility_Settings extends Controller {
 
-
 	#region employee status
 	// ! selects all data frm employment_status tbl
 	public function view_employment_status(){

@@ -7,12 +7,18 @@ class Pds_model extends Model {
 	}
 
 
+<<<<<<< HEAD
 	#region spouse crud information 
+=======
+	#region family background
+
+>>>>>>> hrmis-v3.3
 	public function insert_spouse($fname,$mname,$lname,$ex,$occu,$bname,$badd,$tnumber){
 		$bind = array(
 			'fname'=>$fname,
 			'mname'=>$mname,
 			'lname'=>$lname,
+<<<<<<< HEAD
 			'occupation'=>$occu,
 			'bus_name'=>$bname,
 			'bus_add'=>$badd,
@@ -74,6 +80,46 @@ class Pds_model extends Model {
 
 	}
 	#endregion mother crud information
+=======
+			'xname'=>$ex,
+			'occupation'=>$occu,
+			'bus_name'=>$bname,
+			'bus_add'=>$badd,
+			'tnumber'=>$tnumber,
+			'user_id'=>$this->session->userdata('user_id')
+		);
+
+		return $this->db->table('spouse_tbl')->insert($bind)->exec();
+	}
+
+
+
+
+
+	public function insert_father($fname,$mname,$lname,$ex){
+		$bind = array(
+			'father_fname'=>$fname,
+			'father_mname'=>$mname,
+			'father_lname'=>$lname,
+			'father_ex'=>$ex,
+			'user_id'=>$this->session->userdata('user_id')
+		);
+
+		return $this->db->table('father_tbl')->insert($bind)->exec();
+	}
+
+	public function insert_mother($maname,$fname,$mname,$lname){
+		$bind = array(
+			'maiden_name'=>$maname,
+			'fname'=>$fname,
+			'mname'=>$mname,
+			'lname'=>$lname,
+			'user_id'=>$this->session->userdata('user_id')
+		);
+
+		return $this->db->table('mother_tbl')->insert($bind)->exec();
+	}
+>>>>>>> hrmis-v3.3
 
 
 	#region child information
@@ -87,15 +133,26 @@ class Pds_model extends Model {
 			'user_id'=>$this->session->userdata('user_id')
 		);
 
+<<<<<<< HEAD
 		return $this->db->table('children_tbl')->insert($bind);
+=======
+		return $this->db->table('children_tbl')->insert($bind)->exec();
+>>>>>>> hrmis-v3.3
 	}
 	public function get_all_child(){
 		return $this->db->table('children_tbl')->get_all();
 	}
+<<<<<<< HEAD
 
 	
 	#endregion child information
 
+=======
+	#endregion child information
+
+	#endregion family background
+
+>>>>>>> hrmis-v3.3
 
 
 	#region educational background
@@ -112,7 +169,11 @@ class Pds_model extends Model {
 			'user_id'=>$this->session->userdata('user_id')
 		);
 
+<<<<<<< HEAD
 		return $this->db->table('educational_background')->insert($bind);
+=======
+		return $this->db->table('educational_background')->insert($bind)->exec();
+>>>>>>> hrmis-v3.3
 	}
 
 	public function get_educational(){
@@ -134,7 +195,11 @@ class Pds_model extends Model {
 			'user_id'=>$this->session->userdata('user_id')
 		);
 
+<<<<<<< HEAD
 		return $this->db->table(' service_eligibility_tbl')->insert($bind);
+=======
+		return $this->db->table(' service_eligibility_tbl')->insert($bind)->exec();
+>>>>>>> hrmis-v3.3
 	}
 	public function get_eligibility(){
 		return $this->db->table('service_eligibility_tbl')->where('user_id',$this->session->userdata('user_id'))->get_all();
@@ -157,7 +222,11 @@ class Pds_model extends Model {
 			'user_id'=>$this->session->userdata('user_id')
 		);
 
+<<<<<<< HEAD
 		return $this->db->table(' work_experience_tbl')->insert($bind);
+=======
+		return $this->db->table(' work_experience_tbl')->insert($bind)->exec();
+>>>>>>> hrmis-v3.3
 	}
 	public function get_experience(){
 		return $this->db->table('work_experience_tbl')->where('user_id',$this->session->userdata('user_id'))->get_all();
@@ -171,7 +240,11 @@ class Pds_model extends Model {
 	public function insert_voluntary($name,$address,$_from,$_to,$hours,$position){
 		$bind = array(
 			'name'=>$name,
+<<<<<<< HEAD
 			'org_address'=>$address,
+=======
+			'add_org'=>$address,
+>>>>>>> hrmis-v3.3
 			'_from'=>$_from,
 			'_to'=>$_to,
 			'hours'=>$hours,
@@ -180,7 +253,11 @@ class Pds_model extends Model {
 			'user_id'=>$this->session->userdata('user_id')
 		);
 
+<<<<<<< HEAD
 		return $this->db->table('voluntary_work_tbl')->insert($bind);
+=======
+		return $this->db->table('voluntary_work_tbl')->insert($bind)->exec();
+>>>>>>> hrmis-v3.3
 	}
 	public function get_voluntary(){
 		return $this->db->table('voluntary_work_tbl')->where('user_id',$this->session->userdata('user_id'))->get_all();
@@ -204,6 +281,7 @@ class Pds_model extends Model {
 			'user_id'=>$this->session->userdata('user_id')
 		);
 
+<<<<<<< HEAD
 		return $this->db->table('learning_dev_intervention')->insert($bind);
 	}
 	public function get_trainings(){
@@ -292,10 +370,21 @@ class Pds_model extends Model {
 
 
 	#endregion other infomation
+=======
+		return $this->db->table('trainings_attended_tbl')->insert($bind)->exec();
+	}
+	public function get_trainings(){
+		return $this->db->table('trainings_attended_tbl')->where('user_id',$this->session->userdata('user_id'))->get_all();
+	}
+
+
+	#endregion trainings attended
+>>>>>>> hrmis-v3.3
 
 
 
 
+<<<<<<< HEAD
 	#region for lastpage continuation of other information
 
 
@@ -483,15 +572,47 @@ class Pds_model extends Model {
 	#endregion
 
 												
+=======
 
 
 
 
 
+	public function insert_other_info($skills,$recognition,$membership){
+		$bind = array('special_skill'=>$skills, 'recognition'=>$recognition,'membership'=>$membership,'user_id'=>$this->session->userdata('user_id'));
+		return $this->db->table('other_info_tbl')->insert($bind)->exec();
+	 }
+
+	public function get_other_info(){
+		return $this->db->table('other_info_tbl')->where('user_id',$this->session->userdata('user_id'))->get_all();
+	}
+  
+  
+
+
+
+
+
+
+
+
+
+>>>>>>> hrmis-v3.3
+
+
+
+
+
+<<<<<<< HEAD
 	#endregion for lastpage continuation of other information
 
 
 
   
+=======
+
+
+
+>>>>>>> hrmis-v3.3
 }
 ?>

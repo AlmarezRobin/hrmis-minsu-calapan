@@ -80,7 +80,7 @@ $config['ENVIRONMENT']             = 'development';
 | WARNING: You MUST set this value!
 |
 */
-$config['base_url'] 				= 'http://localhost/hanep/';
+$config['base_url'] 				= 'http://localhost/lavalust/';
 
 /*
 |--------------------------------------------------------------------------
@@ -156,7 +156,7 @@ $config['charset']					= 'UTF-8';
 | This config will be used in the Router Class inside kernel.
 |
 */
-$config['default_controller'] 		= 'Login';
+$config['default_controller'] 		= 'Employee';
 $config['default_method'] 			= 'index';
 
 /*

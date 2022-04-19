@@ -128,20 +128,34 @@
                                         </div>
                                         
                                     </form>
+<<<<<<< HEAD
+=======
+                                
+
+>>>>>>> hrmis-v3.3
                                 </div>
                             </div>
                         </div>
                     </div>
+<<<<<<< HEAD
                     <!-- end modal for updating eligibility -->
 
                      <!-- start table for eligibility -->
+=======
+
+                     <!-- start table for Educational Background -->
+>>>>>>> hrmis-v3.3
                      <div class="col-md-12 p-2 float-sm-start">
                         <div class="card">
                             <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseTable"
                                 aria-expanded="true" aria-controls="collapseTable">
                                 <span class="card-icon"><i class="fa fa-table"></i></span>
+<<<<<<< HEAD
                                 Current Rice Production Status
                                 <button type="button" class="btn btn-sm btn-primary float-sm-end" data-bs-toggle="modal" data-bs-target="#add">Add eligibility</button>
+=======
+                                Current Rice Production Status<i class="fa fa-caret-down pull-right"></i>
+>>>>>>> hrmis-v3.3
                             </div>
                             <div class="card-body accordion-collapse collapse show p-0" id="collapseTable-d">
 
@@ -196,7 +210,11 @@
                         </div>
                     </div>
 
+<<<<<<< HEAD
                     <!-- start table for eligibility -->
+=======
+                    <!-- start table for Educational Background -->
+>>>>>>> hrmis-v3.3
 
 
 

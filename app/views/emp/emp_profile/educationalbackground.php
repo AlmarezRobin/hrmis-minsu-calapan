@@ -49,7 +49,6 @@
                                     aria-expanded="true" aria-controls="collapseTable">
                                     <span class="card-icon"><i class="fa fa-plus"></i></span>
                                     Educational Background
-
                                 </div>
                                 <div class="card-body accordion-collapse collapse show" id="collapseTable-d">
                                         <form action="" method="POST">

@@ -1,10 +1,11 @@
+<?php
+    defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
-<?php 
-// if (!$this->auth->is_logged_in()){
-//     redirect('Login');
-// }
-
+    if ($this->session->userdata('role') != 'Teaching') {
+        redirect('Login');
+    }   
 ?>
+
 <!-- sidebar -->
 <!-- <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse align-items-stretch overflow-auto scrollbar-success"> -->
 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse overflow-auto scrollbar-success border-e">
@@ -12,8 +13,6 @@
         <!-- <div class="list-group list-group-flush border-bottom border-end scrollarea"> -->
         <div class="list-group list-group-flush border-bottom scrollarea ">
 
-
-            
             <div class="top-active align-items-center brandside">
                 <div class="p-2" style="text-align:center;">
                     <img src="<?php echo BASE_URL . PUBLIC_DIR;?>/public/img/brand.png" height="100px" alt="DA">
@@ -144,7 +143,7 @@
                 </div>
             </a>
 
-            <a href="<?=site_url('Hr/logout');?>" class="list-group-item list-group-item-action lh-tight side-menu">
+            <a href="<?=site_url('Login/logout');?>" class="list-group-item list-group-item-action lh-tight side-menu">
                 <div class="d-flex w-100 align-items-center justify-content-between">
                     <div class="mb-0">
                         <i class="fa fa-icon fa-key me-2"></i> Logout
