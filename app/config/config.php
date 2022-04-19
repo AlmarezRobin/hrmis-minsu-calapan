@@ -57,7 +57,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 | LavaLust Version
 | -------------------------------------------------------------------
 */
-$config['VERSION']                 = '3.0.0 Beta 3';
+$config['VERSION']                 = '3.0.0 Beta 1';
 
 /*
 | -------------------------------------------------------------------
@@ -80,7 +80,7 @@ $config['ENVIRONMENT']             = 'development';
 | WARNING: You MUST set this value!
 |
 */
-$config['base_url'] 				= '';
+$config['base_url'] 				= 'http://localhost/hanep/';
 
 /*
 |--------------------------------------------------------------------------
@@ -91,7 +91,7 @@ $config['base_url'] 				= '';
 | variable to blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -156,7 +156,7 @@ $config['charset']					= 'UTF-8';
 | This config will be used in the Router Class inside kernel.
 |
 */
-$config['default_controller'] 		= 'Welcome';
+$config['default_controller'] 		= 'Login';
 $config['default_method'] 			= 'index';
 
 /*
