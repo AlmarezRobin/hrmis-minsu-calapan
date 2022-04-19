@@ -67,8 +67,9 @@ public function update_user_profile($fnam, $mname, $lname, $xname, $bday, $sex, 
 #endregion
 
 
-   public function insert_emp_desig($designation){
+   public function insert_emp_desig($var1,$designation){
       $bind = [
+         'id_number'=>$var1,
          'designation_id'=>$designation
       ];
      return $this->db->table('user_profile')->insert($bind);

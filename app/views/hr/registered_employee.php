@@ -77,6 +77,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                                         <td>
                                                             <form action="<?= site_url('hr/view_assign_emp') ?>" method="POST">
                                                                 <input type="hidden" name="user_id" value="<?= $datum['user_id']?>">
+                                                                <input type="hidden" name="id_number" value="<?= $datum['id_number']?>">
                                                                 <button type="submit" class="btn btn-primary btn-mini">Assign</button>
                                                             </form>
                                                             <a href="<?=site_url(''.$datum['id_number']); ?>" class="btn btn-mini btn-warning" >Delete</a>
