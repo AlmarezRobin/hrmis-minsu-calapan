@@ -3,15 +3,8 @@
 
     class Login extends Controller {
 
-<<<<<<< HEAD
         
         
-=======
-        public function __construct() {
-            parent::__construct();
-        }
-
->>>>>>> hrmis-v3.3
         // start change jcd April 15, 2022
         public function index(){
             $this->call->view('login/login');
@@ -23,15 +16,9 @@
                 $username = $this->io->post('username');
                 $password = trim($this->io->post('password'));
 
-<<<<<<< HEAD
-                $this->call->model('auth/login_model');
-
-                $data = $this->login_model->login_user($username, $password);
-=======
                 $this->call->model('auth/Login_model');
 
                 $data = $this->Login_model->login_user($username, $password);
->>>>>>> hrmis-v3.3
                 if (empty($data)) {
                     set_flash_alert('danger', 'Wrong username or password.');
                     redirect('Login');

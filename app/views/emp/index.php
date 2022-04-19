@@ -105,16 +105,16 @@
 
                                             <!-- data edited and addedd 4-17 rma -->
                                             <div class="form-group col-md-4 m-t-10">
-                                                <label for="civilstatus" class="form-label">Civil Status*</label>
-                                                <input type="text" class="form-control" disabled value="<?= $emp_profile['civil_status'] ?>">
+                                                <label for="civilstatus" class="form-label">Employment Status*</label>
+                                                <input type="text" class="form-control" disabled value="<?= $emp_profile['status_id'] ?>">
                                             </div>
                                             <div class="form-group col-md-4 m-t-10">
-                                                <label for="phonenumber" class="form-label">Contact Number*</label>
-                                                <input type="number" class="form-control " disabled value="<?= $emp_profile['mobile'] ?>">
+                                                <label for="phonenumber" class="form-label">Office</label>
+                                                <input type="number" class="form-control " disabled value="<?= $emp_profile['office_id'] ?>">
                                             </div>
                                             <div class="form-group col-md-4 m-t-10 mb-2">
-                                                <label for="phonenumber" class="form-label">Telephone Number*</label>
-                                                <input type="number" class="form-control " disabled value="<?= $emp_profile['telephone'] ?>">
+                                                <label for="phonenumber" class="form-label">Designation</label>
+                                                <input type="number" class="form-control " disabled value="<?= $emp_profile['designation_id'] ?>">
                                             </div>
                                             <div class="form-actions col-md-12 ">
                                                 <a href="<?=site_url('Employee/view_edit_profile');?>" class="btn btn-success">EDIT MY PROFILE</a>

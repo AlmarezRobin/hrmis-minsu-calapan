@@ -80,7 +80,9 @@
                                                             <div class="form-group col-md-4 m-t-10">
                                                                 <label>Gender </label>
                                                                 <select name="sex"  class="form-control custom-select">
-                                                                    <option><?= $emp_profile['sex'] ?></option>
+                                                                    <option value="<?= $emp_profile['sex'] ?>"><?= $emp_profile['sex'] ?></option>
+                                                                    <option value="Male">Male</option>
+                                                                    <option value="Female">Female</option>
                                                                 </select>
                                                             </div>
                                                         

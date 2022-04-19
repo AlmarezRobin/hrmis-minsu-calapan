@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-
-<?php 
-// if (!$this->auth->is_logged_in()){
-//     redirect('Login');
-// }
-
-?>
-=======
 <?php
 defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
@@ -17,7 +8,6 @@ redirect('Admin');
 }   
 ?>
 
->>>>>>> hrmis-v3.3
 <!-- sidebar -->
 <!-- <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-white sidebar collapse align-items-stretch overflow-auto scrollbar-success"> -->
 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse overflow-auto scrollbar-success border-e">
@@ -36,11 +26,7 @@ redirect('Admin');
                 <div class="pt-1">
                     <strong class="pt-2"><?php echo $this->session->userdata('username'); ?></strong>
                 </div>
-<<<<<<< HEAD
-                <div class="pb-1 small"><i>Developer</i>
-=======
                 <div class="pb-1 small"><i><?php echo $this->session->userdata('role'); ?></i>
->>>>>>> hrmis-v3.3
                 </div>
             </div>
 
