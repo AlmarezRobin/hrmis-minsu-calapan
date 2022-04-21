@@ -123,8 +123,8 @@
                                                         
                                                     </form>
                                                 <?php else: ?>
-                                                    <form class="row" action="<?=site_url('Employee/insert_profile');?>" method="post" enctype="multipart/form-data">
-                                                    <!-- <input type="hidden" name="id" value="2"> -->
+                                                    <!-- <form class="row" action="//site_url('Employee/insert_profile');?>" method="post" enctype="multipart/form-data">
+                                                    <input type="hidden" name="id" value="2">
                                                         <div class="form-group col-md-4 m-t-10">
                                                             <label for="firstname" class="form-label">First Name*</label>
                                                             <input type="text" class="form-control  " name="fname"
@@ -248,34 +248,13 @@
                                                             }
                                                             
                                                         </script>
-
-
-
-
-
-
-
-                                                         
-
-
-
-
-
-
-
-
-
-
-
-
-
                                                         <div class="form-actions mt-2 col-md-12">
-                                                            <!-- <input type="hidden" name="emid" value=""> -->
+                                                            <input type="hidden" name="emid" value="">
                                                             <input type="submit" value="Save" name="submit" class="btn btn-success">
                                                             
                                                         </div>
                                                         
-                                                    </form>
+                                                    </form> -->
 
                                                 <?php endif; ?>
                                             </div>

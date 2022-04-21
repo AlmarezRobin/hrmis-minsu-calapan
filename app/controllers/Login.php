@@ -5,7 +5,7 @@
 
         
         
-        // start change jcd April 15, 2022
+        // * start change jcd April 15, 2022
         public function index(){
             $this->call->view('login/login');
         }
@@ -31,11 +31,22 @@
                             'id_number' => $data['id_number'],
                             'username' => $data['username'],
                             'email' => $data['email'],
-                            'role' => $data['role']
+                            'role' => $data['role'],
+                            // * start change jcd april 21, 2022
+                            'password' => $password
                         )
                     );
-                    if(is_logged_in())
-                        redirect('Employee');
+                    if(is_logged_in()){
+                        if($this->session->userdata('password') === 'MINSU@CALAPAN'){
+                            set_flash_alert('warning', 'Please change the default password');
+                            redirect('Employee/view_change_password');
+                        }
+                        else{
+                            $this->session->unset_userdata('password');
+                            redirect('Employee');
+                        }
+                    }
+                    // * end change jcd april 21, 2022
                     
                 }
             }
@@ -135,7 +146,7 @@
         }
         #endregion
         
-        // end change jcd April 15, 2022
+        // * end change jcd April 15, 2022
 
     }
 ?>

@@ -49,10 +49,14 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <center class="m-t-30">
+                                                <?php if(isset($emp_profile['photo'])): ?>
                                                     <img src="<?= BASE_URL . 'uploads/' . $emp_profile['photo'] ;?>" alt="" srcset="" class="img-circle" height="150" width="150">
+                                                <?php else: ?>
+                                                    <img src="" alt="Profile Photo" srcset="" class="img-circle" height="150" width="150">
+                                                <?php endif; ?>
                                                     <br>
                                                     <a href="<?=site_url('Employee/view_upload')?>" class="fa fa-camera fa-lg" data-toogle="tooltip" title="Upload Your Profile" ></a>
-
+                                                    
 
                                                     <h2> <?php echo $this->session->userdata('username') ?> </h2>
                                                     <h3><?php echo $this->session->userdata('user_role') ?></h3>
@@ -61,7 +65,9 @@
                                         </div>                                                    
                                     </div>
                                     <div class="col-md-8">
+                                    <?php if(isset($emp_profile['profile_id'])): ?>
                                         <form class="row"method="post" enctype="multipart/form-data">
+
                                             <div class="form-group col-md-4 m-t-10">
                                                 <label for="firstname" class="form-label">First Name*</label>
                                                 <input type="text" class="form-control " disabled value="<?= $emp_profile['f_name'] ?>">
@@ -116,10 +122,14 @@
                                                 <label for="phonenumber" class="form-label">Designation</label>
                                                 <input type="number" class="form-control " disabled value="<?= $emp_profile['designation_id'] ?>">
                                             </div>
-                                            <div class="form-actions col-md-12 ">
-                                                <a href="<?=site_url('Employee/view_edit_profile');?>" class="btn btn-success">EDIT MY PROFILE</a>
-                                            </div>
+                                                <div class="form-actions col-md-12 ">
+                                                    <a href="<?=site_url('Employee/view_edit_profile');?>" class="btn btn-success">EDIT MY PROFILE</a>
+                                                </div>
                                         </form>
+                                    <?php endif; ?>
+                                    
+                                        
+                                  
                                         
                                     </div>
                                 </div>

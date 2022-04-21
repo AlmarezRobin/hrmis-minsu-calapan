@@ -122,7 +122,8 @@ class Hr extends Controller {
 				->name('emp_password')->required()
 				->name('emp_role')->required();
 			if ($this->form_validation->run()) {
-				$this->Auth->register(
+				$this->call->model('auth/emp_model');
+				$this->emp_model->register(
 					$this->io->post('emp_idnumber'),
 					$this->io->post('emp_email'),
 					$this->io->post('emp_username'),

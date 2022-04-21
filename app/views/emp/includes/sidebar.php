@@ -1,12 +1,17 @@
 <?php
     defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
-
-    if ($this->session->userdata('role') != 'Teaching') {
+    // * start change jcd april 21, 2022
+    if ($this->session->userdata('role') !== 'Teaching') {
         redirect('Login');
     }
     // elseif($this->session->userdata('role') != 'Non-Teaching'){
     //     redirect('Login');
     // }
+    if($this->session->userdata('password') === 'MINSU@CALAPAN'){
+        set_flash_alert('warning', 'Please change the default password');
+        redirect('Employee/view_change_password');
+    }
+    // * end change jcd april 21, 2022
 ?>
 
 
@@ -15,12 +20,22 @@
     <div class="position-sticky">
         <div class="list-group list-group-flush border-bottom scrollarea ">
 
+        <?php if(isset($emp_profile['photo'])): ?>
             <div class="top-active align-items-center brandside">
                 <div class="p-2" style="text-align:center;">
                     <img src="<?= BASE_URL . 'uploads/' . $emp_profile['photo'] ;?>" height="100px" alt="DA">
                     
                 </div>
             </div>
+        <?php else: ?>
+            <div class="top-active align-items-center brandside">
+                <div class="p-2" style="text-align:center;">
+                    <img src="" height="100px" alt="Profile Photo">
+                    
+                </div>
+            </div>
+        <?php endif; ?>
+
 
             <div style="text-align:center; background-color: rgb(212, 212, 212); border-bottom: 2px solid rgb(12, 114, 56)">
                 <div class="pt-1">

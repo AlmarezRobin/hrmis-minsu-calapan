@@ -2,6 +2,15 @@
 defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
 class Employee extends Controller {
+
+	// * start change jcd april 21, 2022
+	private function checkpass(){
+		if($this->session->userdata('password') === 'MINSU@CALAPAN'){
+			set_flash_alert('warning', 'Please change the default password');
+			redirect('Employee/view_change_password');
+		}
+	}
+	// * end change jcd april 21, 2022	
 	
 	public function index() {
 		$data['emp_profile'] = $this->Employee_model->emp_profile($this->session->userdata('user_id'));
@@ -108,6 +117,7 @@ class Employee extends Controller {
 	//-----------after-------------
 	public function view_edit_profile(){
 		$data['emp_profile'] = $this->Employee_model->emp_profile($this->session->userdata('user_id'));
+		$this->checkpass(); // * jcd april 21, 2022
 		$this->call->view('emp/emp_profile/personalinformation', $data);
 	}
 
@@ -117,39 +127,40 @@ class Employee extends Controller {
 		$this->call->view('emp/emp_designation_edit',$designation);
 	}
 
-	public function insert_profile(){
-		if ($this->form_validation->submitted()) 
-            {
-                $this->form_validation
-									->name('fname')->required()
-									->name('mname')->required()
-									->name('lname')->required()
-									->name('xname')
-									->name('dob')->required()
-									->name('sex')->required()
-									->name('cstat')->required()
-									->name('tnumber')->required()
-									->name('cnumber')->required();
+	// *commented 4-20-22 jcd
+	// public function insert_profile(){
+	// 	if ($this->form_validation->submitted()) 
+    //         {
+    //             $this->form_validation
+	// 								->name('fname')->required()
+	// 								->name('mname')->required()
+	// 								->name('lname')->required()
+	// 								->name('xname')
+	// 								->name('dob')->required()
+	// 								->name('sex')->required()
+	// 								->name('cstat')->required()
+	// 								->name('tnumber')->required()
+	// 								->name('cnumber')->required();
 									
-				if ($this->form_validation->run()) 
-                {
-                  $this->Employee_model->insert_user_profile(
-									strtoupper($this->io->post('fname')),
-									strtoupper($this->io->post('mname')),
-									strtoupper($this->io->post('lname')),
-									strtoupper($this->io->post('xname')),
-									$this->io->post('dob'), 
-									strtoupper($this->io->post('sex')),
-									strtoupper($this->io->post('cstat')),
-									$this->io->post('tnumber'),
-									$this->io->post('cnumber'));
-									redirect('Employee');
-                }
+	// 			if ($this->form_validation->run()) 
+    //             {
+    //               $this->Employee_model->insert_user_profile(
+	// 								strtoupper($this->io->post('fname')),
+	// 								strtoupper($this->io->post('mname')),
+	// 								strtoupper($this->io->post('lname')),
+	// 								strtoupper($this->io->post('xname')),
+	// 								$this->io->post('dob'), 
+	// 								strtoupper($this->io->post('sex')),
+	// 								strtoupper($this->io->post('cstat')),
+	// 								$this->io->post('tnumber'),
+	// 								$this->io->post('cnumber'));
+	// 								redirect('Employee');
+    //             }
 
                 
-            }
-		// $this->call->view('hr/register_admin');
-	}
+    //         }
+	// 	// $this->call->view('hr/register_admin');
+	// }
 
 
 	public function update_profile(){
@@ -206,6 +217,7 @@ class Employee extends Controller {
 	#region start of family background
 	public function view_spouse(){
 		$data['get_spouse_info'] = $this->Pds_model->get_spouse_info();
+		$this->checkpass(); // * jcd april 21, 2022
 		$this->call->view('emp/emp_profile/family_background/spouse_info',$data);
 	}
 
@@ -266,6 +278,7 @@ class Employee extends Controller {
 
 	public function view_father(){
 		$data['get_father_info'] = $this->Pds_model->get_father_info();
+		$this->checkpass(); // * jcd april 21, 2022
 		$this->call->view('emp/emp_profile/family_background/father_info',$data);
 	}
 
@@ -315,6 +328,7 @@ class Employee extends Controller {
 
 	public function view_mother(){
 		$data['get_mother_info'] = $this->Pds_model->get_mother_info();
+		$this->checkpass(); // * jcd april 21, 2022
 		$this->call->view('emp/emp_profile/family_background/mother_info',$data);
 	}
 	public function insert_mother(){
@@ -369,6 +383,7 @@ class Employee extends Controller {
 
 	public function view_child(){
 		$child = $this->Pds_model->get_all_child($this->session->userdata('user_id'));
+		$this->checkpass(); // * jcd april 21, 2022
 		$this->call->view('emp/emp_profile/family_background/child_info',$child);
 	}
 
@@ -435,6 +450,7 @@ class Employee extends Controller {
                 
             }
 		$data = $this->Pds_model->get_educational();
+		$this->checkpass(); // * jcd april 21, 2022
 		$this->call->view('emp/emp_profile/educationalbackground',$data);
 	}
 	#endregion
@@ -470,6 +486,7 @@ class Employee extends Controller {
 		}
 
 		$data = $this->Pds_model->get_eligibility();
+		$this->checkpass(); // * jcd april 21, 2022
 		$this->call->view('emp/emp_profile/eligibility',$data);
 	}
 
@@ -478,6 +495,7 @@ class Employee extends Controller {
 
 	public function view_experience(){
 		$data = $this->Pds_model->get_experience();
+		$this->checkpass(); // * jcd april 21, 2022
 		$this->call->view('emp/emp_profile/workexperience',$data);
 	}
 
@@ -532,6 +550,7 @@ class Employee extends Controller {
 	public function view_voluntary_work(){
 
 		$data = $this->Pds_model->get_voluntary();
+		$this->checkpass(); // * jcd april 21, 2022
 		$this->call->view('emp/emp_profile/voluntarywork',$data);
 	}
 
@@ -603,6 +622,7 @@ class Employee extends Controller {
 
 	
 	public function view_references(){
+		$this->checkpass(); // * jcd april 21, 2022
 		$this->call->view('emp/emp_profile/references');
 	}
 	#endregion of the last page of pds
@@ -642,6 +662,10 @@ class Employee extends Controller {
 
 			if($this->form_validation->run()){
 				$this->Employee_model->change_password($this->io->post('new_pass'));
+				// * start change jcd april 21, 2022	
+				$this->session->userdata('password') ?? $this->session->unset_usedata('password');
+				// * end change jcd april 21, 2022	
+				set_flash_alert('primary', 'Please Login using your new password.');
 				redirect('Login');
 			}
 		}

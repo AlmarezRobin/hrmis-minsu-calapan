@@ -67,12 +67,12 @@ public function update_user_profile($fnam, $mname, $lname, $xname, $bday, $sex, 
 #endregion
 
 
-   public function insert_emp_desig($designation){
-      $bind = [
-         'designation_id'=>$designation
-      ];
-     return $this->db->table('user_profile')->insert($bind);
-   }
+   // public function insert_emp_desig($designation){
+   //    $bind = [
+   //       'designation_id'=>$designation
+   //    ];
+   //   return $this->db->table('user_profile')->insert($bind);
+   // }
 
 
    

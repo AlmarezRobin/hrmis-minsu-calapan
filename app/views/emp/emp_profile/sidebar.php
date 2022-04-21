@@ -1,9 +1,13 @@
 <?php
     defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
-
-    if ($this->session->userdata('role') != 'Teaching') {
+    // * start change jcd april 21, 2022
+    if ($this->session->userdata('role') !== 'Teaching') {
         redirect('Login');
     }   
+    // if($this->session->userdata('password') === 'MINSU@CALAPAN'){
+    //     redirect('Employee/view_change_password');
+    // }
+    // * end change jcd april 21, 2022
 ?>
 
 <!-- sidebar -->

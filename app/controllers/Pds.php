@@ -4,7 +4,14 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
 class Pds extends Controller {
 
-
+	// * start change jcd april 21, 2022
+	private function checkpass(){
+		if($this->session->userdata('password') === 'MINSU@CALAPAN'){
+			set_flash_alert('warning', 'Please change the default password');
+			redirect('Employee/view_change_password');
+		}
+	}
+	// * end change jcd april 21, 2022	
 
 	public function view_finished_pds(){
 		$data['emp_profile'] = $this->Employee_model->emp_profile($this->session->userdata('user_id'));
@@ -19,6 +26,7 @@ class Pds extends Controller {
 			'get_distinctions'=> $this->Pds_model->get_distinctions(),
 			'get_ref'=>$this->Pds_model->get_ref()
 		];
+		$this->checkpass(); // * jcd april 21, 2022
 		$this->call->view('emp/emp_profile/otherinformation',$data);
 	}
 	#region for special skills
