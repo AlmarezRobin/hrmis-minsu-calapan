@@ -121,8 +121,10 @@ class Hr extends Controller {
 				->name('emp_username')->required()
 				->name('emp_password')->required()
 				->name('emp_role')->required();
-			if ($this->form_validation->run()) {
+			if ($this->form_validation->run()) 
+			{
 				$this->call->model('auth/emp_model');
+
 				$this->emp_model->register(
 					$this->io->post('emp_idnumber'),
 					$this->io->post('emp_email'),
@@ -132,7 +134,7 @@ class Hr extends Controller {
 
 				);
 
-				$this->Employee_model->insert_emp_desig($this->io->post('designation'));
+				$this->Employee_model->insert_emp_desig($this->io->post('emp_idnumber'),$this->io->post('designation'));
 
 
 				redirect('Hr/view_employee');
@@ -151,11 +153,13 @@ class Hr extends Controller {
 	{
 		if ($this->form_validation->run()) {
 			$user_id = $this->io->post('user_id');
+			$user_id_number = $this->io->post('id_number');
 			$data = array(
 				'designation' => $this->Utility_model->designation(),
 				'office' => $this->Utility_model->office(),
 				'employment_stat' => $this->Utility_model->employment_stat(),
-				'get_user_id' => $this->Hr_model->get_user_id($user_id)
+				'get_user_id' => $this->Hr_model->get_user_id($user_id),
+				'get_user_id_number'=>$this->Hr_model->get_user_id_number($user_id_number)
 			);
 
 			$this->call->view('hr\assign_employee', $data);
@@ -174,11 +178,12 @@ class Hr extends Controller {
 						->required();
 
 			if ($this->form_validation->run()) {
+				$user_id_num = $this->io->post('id_number');
 				$user_id = $this->io->post('user_id');
 				$emp_status = $this->io->post('emp_status');
 				$office = $this->io->post('office');
 				$designation = $this->io->post('designation');
-				if ($this->Hr_model->assign_emp($user_id, $emp_status, $office, $designation)) {
+				if ($this->Hr_model->assign_emp($user_id_num ,$user_id, $emp_status, $office, $designation)) {
 					redirect('hr/view_employee');
 				}
 			}

@@ -47,6 +47,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                     <div class="card-body accordion-collapse collapse show" id="collapseTable-d">
 
                                         <form action="<?=site_url('Hr/assign_emp');?>" method="POST">
+                                        <input type="hidden" name="id_number" value="<?php echo $get_user_id_number['id_number'] ?>">
                                             <input type="hidden" name="user_id" value="<?= $get_user_id['user_id']?>">
                                             <div class="col-md-12 mb-2 mt-2">
                                                 <label for="">Employee Status</label>
