@@ -113,7 +113,7 @@
                                         </thead>
 
                                         <tbody>
-                                            <?php foreach($data as $datum): ?>
+                                            <?php foreach($get_all_child as $datum): ?>
 
                                             <tr class="odd">
                                                 <td><?php echo $datum['child_id'] ?></td>

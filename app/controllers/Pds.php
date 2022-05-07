@@ -49,7 +49,8 @@ class Pds extends Controller {
 			'get_skills'=>$this->Pds_model->get_skills(),
 			'get_distinctions'=> $this->Pds_model->get_distinctions(),
 			'get_membership'=> $this->Pds_model->get_membership(),
-			'get_ref'=>$this->Pds_model->get_ref()
+			'get_ref'=>$this->Pds_model->get_ref(),
+			'emp_notif_forpds' => $this->Employee_model->emp_notif_forpds()
 		];
 		$this->checkpass(); // * jcd april 21, 2022
 		$this->call->view('emp/emp_profile/otherinformation',$data);
@@ -468,7 +469,8 @@ class Pds extends Controller {
 			'get_separation_info'=>$this->Pds_model->get_separation_info(),
 			'get_candidacy_info'=>$this->Pds_model->get_candidacy_info(),
 			'get_immigrant_info'=>$this->Pds_model->get_immigrant_info(),
-			'get_previlage_info'=>$this->Pds_model->get_previlage_info()
+			'get_previlage_info'=>$this->Pds_model->get_previlage_info(),
+			'emp_notif_forpds' => $this->Employee_model->emp_notif_forpds()
 		];
 		$this->call->view('emp/emp_profile/lastpage',$data);
 	}

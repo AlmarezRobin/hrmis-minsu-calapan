@@ -49,7 +49,7 @@
                                                 <div class="card">
                                                     <div class="card-body">
                                                         <center class="m-t-30">
-                                                            <img src="<?= BASE_URL . 'signatures/' . $data['e_sign'] ;?>" class="img-fluid" alt="" srcset="" class="img-circle" >
+                                                            <img src="<?= BASE_URL . 'signatures/' . $emp_profile['e_sign'] ;?>" class="img-fluid" alt="" srcset="" class="img-circle" >
                                                             <h4>Signature</h4>
                                                         </center>
                                                     </div>

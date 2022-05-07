@@ -76,7 +76,7 @@
                                         </thead>
 
                                         <tbody>
-                                            <?php foreach($data as $datum): ?>
+                                            <?php foreach($get_educational as $datum): ?>
 
                                             <tr class="odd">
                                                 <td><?php echo $datum['educ_id'] ?></td>

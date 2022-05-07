@@ -195,7 +195,7 @@
                                         </thead>
 
                                         <tbody>
-                                            <?php foreach($data as $datum): ?>
+                                            <?php foreach($get_eligibility as $datum): ?>
                                                 <tr class="odd">
                                                     <td><?php echo $datum['eligibility_id'] ?></td>
                                                     <td><?php echo $datum['service'] ?></td>

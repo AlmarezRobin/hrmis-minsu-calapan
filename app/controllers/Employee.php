@@ -340,7 +340,9 @@ class Employee extends Controller {
 
 	#region start of family background
 	public function view_spouse(){
-		$data['get_spouse_info'] = $this->Pds_model->get_spouse_info();
+		$data = ['get_spouse_info' => $this->Pds_model->get_spouse_info(),
+			'emp_notif_forpds' => $this->Employee_model->emp_notif_forpds()
+		];
 		$this->checkpass(); // * added jcd april 21, 2022
 		$this->call->view('emp/emp_profile/family_background/spouse_info',$data);
 	}
@@ -406,7 +408,9 @@ class Employee extends Controller {
 	//------------------------------------------------------------------------------------------------------------------------
 
 	public function view_father(){
-		$data['get_father_info'] = $this->Pds_model->get_father_info();
+		$data = ['get_father_info' => $this->Pds_model->get_father_info(),
+		'emp_notif_forpds' => $this->Employee_model->emp_notif_forpds()
+		];
 		$this->checkpass(); // * added jcd april 21, 2022
 		$this->call->view('emp/emp_profile/family_background/father_info',$data);
 	}
@@ -456,7 +460,7 @@ class Employee extends Controller {
 
 
 	public function view_mother(){
-		$data['get_mother_info'] = $this->Pds_model->get_mother_info();
+		$data= ['get_mother_info' => $this->Pds_model->get_mother_info(), 'emp_notif_forpds' => $this->Employee_model->emp_notif_forpds()];
 		$this->checkpass(); // * added jcd april 21, 2022
 		$this->call->view('emp/emp_profile/family_background/mother_info',$data);
 	}
@@ -511,9 +515,9 @@ class Employee extends Controller {
 
 
 	public function view_child(){
-		$child = $this->Pds_model->get_all_child($this->session->userdata('user_id'));
+		$data =['get_all_child' => $this->Pds_model->get_all_child($this->session->userdata('user_id')), 'emp_notif_forpds' => $this->Employee_model->emp_notif_forpds() ] ;
 		$this->checkpass(); // * added jcd april 21, 2022
-		$this->call->view('emp/emp_profile/family_background/child_info',$child);
+		$this->call->view('emp/emp_profile/family_background/child_info',$data);
 	}
 
 	public function insert_child(){
@@ -578,7 +582,9 @@ class Employee extends Controller {
 
                 
             }
-		$data = $this->Pds_model->get_educational();
+		$data = ['get_educational' => $this->Pds_model->get_educational(),
+		'emp_notif_forpds' => $this->Employee_model->emp_notif_forpds()
+		];
 		$this->checkpass(); // *  added jcd april 21, 2022
 		$this->call->view('emp/emp_profile/educationalbackground',$data);
 	}
@@ -654,7 +660,9 @@ class Employee extends Controller {
 			
 		}
 
-		$data = $this->Pds_model->get_eligibility();
+		$data = ['get_eligibility' => $this->Pds_model->get_eligibility(),
+			'emp_notif_forpds' => $this->Employee_model->emp_notif_forpds()
+		] ;
 		$this->checkpass(); // * added jcd april 21, 2022
 		$this->call->view('emp/emp_profile/eligibility',$data);
 	}
@@ -700,7 +708,9 @@ class Employee extends Controller {
 
 	#region work experience
 	public function view_experience(){
-		$data = $this->Pds_model->get_experience();
+		$data = ['get_experience' => $this->Pds_model->get_experience(),
+			'emp_notif_forpds' => $this->Employee_model->emp_notif_forpds()
+		] ;
 		$this->checkpass(); // * added jcd april 21, 2022
 		$this->call->view('emp/emp_profile/workexperience',$data);
 	}
@@ -846,7 +856,9 @@ class Employee extends Controller {
 
 	#region trainings
 	public function view_trainings(){
-		$data = $this->Pds_model->get_trainings();
+		$data = ['get_trainings' => $this->Pds_model->get_trainings(),
+			'emp_notif_forpds' => $this->Employee_model->emp_notif_forpds()
+		];
 		$this->call->view('emp/emp_profile/trainings',$data);
 	}
 
@@ -948,8 +960,8 @@ class Employee extends Controller {
 
 
 	public function view_change_password(){
-
-		$this->call->view('emp/emp_profile/changepassword');
+		$data['emp_notif_forpds'] = $this->Employee_model->emp_notif_forpds();
+		$this->call->view('emp/emp_profile/changepassword', $data);
 	}
 	public function changepass(){
 		if($this->form_validation->submitted()){
@@ -1053,7 +1065,7 @@ class Employee extends Controller {
 		}
 
 
-		$data = $this->Employee_model->emp_profile($this->session->userdata('user_id'));
+	$data = ['emp_profile' => $this->Employee_model->emp_profile($this->session->userdata('user_id')), 'emp_notif_forpds' => $this->Employee_model->emp_notif_forpds()] ;
 
 		$this->call->view('emp/emp_profile/uploadsignature',$data);
 	}

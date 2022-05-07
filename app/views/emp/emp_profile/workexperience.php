@@ -71,7 +71,7 @@
                                     </thead>
 
                                     <tbody>
-                                        <?php foreach($data as $datum): ?>
+                                        <?php foreach($get_experience as $datum): ?>
                                             <tr>
                                                 <td><?php echo $datum['work_exp_id'] ?></td>
                                                 <td><?php echo $datum['_from'] ?></td>

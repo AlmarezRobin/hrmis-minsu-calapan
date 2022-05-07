@@ -70,7 +70,7 @@
                                             </thead>
 
                                             <tbody>
-                                                <?php foreach($data as $datum): ?>
+                                                <?php foreach($get_trainings as $datum): ?>
                                                     <tr class="odd">
                                                         <td><?php echo $datum['ldi_id'] ?></td>
                                                         <td><?php echo $datum['title'] ?></td>
