@@ -29,7 +29,12 @@
 
                 <!-- title -->
                 <div class="justify-content-between align-items-center pt-1 pb-2 mb-3 border-bottom mx-2">
-                    <h5 class="h5 mt-3 mb-0 color-darkgray"> USER PROFILE
+                    <h5 class="h5 mt-3 mb-0 color-darkgray"> Status: 
+                        <strong>
+                            <?php if(isset($get_stat_pds['pds_id'])): ?>
+                                <?php echo $get_stat_pds['status_of_pds']?>  
+                            <?php endif; ?>
+                        </strong>
                     </h5>
                 </div>
                 <!-- end title -->
@@ -1210,7 +1215,23 @@
                             </form>
                         </div>
                         
-                    
+                        <div class="row mb-2">
+							<div class="d-flex justify-content-center">
+                                <?php if(isset($get_stat_pds['pds_id'])): ?>
+                                <form action="<?=site_url('Employee/update_pds');?>" method="post">
+                                    <input type="hidden" name="" value ="<?= $get_stat_pds['pds_id'] ?>">
+                                    <input type="hidden" name="stat" value="PENDING">
+                                    <input type="submit" value=" UPDATE SUBMITTED PDS" class="btn btn-success" onclick="return confirm('You are about to send your personal data sheet in Human resource office.')">
+                                </form>
+                                <?php else: ?>
+
+                                <form action="<?=site_url('Employee/submit_pds');?>" method="post">
+                                    <input type="hidden" name="stat" value="PENDING">
+                                    <input type="submit" value="SUBMIT PERSONAL DATA SHEET" class="btn btn-primary" onclick="return confirm('You are about to send your personal data sheet in Human resource office.')">
+                                </form>
+                                <?php endif; ?>
+							</div>
+                        </div>       
                     
 
                     </div>

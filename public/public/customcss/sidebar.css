@@ -57,7 +57,7 @@
     /* Height of navbar */
     /*box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);*/
     /* overflow-y: scroll; */
-    background-color: rgba(255, 255, 255);
+    background-color: rgb(30, 38, 53); /*dating white color*/
     /* background-color: rgb(212, 212, 212); */
     /*added*/
     bottom: -20px;
@@ -77,7 +77,7 @@
 
 .top-active:hover {
     background-color: rgb(59, 59, 59);
-    color: white;
+    color: rgb(255, 255, 255);
 }
 
 .sub-link>a {

@@ -55,5 +55,15 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                 }
             }
         </script>
+
+        <!-- rma 5/3/2022 script para madisble ung back btn after makalogin -->
+        <script>
+            $(document).ready(function() {
+                function disableBack() { window.history.forward() }
+
+                window.onload = disableBack();
+                window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
+            });
+        </script>
     </body>
 </html>

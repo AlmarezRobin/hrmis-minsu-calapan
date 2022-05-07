@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <?php
 defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
@@ -11,7 +9,6 @@ redirect('Admin');
 ?>
 
 
->>>>>>> hrmis-v3.3
 <!DOCTYPE html>
 
 <html lang="en" class="h-100">
@@ -80,22 +77,22 @@ redirect('Admin');
 
                                 </div>
                                 <div class="p-3 bg-success bg-gradient" style="color:white">
-                                    <h2> <i class="fa fa-users"></i> 10</h2>
+                                    <h2> <i class="fa fa-users"></i> <?= $count_registered_employee['emp'] ?> </h2>
                                     <p>Registered Employee</p>
 
                                 </div>
                             </div>
                         <!-- </div> -->
                         </a>
-                        <a href="<?=site_url('Hr/registeredcutomers');?>" class="feature col" style="text-decoration: none;">
+                        <a href="<?=site_url('Hr/view_pds_request');?>" class="feature col" style="text-decoration: none;">
                         <!-- <div class="feature col"> -->
                             <div class="overflow-hidden rounded-2 shadow-sm border border-solid border-gray p-0">
                                 <div class="feature-icon bg-info bg-gradient m-0" style="height: 0px">
 
                                 </div>
                                 <div class="p-3 bg-primary bg-gradient" style="color:white">
-                                    <h2> <i class="fa fa-industry"></i> 7</h2>
-                                    <p>Notifications</p>
+                                    <h2> <i class="fa fa-bell"></i> <?= $count_pending['pending'] ?> </h2>
+                                    <p>Pending Request</p>
 
                                 </div>
                             </div>
@@ -192,568 +189,29 @@ redirect('Admin');
 
                                             <thead>
                                                 <tr>
-                                                    <th>#</th>
-                                                    <th>ID Number</th>
-                                                    <th>First name</th>
-                                                    <th>Middle name</th>
-                                                    <th>Last name</th>
-                                                    <th>Contact Number</th>
-                                                    <th>Program</th>
-                                                    <th>Year Level</th>
+                                                    <td>Full Name</td>
+                                                    <td>Employment</td>
                                                     <th>Options</th>
                                                 </tr>
                                             </thead>
 
                                             <tbody>
+                                                <?php foreach($get_user_profile as $emp): ?>
 
                                                 <tr class="odd">
-                                                    <td>1</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
+                                                    <td><?php echo $emp['f_name' ] . ' '. $emp[ 'm_name'] . ' '. $emp[ 'l_name'] ?></td>
+                                                    <td><?php echo $emp['designation_id'] ?></td>
                                                     <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
+                                                        <a href="<?= site_url('hr/view_emp_profile'); ?>"><button class="btn btn-mini btn-info">View Profile</button></a>
                                                     </td>
                                                 </tr>
-                                                <tr class="">
-                                                    <td>2</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="">
-                                                    <td>3</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="">
-                                                    <td>4</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="">
-                                                    <td>5</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="">
-                                                    <td>6</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="">
-                                                    <td>7</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="">
-                                                    <td>8</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="">
-                                                    <td>9</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-
-                                                <tr class="">
-                                                    <td>10</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="">
-                                                    <td>11</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="">
-                                                    <td>12</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="">
-                                                    <td>13</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-
-                                                <tr class="">
-                                                    <td>14</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="">
-                                                    <td>15</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="">
-                                                    <td>16</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="">
-                                                    <td>17</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-
-                                                <tr class="">
-                                                    <td>18</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="">
-                                                    <td>19</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="">
-                                                    <td>20</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="">
-                                                    <td>21</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-
-                                                <tr class="">
-                                                    <td>22</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="">
-                                                    <td>23</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="">
-                                                    <td>24</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="">
-                                                    <td>25</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-
-                                                <tr class="">
-                                                    <td>26</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="">
-                                                    <td>27</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="">
-                                                    <td>28</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="">
-                                                    <td>29</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-
-                                                <tr class="">
-                                                    <td>30</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="">
-                                                    <td>31</td>
-                                                    <td>1234</td>
-                                                    <td>Juan</td>
-                                                    <td>M.</td>
-                                                    <td>dela Cruz</td>
-                                                    <td>09xxxxxxxxx</td>
-                                                    <td>BSIT</td>
-                                                    <td>First Year</td>
-
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-
-
-
+                                                <?php endforeach; ?>
                                             </tbody>
 
                                             <tfoot>
                                                 <tr>
-                                                    <th>#</th>
-                                                    <th>ID Number</th>
-                                                    <th>First name</th>
-                                                    <th>Middle name</th>
-                                                    <th>Last name</th>
-                                                    <th>Contact Number</th>
-                                                    <th>Program</th>
-                                                    <th>Year Level</th>
+                                                    <td>Full Name</td>
+                                                    <td>Employment</td>
                                                     <th>Options</th>
                                                 </tr>
                                             </tfoot>

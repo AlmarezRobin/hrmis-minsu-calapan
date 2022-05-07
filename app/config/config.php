@@ -113,7 +113,7 @@ $config['index_page'] = '';
 | Note: This will NOT disable or override the LavaLust-specific
 |	autoloading (application/config/autoload.php)
 */
-$config['composer_autoload']        = FALSE;
+$config['composer_autoload']        = true;
 
 /*
 |--------------------------------------------------------------------------

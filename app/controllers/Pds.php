@@ -14,6 +14,30 @@ class Pds extends Controller {
 	// * end change jcd april 21, 2022	
 
 	public function view_finished_pds(){
+		$data=[
+			'emp_profile' => $this->Employee_model->emp_profile($this->session->userdata('user_id')),
+
+			'get_spouse_info'=> $this->Pds_model->get_spouse_info(),
+			'get_father_info'=> $this->Pds_model->get_father_info(),
+			'get_mother_info' =>$this->Pds_model->get_mother_info(),
+			'get_all_child' => $this->Pds_model->get_all_child(),
+
+
+
+
+			'get_rel_info'=>$this->Pds_model->get_rel_info(),
+			'get_violation_info'=>$this->Pds_model->get_violation_info(),
+			'get_conviction_info'=>$this->Pds_model->get_conviction_info(),
+			'get_separation_info'=>$this->Pds_model->get_separation_info(),
+			'get_candidacy_info'=>$this->Pds_model->get_candidacy_info(),
+			'get_immigrant_info'=>$this->Pds_model->get_immigrant_info(),
+			'get_previlage_info'=>$this->Pds_model->get_previlage_info(),
+
+
+			'get_stat_pds'=>$this->Employee_model->get_stat_pds(), //para sa pagkuha ng status ng submitted pds 5422
+			'emp_notif_forpds'=> $this->Employee_model->emp_notif_forpds()
+
+		];
 		$data['emp_profile'] = $this->Employee_model->emp_profile($this->session->userdata('user_id'));
 		$this->call->view('emp/emp_pds/pds',$data);
 	}

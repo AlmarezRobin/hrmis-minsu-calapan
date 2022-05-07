@@ -23,7 +23,7 @@
         <?php if(isset($emp_profile['photo'])): ?>
             <div class="top-active align-items-center brandside">
                 <div class="p-2" style="text-align:center;">
-                    <img src="<?= BASE_URL . 'uploads/' . $emp_profile['photo'] ;?>" height="100px" alt="DA">
+                    <img src="<?= BASE_URL . 'uploads/' . $emp_profile['photo'] ;?>" width="100px" height="100px" alt="DA" style="border-radius:50%;">
                     
                 </div>
             </div>
@@ -80,7 +80,7 @@
                 </div>
             </a>
 
-            <a href="#" class="list-group-item list-group-item-action py-3 lh-tight" style="border-top: 2px solid green; background-color: #dedede">
+            <!-- <a href="#" class="list-group-item list-group-item-action py-3 lh-tight" style="border-top: 2px solid green; background-color: #dedede">
                 <div class="d-flex w-100 align-items-center justify-content-between">
                     <strong class="mb-1">Lunes, January 3, 2022</strong>
                     <small class="text-muted"></small>
@@ -88,7 +88,7 @@
                 <div class="col-12 mb-1 small">
                     <i class="fa fa-bolt"></i> 0.111s &nbsp; <i class="fa fa-server"></i> <span class="text"> .000001 MB</span>
                 </div>
-            </a>
+            </a> -->
 
 
 

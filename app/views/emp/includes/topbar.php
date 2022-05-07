@@ -18,8 +18,14 @@
                 <li><a href="#" class="nav-link px-2 text-white"> About </a></li>
                 <li><a href="#" class="nav-link px-2 text-white"> Contact Us </a></li>
 
-                <li><a href="#" class="nav-link text-white menu-top"> <i class="fa fa-bell-o"></i> </a></li>
-              
+
+                <!-- for nofification -->
+                <li>        
+                        <form action="<?=site_url('Employee/view_notif');?>" method="post">
+                            <input type="submit" value="Notifications">
+                             <strong style="color:red"> <?php echo $emp_notif_forpds['notif']?> </strong> 
+                        </form>
+                </li>  
                 <!-- <li>
                     
                     <a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/" target="_blank" class="nav-link px-2">

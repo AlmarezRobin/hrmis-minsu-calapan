@@ -189,7 +189,53 @@ public function change_password($pass){
 
 
 
+   #region for submission of pds
+   public function submit_pds($stat){
+      $bind = [
+         'user_id'=>$this->session->userdata('user_id'),
+         'status_of_pds'=>$stat
+      ];
+      return $this->db->table('pds_request_tbl')->insert($bind);
+   }
 
+   public function update_pds($var){
+
+      $bind = [
+         'status_of_pds'=>$var
+      ];
+      return $this->db->table('pds_request_tbl')->where('user_id', $this->session->userdata('user_id'))->update($bind);
+   }
+
+   public function get_stat_pds(){
+      return $this->db->table('pds_request_tbl')->where('user_id', $this->session->userdata('user_id'))->get();
+   }
+
+   public function get_notif_pds(){
+      return $this->db->table('pds_request_hist_tbl')->where('user_id', $this->session->userdata('user_id'))->order_by('date_returned', 'DESC')->get_all();
+   }
+
+
+   //function notification to notif employee
+
+   public function emp_notif_forpds(){
+      $where = [
+         'stat_emp_notif'=> 0,
+         'user_id'=>$this->session->userdata('user_id')
+      ];
+      return $this->db->table('pds_request_tbl')->where($where)->not_where('status_of_pds' , 'PENDING')->select_count('pds_id', 'notif')->get();
+   }
+
+   //pra iupdate ung status nung notification at para clear once na naclick
+   public function stat_emp_notif(){
+
+      $bind = [
+         'stat_emp_notif'=>1
+      ];
+      return $this->db->table('pds_request_tbl')->where('user_id', $this->session->userdata('user_id'))->update($bind);
+   }
+
+
+   #endregion
 
 }
 ?>

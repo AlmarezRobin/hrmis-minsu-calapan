@@ -6,7 +6,14 @@ class Hr extends Controller {
 	#region employee
 	// ! loads index page
 	public function index() {
-		$this->call->view('hr/index');
+		$data =[
+			'get_user_profile'=>$this->call->Hr_model->get_user_profile(),
+			
+			//para sa pag count ng mga pending notif rma 5422
+			'count_pending' =>$this->Hr_model->count_pending(),
+			'count_registered_employee'=>$this->Hr_model->count_registered_employee()
+		]; 
+		$this->call->view('hr/index',$data);
 	}
 
 
@@ -134,7 +141,7 @@ class Hr extends Controller {
 
 				);
 
-				$this->Employee_model->insert_emp_desig($this->io->post('emp_idnumber'),$this->io->post('designation'));
+				// $this->Employee_model->insert_emp_desig($this->io->post('emp_idnumber'),$this->io->post('designation'));
 
 
 				redirect('Hr/view_employee');
@@ -196,5 +203,63 @@ class Hr extends Controller {
 
 	#endregion
 
+	#region for view pds notif
+	public function view_pds_request(){
+		$data = [
+			'get_all_request'=>$this->Hr_model->get_all_request()
+		];
+		$this->call->view('hr/employee_pds/request',$data);
+	}
 
+	public function view_emp_pds($id)
+	{
+		$data = [
+			'get_id'=>$this->Hr_model->get_id($id)
+		];
+		$this->call->view('hr/employee_pds/pdsview',$data);
+	}
+
+	public function approved(){
+		if($this->form_validation->submitted()){
+			$this->form_validation->name('id')->name('stat');
+			if($this->form_validation->run())
+			{
+				$this->Hr_model->result($this->io->post('id'),$this->io->post('stat'));
+
+				$this->Hr_model->insert_history($this->io->post('id'),$this->io->post('stat'),$this->io->post('issue'));
+
+				redirect('Hr/view_pds_request');
+			}
+		}
+	}
+	public function rejected(){
+		if($this->form_validation->submitted()){
+			$this->form_validation->name('id')->name('stat');
+			if($this->form_validation->run())
+			{
+				$this->Hr_model->result($this->io->post('id'),$this->io->post('stat'));
+
+				$this->Hr_model->insert_history($this->io->post('id'),$this->io->post('stat'),$this->io->post('issue'));
+				redirect('Hr/view_pds_request');
+			}
+		}
+	}
+
+
+
+	public function pds_history()
+	{
+		$data =[
+			'pds_history'=>$this->Hr_model->pds_history()
+		]; 
+		$this->call->view('hr/employee_pds/history',$data);
+	}
+	#endregion
+
+	public function view_emp_profile(){
+		$this->call->view('hr/emp_profile');
+	}
+
+	
 }
+?>

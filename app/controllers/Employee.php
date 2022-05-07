@@ -13,7 +13,10 @@ class Employee extends Controller {
 	// * end change jcd april 21, 2022	
 	
 	public function index() {
-		$data['emp_profile'] = $this->Employee_model->emp_profile($this->session->userdata('user_id'));
+		$data = [
+			'emp_profile' => $this->Employee_model->emp_profile($this->session->userdata('user_id')),
+			'emp_notif_forpds'=> $this->Employee_model->emp_notif_forpds()
+	];
 		$this->call->view('emp/index', $data);
 	}
 
@@ -116,7 +119,12 @@ class Employee extends Controller {
 	// }
 	//-----------after-------------
 	public function view_edit_profile(){
-		$data['emp_profile'] = $this->Employee_model->emp_profile($this->session->userdata('user_id'));
+
+		
+		$data = [
+			'emp_profile' => $this->Employee_model->emp_profile($this->session->userdata('user_id')),
+			'emp_notif_forpds' => $this->Employee_model->emp_notif_forpds()
+		];
 		$this->checkpass(); // * jcd april 21, 2022
 		$this->call->view('emp/emp_profile/personalinformation', $data);
 	}
@@ -763,6 +771,57 @@ class Employee extends Controller {
 		$this->call->view('emp/emp_profile/uploadsignature',$data);
 	}
 	#endregion
+
+	#region for submission of pds
+	public function submit_pds(){
+		if($this->form_validation->submitted()){
+			if($this->form_validation->run())
+			{
+				$this->Employee_model->submit_pds($this->io->post('stat'));
+				redirect('Pds/view_finished_pds');
+				
+			}
+		}
+	}
+	public function update_pds(){
+		if($this->form_validation->submitted()){
+			if($this->form_validation->run())
+			{
+				$this->Employee_model->update_pds($this->io->post('stat'));
+				redirect('Pds/view_finished_pds');
+			}
+		}
+	}
+
+
+	//for notification
+	public function view_notif(){
+		$this->Employee_model->stat_emp_notif();
+		$data = [
+			'emp_notif_forpds'=> $this->Employee_model->emp_notif_forpds(),
+			'get_notif_pds' => $this->Employee_model->get_notif_pds()
+		];
+		$this->call->view('emp/notification',$data);
+	}
+
+	
+
+
+
+
+
+
+
+
+
+
+	#endregion
+
+
+
+
+
+
 
 }
 ?>
