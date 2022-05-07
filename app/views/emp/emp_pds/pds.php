@@ -2,7 +2,7 @@
 
 <html lang="en" class="h-100">
 
-<?php require_once(APP_DIR . 'views/emp/includes\head.php'); ?>
+<?php require_once(APP_DIR . 'views\emp\includes\head.php'); ?>
 <link rel="stylesheet" href=" <?php echo BASE_URL . PUBLIC_DIR ?>/pds/bootstrap.min.css">
 <link rel="stylesheet" href="<?php echo  BASE_URL . PUBLIC_DIR ?>/pds/pds.css">
 
@@ -74,7 +74,6 @@
                         ?>
 
 
-<<<<<<< HEAD
                                     <!-- Q2 -->
                                     <tbody class="table-body question-block">
                                         <tr>
@@ -426,8 +425,6 @@
 							</div>
                         </div>       
                     
-=======
->>>>>>> db7acddc401f2ac4036452522a8004135a6d6257
 
                     </div>
                     <!-- END COL 12 -->
