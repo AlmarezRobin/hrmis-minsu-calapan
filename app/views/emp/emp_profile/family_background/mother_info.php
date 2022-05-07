@@ -49,19 +49,19 @@
                                                 <label class="form-label">Mother's Information*</label>
                                                 <hr>
                                                 <div class="form-group col-md-6 m-t-5">
-                                                    <small class="form-text text-muted"> MOTHER'S MAINDEN NAME*</small>
+                                                    <small class="form-text text-muted"> MOTHER'S MAIDEN FIRST NAME*</small>
                                                     <input type="text" name="momainame"class="form-control form-control-line mb-2" placeholder="Maiden Name" value="<?=$get_mother_info['maiden_fname']?>" required>
                                                 </div> 
                                                 <div class="form-group col-md-6 m-t-5">
-                                                    <small class="form-text text-muted">MOTHER'S's Given Name*</small>
+                                                    <small class="form-text text-muted">MOTHER'S's MAIDEN MIDDLE NAME*</small>
                                                     <input type="text" name="mofname" class="form-control form-control-line mb-2" placeholder="First Name" value="<?=$get_mother_info['maiden_mname']?>" required>
                                                 </div> 
                                                 <div class="form-group col-md-6 m-t-5">
-                                                    <small class="form-text text-muted"> MOTHER'S Middle Name</small>
+                                                    <small class="form-text text-muted"> MOTHER'S MAIDEN LAST NAME</small>
                                                     <input type="text" name="momname" class="form-control form-control-line mb-2" placeholder="Middle Name" value="<?=$get_mother_info['maiden_lname']?>">
                                                 </div> 
                                                 <div class="form-group col-md-6 m-t-5">
-                                                    <small class="form-text text-muted">MOTHER'S's Family Name*</small>
+                                                    <small class="form-text text-muted">MOTHER'S's LAST NAME*</small>
                                                 <input type="text" name="molname" class="form-control form-control-line mb-2" placeholder="Last Name"required value="<?=$get_mother_info['lname']?>">
                                                 </div> 
                                                 <div class="form-actions col-md-12">
@@ -74,7 +74,7 @@
                                                 <label class="form-label">Mother's Information*</label>
                                                 <hr>
                                                 <div class="form-group col-md-6 m-t-5">
-                                                    <small class="form-text text-muted"> MOTHER'S MAINDEN NAME*</small>
+                                                    <small class="form-text text-muted"> MOTHER'S MAINDEN FIRST NAME*</small>
                                                     <input type="text" name="momainame"class="form-control form-control-line mb-2" placeholder="Maiden Name" required>
                                                 </div> 
                                                 <div class="form-group col-md-6 m-t-5">

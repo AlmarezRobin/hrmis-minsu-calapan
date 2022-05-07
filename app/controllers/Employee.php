@@ -3,19 +3,30 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
 class Employee extends Controller {
 
-	// * start change jcd april 21, 2022
+	#region index
+	/* start change jcd april 21, 2022 */
 	private function checkpass(){
 		if($this->session->userdata('password') === 'MINSU@CALAPAN'){
 			set_flash_alert('warning', 'Please change the default password');
 			redirect('Employee/view_change_password');
 		}
 	}
-	// * end change jcd april 21, 2022	
+	/* end change jcd april 21, 2022 */	
+
 	
 	public function index() {
-		$data['emp_profile'] = $this->Employee_model->emp_profile($this->session->userdata('user_id'));
+		/* start change jcd May 4, 2022 */
+		$data = [
+			'emp_profile' => $this->Employee_model->emp_profile($this->session->userdata('user_id')),
+			'birth_add' => $this->Address_model->birth_add($this->session->userdata('user_id')),
+			'residential_add' => $this->Address_model->residential_add($this->session->userdata('user_id')),
+			'permanent_add' => $this->Address_model->permanent_add($this->session->userdata('user_id'))
+		];
+		/* end change jcd May 4, 2022 */
+		
 		$this->call->view('emp/index', $data);
 	}
+	#endregion
 
 	#region start uploading profile picture rma 4/7/2022
 
@@ -99,7 +110,7 @@ class Employee extends Controller {
 
 	}
 
-	#endregion 
+	#endregion
 
 
 
@@ -116,7 +127,14 @@ class Employee extends Controller {
 	// }
 	//-----------after-------------
 	public function view_edit_profile(){
-		$data['emp_profile'] = $this->Employee_model->emp_profile($this->session->userdata('user_id'));
+		/* start change jcd May 4, 2022 */
+		$data = [
+			'emp_profile' => $this->Employee_model->emp_profile($this->session->userdata('user_id')),
+			'birth_add' => $this->Address_model->birth_add($this->session->userdata('user_id')),
+			'residential_add' => $this->Address_model->residential_add($this->session->userdata('user_id')),
+			'permanent_add' => $this->Address_model->permanent_add($this->session->userdata('user_id'))
+		];
+		/* end change jcd May 4, 2022 */
 		$this->checkpass(); // * jcd april 21, 2022
 		$this->call->view('emp/emp_profile/personalinformation', $data);
 	}
@@ -127,65 +145,157 @@ class Employee extends Controller {
 		$this->call->view('emp/emp_designation_edit',$designation);
 	}
 
-	// *commented 4-20-22 jcd
-	// public function insert_profile(){
-	// 	if ($this->form_validation->submitted()) 
-    //         {
-    //             $this->form_validation
-	// 								->name('fname')->required()
-	// 								->name('mname')->required()
-	// 								->name('lname')->required()
-	// 								->name('xname')
-	// 								->name('dob')->required()
-	// 								->name('sex')->required()
-	// 								->name('cstat')->required()
-	// 								->name('tnumber')->required()
-	// 								->name('cnumber')->required();
-									
-	// 			if ($this->form_validation->run()) 
-    //             {
-    //               $this->Employee_model->insert_user_profile(
-	// 								strtoupper($this->io->post('fname')),
-	// 								strtoupper($this->io->post('mname')),
-	// 								strtoupper($this->io->post('lname')),
-	// 								strtoupper($this->io->post('xname')),
-	// 								$this->io->post('dob'), 
-	// 								strtoupper($this->io->post('sex')),
-	// 								strtoupper($this->io->post('cstat')),
-	// 								$this->io->post('tnumber'),
-	// 								$this->io->post('cnumber'));
-	// 								redirect('Employee');
-    //             }
-
-                
-    //         }
-	// 	// $this->call->view('hr/register_admin');
-	// }
-
-
 	public function update_profile(){
 		if ($this->form_validation->submitted()) 
             {
                 $this->form_validation
-									->name('fname')->required()
-									->name('mname')->required()
-									->name('lname')->required()
-									->name('xname')
-									->name('dob')->required()
-									->name('sex')->required()
-									->name('cstat')->required()
+						->name('fname')->required()
+						->name('mname')->required()
+						->name('lname')->required()
+						->name('xname')
+						->name('dob')->required()
 
-									// added 4-16-22 rma 
-									// ->name('citizenship')
-									// ->name('dualby')
-									// ->name('country')
+						// * added jcd april 24, 2022
+						->name('birth-region-text')->required()
+						->name('birth-province-text')->required()
+						->name('birth-city-text')->required()
+						->name('birth-barangay-text')->required()
+						->name('birth-street')->required()
+						->name('birth-house')->required()
+						->name('birth-village')->required()
+						->name('birth-zipcode')->required()
 
-									->name('tnumber')->required()
-									->name('cnumber')->required();
+						->name('sex')->required()
+						->name('cstat')->required()
+						
+						// * added jcd april 24, 2022
+						->name('height')->required()
+						->name('weight')->required()
+						->name('blood-type')->required()
+						->name('gsis-no')->required()
+						->name('pag-ibig-no')->required()
+						->name('philhealth-no')->required()
+						->name('sss-no')->required()
+						->name('tin-no')->required()
+						->name('agency-emp-no')->required()
+
+						// added 4-16-22 rma 
+						->name('citizenship')->required()
+						->name('dualby')->required()
+						->name('country')->required()
+
+						// * added jcd april 24, 2022
+						->name('region-text')->required()
+						->name('province-text')->required()
+						->name('city-text')->required()
+						->name('barangay-text')->required()
+						->name('street')->required()
+						->name('house')->required()
+						->name('village')->required()
+						->name('zipcode')->required()
+
+						// * added jcd april 24, 2022
+						->name('permanent-region-text')->required()
+						->name('permanent-province-text')->required()
+						->name('permanent-city-text')->required()
+						->name('permanent-barangay-text')->required()
+						->name('permanent-street')->required()
+						->name('permanent-house')->required()
+						->name('permanent-village')->required()
+						->name('permanent-zipcode')->required()
+
+						->name('tnumber')->required()
+						->name('cnumber')->required();
 									
+				
+						
 				if ($this->form_validation->run()) 
                 {
-                  $this->Employee_model->update_user_profile(
+					/* start change jcd april 24, 2022 */
+				  	$data['select_birth_add'] = $this->Address_model->select_birth_add($this->io->post('birth-street'));
+				  	$data['select_residential_add'] = $this->Address_model->select_residential_add($this->io->post('street'));
+				  	$data['select_permanent_add'] = $this->Address_model->select_permanent_add($this->io->post('permanent-street'));
+
+					
+					/* start change jcd april 30, 2022 */
+					#region birth address
+					$birth_region =  strtoupper($this->io->post('birth-region-text'));
+					$birth_province =  strtoupper($this->io->post('birth-province-text'));
+					$birth_city =  strtoupper($this->io->post('birth-city-text'));
+					$birth_barangay =  strtoupper($this->io->post('birth-barangay-text'));
+					$birth_street =  strtoupper($this->io->post('birth-street'));
+					$birth_house =  strtoupper($this->io->post('birth-house'));
+					$birth_village =  strtoupper($this->io->post('birth-village'));
+					$birth_zipcode = $this->io->post('birth-zipcode');
+					#endregion
+
+					#region residential address
+					$res_region =  strtoupper($this->io->post('region-text'));
+					$res_province =  strtoupper($this->io->post('province-text'));
+					$res_city =  strtoupper($this->io->post('city-text'));
+					$res_barangay =  strtoupper($this->io->post('barangay-text'));
+					$res_street =  strtoupper($this->io->post('street'));
+					$res_house =  strtoupper($this->io->post('house'));
+					$res_village =  strtoupper($this->io->post('village'));
+					$res_zipcode = $this->io->post('zipcode');
+					#endregion
+					
+					#region permanent address
+					$per_region =  strtoupper($this->io->post('permanent-region-text'));
+					$per_province =  strtoupper($this->io->post('permanent-province-text'));
+					$per_city =  strtoupper($this->io->post('permanent-city-text'));
+					$per_barangay =  strtoupper($this->io->post('permanent-barangay-text'));
+					$per_street =  strtoupper($this->io->post('permanent-street'));
+					$per_house =  strtoupper($this->io->post('permanent-house'));
+					$per_village =  strtoupper($this->io->post('permanent-village'));
+					$per_zipcode = $this->io->post('permanent-zipcode');
+					#endregion
+					
+					if(empty($data['select_birth_add'])){
+						$this->Address_model->insert_address($birth_region, $birth_province, $birth_city, $birth_barangay, $birth_street, $birth_house, $birth_village, $birth_zipcode);
+					}
+
+					if (($res_house == 'N/A' && $res_village == 'N/A') && ($per_house == 'N/A' && $per_village == 'N/A')) {
+						if ($res_street != $per_street){
+							if(empty($data['select_residential_add'])){
+								$this->Address_model->insert_address($res_region, $res_province, $res_city, $res_barangay, $res_street, $res_house, $res_village, $res_zipcode);
+							}
+							if(empty($data['select_permanent_add'])){
+								$this->Address_model->insert_address($per_region, $per_province, $per_city, $per_barangay, $per_street, $per_house, $per_village, $per_zipcode);
+							}
+						}
+						else {
+							if(empty($data['select_permanent_add'])){
+								$this->Address_model->insert_address($per_region, $per_province, $per_city, $per_barangay, $per_street, $per_house, $per_village, $per_zipcode);
+							}
+						}
+					}
+					elseif (($res_house != $per_house)) {
+						if(empty($data['select_permanent_add'])){
+							$this->Address_model->insert_address($per_region, $per_province, $per_city, $per_barangay, $per_street, $per_house, $per_village, $per_zipcode);
+						}
+						if(empty($data['select_residential_add'])){
+							$this->Address_model->insert_address($res_region, $res_province, $res_city, $res_barangay, $res_street, $res_house, $res_village, $res_zipcode);
+						}
+					}
+					elseif (($res_house == $per_house)) {
+						if(empty($data['select_permanent_add'])){
+							$this->Address_model->insert_address($per_region, $per_province, $per_city, $per_barangay, $per_street, $per_house, $per_village, $per_zipcode);
+						}
+					}
+					/* end change jcd april 30, 2022 */
+					
+					$data['select_birth_add'] = $this->Address_model->select_birth_add($this->io->post('birth-street'));
+				  	$data['select_residential_add'] = $this->Address_model->select_residential_add($this->io->post('street'));
+				  	$data['select_permanent_add'] = $this->Address_model->select_permanent_add($this->io->post('permanent-street'));
+					
+                  	$this->Employee_model->update_user_profile(
+
+									// * added jcd april 24, 2022
+									$data['select_birth_add']['address_id'],
+									$data['select_residential_add']['address_id'],
+									$data['select_permanent_add']['address_id'],
+
 									strtoupper($this->io->post('fname')),
 									strtoupper($this->io->post('mname')),
 									strtoupper($this->io->post('lname')),
@@ -194,30 +304,39 @@ class Employee extends Controller {
 									strtoupper($this->io->post('sex')),
 									strtoupper($this->io->post('cstat')),
 
+									// * added jcd april 24, 2022
+									strtoupper($this->io->post('height')),
+									strtoupper($this->io->post('weight')),
+									strtoupper($this->io->post('blood-type')),
+									strtoupper($this->io->post('gsis-no')),
+									strtoupper($this->io->post('pag-ibig-no')),
+									strtoupper($this->io->post('philhealth-no')),
+									strtoupper($this->io->post('sss-no')),
+									strtoupper($this->io->post('tin-no')),
+									strtoupper($this->io->post('agency-emp-no')),
+									/* end change jcd april 24, 2022 */
+             
 									// added 4-16-22 rma
-									// strtoupper($this->io->post('citizenship')),
-									// strtoupper($this->io->post('dualby')),
-									// strtoupper($this->io->post('country')),
+									strtoupper($this->io->post('citizenship')),
+									strtoupper($this->io->post('dualby')),
+									strtoupper($this->io->post('country')),
 
 
 									$this->io->post('tnumber'),
-									$this->io->post('cnumber'),
-									$this->io->post('profile_id')						 );
+									$this->io->post('cnumber'));
 									redirect('Employee');
                 }
 
                 
             }
+		}
 		// $this->call->view('hr/register_admin');
-	}
-
-
 	#endregion
 
 	#region start of family background
 	public function view_spouse(){
 		$data['get_spouse_info'] = $this->Pds_model->get_spouse_info();
-		$this->checkpass(); // * jcd april 21, 2022
+		$this->checkpass(); // * added jcd april 21, 2022
 		$this->call->view('emp/emp_profile/family_background/spouse_info',$data);
 	}
 
@@ -228,6 +347,7 @@ class Employee extends Controller {
 				->name('sfname')->required()
 				->name('smname')->required()
 				->name('slname')->required()
+				->name('sxname')->required()
 				->name('occupation')
 				->name('bname')
 				->name('baddress')
@@ -238,6 +358,7 @@ class Employee extends Controller {
 					strtoupper($this->io->post('sfname')),
 					strtoupper($this->io->post('smname')),
 					strtoupper($this->io->post('slname')),
+					strtoupper($this->io->post('sxname')),
 					strtoupper($this->io->post('occupation')),
 					strtoupper($this->io->post('bname')),
 					strtoupper($this->io->post('baddress')),
@@ -247,6 +368,7 @@ class Employee extends Controller {
 			}
 		}
 	}
+
 	public function update_spouse(){
 
 		if ($this->form_validation->submitted()) {
@@ -254,16 +376,18 @@ class Employee extends Controller {
 				->name('sfname')->required()
 				->name('smname')->required()
 				->name('slname')->required()
-				->name('occupation')
-				->name('bname')
-				->name('baddress')
-				->name('tnumber');
+				->name('sxname')->required()
+				->name('occupation')->required()
+				->name('bname')->required()
+				->name('baddress')->required()
+				->name('tnumber')->required();
 
 			if ($this->form_validation->run()) {
 				$this->Pds_model->update_spouse(
 					strtoupper($this->io->post('sfname')),
 					strtoupper($this->io->post('smname')),
 					strtoupper($this->io->post('slname')),
+					strtoupper($this->io->post('sxname')),
 					strtoupper($this->io->post('occupation')),
 					strtoupper($this->io->post('bname')),
 					strtoupper($this->io->post('baddress')),
@@ -278,7 +402,7 @@ class Employee extends Controller {
 
 	public function view_father(){
 		$data['get_father_info'] = $this->Pds_model->get_father_info();
-		$this->checkpass(); // * jcd april 21, 2022
+		$this->checkpass(); // * added jcd april 21, 2022
 		$this->call->view('emp/emp_profile/family_background/father_info',$data);
 	}
 
@@ -328,7 +452,7 @@ class Employee extends Controller {
 
 	public function view_mother(){
 		$data['get_mother_info'] = $this->Pds_model->get_mother_info();
-		$this->checkpass(); // * jcd april 21, 2022
+		$this->checkpass(); // * added jcd april 21, 2022
 		$this->call->view('emp/emp_profile/family_background/mother_info',$data);
 	}
 	public function insert_mother(){
@@ -383,7 +507,7 @@ class Employee extends Controller {
 
 	public function view_child(){
 		$child = $this->Pds_model->get_all_child($this->session->userdata('user_id'));
-		$this->checkpass(); // * jcd april 21, 2022
+		$this->checkpass(); // * added jcd april 21, 2022
 		$this->call->view('emp/emp_profile/family_background/child_info',$child);
 	}
 
@@ -417,7 +541,7 @@ class Employee extends Controller {
 
 
 //////////////////////////////////////////////////
-	#region undone rma 4/9/2022
+	#region undone rma 4/9/2022 /* done na */
 	public function view_educational_background(){
 
 		if ($this->form_validation->submitted()) 
@@ -444,20 +568,60 @@ class Employee extends Controller {
 									strtoupper($this->io->post('year_grad')),
 									$this->io->post('honors')
 															 );
-									redirect('Employee');
+									redirect('Employee/view_educational_background');
                 }
 
                 
             }
 		$data = $this->Pds_model->get_educational();
-		$this->checkpass(); // * jcd april 21, 2022
+		$this->checkpass(); // *  added jcd april 21, 2022
 		$this->call->view('emp/emp_profile/educationalbackground',$data);
 	}
+
+	/* start change jcd May 6, 2022 */
+	public function update_educ_bg()
+	{
+		if ($this->form_validation->submitted()) 
+            {
+                $this->form_validation
+									->name('level')->required()
+									->name('name')->required()
+									->name('degree')->required()
+									->name('from')
+									->name('to')->required()
+									->name('unit_earned')->required()
+									->name('year_grad')->required()
+									->name('honors')->required();
+									
+				if ($this->form_validation->run()) 
+                {
+                  $this->Pds_model->update_educ_bg(
+									strtoupper($this->io->post('level')),
+									strtoupper($this->io->post('name')),
+									strtoupper($this->io->post('degree')),
+									strtoupper($this->io->post('from')),
+									$this->io->post('to'), 
+									strtoupper($this->io->post('unit_earned')),
+									strtoupper($this->io->post('year_grad')),
+									strtoupper($this->io->post('honors')),
+									$this->io->post('emid')
+															 );
+									redirect('Employee/view_educational_background');
+                }
+		}
+	}
+
+	public function delete_educ_bg()
+	{
+		if ($this->form_validation->run()) {
+			$this->Pds_model->delete_educ_bg($this->io->post('emid'));
+			redirect('Employee/view_educational_background');
+		}
+	}
+	/* end change jcd May 6, 2022 */
 	#endregion
 
-	
-
-
+	#region eligibility
 	public function view_eligibility(){
 		if ($this->form_validation->submitted()) 
 		{
@@ -479,23 +643,60 @@ class Employee extends Controller {
 								$this->io->post('number'), 
 								strtoupper($this->io->post('validity')),
 														 );
-								redirect('Employee');
+								redirect('Employee/view_eligibility');
 			}
 
 			
 		}
 
 		$data = $this->Pds_model->get_eligibility();
-		$this->checkpass(); // * jcd april 21, 2022
+		$this->checkpass(); // * added jcd april 21, 2022
 		$this->call->view('emp/emp_profile/eligibility',$data);
 	}
 
+	public function update_eligibility()
+	{
+		if ($this->form_validation->submitted()) 
+		{
+			$this->form_validation->name('service')
+								->name('rating')
+								->name('date')
+								->name('place')
+								->name('number')
+								->name('validity')
+								->name('eligibility-id');
+								
+								
+			if ($this->form_validation->run()) 
+			{
+			  $this->Pds_model->update_eligibility(
+								strtoupper($this->io->post('service')),
+								strtoupper($this->io->post('rating')),
+								strtoupper($this->io->post('date')),
+								strtoupper($this->io->post('place')),
+								$this->io->post('number'), 
+								strtoupper($this->io->post('validity')),
+								$this->io->post('eligibility-id')						 );
+								redirect('Employee/view_eligibility');
+			}
 
+			
+		}
+	}
 
+	public function delete_eligibility()
+	{
+		if ($this->form_validation->run()) {
+			$this->Pds_model->delete_eligibility($this->io->post('eligibility_id'));
+			redirect('Employee/view_eligibility');
+		}
+	}
+	#endregion
 
+	#region work experience
 	public function view_experience(){
 		$data = $this->Pds_model->get_experience();
-		$this->checkpass(); // * jcd april 21, 2022
+		$this->checkpass(); // * added jcd april 21, 2022
 		$this->call->view('emp/emp_profile/workexperience',$data);
 	}
 
@@ -520,37 +721,65 @@ class Employee extends Controller {
 								strtoupper($this->io->post('position')),
 								strtoupper($this->io->post('company')),
 								strtoupper($this->io->post('month_sal')),
-								$this->io->post('step_incre'), 
+								strtoupper($this->io->post('salary_grade')), 
+								strtoupper($this->io->post('step_incre')), 
 								strtoupper($this->io->post('status')),
 								strtoupper($this->io->post('gov_ser')),
 														 );
 												redirect('Employee/view_experience');
 			}
-
-			
 		}
-
-		
+	}
+	public function update_experience(){
+		if ($this->form_validation->submitted()) 
+		{
+			$this->form_validation->name('from')
+								->name('to')
+								->name('position')
+								->name('company')
+								->name('month_sal')
+								->name('salary_grade')
+								->name('step_incre')
+								->name('status')
+								->name('gov_ser');
+								
+								
+			if ($this->form_validation->run()) 
+			{
+				// echo '<pre> <br>';
+				// var_dump($this->io->post());
+				// echo '</pre>';
+				// exit;
+			  	$this->Pds_model->update_experience(
+								$this->io->post('from'),
+								$this->io->post('to'),
+								strtoupper($this->io->post('position')),
+								strtoupper($this->io->post('company')),
+								strtoupper($this->io->post('month_sal')),
+								$this->io->post('salary_grade'), 
+								$this->io->post('step_incre'), 
+								strtoupper($this->io->post('status')),
+								strtoupper($this->io->post('gov_ser')),
+								$this->io->post('work_exp_id'));
+												redirect('Employee/view_experience');
+			}
+		}
 	}
 
+	public function delete_experience()
+	{
+		if ($this->form_validation->run()) {
+			$this->Pds_model->delete_experience($this->io->post('work_exp'));
+			redirect('Employee/view_experience');
+		}
+	}
+	#endregion
 
-
-
-
-
-
-
-
-
-
-
-
-
-	
+	#region voluntary work
 	public function view_voluntary_work(){
 
 		$data = $this->Pds_model->get_voluntary();
-		$this->checkpass(); // * jcd april 21, 2022
+		$this->checkpass(); // * added jcd april 21, 2022
 		$this->call->view('emp/emp_profile/voluntarywork',$data);
 	}
 
@@ -577,12 +806,40 @@ class Employee extends Controller {
 								redirect('Employee/view_voluntary_work');
 			}}
 	}
+	public function update_voluntary(){
+		if ($this->form_validation->submitted()) 
+		{
+			$this->form_validation
+				->name('name')
+				->name('add')
+				->name('from')
+				->name('to')
+				->name('hours')
+				->name('position');
+			if ($this->form_validation->run()) 
+			{
+			  $this->Pds_model->update_voluntary(
+				strtoupper($this->io->post('name')),
+				strtoupper($this->io->post('add')),
+				$this->io->post('from'),
+				$this->io->post('to'),
+				$this->io->post('hours'),
+				strtoupper($this->io->post('position')),
+				$this->io->post('voluntary_id'),
+											);
+								redirect('Employee/view_voluntary_work');
+			}}
+	}
+	public function delete_voluntary()
+	{
+		if ($this->form_validation->run()) {
+			$this->Pds_model->delete_voluntary($this->io->post('vol_id'));
+			redirect('Employee/view_voluntary_work');
+		}
+	}
+	#endregion
 
-
-
-
-
-
+	#region trainings
 	public function view_trainings(){
 		$data = $this->Pds_model->get_trainings();
 		$this->call->view('emp/emp_profile/trainings',$data);
@@ -613,6 +870,39 @@ class Employee extends Controller {
 		}
 	}
 
+	public function update_trainings()
+	{
+		if ($this->form_validation->submitted()) 
+		{
+			$this->form_validation
+				->name('title')
+				->name('from')
+				->name('to')
+				->name('hours')
+				->name('type')
+				->name('spon');
+			if ($this->form_validation->run()) 
+			{
+			  $this->Pds_model->update_trainings(
+				strtoupper($this->io->post('title')),
+				$this->io->post('from'),
+				$this->io->post('to'),
+				$this->io->post('hours'),
+				strtoupper($this->io->post('type')),
+				strtoupper($this->io->post('spon')),
+				$this->io->post('ldi_id'));
+								redirect('Employee/view_trainings');
+			}
+		}
+	}
+	public function delete_trainings()
+	{
+		if ($this->form_validation->run()) {
+			$this->Pds_model->delete_trainings($this->io->post('ld_id'));
+			redirect('Employee/view_trainings');
+		}
+	}
+	#endregion
 
 //----------------------------------------------------------
 	
@@ -622,7 +912,7 @@ class Employee extends Controller {
 
 	
 	public function view_references(){
-		$this->checkpass(); // * jcd april 21, 2022
+		$this->checkpass(); // * added jcd april 21, 2022
 		$this->call->view('emp/emp_profile/references');
 	}
 	#endregion of the last page of pds

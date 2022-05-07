@@ -91,7 +91,7 @@ defined('PREVENT_DIRECT_ACCESS') or exit('No direct script access allowed');
 				'designation_id' => $designation_id
 			);
 
-			return $this->db->table('user_profile')->where('id_number',$id_number)->update($assign);
+			return $this->db->table('user_profile')->where('user_id',$id_number)->update($assign);
 		}
 		
 	}

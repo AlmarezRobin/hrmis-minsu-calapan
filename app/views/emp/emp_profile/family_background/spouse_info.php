@@ -50,7 +50,7 @@
                                             <hr>
                                             <div class="col-md-6 mb-2">
                                                 <small class="form-text text-muted">
-                                                    Father's Given Name*
+                                                    First Name*
                                                 </small>
                                                 <input type="text" name="sfname"
                                                     class="form-control form-control-line mb-2" placeholder="First Name" value="<?= $get_spouse_info['fname'] ?>"
@@ -68,12 +68,21 @@
                                             </div> 
                                             <div class="col-md-6 mb-2">
                                                 <small class="form-text text-muted">
-                                                Father's Family Name*
+                                                Spouse's  Surame*
                                             </small>
                                             <input type="text" name="slname"
                                                 class="form-control form-control-line mb-2" placeholder="Last Name" value="<?= $get_spouse_info['lname'] ?>"
                                                 maxlength="30" size="30" data-toggle="tooltip"
                                                 data-placement="right" title="Last Name" required>
+                                            </div> 
+                                            <div class="col-md-6 mb-2">
+                                                <small class="form-text text-muted">
+                                                    Name Extension*
+                                                </small>
+                                            <input type="text" name="slname"
+                                                class="form-control form-control-line mb-2" placeholder="Last Name" value="<?= $get_spouse_info['name_ext'] ?>"
+                                                maxlength="30" size="30" data-toggle="tooltip"
+                                                data-placement="right" title="Name Extension" required>
                                             </div> 
                                             
                                             <div class="col-md-6 mb-2">
@@ -126,7 +135,7 @@
                                             <hr>
                                             <div class="col-md-6 mb-2">
                                                 <small class="form-text text-muted">
-                                                    Father's Given Name*
+                                                    First Name*
                                                 </small>
                                                 <input type="text" name="sfname"
                                                     class="form-control form-control-line mb-2" placeholder="First Name"
@@ -144,7 +153,7 @@
                                             </div> 
                                             <div class="col-md-6 mb-2">
                                                 <small class="form-text text-muted">
-                                                Father's Family Name*
+                                                Spouse Surname*
                                             </small>
                                             <input type="text" name="slname"
                                                 class="form-control form-control-line mb-2" placeholder="Last Name"

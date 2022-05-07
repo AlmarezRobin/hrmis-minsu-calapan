@@ -134,7 +134,7 @@ class Hr extends Controller {
 
 				);
 
-				$this->Employee_model->insert_emp_desig($this->io->post('emp_idnumber'),$this->io->post('designation'));
+				// $this->Employee_model->insert_emp_desig($this->io->post('emp_idnumber'),$this->io->post('designation'));
 
 
 				redirect('Hr/view_employee');

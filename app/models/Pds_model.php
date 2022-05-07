@@ -13,6 +13,7 @@ class Pds_model extends Model {
 			'fname'=>$fname,
 			'mname'=>$mname,
 			'lname'=>$lname,
+			'name_ext'=>$ex,
 			'occupation'=>$occu,
 			'bus_name'=>$bname,
 			'bus_add'=>$badd,
@@ -26,16 +27,17 @@ class Pds_model extends Model {
 	public function get_spouse_info(){
 		return $this->db->table('spouse_tbl')->where('user_id',$this->session->userdata('user_id'))->get();
 	}
-	public function update_spouse($fname,$mname,$lname,$occu,$bname,$badd,$tnumber){
+	public function update_spouse($fname,$mname,$lname, $ex, $occu,$bname,$badd,$tnumber){
 		$bind = array(
 			'fname'=>$fname,
 			'mname'=>$mname,
 			'lname'=>$lname,
+			'name_ext'=>$ex,
 			'occupation'=>$occu,
 			'bus_name'=>$bname,
 			'bus_add'=>$badd,
 			'tel_num'=>$tnumber,
-			
+			'user_id'=>$this->session->userdata('user_id')
 		);
 
 		return $this->db->table('spouse_tbl')->where('user_id',$this->session->userdata('user_id'))->update($bind);
@@ -119,6 +121,27 @@ class Pds_model extends Model {
 		return $this->db->table('educational_background')->where('user_id',$this->session->userdata('user_id'))->get_all();
 	}
 
+	public function update_educ_bg($level,$schoolname,$degree,$from,$to,$high_lvl_earned,$year_grad,$honors_received, $id){
+		$bind = array(
+			'level'=>$level,
+			'school_name'=>$schoolname,
+			'degree'=>$degree,
+			'from_date'=>$from,
+			'to_date'=>$to,
+			'highest_level'=>$high_lvl_earned,
+			'year_graduated'=>$year_grad,
+			'honors_received'=>$honors_received,
+			'user_id'=>$this->session->userdata('user_id')
+		);
+
+		return $this->db->table('educational_background')->where('educ_id', $id)->update($bind);
+	}
+
+	public function delete_educ_bg($id)
+	{
+		return $this->db->table('educational_background')->where('educ_id', $id)->delete();
+	}
+
 	#endregion educational background
 
 
@@ -129,7 +152,7 @@ class Pds_model extends Model {
 			'rating'=>$rating,
 			'date_conferment'=>$date,
 			'place_conferment'=>$place,
-			'number'=>$number,
+			'license_num'=>$number,
 			'validity'=>$validity,
 			'user_id'=>$this->session->userdata('user_id')
 		);
@@ -140,19 +163,38 @@ class Pds_model extends Model {
 		return $this->db->table('service_eligibility_tbl')->where('user_id',$this->session->userdata('user_id'))->get_all();
 	}
 
+	public function update_eligibility($service,$rating,$date,$place,$number,$validity, $id)
+	{
+		$bind = array(
+			'service'=>$service,
+			'rating'=>$rating,
+			'date_conferment'=>$date,
+			'place_conferment'=>$place,
+			'license_num'=>$number,
+			'validity'=>$validity,
+			'user_id'=>$this->session->userdata('user_id')
+		);
+		return $this->db->table('service_eligibility_tbl')->where('eligibility_id', $id)->update($bind);
+	}
+
+	public function delete_eligibility($id)
+	{
+		return $this->db->table('service_eligibility_tbl')->where('eligibility_id', $id)->delete();
+	}
 
 	#endregion civil cervice eligibility
 
 	#region work experience 
-	public function insert_experience($_from,$_to,$position,$company,$monthly_salary,$salary_grade,$status,$government){
+	public function insert_experience($_from,$_to,$position,$company,$monthly_salary,$salary_grade, $step_inc, $status, $government){
 		$bind = array(
 			'_from'=>$_from,
 			'_to'=>$_to,
-			'position'=>$position,
+			'designation'=>$position,
 			'company'=>$company,
 			'monthly_salary'=>$monthly_salary,
 			'salary_grade'=>$salary_grade,
-			'status'=>$status,
+			'step_inc'=>$step_inc,
+			'appointment_status'=>$status,
 			'government'=>$government,
 			'user_id'=>$this->session->userdata('user_id')
 		);
@@ -163,6 +205,27 @@ class Pds_model extends Model {
 		return $this->db->table('work_experience_tbl')->where('user_id',$this->session->userdata('user_id'))->get_all();
 	}
 
+	public function update_experience($_from,$_to,$position,$company,$monthly_salary,$salary_grade, $step_inc, $status, $government, $id){
+		$bind = array(
+			'_from'=>$_from,
+			'_to'=>$_to,
+			'designation'=>$position,
+			'company'=>$company,
+			'monthly_salary'=>$monthly_salary,
+			'salary_grade'=>$salary_grade,
+			'step_inc'=>$step_inc,
+			'appointment_status'=>$status,
+			'government'=>$government,
+			'user_id'=>$this->session->userdata('user_id')
+		);
+
+		return $this->db->table('work_experience_tbl')->where('work_exp_id',$id)->update($bind);
+	}
+
+	public function delete_experience($id)
+	{
+		return $this->db->table('work_experience_tbl')->where('work_exp_id', $id)->delete();
+	}
 
 	#endregion work experience 
 
@@ -176,7 +239,6 @@ class Pds_model extends Model {
 			'_to'=>$_to,
 			'hours'=>$hours,
 			'position'=>$position,
-			
 			'user_id'=>$this->session->userdata('user_id')
 		);
 
@@ -184,6 +246,26 @@ class Pds_model extends Model {
 	}
 	public function get_voluntary(){
 		return $this->db->table('voluntary_work_tbl')->where('user_id',$this->session->userdata('user_id'))->get_all();
+	}
+
+	public function update_voluntary($name,$address,$_from,$_to,$hours,$position,$id)
+	{
+		$bind = array(
+			'name'=>$name,
+			'org_address'=>$address,
+			'_from'=>$_from,
+			'_to'=>$_to,
+			'hours'=>$hours,
+			'position'=>$position,
+			'user_id'=>$this->session->userdata('user_id')
+		);
+		return $this->db->table('voluntary_work_tbl')->where('voluntary_id', $id)->update($bind);
+
+	}
+
+	public function delete_voluntary($id)
+	{
+		return $this->db->table('voluntary_work_tbl')->where('voluntary_id', $id)->delete();
 	}
 
 
@@ -208,6 +290,25 @@ class Pds_model extends Model {
 	}
 	public function get_trainings(){
 		return $this->db->table('learning_dev_intervention')->where('user_id',$this->session->userdata('user_id'))->get_all();
+	}
+
+	public function update_trainings($title,$_from,$_to,$hours,$ld,$spon, $id){
+		$bind = array(
+			'title'=>$title,
+			'_from'=>$_from,
+			'_to'=>$_to,
+			'hours'=>$hours,
+			'type'=>$ld,
+			'sponsored'=>$spon,
+			'user_id'=>$this->session->userdata('user_id')
+		);
+
+		return $this->db->table('learning_dev_intervention')->where('ldi_id', $id)->update($bind);
+	}
+
+	public function delete_trainings($id)
+	{
+		return $this->db->table('learning_dev_intervention')->where('ldi_id', $id)->delete();
 	}
 	#endregion trainings attended
 
@@ -239,10 +340,14 @@ class Pds_model extends Model {
 	}
 	#endregion
 
-
+	#region acad recognition
 	public function insert_distinctions($distinctions){
 		$recognition = ['award_desc'=>$distinctions,'user_id'=>$this->session->userdata('user_id')];
 		return $this->db->table('non_acad_recognition')->insert($recognition);
+	}
+	public function update_distinctions($distinctions, $id){
+		$recognition = ['award_desc'=>$distinctions,'user_id'=>$this->session->userdata('user_id')];
+		return $this->db->table('non_acad_recognition')->where('recognition_id', $id)->update($recognition);
 	}
 	public function get_distinctions(){
 		return $this->db->table('non_acad_recognition')->where('user_id',$this->session->userdata('user_id'))->get_all();
@@ -253,13 +358,16 @@ class Pds_model extends Model {
 	public function delete_distinctions($id){
 		return $this->db->table('non_acad_recognition')->where("recognition_id", $id)->delete();
 	}
+	#endregion
 
-
-
-
-	public function insert_membership($name,$address){
+	#region membership
+	public function insert_membership($name,$address, $id){
 		$membership = ['assoc_name'=>$name,'org_address'=>$address,'user_id'=>$this->session->userdata('user_id')];
 		return $this->db->table('organization_membership')->insert($membership);
+	}
+	public function update_membership($name,$address, $id){
+		$membership = ['assoc_name'=>$name,'org_address'=>$address,'user_id'=>$this->session->userdata('user_id')];
+		return $this->db->table('organization_membership')->where('membership_id',$id)->update($membership);
 	}
 	public function get_membership(){
 		return $this->db->table('organization_membership')->where('user_id',$this->session->userdata('user_id'))->get_all();
@@ -270,15 +378,19 @@ class Pds_model extends Model {
 	public function delete_membership($id){
 		return $this->db->table('organization_membership')->where("membership_id", $id)->delete();
 	}
+	#endregion
 
 
 
 
-
-
-	public function insert_references($fname,$mname,$lname,$tel){
-		$ref = ['ref_fname'=>$fname,'ref_mname'=>$mname,'ref_lname'=>$lname,'ref_telno'=>$tel,'user_id'=>$this->session->userdata('user_id')];
+	#region references
+	public function insert_references($fname,$mname,$lname, $add, $tel){
+		$ref = ['ref_fname'=>$fname,'ref_mname'=>$mname,'ref_lname'=>$lname, 'ref_add'=>$add,'ref_telno'=>$tel,'user_id'=>$this->session->userdata('user_id')];
 		return $this->db->table('_references')->insert($ref);
+	}
+	public function update_references($fname,$mname,$lname, $add, $tel, $id){
+		$ref = ['ref_fname'=>$fname,'ref_mname'=>$mname,'ref_lname'=>$lname, 'ref_add'=>$add,'ref_telno'=>$tel,'user_id'=>$this->session->userdata('user_id')];
+		return $this->db->table('_references')->where('ref_id', $id)->update($ref);
 	}
 	public function get_ref(){
 		return $this->db->table('_references')->where('user_id',$this->session->userdata('user_id'))->get_all();
@@ -289,7 +401,7 @@ class Pds_model extends Model {
 	public function delete_references($id){
 		return $this->db->table('_references')->where("ref_id", $id)->delete();
 	}
-
+	#endregion
 
 	#endregion other infomation
 
