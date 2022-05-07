@@ -74,7 +74,6 @@
                         ?>
 
 
-<<<<<<< HEAD
                                     <!-- Q2 -->
                                     <tbody class="table-body question-block">
                                         <tr>
@@ -426,8 +425,6 @@
 							</div>
                         </div>       
                     
-=======
->>>>>>> db7acddc401f2ac4036452522a8004135a6d6257
 
                     </div>
                     <!-- END COL 12 -->
