@@ -7,7 +7,10 @@ class Employee_model extends Model{
    }
 
    public function emp_profile($id){
-      return $this->db->table('user_profile')->where('user_id', $id)->get();
+      return $this->db->table('user_profile')
+                  ->inner_join('employee_status as es', 'es.status_id = user_profile.status_id')
+                  ->inner_join('office', 'office.office_id = user_profile.office_id')
+                  ->inner_join('designation', 'designation.designation_id = user_profile.designation_id')->where('user_id', $id)->get();
    }
 
    public function designation(){
@@ -15,54 +18,71 @@ class Employee_model extends Model{
       
    }
     
-#region user profile
+    #region user profile
     
-public function insert_user_profile($fnam, $mname, $lname, $xname, $bday, $sex, $cstat, $cnumber, $tnumber)
-{
-   $bind = array(
-      'user_id' =>$this->session->userdata('user_id'),
-      'f_name'=>$fnam,
-      'm_name'=>$mname,
-      'l_name'=>$lname,
-      'name_ex'=>$xname, 
-      'date_of_birth'=>$bday,
-      'sex'=>$sex,
-      'civil_status'=>$cstat,
+   public function insert_user_profile($fnam, $mname, $lname, $xname, $bday, $sex, $cstat, $cnumber, $tnumber)
+   {
+      $bind = array(
+         'user_id' =>$this->session->userdata('user_id'),
+         'f_name'=>$fnam,
+         'm_name'=>$mname,
+         'l_name'=>$lname,
+         'name_ex'=>$xname, 
+         'date_of_birth'=>$bday,
+         'sex'=>$sex,
+         'civil_status'=>$cstat,
 
-      // 4/16/22 rma
-      // 'citizenship'=>$citezenship,
-      // 'ship_by'=>$shipby,
-      // 'citizenship_country'=>$country,
-      
-      'telephone'=>$tnumber,
-      'mobile'=>$cnumber
-      
-   );
-   return $this->db->table('user_profile')->insert($bind);
-}
+         // 4/16/22 rma
+         // 'citizenship'=>$citezenship,
+         // 'ship_by'=>$shipby,
+         // 'citizenship_country'=>$country,
+         
+         'telephone'=>$tnumber,
+         'mobile'=>$cnumber
+         
+      );
+      return $this->db->table('user_profile')->insert($bind);
+   }
 
-public function update_user_profile($fnam, $mname, $lname, $xname, $bday, $sex, $cstat , $cnumber, $tnumber, $profile_id)
-{
-   $bind = array(
-      'f_name'=>$fnam,
-      'm_name'=>$mname,
-      'l_name'=>$lname,
-      'name_ex'=>$xname, 
-      'date_of_birth'=>$bday,
-      'sex'=>$sex,
-      'civil_status'=>$cstat,
+   public function update_user_profile($res_id, $per_id, $birth_id, $fnam, $mname, $lname, $xname, $bday, $sex, $cstat, $height, $weight, $blood_type, $gsisno, $pag_ibig_no, $philhealth, $sss_no, $tin_no, $agency, $citezenship, $shipby, $country, $cnumber, $tnumber)
+   {
+      $bind = array(
+         // * added jcd april 24, 2022
+         'residential_address_id' => $res_id,
+         'permanent_address_id' => $per_id,
+         'birth_place_address_id' => $birth_id,
 
-      // added 4/16/22 rma
-      // 'citizenship'=>$citezenship,
-      // 'ship_by'=>$shipby,
-      // 'citizenship_country'=>$country,
+         'f_name'=>$fnam,
+         'm_name'=>$mname,
+         'l_name'=>$lname,
+         'name_ex'=>$xname, 
+         'date_of_birth'=>$bday,
+         'sex'=>$sex,
+         'civil_status'=>$cstat,
 
-      'telephone'=>$tnumber,
-      'mobile'=>$cnumber
-      
-   );
-   return $this->db->table('user_profile')->where('user_id', $this->session->userdata('user_id'))->update($bind);
-}
+         // * added jcd april 24, 2022
+         'height' => $height,
+         'weight' => $weight,
+         'blood_type' => $blood_type,
+         'gsisno' => $gsisno,
+         'pag_ibig_no' => $pag_ibig_no,
+         'philhealth_no' => $philhealth,
+         'sss_no' => $sss_no,
+         'tin_no' => $tin_no,
+         'agency_emp_no' => $agency, 
+
+
+         // added 4/16/22 rma
+         'citizenship'=>$citezenship,
+         'ship_by'=>$shipby,
+         'citizenship_country'=>$country,
+
+         'telephone'=>$tnumber,
+         'mobile'=>$cnumber
+         
+      );
+      return $this->db->table('user_profile')->where('user_id', $this->session->userdata('user_id'))->update($bind);
+   }
 
 #endregion
 
@@ -117,33 +137,6 @@ public function update_user_profile($fnam, $mname, $lname, $xname, $bday, $sex, 
 
 
    #endregion
-
-
-
-
-
-
-   public function add_educ($level,$school_name,$degree,	$from_date,	$to_date,	
-   $highest_level,	$year_graduated,	$honors_received){
-
-      $bind = array(
-         'level' =>$level,
-         'school_name'=>$school_name,
-         'degree'=>$degree,
-         'from_date'=>$from_date,
-         'to_date'=>$to_date,
-         'highest_level'=>$highest_level,
-         'year_graduated'=>$year_graduated,
-         'honors_received'=>$honors_received
-      );
-
-      return $this->tb->table('educational_background')->insert->where('user_id',$this->session->userdata('user_id'));
-
-   }
-
-
-
-
 
    public function passwordhash($password)
    {

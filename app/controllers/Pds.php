@@ -48,6 +48,7 @@ class Pds extends Controller {
 			'insert_skills'=>$this->Pds_model->get_skills(),
 			'get_skills'=>$this->Pds_model->get_skills(),
 			'get_distinctions'=> $this->Pds_model->get_distinctions(),
+			'get_membership'=> $this->Pds_model->get_membership(),
 			'get_ref'=>$this->Pds_model->get_ref()
 		];
 		$this->checkpass(); // * jcd april 21, 2022
@@ -64,11 +65,11 @@ class Pds extends Controller {
 		}
 	}
 
-	public function udpate_skill(){
+	public function update_skill(){
 		if ($this->form_validation->submitted()) {
 			$this->form_validation->name('skill');
 			if ($this->form_validation->run()) {
-				$this->Pds_model->update_skills($this->io->post('skill'));
+				$this->Pds_model->update_skills($this->io->post('sps_id'),$this->io->post('skill'));
 				redirect('Pds/view_other_information');
 			}
 		}
@@ -96,6 +97,17 @@ class Pds extends Controller {
 			}
 		}
 	}
+	public function update_acad_recognition(){
+		if ($this->form_validation->submitted()) 
+		{
+			$this->form_validation->name('distinction');
+			if ($this->form_validation->run()) 
+			{
+				$this->Pds_model->update_distinctions($this->io->post('distinction'), $this->io->post('recognition_id'));
+				redirect('Pds/view_other_information');
+			}
+		}
+	}
 	public function delete_distinctions(){
 		if ($this->form_validation->run()) {
 			$this->Pds_model->delete_distinctions($this->io->post('recognition_id'));
@@ -118,16 +130,46 @@ class Pds extends Controller {
 			}
 		}
 	}
+	public function update_membership(){
+		if ($this->form_validation->submitted()) 
+		{
+			$this->form_validation->name('name')->name('add');
+			if ($this->form_validation->run()) 
+			{
+				$this->Pds_model->update_membership(strtoupper($this->io->post('name')),$this->io->post('add'), $this->io->post('org_id'));
+				redirect('Pds/view_other_information');
+			}
+		}
+	}
+
+	public function delete_membership(){
+		if ($this->form_validation->run()) {
+			$this->Pds_model->delete_membership($this->io->post('membership_id'));
+			redirect('Pds/view_other_information');
+			exit();
+		}
+	}
 
 
 	#region for references
 	public function insert_references(){
 		if ($this->form_validation->submitted()) 
 		{
-			$this->form_validation->name('fname')->name('mname')->name('lname')->name('tel');
+			$this->form_validation->name('fname')->name('mname')->name('lname')->name('add')->name('tel');
 			if ($this->form_validation->run()) 
 			{
-				$this->Pds_model->insert_references($this->io->post('fname'),$this->io->post('mname'),$this->io->post('lname'),$this->io->post('tel'));
+				$this->Pds_model->insert_references($this->io->post('fname'),$this->io->post('mname'),$this->io->post('lname'),$this->io->post('add'),$this->io->post('tel'));
+				redirect('Pds/view_other_information');
+			}
+		}
+	}
+	public function update_references(){
+		if ($this->form_validation->submitted()) 
+		{
+			$this->form_validation->name('fname')->name('mname')->name('lname')->name('add')->name('tel');
+			if ($this->form_validation->run()) 
+			{
+				$this->Pds_model->update_references($this->io->post('fname'),$this->io->post('mname'),$this->io->post('lname'),$this->io->post('add'),$this->io->post('tel'),$this->io->post('ref_id'));
 				redirect('Pds/view_other_information');
 			}
 		}

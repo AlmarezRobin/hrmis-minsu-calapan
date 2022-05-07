@@ -28,5 +28,10 @@
     <link href="<?php echo BASE_URL . PUBLIC_DIR;?>/public/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
     <!-- <link href="public/plugins/DataTables-1.11.4/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css" /> -->
 
+    <!--JQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- jquery -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 
 </head>

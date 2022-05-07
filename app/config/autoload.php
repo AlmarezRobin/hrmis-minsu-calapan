@@ -56,8 +56,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 |
 | 1. Helpers
 | 2. Models
-| 3. Language
-| 4. Libraries
+| 3. Libraries
 |
 */
 
@@ -65,8 +64,8 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 | -------------------------------------------------------------------
 |  Auto-load Libraries
 | -------------------------------------------------------------------
-| These are the classes located in system/libraries/ or your
-| application/libraries/ directory, with the addition of the
+| These are the classes located in scheme/libraries/ or your
+| app/libraries/ directory, with the addition of the
 | 'database' library, which is somewhat of a special case.
 |
 | Prototype:
@@ -93,5 +92,5 @@ $autoload['helpers'] = array('url', 'common');
 |
 |	$autoload['model'] = array('model1', 'model2')
 */
-$autoload['models'] = array('Employee_model','Utility_model','Hr_model','Pds_model');
+$autoload['models'] = array('Employee_model','Utility_model','Hr_model','Pds_model', 'Address_model');
 ?>

@@ -45,7 +45,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <form class="row" action="<?=site_url('Employee/changepass');?>" method="post" enctype="multipart/form-data">
-                                        <?php flash_alert() /* jcd april 21, 2022 */  ?>
+                                        <?php flash_alert() /** added jcd april 21, 2022 */   ?>
                                         <div class="form-group col-md-12 m-t-20">
                                             <label>Password</label>
                                             <input type="password" class="form-control" name="new_pass" id="pass1" onkeyup = 'change_pass();' required> 

@@ -44,8 +44,8 @@
                             <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseTable"
                                 aria-expanded="true" aria-controls="collapseTable">
                                 <span class="card-icon"><i class="fa fa-table"></i></span>
-                                Current Rice Production Status
-                                <button type="button" class="btn btn-sm btn-primary float-sm-end" data-bs-toggle="modal" data-bs-target="#adding">Add Work Voluntary</button>
+                                Voluntary Work
+                                <button type="button" class="btn btn-sm btn-primary float-sm-end" data-bs-toggle="modal" data-bs-target="#adding">Add Voluntary Work</button>
                             </div>
                             <div class="card-body accordion-collapse collapse show p-0" id="collapseTable-d">
 
@@ -79,8 +79,12 @@
                                                 <td><?php echo $datum['hours'] ?></td>
                                                 <td><?php echo $datum['position'] ?></td>
                                                 <td>
-                                                    <a href="#"><button class="btn btn-mini btn-info">View</button></a>
-                                                    <a href="#"><button class="btn btn-mini btn-warning">Edit</button></a>
+                                                    <button class="btn btn-mini btn-info updatebtn" data-bs-toggle="modal" data-bs-target="#updating">
+                                                        Edit
+                                                    </button>
+                                                    <button class="btn btn-mini btn-warning deletebtn" data-bs-toggle="modal" data-bs-target="#deleting">
+                                                        Delete
+                                                    </button>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -133,10 +137,7 @@
     <?php require_once(APP_DIR . 'views/emp/includes/footer.php'); ?>
 
 
-
-
-
-<!-- modal for adding workexperience -->
+<!-- modal for adding voluntary work -->
 <div class="modal fade" id="adding">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -154,7 +155,7 @@
                     </div>
                     <div class="form-group col-md-12 m-t-20">
                         <label>ADDRESS OF ORGANIZATION</label>
-                        <input type="text" id="" name="add" class="form-control " required minlength="6"> 
+                        <input type="text" id="" name="add" value="1" class="form-control"> 
                     </div>
                     <div class="form-group col-md-6 m-t-20">
                         <label>FROM</label>
@@ -186,9 +187,139 @@
         </div>
     </div>
 </div>
-<!-- end modal for adding workexperience -->
+<!-- end modal for adding voluntary work -->
+
+<!-- /* start change jcd May 6, 2022 */ -->
+<!-- modal for updating voluntary work -->
+<div class="modal fade" id="updating">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Work Voluntary</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form class="row" action="<?=site_url('Employee/update_voluntary');?>" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="voluntary_id" id="voluntary_id">
+                    <div class="form-group col-md-12 m-t-20">
+                        <label>NAME OF ORGANIZATION</label>
+                        <input type="text" class="form-control" id="name" name="name" value="" required minlength="6"> 
+                    </div>
+                    <div class="form-group col-md-12 m-t-20">
+                        <label>ADDRESS OF ORGANIZATION</label>
+                        <input type="text" id="add" name="add" value="1" class="form-control"> 
+                    </div>
+                    <div class="form-group col-md-6 m-t-20">
+                        <label>FROM</label>
+                        <input type="date" class="form-control" id="from" name="from" value="" required minlength="6"> 
+                    </div>
+                    <div class="form-group col-md-6 m-t-20">
+                        <label>TO</label>
+                        <input type="date" class="form-control" id="to" name="to" value="" required minlength="6"> 
+                    </div>
+
+                    <div class="form-group col-md-12 m-t-20">
+                        <label>NUMBER OF HOURS</label>
+                        <input type="text" class="form-control" id="hours" name="hours" value="" required minlength="6"> 
+                    </div>
+                    <div class="form-group col-md-12 m-t-20">
+                        <label>POSITION OF NATURE OF WORK </label>
+                        <input type="text" id="position" name="position" class="form-control " required minlength="6"> 
+                    </div>
+                    
+                    
+                    <div class="form-actions mt-2 col-md-12">
+                        <button type="submit" class="btn btn-success pull-right"> <i class="fa fa-check"></i> Update</button>
+                    </div>
+                    
+                </form>
+               
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end modal for updating voluntary work -->
 
 
-
+<!-- modal for deleting voluntary work -->
+<div class="modal fade" id="deleting">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Voluntary Work</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form class="row" action="<?= site_url('Employee/delete_voluntary')?>" method="post" enctype="multipart/form-data">
+                    <input type="hidden" id="vol_id" name="vol_id">
+                    <p class="h5">Delete this information?</p>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success pull-right"> 
+                            Delele
+                        </button>
+                        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal"> 
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end modal for deleting voluntary work -->
 
     
+
+<!-- update -->
+<script>
+    $(document).ready(function () {
+
+        $('.updatebtn').on('click', function () {
+
+            $('#updating').modal('show');
+
+            $tr = $(this).closest('tr');
+
+            var data = $tr.children("td").map(function () {
+                return $(this).text();
+            }).get();
+
+            console.log(data);
+
+            $('#voluntary_id').val(data[0]);
+            $('#name').val(data[1]);
+            $('#add').val(data[2]);
+            $('#from').val(data[3]);
+            $('#to').val(data[4]);
+            $('#hours').val(data[5]);
+            $('#position').val(data[6]);
+            
+        });
+    });
+</script>
+
+<!-- delete -->
+<script>
+    $(document).ready(function () {
+
+        $('.deletebtn').on('click', function () {
+
+            $('#deleting').modal('show');
+
+            $tr = $(this).closest('tr');
+
+            var data = $tr.children("td").map(function () {
+                return $(this).text();
+            }).get();
+
+            console.log(data);
+
+            $('#vol_id').val(data[0]);
+        });
+    });
+</script>
+<!-- /* end change jcd May 6, 2022 */ -->
