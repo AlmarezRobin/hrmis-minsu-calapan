@@ -123,8 +123,12 @@
                                                 <td><?php echo $datum['xname'] ?></td>
                                                 <td><?php echo $datum['bday'] ?></td>
                                                 <td>
-                                                    <a href="#"><button class="btn btn-mini btn-info">View</button></a>
-                                                    <a href="#"><button class="btn btn-mini btn-warning"  value="" data-bs-toggle="modal" data-bs-target="#editmodal">Edit</button></a>
+                                                    <button class="btn btn-mini btn-info update-child-btn" data-bs-toggle="modal" data-bs-target="#editmodal">
+                                                        Edit
+                                                    </button>
+                                                    <button class="btn btn-mini btn-warning delete-child-btn"  value="" data-bs-toggle="modal" data-bs-target="#deletemodal">
+                                                        Delete
+                                                    </button>
                                                 </td>
                                             </tr>
                                             <?php endforeach; ?>
@@ -141,7 +145,7 @@
 
                         </div>
                     </div>
-                    <!-- modal for endit -->
+                    <!-- modal for edit -->
                     <div class="modal fade" id="editmodal">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -152,36 +156,37 @@
                                 </div>
                                 <!-- Modal body -->
                                 <div class="modal-body">
-                                    <form action="<?=site_url('Employee/insert_child');?>" method="POST">
+                                    <form action="<?=site_url('Employee/update_child');?>" method="POST">
+                                        <input type="hidden" id="child-id" name="child_id">
                                         <div class="row">
                                             <div class="col-md-12 mb-2">
                                                 <label for="f1" class="form-label">Child's Given Name*</label>
-                                                <input type="text" class="form-control form-control-sm" name="fname" id="" required>
+                                                <input type="text" class="form-control form-control-sm" name="fname" id="fname" required>
                                             </div>
                                             <div class="col-md-12 mb-2">
                                                 <label for="f1" class="form-label">Child's Middle Name*</label>
-                                                <input type="text" class="form-control form-control-sm" name="mname" id="" required>
+                                                <input type="text" class="form-control form-control-sm" name="mname" id="mname" required>
                                             </div>
                                             <div class="col-md-12 mb-2">
                                                 <label for="f1" class="form-label">Child's Last Name*</label>
-                                                <input type="text" class="form-control form-control-sm" name="lname" id="" required>
+                                                <input type="text" class="form-control form-control-sm" name="lname" id="lname" required>
                                             </div>
                                             <div class="col-md-12 mb-2">
                                                 <label for="f1" class="form-label">Child's Name Extension* 
                                                 <small class="form-text text-muted">ex: (Sr., Jr., I, II, etc.) leave it blank if none</small>
                                                 </label>
 
-                                                <input type="text" class="form-control form-control-sm" name="xname" id="" >
+                                                <input type="text" class="form-control form-control-sm" name="xname" id="xname" >
                                             </div>
                                             <div class="col-md-12 mb-2">
                                                 <label for="f1" class="form-label">Child's Birth Date*</label>
-                                                <input type="date" class="form-control form-control-sm" name="bday" id="" required>
+                                                <input type="date" class="form-control form-control-sm" name="bday" id="date" required>
                                             </div>
                                             
                                         </div>
                                         <div class="row ">
                                             <div class="col-md-12">
-                                                <input type="submit" class="btn btn-sm btn-success pull-right" name="submit" value="Update">
+                                                <button type="submit" class="btn btn-sm btn-success pull-right">Update</button>
                                             </div>
                                         </div>
                                     </form>
@@ -193,7 +198,37 @@
                     <!-- END COL 12 -->
                 </div>
 
-                
+                <!-- modal for deleting eligibility -->
+                <div class="modal fade" id="deletemodal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Delete Child</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <form class="row" action="<?= site_url('Employee/delete_child')?>" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" id="childid" name="child_id">
+                                        <p class="h5">Delete this information?</p>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-success pull-right"> 
+                                                Delele
+                                            </button>
+                                            <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal"> 
+                                                Cancel
+                                            </button>
+                                        </div>
+                                            
+                                        
+                                        
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal for deleting eligibility -->
 
                 <!-- Footer -->
                 <?php require_once(APP_DIR . 'views/emp/includes/footbar.php'); ?>
@@ -211,4 +246,50 @@
     </div>
     <!-- End Container - Fluid -->
 <?php require_once(APP_DIR . 'views/emp/includes/footer.php'); ?>
-    
+
+<!-- update -->
+<script>
+    $(document).ready(function () {
+
+        $('.update-child-btn').on('click', function () {
+
+            $('#editmodal').modal('show');
+
+            $tr = $(this).closest('tr');
+
+            var data = $tr.children("td").map(function () {
+                return $(this).text();
+            }).get();
+
+            console.log(data);
+
+            $('#child-id').val(data[0]);
+            $('#fname').val(data[1]);
+            $('#mname').val(data[2]);
+            $('#lname').val(data[3]);
+            $('#xname').val(data[4]);
+            $('#date').val(data[5]);
+        });
+    });
+</script>
+
+<!-- delete -->
+<script>
+    $(document).ready(function () {
+
+        $('.delete-child-btn').on('click', function () {
+
+            $('#deletemodal').modal('show');
+
+            $tr = $(this).closest('tr');
+
+            var data = $tr.children("td").map(function () {
+                return $(this).text();
+            }).get();
+
+            console.log(data);
+
+            $('#childid').val(data[0]);
+        });
+    });
+</script>

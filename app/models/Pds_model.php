@@ -91,8 +91,24 @@ class Pds_model extends Model {
 
 		return $this->db->table('children_tbl')->insert($bind);
 	}
+	public function update_child($fname,$mname,$lname,$ex,$bday, $id){
+		$bind = array(
+			'fname'=>$fname,
+			'mname'=>$mname,
+			'lname'=>$lname,
+			'xname'=>$ex,
+			'bday'=>$bday,
+			'user_id'=>$this->session->userdata('user_id')
+		);
+
+		return $this->db->table('children_tbl')->where('child_id', $id)->update($bind);
+	}
 	public function get_all_child(){
 		return $this->db->table('children_tbl')->get_all();
+	}
+	public function delete_child($id)
+	{
+		return $this->db->table('children_tbl')->where('child_id', $id)->delete();
 	}
 
 	

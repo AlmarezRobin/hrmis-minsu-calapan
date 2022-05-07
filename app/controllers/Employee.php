@@ -542,6 +542,37 @@ class Employee extends Controller {
 			}
 		}
 	}
+	public function update_child(){
+
+		if ($this->form_validation->submitted()) {
+			$this->form_validation
+				->name('fname')->required()
+				->name('mname')->required()
+				->name('lname')->required()
+				->name('xname')
+				->name('bday')->required();
+
+			if ($this->form_validation->run()) {
+				$this->Pds_model->update_child(
+					strtoupper($this->io->post('fname')),
+					strtoupper($this->io->post('mname')),
+					strtoupper($this->io->post('lname')),
+					strtoupper($this->io->post('xname')),
+					$this->io->post('bday'),
+					$this->io->post('child_id')
+				);
+				redirect('Employee/view_child');
+			}
+		}
+	}
+
+	public function delete_child()
+	{
+		if ($this->form_validation->run()) {
+			$this->Pds_model->delete_child($this->io->post('child_id'));
+			redirect('Employee/view_child');
+		}
+	}
 	
 
 
