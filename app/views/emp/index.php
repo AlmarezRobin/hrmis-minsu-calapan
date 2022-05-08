@@ -215,7 +215,7 @@
                                             </div>
                                             <div class="form-group col-md-4 m-t-10">
                                                 <label class="form-label">City/Municipality</label>
-                                                <input type="text" class="form-control"  disabled value="<?php empty($residential_add['municipality_city']) ? print 'N/A' : $residential_add['municipality_city'] ?>"> 
+                                                <input type="text" class="form-control"  disabled value="<?php empty($residential_add['municipality_city']) ? print 'N/A' : print $residential_add['municipality_city'] ?>"> 
                                             </div>
                                             <div class="form-group col-md-4 m-t-10">
                                                 <label class="form-label">Province</label>
@@ -250,7 +250,7 @@
                                             </div>
                                             <div class="form-group col-md-4 m-t-10">
                                                 <label class="form-label">City/Municipality</label>
-                                                <input type="text" class="form-control"  disabled value="<?php empty($permanent_add['municipality_city']) ? print 'N/A' : $permanent_add['municipality_city'] ?>"> 
+                                                <input type="text" class="form-control"  disabled value="<?php empty($permanent_add['municipality_city']) ? print 'N/A' : print $permanent_add['municipality_city'] ?>"> 
                                             </div>
                                             <div class="form-group col-md-4 m-t-10">
                                                 <label class="form-label">Province</label>

@@ -53,11 +53,9 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                                 <label for="">Employee Status</label>
                                                 <select name="emp_status" id="" class="form-control form-control-sm">
                                                     <option >Option</option>
-                                                    
                                                     <?php foreach($employment_stat as $stat): ?>
                                                     <option value="<?php echo $stat['status_id'] ?>"><?php echo $stat['status_desc'] ?></option>
                                                     <?php endforeach;?>
-
                                                 </select>
                                                 
                                             </div>

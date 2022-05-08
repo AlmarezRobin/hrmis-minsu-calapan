@@ -21,19 +21,49 @@
         }
 
         
-        public function select_birth_add($street)
+        public function select_birth_add($region, $province, $city, $barangay, $street, $house, $village, $zipcode)
         {
-            return $this->db->table('address')->where('street_sitio', $street)->get();
+            $address = array(
+                'region' => $region,
+                'province' => $province,
+                'municipality_city' => $city,
+                'barangay' => $barangay,
+                'street_sitio' => $street,
+                'house_block_lotno' => $house,
+                'subdivision_village' => $village,
+                'zipcode' => $zipcode
+           );
+            return $this->db->table('address')->where($address)->get();
         }
 
-        public function select_residential_add($street)
+        public function select_residential_add($region, $province, $city, $barangay, $street, $house, $village, $zipcode)
         {
-            return $this->db->table('address')->where('street_sitio', $street)->get();
+            $address = array(
+                'region' => $region,
+                'province' => $province,
+                'municipality_city' => $city,
+                'barangay' => $barangay,
+                'street_sitio' => $street,
+                'house_block_lotno' => $house,
+                'subdivision_village' => $village,
+                'zipcode' => $zipcode
+           );
+            return $this->db->table('address')->where($address)->get();
         }
         
-        public function select_permanent_add($street)
+        public function select_permanent_add($region, $province, $city, $barangay, $street, $house, $village, $zipcode)
         {
-            return $this->db->table('address')->where('street_sitio', $street)->get();
+            $address = array(
+                'region' => $region,
+                'province' => $province,
+                'municipality_city' => $city,
+                'barangay' => $barangay,
+                'street_sitio' => $street,
+                'house_block_lotno' => $house,
+                'subdivision_village' => $village,
+                'zipcode' => $zipcode
+           );
+            return $this->db->table('address')->where($address)->get();
         }
 
         /* end change jcd april 24,2022 */

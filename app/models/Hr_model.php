@@ -86,7 +86,7 @@ defined('PREVENT_DIRECT_ACCESS') or exit('No direct script access allowed');
 		}
 
 
-		public function assign_emp($id_number,$user_id, $status_id, $office_id, $designation_id)
+		public function assign_emp($user_id, $status_id, $office_id, $designation_id)
 		{
 			$assign = array(
 				'user_id' => $user_id,
@@ -95,7 +95,7 @@ defined('PREVENT_DIRECT_ACCESS') or exit('No direct script access allowed');
 				'designation_id' => $designation_id
 			);
 
-			return $this->db->table('user_profile')->where('user_id',$id_number)->update($assign);
+			return $this->db->table('user_profile')->insert($assign);
 		}
 		
 		#region for pending and approve request of pds
