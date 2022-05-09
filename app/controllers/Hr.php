@@ -185,12 +185,12 @@ class Hr extends Controller {
 						->required();
 
 			if ($this->form_validation->run()) {
-				$user_id_num = $this->io->post('id_number');
+				
 				$user_id = $this->io->post('user_id');
 				$emp_status = $this->io->post('emp_status');
 				$office = $this->io->post('office');
 				$designation = $this->io->post('designation');
-				if ($this->Hr_model->assign_emp($user_id_num ,$user_id, $emp_status, $office, $designation)) {
+				if ($this->Hr_model->assign_emp($user_id, $emp_status, $office, $designation)) {
 					redirect('hr/view_employee');
 				}
 			}
