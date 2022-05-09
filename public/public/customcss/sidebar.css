@@ -57,7 +57,7 @@
     /* Height of navbar */
     /*box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);*/
     /* overflow-y: scroll; */
-    background-color: rgb(30, 38, 53); /*dating white color*/
+    background-color: rgb(255, 255, 255); /*dating white color*/
     /* background-color: rgb(212, 212, 212); */
     /*added*/
     bottom: -20px;
@@ -108,5 +108,5 @@
 /* sidebar */
 
 .border-e {
-    border-right: 1px solid rgb(14, 80, 22);
+    border-right: 1px solid rgb(255, 255, 255);
 }

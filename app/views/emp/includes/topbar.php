@@ -12,15 +12,16 @@
                 <img src="<?php echo BASE_URL . PUBLIC_DIR;?>/public/img/logo.png" height="100px" class="topbrand" alt="DA">
                 <span style="color:#3bbf0f"><b style="color:#ffd900;">MINSU-HRMIS</b>DASHBOARD</span>
             </a>
-            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 menu1">
-               
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-3 mt-2 justify-content-center mb-md-0 menu1">
+               <li><button class="navbar-toggler d-md-none collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="text-white"> <i class="fa fa-icon fa-bars"></i> </span>
+                </button></li>
                 <li><a href="#" class="nav-link px-2 text-white"> Home </a></li>
                 <li><a href="#" class="nav-link px-2 text-white"> About </a></li>
                 <li><a href="#" class="nav-link px-2 text-white"> Contact Us </a></li>
 
-
-                <!-- for nofification -->
-                <li>        
+                 <!-- for nofification -->
+                 <li>        
                         <form action="<?=site_url('Employee/view_notif');?>" method="post">
                             <input type="submit" value="Notifications">
                              <strong style="color:red"> <?php echo $emp_notif_forpds['notif']?> </strong> 
@@ -35,12 +36,10 @@
             </ul>
             <form action="" class="col-12 col-lg-auto mb-3 mb-lg-0 me-0 justify-content-center d-flex searchform" method="POST">
 
-                <button class="navbar-toggler d-md-none collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="text-white"> <i class="fa fa-icon fa-bars"></i> </span>
-                    </button>
+                
 
-                <input type="search" name="search" class="form-control form-control-sm form-control-dark searchbar" style="font-size: 12px" placeholder="Search..." required>
-                <input type="submit" class="btn btn-success btn-sm ms-2" style="font-size: 12px" value="Search">
+                <!-- <input type="search" name="search" class="form-control form-control-sm form-control-dark searchbar" style="font-size: 12px" placeholder="Search..." required>
+                <input type="submit" class="btn btn-success btn-sm ms-2" style="font-size: 12px" value="Search"> -->
             </form>
 
             <!-- <ul class="social-links">

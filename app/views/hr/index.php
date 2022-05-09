@@ -173,10 +173,9 @@ redirect('Admin');
 
                             <div class="card">
 
-                                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseTable"
-                                    aria-expanded="true" aria-controls="collapseTable">
+                                <div class="card-header">
                                     <span class="card-icon"><i class="fa fa-th"></i></span>
-                                    Students<i class="fa fa-caret-down pull-right"></i>
+                                    Students
                                 </div>
                                 <div class="card-body accordion-collapse collapse show p-0" id="collapseTable">
 
