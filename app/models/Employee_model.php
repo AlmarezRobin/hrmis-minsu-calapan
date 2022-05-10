@@ -44,13 +44,14 @@ class Employee_model extends Model{
       return $this->db->table('user_profile')->insert($bind);
    }
 
-   public function update_user_profile($res_id, $per_id, $birth_id, $fnam, $mname, $lname, $xname, $bday, $sex, $cstat, $height, $weight, $blood_type, $gsisno, $pag_ibig_no, $philhealth, $sss_no, $tin_no, $agency, $citezenship, $shipby, $country, $cnumber, $tnumber)
+   public function update_user_profile($birth_id, $res_id, $per_id, $fnam, $mname, $lname, $xname, $bday, $sex, $cstat, $height, $weight, $blood_type, $gsisno, $pag_ibig_no, $philhealth, $sss_no, $tin_no, $agency, $citezenship, $shipby, $country, $cnumber, $tnumber)
    {
       $bind = array(
          // * added jcd april 24, 2022
+         'birth_place_address_id' => $birth_id,
          'residential_address_id' => $res_id,
          'permanent_address_id' => $per_id,
-         'birth_place_address_id' => $birth_id,
+         
 
          'f_name'=>$fnam,
          'm_name'=>$mname,
