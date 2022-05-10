@@ -98,6 +98,7 @@ body {
         padding-right: 30px;
         margin-right: 0;
     }
+   
     .menu1 {
         margin-top: -10px
     }
@@ -115,9 +116,6 @@ body {
     }
     .list-group {
         margin-top: 45px;
-    }
-    .maincontent {
-        padding-top: 120px
     }
     .export {
         display: none;

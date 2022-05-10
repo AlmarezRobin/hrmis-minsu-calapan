@@ -10,14 +10,9 @@
 </head>
 <?php require_once(APP_DIR .'views\hr\includes\head.php'); ?>
 <body>
-    <div class="row">
-        <div class="mt-2">
-            <button>BACK</button>
-        </div>
-        <div class="d-flex justify-content-center">
-            <label for="">EMPLOYEE: <?php echo $get_id['user_id'] ?>  </label>
-
-        </div>
+    <div class="justify-content-between align-items-center pt-1 pb-2 mb-3 border-bottom mx-2">
+        <h5 class="h5 mt-3 mb-0 color-darkgray"> <a href="<?= site_url('Hr/view_pds_request');?>"> <i class=" fa fa-solid fa-arrow-left fa-lg"></i></a>
+            &nbsp; PERSONAL DATA SHEET<small></small></h5>
     </div>
     <!-- col -->
     <div class="col-md-12 float-sm-start">

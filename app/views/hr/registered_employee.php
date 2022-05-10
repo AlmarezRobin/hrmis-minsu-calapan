@@ -20,7 +20,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                 <!-- end side bar -->
             <!-- Main -->
             <!-- <main class="col-md-9 ms-sm-auto col-lg-10 px-md-2 bg-white maincontent"> -->
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-2 maincontent">
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-2">
                 <!-- title -->
                 <div class="justify-content-between align-items-center pt-1 pb-2 mb-3 border-bottom mx-2">
                     <h5 class="h5 mt-3 mb-0 color-darkgray"> Registered Employee's <small></small></h5>

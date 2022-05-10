@@ -11,22 +11,11 @@
 ?>
 
 <!-- sidebar -->
-<!-- <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse align-items-stretch overflow-auto scrollbar-success"> -->
-<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse overflow-auto scrollbar-success border-e">
-    <div class="position-sticky">
+<!-- <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-white sidebar collapse align-items-stretch overflow-auto scrollbar-success"> -->
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-success sidebar collapse overflow-auto scrollbar-success border-e">
+    <div class="position-sticky ">
         <!-- <div class="list-group list-group-flush border-bottom border-end scrollarea"> -->
         <div class="list-group list-group-flush border-bottom scrollarea ">
-
-
-            <!-- <div class="list-group-item list-group-item-action top-active py-3 lh-tight" aria-current="true"> -->
-            <div style="text-align:center; background-color: rgb(212, 212, 212); border-bottom: 2px solid rgb(12, 114, 56)">
-                <div class="pt-2">
-                    <strong class="pt-2">
-                        PERSONAL DATA SHEET
-                    </strong>
-                </div>
-                
-            </div>
             <a href="<?=site_url('Employee');?>" class="list-group-item list-group-item-action lh-tight side-menu">
                 <div class="d-flex w-100 align-items-center justify-content-between">
                     <div class="mb-0">

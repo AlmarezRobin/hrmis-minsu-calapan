@@ -10,23 +10,19 @@ redirect('Admin');
 
 <!-- sidebar -->
 <!-- <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-white sidebar collapse align-items-stretch overflow-auto scrollbar-success"> -->
-<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse overflow-auto scrollbar-success border-e">
-    <div class="position-sticky">
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-success sidebar collapse overflow-auto scrollbar-success border-e">
+    <div class="position-sticky ">
         <!-- <div class="list-group list-group-flush border-bottom border-end scrollarea"> -->
         <div class="list-group list-group-flush border-bottom scrollarea ">
 
-            <div class="top-active align-items-center brandside">
-                <div class="p-2" style="text-align:center;">
-                    <img src="<?php echo BASE_URL . PUBLIC_DIR;?>/public/img/brand.png" height="100px" alt="DA">
-                </div>
-            </div>
+           
 
             <!-- <div class="list-group-item list-group-item-action top-active py-3 lh-tight" aria-current="true"> -->
-            <div style="text-align:center; background-color: rgb(255, 255, 255); border-bottom: 2px solid rgb(12, 114, 56)">
-                <div class="pt-1">
-                    <strong class="pt-2"><?php echo $this->session->userdata('username'); ?></strong>
+            <div style="text-align:center;color:white; border-top: 1px solid rgb(255, 255, 255); border-bottom: 2px solid rgb(255, 255, 255)" class="bg-success">
+                <div class="pt-2">
+                    <strong class="pt-2">WILFRED PINE</strong>
                 </div>
-                <div class="pb-1 small"><i><?php echo $this->session->userdata('role'); ?></i>
+                <div class="pb-1 small"><i>Developer</i>
                 </div>
             </div>
 
@@ -39,66 +35,61 @@ redirect('Admin');
                 </div>
             </a>
 
-            <a href="#" class="list-group-item list-group-item-action lh-tight side-menu" data-bs-toggle="collapse" data-bs-target="#form-collapse" aria-expanded="false">
+
+
+            <a href="#" class="list-group-item list-group-item-action lh-tight side-menu" data-bs-toggle="collapse" data-bs-target="#accounts-collapse" aria-expanded="false">
                 <div class="w-100 align-items-center justify-content-between">
                     <div class="mb-0">
-                        <i class="fa fa-icon fa-edit me-2"></i> Manage Accounts
+                    <i class="fa fa-icon fa-edit me-2"></i> Manage Accounts
                         <span class="fa fa-caret-down pull-right"></span>
                     </div>
-                    <!-- <small class="text-primary">Geospatial Analytics</small> -->
                 </div>
             </a>
-            <div class="collapse" id="form-collapse">
-                <ul class="btn-toggle-nav list-unstyled fw-normal medium mb-1">
-                    <li class="bg-light ps-4 sub-link">
-                        <a href="<?=site_url('Hr/view_employee');?>" class="text-black "><i class="fa fa-icon fa-users me-1"></i> Manage Employee's</a>
-                    </li>
-                    <li class="bg-light ps-4 sub-link">
-                        <a href="<?=site_url('Hr/view_admin');?>" class="text-black "><i class="fa fa-icon fa-user me-1"></i> Manage Admins</a>
-                    </li>
+            <div class="collapse" id="accounts-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal medium mb-0">
 
+                    <li class="bg-dark ps-4 sub-link">
+                        <a href="<?=site_url('Hr/view_employee');?>" class="text-white "><i class="fa fa-icon fa-users me-1"></i> Manage Employee's</a>
+                    </li>
+                    <li class="bg-dark ps-4 sub-link">
+                        <a href="<?=site_url('Hr/view_admin');?>" class="text-white "><i class="fa fa-icon fa-user me-1"></i> Manage Admins</a>
+                    </li>
                 </ul>
             </div>
 
-
-            <a href="#" class="list-group-item list-group-item-action lh-tight side-menu" data-bs-toggle="collapse" data-bs-target="#utilities-collapse" aria-expanded="false">
+            <a href="#" class="list-group-item list-group-item-action lh-tight side-menu " data-bs-toggle="collapse" data-bs-target="#utilities-collapse" aria-expanded="false">
                 <div class="w-100 align-items-center justify-content-between">
                     <div class="mb-0">
                         <i class="fa fa-icon fa-edit me-2"></i> Utility Settings
                         <span class="fa fa-caret-down pull-right"></span>
                     </div>
-                    <!-- <small class="text-primary">Geospatial Analytics</small> -->
+                    <!-- <small class="text-muted"></small> -->
                 </div>
             </a>
             <div class="collapse" id="utilities-collapse">
-                <ul class="btn-toggle-nav list-unstyled fw-normal medium mb-1">
-                    
-                    <li class="bg-light ps-4 sub-link">
-                        <a href="<?=site_url('Utility_Settings/view_employment_status');?>">
-                            <i class="fa fa-icon fa-plus me-1"></i>
-                            Employment Status
-                        </a>
+                <ul class="btn-toggle-nav list-unstyled fw-normal medium mb-0">
+
+                    <li class="bg-dark ps-4 sub-link">
+                        <a href="<?=site_url('Utility_Settings/view_employment_status');?>" class="text-white"><i class="fa fa-icon fa-plus me-1"></i>Employment Status </a>
                     </li>
-                    <li class="bg-light ps-4 sub-link">
-                        <a href="<?=site_url('Utility_Settings/view_designation');?>" class="text-black "><i class="fa fa-icon fa-plus me-1"></i> Designation</a>
+                    <li class="bg-dark ps-4 sub-link">
+                        <a href="<?=site_url('Utility_Settings/view_designation');?>" class="text-white "><i class="fa fa-icon fa-plus me-1"></i> Designation</a>
                     </li>
-                    <li class="bg-light ps-4 sub-link">
-                        <a href="<?=site_url('Utility_Settings/view_department');?>" class="text-black "><i class="fa fa-icon fa-plus me-1"></i> Department</a>
+                    <li class="bg-dark ps-4 sub-link">
+                        <a href="<?=site_url('Utility_Settings/view_department');?>" class="text-white "><i class="fa fa-icon fa-plus me-1"></i> Department</a>
                     </li>
-                    <li class="bg-light ps-4 sub-link">
-                        <a href="<?=site_url('Utility_Settings/view_office');?>" class="text-black "><i class="fa fa-icon fa-plus me-1"></i> Office</a>
+                    <li class="bg-dark ps-4 sub-link">
+                        <a href="<?=site_url('Utility_Settings/view_office');?>" class="text-white "><i class="fa fa-icon fa-plus me-1"></i> Office</a>
                     </li>
-                    <li class="bg-light ps-4 sub-link">
-                        <a href="<?=site_url('Utility_Settings/view_deduction');?>" class="text-black "><i class="fa fa-icon fa-plus me-1"></i> Deduction</a>
+                    <li class="bg-dark ps-4 sub-link">
+                        <a href="<?=site_url('Utility_Settings/view_deduction');?>" class="text-white "><i class="fa fa-icon fa-plus me-1"></i> Deduction</a>
                     </li>
-                    <li class="bg-light ps-4 sub-link">
-                        <a href="<?= site_url('Utility_Settings/view_leave');?>" class="text-black "><i class="fa fa-icon fa-plus me-1"></i> Leave</a>
+                    <li class="bg-dark ps-4 sub-link">
+                        <a href="<?= site_url('Utility_Settings/view_leave');?>" class="text-white "><i class="fa fa-icon fa-plus me-1"></i> Leave</a>
                     </li>
 
                 </ul>
             </div>
-
-  
 
             <a href="<?=site_url('Admin/logout');?>" class="list-group-item list-group-item-action lh-tight side-menu">
                 <div class="d-flex w-100 align-items-center justify-content-between">
@@ -108,8 +99,6 @@ redirect('Admin');
                     <!-- <small class="text-muted"></small> -->
                 </div>
             </a>
-
-
         </div>
     </div>
 </nav>

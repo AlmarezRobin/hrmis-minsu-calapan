@@ -112,7 +112,8 @@ defined('PREVENT_DIRECT_ACCESS') or exit('No direct script access allowed');
 
 		public function result($var2,$var1){
 			$bind = [
-				'status_of_pds'=>$var1
+				'status_of_pds'=>$var1,
+				'stat_emp_notif'=>0
 			];
 
 			return $this->db->table('pds_request_tbl')->where('user_id',$var2)->update($bind);

@@ -45,7 +45,8 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
                 <!-- title -->
                 <div class="justify-content-between align-items-center pt-1 pb-2 mb-3 border-bottom mx-2">
-                    <h5 class="h5 mt-3 mb-0 color-darkgray"> <a href="<?=site_url('Hr/view_pds_request');?>"> <i class=" fa fa-solid fa-arrow-left fa-lg"></i></a></h5>
+                    <h5 class="h5 mt-3 mb-0 color-darkgray"> <a href="<?=site_url('#');?>"> <i class=" fa fa-solid fa-arrow-left fa-lg"></i></a> Notifications</h5>
+                    
                 </div>
                 <!-- end title -->
                 <div class="container-fluid-xxl pb-2">

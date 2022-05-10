@@ -35,7 +35,7 @@ redirect('Admin');
 
             <!-- Main -->
             <!-- <main class="col-md-9 ms-sm-auto col-lg-10 px-md-2 bg-white maincontent"> -->
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-2 maincontent">
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-2">
 
                 <!-- BreadCrumb -->
                 <!-- <nav aria-label="breadcrumb" class="pt-3 mb-2 bg-white border-bottom mx-2">
@@ -167,63 +167,59 @@ redirect('Admin');
                             <!-- alert -->
 
                         </div>
-
-
                         <div class="col-md-12 p-2 float-sm-start">
 
                             <div class="card">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="card card-outline-info">
+                                            <div class="card-header">
+                                                <h4 class="m-b-0 text-dark"><i class="fa fa-user-o" aria-hidden="true"></i> Employee List</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive ">
+                                                    <!-- Table -->
+                                            <table id="example2"
+                                            class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
 
-                                <div class="card-header">
-                                    <span class="card-icon"><i class="fa fa-th"></i></span>
-                                    Students
-                                </div>
-                                <div class="card-body accordion-collapse collapse show p-0" id="collapseTable">
+                                                <thead>
+                                                    <tr>
+                                                        <td>Full Name</td>
+                                                        <td>Employment</td>
+                                                        <th>Options</th>
+                                                    </tr>
+                                                </thead>
 
-                                    <!-- Table Div -->
-                                    <div class="table-responsive m-3">
+                                                <tbody>
+                                                    <?php foreach($get_user_profile as $emp): ?>
 
-                                        <!-- Table -->
-                                        <table id="example2"
-                                            class="table table-bordered table-hover table-striped table-sm">
+                                                    <tr class="odd">
+                                                        <td><?php echo $emp['f_name' ] . ' '. $emp[ 'm_name'] . ' '. $emp[ 'l_name'] ?></td>
+                                                        <td><?php echo $emp['designation_id'] ?></td>
+                                                        <td>
+                                                            <a href="<?= site_url('hr/view_emp_profile'); ?>"><button class="btn btn-mini btn-info">View Profile</button></a>
+                                                        </td>
+                                                    </tr>
+                                                    <?php endforeach; ?>
+                                                </tbody>
 
-                                            <thead>
-                                                <tr>
-                                                    <td>Full Name</td>
-                                                    <td>Employment</td>
-                                                    <th>Options</th>
-                                                </tr>
-                                            </thead>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td>Full Name</td>
+                                                        <td>Employment</td>
+                                                        <th>Options</th>
+                                                    </tr>
+                                                </tfoot>
 
-                                            <tbody>
-                                                <?php foreach($get_user_profile as $emp): ?>
-
-                                                <tr class="odd">
-                                                    <td><?php echo $emp['f_name' ] . ' '. $emp[ 'm_name'] . ' '. $emp[ 'l_name'] ?></td>
-                                                    <td><?php echo $emp['designation_id'] ?></td>
-                                                    <td>
-                                                        <a href="<?= site_url('hr/view_emp_profile'); ?>"><button class="btn btn-mini btn-info">View Profile</button></a>
-                                                    </td>
-                                                </tr>
-                                                <?php endforeach; ?>
-                                            </tbody>
-
-                                            <tfoot>
-                                                <tr>
-                                                    <td>Full Name</td>
-                                                    <td>Employment</td>
-                                                    <th>Options</th>
-                                                </tr>
-                                            </tfoot>
-
-                                        </table>
-                                        <!-- End Table -->
-
-
+                                            </table>
+                                            <!-- End Table -->
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <!-- End Table Div -->
-
                                 </div>
-                                <!-- End Card Body -->
+
                             </div>
                             <!-- End card -->
 
@@ -282,10 +278,11 @@ redirect('Admin');
     <style>
         .dataTables_paginate>ul.pagination>li>a {
             padding: 5px;
-            background-color: #066CFB;
+            background-color: green;
             color: #fff;
             margin: 0px;
             text-decoration: none;
+            border: 1px solid;
         }
 
         .dataTables_paginate>ul.pagination>li>a:hover {

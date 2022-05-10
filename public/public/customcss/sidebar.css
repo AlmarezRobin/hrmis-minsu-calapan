@@ -57,26 +57,29 @@
     /* Height of navbar */
     /*box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);*/
     /* overflow-y: scroll; */
-    background-color: rgb(255, 255, 255); /*dating white color*/
+    /* background-color: rgb(0, 0, 0);  */
     /* background-color: rgb(212, 212, 212); */
     /*added*/
     bottom: -20px;
+
+    color:white;
 }
 
 @media (max-width: 767.98px) {
     .sidebar {
-        top: 5rem;
+        top: 0rem;
+        padding: 0 0 0;
     }
 }
 
 .top-active {
-    background-color: rgb(59, 59, 59);
+    background-color: #198754;
     color: white;
     margin-right: -1px;
 }
 
 .top-active:hover {
-    background-color: rgb(59, 59, 59);
+    background-color:#36AE7C;
     color: rgb(255, 255, 255);
 }
 
