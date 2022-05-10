@@ -386,7 +386,7 @@ class Pds_model extends Model {
 		return $this->db->table('pds_organization_membership')->where('membership_id',$id)->update($membership);
 	}
 	public function get_membership(){
-		return $this->db->table('organization_membership')->where('user_id',$this->session->userdata('pds_user_id'))->get_all();
+		return $this->db->table('pds_organization_membership')->where('user_id',$this->session->userdata('pds_user_id'))->get_all();
 	}
 	public function get_single_membership(){
 		return $this->db->table('pds_organization_membership')->where('user_id',$this->session->userdata('user_id'))->get_all();

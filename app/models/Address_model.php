@@ -20,18 +20,21 @@
            return $this->db->table('address')->insert($address);
         }
 
-        
-        public function select_birth_add($region, $province, $city, $barangay, $street, $house, $village, $zipcode)
+        public function insert_birth_address($province, $city)
         {
-            $address = array(
-                'region' => $region,
+           $address = array(
                 'province' => $province,
                 'municipality_city' => $city,
-                'barangay' => $barangay,
-                'street_sitio' => $street,
-                'house_block_lotno' => $house,
-                'subdivision_village' => $village,
-                'zipcode' => $zipcode
+           );
+           return $this->db->table('address')->insert($address);
+        }
+
+        
+        public function select_birth_add($province, $city)
+        {
+            $address = array(
+                'province' => $province,
+                'municipality_city' => $city,
            );
             return $this->db->table('address')->where($address)->get();
         }

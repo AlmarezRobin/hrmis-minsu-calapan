@@ -160,15 +160,10 @@ class Employee extends Controller {
 						->name('xname')
 						->name('dob')->required()
 
-						// * added jcd april 24, 2022
-						->name('birth-region-text')->required()
+						// * added jcd april 24, 2022 /* modified jcd may 10, 2022 */
 						->name('birth-province-text')->required()
 						->name('birth-city-text')->required()
-						->name('birth-barangay-text')->required()
-						->name('birth-street')->required()
-						->name('birth-house')->required()
-						->name('birth-village')->required()
-						->name('birth-zipcode')->required()
+						
 
 						->name('sex')->required()
 						->name('cstat')->required()
@@ -198,16 +193,17 @@ class Employee extends Controller {
 						->name('house')->required()
 						->name('village')->required()
 						->name('zipcode')->required()
+						->name('compare-add') //* added May 10,2022
 
 						// * added jcd april 24, 2022
-						->name('permanent-region-text')->required()
-						->name('permanent-province-text')->required()
-						->name('permanent-city-text')->required()
-						->name('permanent-barangay-text')->required()
-						->name('permanent-street')->required()
-						->name('permanent-house')->required()
-						->name('permanent-village')->required()
-						->name('permanent-zipcode')->required()
+						->name('permanent-region-text')
+						->name('permanent-province-text')
+						->name('permanent-city-text')
+						->name('permanent-barangay-text')
+						->name('permanent-street')
+						->name('permanent-house')
+						->name('permanent-village')
+						->name('permanent-zipcode')
 
 						->name('tnumber')->required()
 						->name('cnumber')->required();
@@ -216,15 +212,10 @@ class Employee extends Controller {
 						
 				if ($this->form_validation->run()) 
                 {
+					$same = $this->io->post('compare-add');
 					#region birth address
-					$birth_region =  strtoupper($this->io->post('birth-region-text'));
 					$birth_province =  strtoupper($this->io->post('birth-province-text'));
 					$birth_city =  strtoupper($this->io->post('birth-city-text'));
-					$birth_barangay =  strtoupper($this->io->post('birth-barangay-text'));
-					$birth_street =  strtoupper($this->io->post('birth-street'));
-					$birth_house =  strtoupper($this->io->post('birth-house'));
-					$birth_village =  strtoupper($this->io->post('birth-village'));
-					$birth_zipcode = $this->io->post('birth-zipcode');
 					#endregion
 
 					#region residential address
@@ -249,49 +240,44 @@ class Employee extends Controller {
 					$per_zipcode = $this->io->post('permanent-zipcode');
 					#endregion
 					
-					/* start change jcd april 24, 2022 */
-				  	$data['select_birth_add'] = $this->Address_model->select_birth_add($birth_region, $birth_province, $birth_city, $birth_barangay, $birth_street, $birth_house, $birth_village, $birth_zipcode);
+					/* start change jcd april 24, 2022  ** modified May 10, 2022 */
+				  	$data['select_birth_add'] = $this->Address_model->select_birth_add($birth_province, $birth_city);
 				  	$data['select_residential_add'] = $this->Address_model->select_residential_add($res_region, $res_province, $res_city, $res_barangay, $res_street, $res_house, $res_village, $res_zipcode);
 				  	$data['select_permanent_add'] = $this->Address_model->select_permanent_add($per_region, $per_province, $per_city, $per_barangay, $per_street, $per_house, $per_village, $per_zipcode);
 
 					
-					/* start change jcd april 30, 2022 */
+					/* start change jcd april 30, 2022 ** modified May 10, 2022 */
 					
 					if(empty($data['select_birth_add'])){
-						$this->Address_model->insert_address($birth_region, $birth_province, $birth_city, $birth_barangay, $birth_street, $birth_house, $birth_village, $birth_zipcode);
+						$this->Address_model->insert_birth_address($birth_province, $birth_city);
 					}
 
-					if (($res_house == 'N/A' && $res_village == 'N/A') && ($per_house == 'N/A' && $per_village == 'N/A')) {
-						if ($res_street != $per_street){
-							if(empty($data['select_residential_add'])){
-								$this->Address_model->insert_address($res_region, $res_province, $res_city, $res_barangay, $res_street, $res_house, $res_village, $res_zipcode);
-							}
-							if(empty($data['select_permanent_add'])){
-								$this->Address_model->insert_address($per_region, $per_province, $per_city, $per_barangay, $per_street, $per_house, $per_village, $per_zipcode);
-							}
-						}
-						else {
-							if(empty($data['select_permanent_add'])){
-								$this->Address_model->insert_address($per_region, $per_province, $per_city, $per_barangay, $per_street, $per_house, $per_village, $per_zipcode);
-							}
-						}
-					}
-					elseif (($res_house != $per_house)) {
-						if(empty($data['select_permanent_add'])){
-							$this->Address_model->insert_address($per_region, $per_province, $per_city, $per_barangay, $per_street, $per_house, $per_village, $per_zipcode);
-						}
+					if ($same) {
+						#region new values for permanent address
+						$per_region = $res_region;
+						$per_province = $res_province;
+						$per_city = $res_city;
+						$per_barangay = $res_barangay;
+						$per_street = $res_street;
+						$per_house = $res_house;
+						$per_village =$res_village;
+						$per_zipcode = $res_zipcode;
+						#endregion
 						if(empty($data['select_residential_add'])){
 							$this->Address_model->insert_address($res_region, $res_province, $res_city, $res_barangay, $res_street, $res_house, $res_village, $res_zipcode);
 						}
-					}
-					elseif (($res_house == $per_house)) {
-						if(empty($data['select_permanent_add'])){
+					} else {
+						if(empty($data['select_residential_add'])){
+							$this->Address_model->insert_address($res_region, $res_province, $res_city, $res_barangay, $res_street, $res_house, $res_village, $res_zipcode);
+						}
+						if(empty($data['select_residential_add'])){
 							$this->Address_model->insert_address($per_region, $per_province, $per_city, $per_barangay, $per_street, $per_house, $per_village, $per_zipcode);
 						}
 					}
-					/* end change jcd april 30, 2022 */
 					
-					$data['select_birth_add'] = $this->Address_model->select_birth_add($birth_region, $birth_province, $birth_city, $birth_barangay, $birth_street, $birth_house, $birth_village, $birth_zipcode);
+					/* end change jcd april 30, 2022 ** modified May 10, 2022 */
+					
+					$data['select_birth_add'] = $this->Address_model->select_birth_add($birth_province, $birth_city);
 				  	$data['select_residential_add'] = $this->Address_model->select_residential_add($res_region, $res_province, $res_city, $res_barangay, $res_street, $res_house, $res_village, $res_zipcode);
 				  	$data['select_permanent_add'] = $this->Address_model->select_permanent_add($per_region, $per_province, $per_city, $per_barangay, $per_street, $per_house, $per_village, $per_zipcode);
 					
@@ -320,7 +306,7 @@ class Employee extends Controller {
 									strtoupper($this->io->post('sss-no')),
 									strtoupper($this->io->post('tin-no')),
 									strtoupper($this->io->post('agency-emp-no')),
-									/* end change jcd april 24, 2022 */
+									/* end change jcd april 24, 2022 ** modified May 10, 2022 */
              
 									// added 4-16-22 rma
 									strtoupper($this->io->post('citizenship')),
