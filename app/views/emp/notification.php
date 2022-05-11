@@ -63,9 +63,9 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                         <div class="col-md-12 p-2 float-sm-start">
 
                                         <!-- Table Div -->
-                                    <div class="table-responsive m-3">
+                                    <div class="table-responsive">
                                         <!-- Table -->
-                                        <table id="example2"  class="table table-bordered table-hover table-striped table-sm">
+                                        <table class="table table-bordered table-hover table-striped ">
                                             <?php foreach($get_notif_pds as $var): ?>
 
                                             <tr class="odd">
@@ -112,12 +112,6 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
     <script src="public/chart.js/chart.js"></script>
 
     <?php require_once(APP_DIR .'views\emp\includes\footer.php'); ?>
- <!-- DATA TABES SCRIPT -->
- <script src="<?php echo BASE_URL . PUBLIC_DIR?>/public/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
-    <!-- <script src="public/plugins/DataTables-1.11.4/js/jquery.dataTables.js" type="text/javascript"></script> -->
-
-    <script src="<?php echo BASE_URL . PUBLIC_DIR?>/public/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
-    <!-- <script src="public/plugins/DataTables-1.11.4/js/dataTables.bootstrap.js" type="text/javascript"></script> -->
 
 
 

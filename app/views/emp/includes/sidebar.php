@@ -58,8 +58,8 @@
             <a href="<?=site_url('Employee/view_notif');?>" class="list-group-item list-group-item-action lh-tight side-menu mb-1">
                 <div class="d-flex w-100 align-items-center justify-content-between">
                     <div class="mb-0">
-                        <i class="fa fa-bell me-2" aria-hidden="true"></i> Notifications
-                        <span class="badge badge-pill bg-info align-text-bottom color-white"><?php echo $emp_notif_forpds['notif']?></span>
+                        <i class="fa fa-bell-o me-2" aria-hidden="true"></i> Notifications
+                        <span class="badge badge-pill bg-danger align-text-bottom color-white"><?php echo $emp_notif_forpds['notif']?></span>
                     </div>
                 </div>
             </a>
@@ -67,30 +67,24 @@
             <a href="<?=site_url('Pds/view_finished_pds');?>" class="list-group-item list-group-item-action lh-tight side-menu mb-1">
                 <div class="d-flex w-100 align-items-center justify-content-between">
                     <div class="mb-0">
-                    <i class="fa fa-user me-2" aria-hidden="true"></i> Personal Data Sheet
+                    <i class="fa fa-icon fa-file-text-o me-2" aria-hidden="true"></i> Personal Data Sheet
                     </div>
                 </div>
             </a>
 
-            <a href="#" class="list-group-item list-group-item-action lh-tight side-menu" data-bs-toggle="collapse" data-bs-target="#locator-collapse" aria-expanded="false" >
-                <div class="w-100 align-items-center justify-content-between">
+            <a href="<?=site_url('Locator');?>" class="list-group-item list-group-item-action lh-tight side-menu mb-1">
+                <div class="d-flex w-100 align-items-center justify-content-between">
                     <div class="mb-0">
-                        <i class="fa fa-icon fa-edit me-2"></i>Locator
-                        <span class="fa fa-caret-down pull-right"></span>
+                    <i class="fa fa-icon fa-map-marker me-2" aria-hidden="true"></i> Locator
                     </div>
                 </div>
             </a>
-            <div class="collapse" id="locator-collapse">
-                <ul class="btn-toggle-nav list-unstyled fw-normal medium mb-0">
-                <li class="bg-light ps-4 sub-link"><a  data-toggle="tab" class="text-dark " href="<?=site_url('Locator');?>"  > <i class="fa fa-icon fa-edit me-1"></i> New Locator Slip </a></li>
-                    <li class="bg-light ps-4 sub-link"><a  data-toggle="tab" class="text-dark " href="<?=site_url('');?>"  > <i class="fa fa-icon fa-edit me-1"></i>History</a></li>
-                </ul>
-            </div>
+
             
-            <a href="<?=site_url('Login/logout');?>" class="list-group-item list-group-item-action lh-tight side-menu mt-1">
+            <a href="<?=site_url('Login/logout');?>" class="list-group-item list-group-item-action lh-tight side-menu" onclick=" return confirm('Are you sure you want to logout this session?')">
                 <div class="d-flex w-100 align-items-center justify-content-between">
                     <div class="mb-0">
-                        <i class="fa fa-icon fa-key me-2"></i> Logout
+                        <i class="fa fa-icon fa-sign-out me-2"></i> Logout  
                     </div>
                 </div>
             </a>

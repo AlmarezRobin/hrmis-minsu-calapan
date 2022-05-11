@@ -8,9 +8,14 @@
 
 <body class="d-flex flex-column h-100">
 
-
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- topbar -->
     <?php require_once(APP_DIR . 'views/emp/includes\topbar.php'); ?>
+    <!-- end topbar -->
+      <!-- topbar -->
+      <?php require_once(APP_DIR . 'views\emp\includes\head.php'); ?>
     <!-- end topbar -->
 
     <!-- Container - Fluid -->
@@ -20,7 +25,7 @@
 
 
                 <!-- sidebar -->
-                <?php require_once(APP_DIR . 'views/emp/includes\sidebar.php'); ?>
+                <?php require_once(APP_DIR . 'views\emp\includes\sidebar.php'); ?>
                 <!-- end side bar -->
                 <!-- // * commented jcd april 23, 2022 -->
                 <!-- <button id="print" onclick="print_pds()">
@@ -37,17 +42,26 @@
                 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-2 maincontent">
 
                     <!-- title -->
-                    <div class="justify-content-between align-items-center pt-1 pb-2 mb-3 border-bottom mx-2">
+                    <div class="justify-content-between pt-1 pb-2 mb-3 border-bottom mx-2">
+
                         <h5 class="h5 mt-3 mb-0 color-darkgray"> Status: 
                             <strong>
                                 <?php if(isset($get_stat_pds['pds_id'])): ?>
-                                    <?php echo $get_stat_pds['status_of_pds']?>  
+                                    <?php  echo $get_stat_pds['status_of_pds']?>  
                                 <?php endif; ?>
                             </strong>
+
+                            <button class="btn btn-sm btn-success float-sm-end dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Actions
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" class=" ">
+                                <a class="dropdown-item" href="<?=site_url('Pds/pds_exportation');?>">Export PDS</a>
+                            </div>
                         </h5>
+
+                                
                     </div>
                     <!-- end title -->
-
 
                     <!-- container-fluid -->
                     <div class="container-fluid-xxl pb-2">

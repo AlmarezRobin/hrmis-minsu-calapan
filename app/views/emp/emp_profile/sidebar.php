@@ -132,7 +132,7 @@
                 </div>
             </a>
 
-            <a href="<?=site_url('Login/logout');?>" class="list-group-item list-group-item-action lh-tight side-menu">
+            <a href="<?=site_url('Login/logout');?>" class="list-group-item list-group-item-action lh-tight side-menu" onclick=" return confirm('Are you sure you want to logout this session?')">
                 <div class="d-flex w-100 align-items-center justify-content-between">
                     <div class="mb-0">
                         <i class="fa fa-icon fa-key me-2"></i> Logout

@@ -24,7 +24,7 @@
 
             <!-- Main -->
             <!-- <main class="col-md-9 ms-sm-auto col-lg-10 px-md-2 bg-white maincontent"> -->
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-2 maincontent">
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-2">
 
                 <!-- title -->
                 <div class="justify-content-between align-items-center pt-1 pb-2 mb-3 border-bottom mx-2">

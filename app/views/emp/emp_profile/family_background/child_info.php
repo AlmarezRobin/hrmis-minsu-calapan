@@ -23,7 +23,7 @@
 
             <!-- Main -->
             <!-- <main class="col-md-9 ms-sm-auto col-lg-10 px-md-2 bg-white maincontent"> -->
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-2 maincontent">
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-2">
 
                 <!-- title -->
                 <div class="mt-3">

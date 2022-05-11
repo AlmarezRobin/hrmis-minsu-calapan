@@ -71,7 +71,7 @@ redirect('Admin');
                                 <div class="card-header">
                                     <span class="card-icon"><i class="fa fa-th"></i></span>
                                     Employee
-                                    <a href="<?=site_url('Hr/pds_history');?>" class="btn btn-mini btn-success float-sm-end">HISTORY</a>
+                                    <a href="<?=site_url('Hr/pds_history');?>" class="btn btn-sm btn-success float-sm-end">HISTORY</a>
                                 </div>
                                 <div class="card-body accordion-collapse collapse show p-0" id="collapseTable">
 
@@ -183,7 +183,7 @@ redirect('Admin');
 
     <style>
         .dataTables_paginate>ul.pagination>li>a {
-            padding: 5px;
+            padding: 10px;
             background-color: #066CFB;
             color: #fff;
             margin: 0px;
