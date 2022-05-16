@@ -55,7 +55,7 @@
                                 Actions
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" class=" ">
-                                <a class="dropdown-item" href="<?=site_url('Pds/pds_exportation');?>">Export PDS</a>
+                                <a class="dropdown-item" href="<?=site_url('Export_PDS/pds_exportation');?>">Export PDS</a>
                             </div>
                         </h5>
 

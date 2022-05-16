@@ -1,8 +1,4 @@
-
 <?php
-
-use PhpOffice\PhpSpreadsheet\IOFactory;
-
 defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
 class Pds extends Controller {
@@ -476,63 +472,6 @@ class Pds extends Controller {
 			'emp_notif_forpds' => $this->Employee_model->emp_notif_forpds()
 		];
 		$this->call->view('emp/emp_profile/lastpage',$data);
-	}
-
-
-
-
-
-
-
-	#region for exportation of pds
-
-	public function pds_exportation()
-	{
-		$reader = IOFactory::createReader('Xlsx');
-		$spreadsheet = $reader->load('pdsForCapstone.xlsx');
-
-
-
-
-		$data['emp_profile'] = $this->Employee_model->emp_profile($this->session->userdata('user_id'));
-		$data['birth_add'] = $this->Address_model->birth_add($this->session->userdata('user_id'));
-	
-
-		$spreadsheet->getActiveSheet()
-						->setCellValue('D10', $data['emp_profile']['l_name'])
-						->setCellValue('D11', $data['emp_profile']['f_name'])
-						->setCellValue('D12', $data['emp_profile']['m_name'])
-						->setCellValue('D15', trim($data['birth_add']['municipality_city']).', ' . $data['birth_add']['province'])
-						->setCellValue('M11', $data['emp_profile']['name_ex'])
-						->setCellValue('D13', $data['emp_profile']['date_of_birth'])
-						->setCellValue('D22', $data['emp_profile']['height'])
-						->setCellValue('D24', $data['emp_profile']['weight'])
-						->setCellValue('D25', $data['emp_profile']['blood_type'])
-						->setCellValue('D27', $data['emp_profile']['gsisno'])
-						->setCellValue('D29', $data['emp_profile']['pag_ibig_no'])
-						->setCellValue('D31', $data['emp_profile']['philhealth_no'])
-						->setCellValue('D32', $data['emp_profile']['sss_no'])
-						->setCellValue('D33', $data['emp_profile']['tin_no'])
-						->setCellValue('D34', $data['emp_profile']['agency_emp_no'])
-						->setCellValue('I32', $data['emp_profile']['telephone'])
-						->setCellValue('I33', $data['emp_profile']['mobile']);
-						
-
-		
-
-		$this->export($spreadsheet);
-		
-	}
-
-	private function export($spreadsheet)
-	{
-		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-
-		header('Content-Disposition: attachment;filename=result.xlsx');
-
-		$writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
-
-		$writer->save('php://output');
 	}
 
 }

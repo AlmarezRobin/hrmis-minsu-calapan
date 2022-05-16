@@ -7,8 +7,8 @@ class Employee_model extends Model{
    }
 
    public function emp_profile($id){
-      return $this->db->table('user_profile')
-                  ->inner_join('employee_status as es', 'es.status_id = user_profile.status_id')
+      return $this->db->table('user_profile')->select("user_profile.profile_id, user_profile.user_id, user_profile.f_name, user_profile.m_name, user_profile.l_name, user_profile. name_ex, DATE_FORMAT(user_profile.date_of_birth, '%m/%d/%Y') AS date_of_birth, user_profile.sex, user_profile.civil_status, user_profile.height, user_profile. weight, user_profile.blood_type, user_profile.gsisno, user_profile.pag_ibig_no, user_profile. philhealth_no, user_profile.sss_no, user_profile.tin_no, user_profile.agency_emp_no, user_profile.citizenship, user_profile.ship_by, user_profile.citizenship_country, user_profile.telephone, user_profile.mobile, user_profile.photo, user_profile.e_sign, user_profile.salary_rate_cat, user_profile.salary_rate_amount, employee_status.status_id, employee_status.status_code, employee_status.status_desc, designation.designation_id, designation.designation_desc, designation.salary_grade, designation.salary_rate_cat, designation.salary_rate_amount, office.office_id, office.dept_id, office.office_description, office.office_description")
+                  ->inner_join('employee_status', 'employee_status.status_id = user_profile.status_id')
                   ->inner_join('office', 'office.office_id = user_profile.office_id')
                   ->inner_join('designation', 'designation.designation_id = user_profile.designation_id')->where('user_id', $id)->get();
    }

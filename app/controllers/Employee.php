@@ -577,22 +577,26 @@ class Employee extends Controller {
 									->name('level')->required()
 									->name('name')->required()
 									->name('degree')->required()
-									->name('from')
-									->name('to')->required()
+									->name('from')->numeric()
+									->name('to')->numeric()
 									->name('unit_earned')->required()
 									->name('year_grad')->required()
 									->name('honors')->required();
 									
 				if ($this->form_validation->run()) 
                 {
+					$year = '';
+					$year_grad = '';
+					$this->io->post('to') == date('Y') ? $year = 'PRESENT' : $year = $this->io->post('to');
+					$this->io->post('year_grad') === date('Y') ? $year_grad = 'PURSUING' : $year_grad = $this->io->post('year_grad');
                   $this->Pds_model->insert_educational_bg(
 									strtoupper($this->io->post('level')),
 									strtoupper($this->io->post('name')),
 									strtoupper($this->io->post('degree')),
 									strtoupper($this->io->post('from')),
-									$this->io->post('to'), 
+									$year, 
 									strtoupper($this->io->post('unit_earned')),
-									strtoupper($this->io->post('year_grad')),
+									$year_grad,
 									$this->io->post('honors')
 															 );
 									redirect('Employee/view_educational_background');
@@ -616,25 +620,29 @@ class Employee extends Controller {
 									->name('level')->required()
 									->name('name')->required()
 									->name('degree')->required()
-									->name('from')
-									->name('to')->required()
+									->name('from')->numeric()
+									->name('to')->numeric()
 									->name('unit_earned')->required()
 									->name('year_grad')->required()
 									->name('honors')->required();
 									
 				if ($this->form_validation->run()) 
                 {
-                  $this->Pds_model->update_educ_bg(
+					$year = '';
+					$year_grad = '';
+					$this->io->post('to') === date('Y') ? $year = 'PRESENT' : $year = $this->io->post('to');
+					$this->io->post('year_grad') === date('Y') ? $year_grad = 'PURSUING' : $year_grad = $this->io->post('year_grad');
+					
+					$this->Pds_model->update_educ_bg(
 									strtoupper($this->io->post('level')),
 									strtoupper($this->io->post('name')),
 									strtoupper($this->io->post('degree')),
 									strtoupper($this->io->post('from')),
-									$this->io->post('to'), 
+									$year, 
 									strtoupper($this->io->post('unit_earned')),
-									strtoupper($this->io->post('year_grad')),
+									$year_grad,
 									strtoupper($this->io->post('honors')),
-									$this->io->post('emid')
-															 );
+									$this->io->post('emid'));
 									redirect('Employee/view_educational_background');
                 }
 		}

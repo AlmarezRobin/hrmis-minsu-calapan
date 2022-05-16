@@ -134,7 +134,7 @@ class Pds_model extends Model {
 	}
 
 	public function get_educational(){
-		return $this->db->table('pds_educational_background')->where('user_id',$this->session->userdata('user_id'))->get_all();
+		return $this->db->raw("SELECT * FROM `pds_educational_background` where user_id = ? ORDER BY FIELD(level, 'ELELMENTARY', 'SECONDARY', 'VOCATIONAL/TRADE COURSE', 'COLLEGE', 'GRADUATE STUDIES')", array($this->session->userdata('user_id')));
 	}
 
 	public function update_educ_bg($level,$schoolname,$degree,$from,$to,$high_lvl_earned,$year_grad,$honors_received, $id){
@@ -153,8 +153,7 @@ class Pds_model extends Model {
 		return $this->db->table('pds_educational_background')->where('educ_id', $id)->update($bind);
 	}
 
-	public function delete_educ_bg($id)
-	{
+	public function delete_educ_bg($id){
 		return $this->db->table('pds_educational_background')->where('educ_id', $id)->delete();
 	}
 
@@ -218,7 +217,7 @@ class Pds_model extends Model {
 		return $this->db->table('pds_work_experience_tbl')->insert($bind);
 	}
 	public function get_experience(){
-		return $this->db->table('pds_work_experience_tbl')->where('user_id',$this->session->userdata('user_id'))->get_all();
+		return $this->db->table('pds_work_experience_tbl')->where('user_id',$this->session->userdata('user_id'))->order_by('_from', 'DESC')->get_all();
 	}
 
 	public function update_experience($_from,$_to,$position,$company,$monthly_salary,$salary_grade, $step_inc, $status, $government, $id){
@@ -377,7 +376,7 @@ class Pds_model extends Model {
 	#endregion
 
 	#region membership
-	public function insert_membership($name,$address, $id){
+	public function insert_membership($name,$address){
 		$membership = ['assoc_name'=>$name,'org_address'=>$address,'user_id'=>$this->session->userdata('user_id')];
 		return $this->db->table('pds_organization_membership')->insert($membership);
 	}
@@ -386,7 +385,7 @@ class Pds_model extends Model {
 		return $this->db->table('pds_organization_membership')->where('membership_id',$id)->update($membership);
 	}
 	public function get_membership(){
-		return $this->db->table('pds_organization_membership')->where('user_id',$this->session->userdata('pds_user_id'))->get_all();
+		return $this->db->table('pds_organization_membership')->where('user_id',$this->session->userdata('user_id'))->get_all();
 	}
 	public function get_single_membership(){
 		return $this->db->table('pds_organization_membership')->where('user_id',$this->session->userdata('user_id'))->get_all();
@@ -417,6 +416,15 @@ class Pds_model extends Model {
 	public function delete_references($id){
 		return $this->db->table('pds_references')->where("ref_id", $id)->delete();
 	}
+	#endregion
+
+	/* start change jcd May 15,2022 */
+	#region Government Issued ID
+	public function get_id(){
+		return $this->db->table('pds_gov_issued_id_tbl')->where('user_id',$this->session->userdata('user_id'))->get();
+	}
+	/* end change jcd May, 15, 2022 */
+
 	#endregion
 
 	#endregion other infomation

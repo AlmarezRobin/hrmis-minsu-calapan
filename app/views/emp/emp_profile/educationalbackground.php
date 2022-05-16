@@ -134,31 +134,16 @@
                                         <div class="row">
                                             <div class="col-md-12 mb-2">
                                                 <label>Level</label>
-                                                <select name="level" name="level" onChange="other();"class="form-control form-control-line">
+                                                <select name="level" id="level" name="level" onChange="other();"class="form-control form-control-line">
                                                     <option>option</option>
                                                     <option value="ELEMENTARY">ELEMENTARY</option>
                                                     <option value="SECONDARY">SECONDARY</option>
-                                                    <option value="TERTIARY">TERTIARY</option>
-                                                    <option value="ELEMENTARY">ELEMENTARY</option>
-                                                    <option value="K-12 PROGRAM">K-12 PROGRAM</option>
-                                                    <option value="VOCATIONAL">VOCATIONAL</option>
-                                                    <option value="OTHER">OTHER</option>
+                                                    <option value="VOCATIONAL/TRADE COURSE">VOCATIONAL/TRADE COURSE</option>
+                                                    <option value="COLLEGE">COLLEGE</option>
+                                                    <option value="GRADUATE STUDIES">GRADUATE STUDIES</option>
                                                 </select>
                                             </div>
-
-                                            <div class="col-md-12 mb-2">
-                                                <label>If Other</label>
-                                                <input type="text" class="form-control form-control-line" placeholder="Please Specify the level" disabled>
                                             </div>
-                                            <script type="text/javascript">
-                                                $('#level').change(function() {
-                                                    if( $(this).val() == "OTHER") {
-                                                        $('#specify').prop( "disabled", false );
-                                                    } else {       
-                                                        $('#specify').prop( "disabled", true );
-                                                    }
-                                                });
-                                            </script>
 
                                             <div class="col-md-12 mb-2">
                                                 <label>Name of School</label>
@@ -170,11 +155,11 @@
                                             </div>
                                             <div class="col-md-6 mb-2">
                                                 <label>Period of Attendace</label>
-                                                <input type="month" name ="from"class="form-control form-control-line" placeholder="From">  
+                                                <input type="text" name ="from"class="form-control form-control-line" placeholder="From: e.g. 2006">  
                                             </div>
                                             <div class="col-md-6 mb-2">
                                                 <label for=""></label>
-                                                <input type="month" name="to" class="form-control form-control-line" placeholder="To"> 
+                                                <input type="text" name="to" class="form-control form-control-line" placeholder="To: e.g. 2012"> 
                                             </div>
                                             <div class="col-md-12 mb-2">
                                                 <label>Highest Level Unit Earned</label>
@@ -188,11 +173,9 @@
                                                 <label>Scholarship/Academic honors received</label>
                                                 <input type="text" name="honors"class="form-control form-control-line" >
                                             </div>
-                                        </div>
-                                        <div class="row ">
                                             <div class="form-actions mt-2 float-sm-end col-md-12 pull-right">
-                                                <input type="hidden" name="emid" value="">
-                                                <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Insert</button>
+                                                <!-- <input type="hidden" name="emid" id="emid" value=""> -->
+                                                <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> insert</button>
                                             </div>
                                         </div>
                                     </form>
@@ -220,31 +203,15 @@
                                         <div class="row">
                                             <div class="col-md-12 mb-2">
                                                 <label>Level</label>
-                                                <select name="level" id="level" name="level" onChange="other();"class="form-control form-control-line">
+                                                <select name="level" id="level1" name="level" onChange="other();"class="form-control form-control-line">
                                                     <option>option</option>
                                                     <option value="ELEMENTARY">ELEMENTARY</option>
                                                     <option value="SECONDARY">SECONDARY</option>
-                                                    <option value="TERTIARY">TERTIARY</option>
-                                                    <option value="ELEMENTARY">ELEMENTARY</option>
-                                                    <option value="K-12 PROGRAM">K-12 PROGRAM</option>
-                                                    <option value="VOCATIONAL">VOCATIONAL</option>
-                                                    <option value="OTHER">OTHER</option>
+                                                    <option value="VOCATIONAL/TRADE COURSE">VOCATIONAL/TRADE COURSE</option>
+                                                    <option value="COLLEGE">COLLEGE</option>
+                                                    <option value="GRADUATE STUDIES">GRADUATE STUDIES</option>
                                                 </select>
                                             </div>
-
-                                            <div class="col-md-12 mb-2">
-                                                <label>If Other</label>
-                                                <input type="text" id="specify" class="form-control form-control-line" placeholder="Please Specify the level" disabled>
-                                            </div>
-                                            <script type="text/javascript">
-                                                $('#level').change(function() {
-                                                    if( $(this).val() == "OTHER") {
-                                                        $('#specify').prop( "disabled", false );
-                                                    } else {       
-                                                        $('#specify').prop( "disabled", true );
-                                                    }
-                                                });
-                                                </script>
 
                                             <div class="col-md-12 mb-2">
                                                 <label>Name of School</label>
@@ -256,11 +223,11 @@
                                             </div>
                                             <div class="col-md-6 mb-2">
                                                 <label>Period of Attendace</label>
-                                                <input type="month" id="from" name ="from"class="form-control form-control-line" placeholder="From">  
+                                                <input type="text" id="from" name ="from"class="form-control form-control-line" placeholder="From: e.g. 2006">  
                                             </div>
                                             <div class="col-md-6 mb-2">
                                                 <label for=""></label>
-                                                <input type="month" id="to" name="to" class="form-control form-control-line" placeholder="To"> 
+                                                <input type="text" id="to" name="to" class="form-control form-control-line" placeholder="To: e.g. 2012"> 
                                             </div>
                                             <div class="col-md-12 mb-2">
                                                 <label>Highest Level Unit Earned</label>
@@ -274,12 +241,13 @@
                                                 <label>Scholarship/Academic honors received</label>
                                                 <input type="text" id="honors" name="honors"class="form-control form-control-line" >
                                             </div>
-                                        </div>
-                                        <div class="row ">
                                             <div class="form-actions mt-2 float-sm-end col-md-12 pull-right">
                                                 <input type="hidden" name="emid" id="emid" value="">
                                                 <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> insert</button>
                                             </div>
+                                        </div>
+                                        <div class="row ">
+                                            
                                         </div>
                                     </form>
                                 </div>
@@ -350,7 +318,7 @@
                 console.log(data);
 
                 $('#emid').val(data[0]);
-                $('#level').val(data[1]);
+                $('#level1').val(data[1]);
                 // $('#specify').val(data[2]);
                 $('#name').val(data[2]);
                 $('#degree').val(data[3]);
