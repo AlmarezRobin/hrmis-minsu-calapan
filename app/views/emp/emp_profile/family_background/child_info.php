@@ -71,7 +71,7 @@
                                         </div>
                                         <div class="col-md-12 mb-2">
                                             <label for="f1" class="form-label">Child's Birth Date*</label>
-                                            <input type="date" class="form-control form-control-sm" name="bday" id="" required>
+                                            <input type="date" class="form-control form-control-sm" name="bday" id="">
                                         </div>
                                         
                                     </div>

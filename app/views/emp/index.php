@@ -133,7 +133,7 @@
 
                                                     <div class="row">
                                                         <div class="col-lg-3 col-md-4 label">PLACE OF BIRTH</div>
-                                                        <div class="col-lg-9 col-md-8"><?php empty($birth_add['municipality_city']) ? print 'N/A' :  print $birth_add['municipality_city'] ?> <?php empty($birth_add['province']) ? print 'N/A' : print $birth_add['province'] ?></div>
+                                                        <div class="col-lg-9 col-md-8"><?php empty($birth_add['municipality_city'])  && empty($birth_add['province']) ? print 'N/A' :  print trim($birth_add['municipality_city']).', ' . $birth_add['province']?> </div>
                                                     </div>
 
                                                     <div class="row">

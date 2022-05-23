@@ -31,8 +31,7 @@ class Pds extends Controller {
 			'get_candidacy_info'=>$this->Pds_model->get_candidacy_info(),
 			'get_immigrant_info'=>$this->Pds_model->get_immigrant_info(),
 			'get_previlage_info'=>$this->Pds_model->get_previlage_info(),
-
-
+			'get_id' => $this->Pds_model->get_id(),
 			'get_stat_pds'=>$this->Employee_model->get_stat_pds(), //para sa pagkuha ng status ng submitted pds 5422
 			'emp_notif_forpds'=> $this->Employee_model->emp_notif_forpds()
 
@@ -48,18 +47,20 @@ class Pds extends Controller {
 			'get_skills'=>$this->Pds_model->get_skills(),
 			'get_distinctions'=> $this->Pds_model->get_distinctions(),
 			'get_membership'=> $this->Pds_model->get_membership(),
+			'get_id' => $this->Pds_model->get_id(),
 			'get_ref'=>$this->Pds_model->get_ref(),
 			'emp_notif_forpds' => $this->Employee_model->emp_notif_forpds()
 		];
 		$this->checkpass(); // * jcd april 21, 2022
 		$this->call->view('emp/emp_profile/otherinformation',$data);
 	}
+
 	#region for special skills
 	public function insert_skill(){
 		if ($this->form_validation->submitted()) {
 			$this->form_validation->name('skill');
 			if ($this->form_validation->run()) {
-				$this->Pds_model->insert_skills($this->io->post('skill'));
+				$this->Pds_model->insert_skills(strtoupper($this->io->post('skill')));
 				redirect('Pds/view_other_information');
 			}
 		}
@@ -69,7 +70,7 @@ class Pds extends Controller {
 		if ($this->form_validation->submitted()) {
 			$this->form_validation->name('skill');
 			if ($this->form_validation->run()) {
-				$this->Pds_model->update_skills($this->io->post('sps_id'),$this->io->post('skill'));
+				$this->Pds_model->update_skills($this->io->post('sps_id'),strtoupper($this->io->post('skill')));
 				redirect('Pds/view_other_information');
 			}
 		}
@@ -92,7 +93,7 @@ class Pds extends Controller {
 			$this->form_validation->name('distinction');
 			if ($this->form_validation->run()) 
 			{
-				$this->Pds_model->insert_distinctions($this->io->post('distinction'));
+				$this->Pds_model->insert_distinctions(strtoupper($this->io->post('distinction')));
 				redirect('Pds/view_other_information');
 			}
 		}
@@ -103,7 +104,7 @@ class Pds extends Controller {
 			$this->form_validation->name('distinction');
 			if ($this->form_validation->run()) 
 			{
-				$this->Pds_model->update_distinctions($this->io->post('distinction'), $this->io->post('recognition_id'));
+				$this->Pds_model->update_distinctions(strtoupper($this->io->post('distinction')), $this->io->post('recognition_id'));
 				redirect('Pds/view_other_information');
 			}
 		}
@@ -118,14 +119,14 @@ class Pds extends Controller {
 	#endregion
 
 
-
+	#region membership
 	public function insert_membership(){
 		if ($this->form_validation->submitted()) 
 		{
-			$this->form_validation->name('name')->name('add');
+			$this->form_validation->name('name');
 			if ($this->form_validation->run()) 
 			{
-				$this->Pds_model->insert_membership($this->io->post('name'),$this->io->post('add'));
+				$this->Pds_model->insert_membership(strtoupper($this->io->post('name')));
 				redirect('Pds/view_other_information');
 			}
 		}
@@ -133,10 +134,10 @@ class Pds extends Controller {
 	public function update_membership(){
 		if ($this->form_validation->submitted()) 
 		{
-			$this->form_validation->name('name')->name('add');
+			$this->form_validation->name('name');
 			if ($this->form_validation->run()) 
 			{
-				$this->Pds_model->update_membership(strtoupper($this->io->post('name')),$this->io->post('add'), $this->io->post('org_id'));
+				$this->Pds_model->update_membership(strtoupper($this->io->post('name')),$this->io->post('org_id'));
 				redirect('Pds/view_other_information');
 			}
 		}
@@ -149,7 +150,62 @@ class Pds extends Controller {
 			exit();
 		}
 	}
+	#endregion
+	
+	
+	#region gov issued id
+	public function insert_id()
+	{
+		if ($this->form_validation->submitted()) {
+			$this->form_validation
+				->name('id-desc')->required()
+				->name('id-num')->required()
+				->name('date-issued')->required()
+				->name('place-issued')->required();
+			if ($this->form_validation->run()) {
+				$idDesc = strtoupper($this->io->post('id-desc'));
+				$idNum = strtoupper($this->io->post('id-num'));
+				$date = $this->io->post('date-issued');
+				$place = strtoupper($this->io->post('place-issued'));
+				if ($this->Pds_model->insert_id($idDesc, $idNum, $date, $place)) {
+					redirect('Pds/view_other_information');
+				}
+			}
+		}
+	}
 
+	public function update_gov_id()
+	{
+		if ($this->form_validation->submitted()) {
+			$this->form_validation
+				->name('id-desc')->required()
+				->name('id-num')->required()
+				->name('date-issued')->required()
+				->name('place-issued')->required()
+				->name('pk-id')->required();
+			if ($this->form_validation->run()) {
+				$idDesc = strtoupper($this->io->post('id-desc'));
+				$idNum = strtoupper($this->io->post('id-num'));
+				$date = $this->io->post('date-issued');
+				$place = strtoupper($this->io->post('place-issued'));
+				$gid = $this->io->post('pk-id');
+				if ($this->Pds_model->update_id($idDesc, $idNum, $date, $place, $gid)) {
+					redirect('Pds/view_other_information');
+				}
+			}
+		}
+	}
+
+
+	public function delete_id()
+	{
+		if($this->form_validation->run()) {
+			if ($this->Pds_model->delete_id($this->io->post('gov-issued-id'))) {
+				redirect('Pds/view_other_information');
+			}
+		}
+	}
+	#endregion
 
 	#region for references
 	public function insert_references(){
@@ -158,7 +214,7 @@ class Pds extends Controller {
 			$this->form_validation->name('fname')->name('mname')->name('lname')->name('add')->name('tel');
 			if ($this->form_validation->run()) 
 			{
-				$this->Pds_model->insert_references($this->io->post('fname'),$this->io->post('mname'),$this->io->post('lname'),$this->io->post('add'),$this->io->post('tel'));
+				$this->Pds_model->insert_references(strtoupper($this->io->post('fname')),strtoupper($this->io->post('mname')),strtoupper($this->io->post('lname')),strtoupper($this->io->post('add')),$this->io->post('tel'));
 				redirect('Pds/view_other_information');
 			}
 		}
@@ -169,14 +225,14 @@ class Pds extends Controller {
 			$this->form_validation->name('fname')->name('mname')->name('lname')->name('add')->name('tel');
 			if ($this->form_validation->run()) 
 			{
-				$this->Pds_model->update_references($this->io->post('fname'),$this->io->post('mname'),$this->io->post('lname'),$this->io->post('add'),$this->io->post('tel'),$this->io->post('ref_id'));
+				$this->Pds_model->update_references(strtoupper($this->io->post('fname')),strtoupper($this->io->post('mname')),strtoupper($this->io->post('lname')),strtoupper($this->io->post('add')),$this->io->post('tel'),$this->io->post('ref_id'));
 				redirect('Pds/view_other_information');
 			}
 		}
 	}
 	public function delete_references(){
 		if ($this->form_validation->run()) {
-			$this->Pds_model->delete_references($this->io->post('references_id'));
+			$this->Pds_model->delete_references($this->io->post('ref_id'));
 			redirect('Pds/view_other_information');
 			exit();
 		}
@@ -457,8 +513,8 @@ class Pds extends Controller {
 			}
 		}
 	}
-
 	#endregion
+
 	public function view_lastpage(){
 
 		$data = [

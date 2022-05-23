@@ -2,13 +2,22 @@
 defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
+use PhpOffice\PhpSpreadsheet\Style\Alignment;
 class Export_PDS extends Controller {
+
+	/* start change jcd May 19, 2022 */
+	public function __construct() {
+		parent::__construct();
+
+		$this->call->model('Export_PDS_model', 'exPDS');
+	}
+	/* end change jcd May 19, 2022 */
+
 	/* start change jcd May 15, 2022 */
     public function pds_exportation(){
 		$reader = IOFactory::createReader('Xlsx');
 		$spreadsheet = $reader->load('D:\Desktop\Second Sem\3 ITP321 Capstone Project 1\Caspstone Project\pdsForCapstone.xlsx');
 		$spreadsheet->setActiveSheetIndex(0);
-		$this->checkbox($spreadsheet, 10, 2, 'M14');
         $this->personal_info($spreadsheet);
         $this->pds_child($spreadsheet);
         $this->pds_educbg($spreadsheet);
@@ -27,15 +36,24 @@ class Export_PDS extends Controller {
 		$this->orgMembership($spreadsheet);
 
 		$spreadsheet->setActiveSheetIndex(3);
+		$this->relative_info($spreadsheet);
+		$this->violation_info($spreadsheet);
+		$this->conviction_info($spreadsheet);
+		$this->separation_info($spreadsheet);
+		$this->candidacy_info($spreadsheet);
+		$this->immigrant_info($spreadsheet);
+		$this->previlege_info($spreadsheet);
 		$this->references($spreadsheet);
 		$this->govID($spreadsheet);
+		$this->photo($spreadsheet, -33, -62, 'L53');
+
 
 		$spreadsheet->setActiveSheetIndex(0);
         $this->export($spreadsheet);
 	}
 	
     private function personal_info($spreadsheet){
-        $data['emp_profile'] = $this->Employee_model->emp_profile($this->session->userdata('user_id'));
+        $data['emp_profile'] = $this->exPDS->emp_profile($this->session->userdata('user_id'));
 		$data['birth_add'] = $this->Address_model->birth_add($this->session->userdata('user_id'));
 		$data['get_spouse_info'] = $this->Pds_model->get_spouse_info();
 		$data['get_father_info'] = $this->Pds_model->get_father_info();
@@ -70,12 +88,41 @@ class Export_PDS extends Controller {
 			->setCellValue('D44', $data['get_father_info']['father_fname'])
 			->setCellValue('D45', $data['get_father_info']['father_mname'])
 			->setCellValue('H44', $data['get_father_info']['father_ex'])
-			->setCellValue('D46', trim($data['get_mother_info']['maiden_lname']) . ' ' . trim($data['get_mother_info']['maiden_fname']) . ' ' . trim($data['get_mother_info']['maiden_mname']))
+			->setCellValue('D46', trim($data['get_mother_info']['maiden_fname']) . ' ' . trim($data['get_mother_info']['maiden_mname']) . ' ' . trim($data['get_mother_info']['maiden_lname']))
 			->setCellValue('D47', $data['get_mother_info']['lname'])
 			->setCellValue('D48', $data['get_mother_info']['maiden_fname'])
 			->setCellValue('D49', $data['get_mother_info']['maiden_lname'])
 			->setCellValue('I34', $this->session->userdata('email'))
 			->setCellValue('L60', date('m/d/Y'));
+
+		/* start change jcd May 17, 2022 */
+		$data['emp_profile']['sex'] === 'MALE' ? $this->checkbox($spreadsheet, 16, 8, 'D16') : $this->checkbox($spreadsheet, 5, 8, 'E16');
+
+		switch ($data['emp_profile']['civil_status']) {
+			case 'SINGLE': $this->checkbox($spreadsheet, 15, 3, 'D17'); break;
+			case 'MARRIED': $this->checkbox($spreadsheet, 5, 2, 'E17'); break;
+			case 'WIDOWED': $this->checkbox($spreadsheet, 15, -2, 'D18'); break;
+			case 'SEPARATED': $this->checkbox($spreadsheet, 5, -2, 'E18'); break;
+			default: $this->checkbox($spreadsheet, 15, 3, 'D19'); break;
+		}
+		
+		$data['emp_profile']['citizenship'] === 'FILIPINO' ? $this->checkbox($spreadsheet, 9, 10, 'J13') : $this->checkbox($spreadsheet, 8, 11, 'L13');
+		
+		if ($data['emp_profile']['citizenship'] === 'DUAL CITIZENSHIP') {
+			$spreadsheet->getActiveSheet()
+			->setCellValue('J16', $data['emp_profile']['citizenship_country']);
+			switch ($data['emp_profile']['ship_by']) {
+				case 'BY BIRTH': $this->checkbox($spreadsheet, 34, 3, 'L14'); break;
+				case 'BY NATURALIZATION': $this->checkbox($spreadsheet, 10, 2, 'M14'); break;
+				
+			}
+		}
+		else {
+			$spreadsheet->getActiveSheet()
+			->setCellValue('J16', $data['emp_profile']['citizenship_country']);
+		}
+		/* end change jcd May 17, 2022 */
+
     }
 
     private function resAdd($spreadsheet){
@@ -104,13 +151,33 @@ class Export_PDS extends Controller {
     }
 
     private function pds_child($spreadsheet, $currentRow = 37){
-		$data['get_all_child'] = $this->Pds_model->get_all_child();
+		$data['get_all_child'] = $this->exPDS->get_all_child();
+		$align = new Alignment();
         foreach($data['get_all_child'] as $child){
-			$spreadsheet->getActiveSheet()
-				->setCellValue('I'.$currentRow, trim($child['lname']). ' ' . trim($child['fname']). ' ' . trim($child['xname']).'. ' . trim($child['mname']))
+			if (($child['lname'] === 'N/A') && ($child['fname'] === 'N/A')){
+				$spreadsheet->getActiveSheet()
+							->getStyle('I37:M37')
+								->getAlignment()
+								->setHorizontal($align::HORIZONTAL_CENTER);
+				$spreadsheet->getActiveSheet()
+					->setCellValue('I37', 'N/A')
+					->setCellValue('M37', 'N/A');
+			}
+			elseif($child['xname'] === 'N/A'){
+				$spreadsheet->getActiveSheet()
+				->setCellValue('I'.$currentRow, trim($child['lname']). ' ' . trim($child['fname']).'. ' . trim($child['mname']))
 				->setCellValue('M'.$currentRow, $child['bday']);
 
-			$currentRow++;
+				$currentRow++;
+			}
+			else {
+				$spreadsheet->getActiveSheet()
+				->setCellValue('I'.$currentRow, trim($child['lname']). ' ' . trim($child['fname']). ' ' . trim($child['xname']). ' ' . trim($child['mname']))
+				->setCellValue('M'.$currentRow, $child['bday']);
+
+				$currentRow++;
+			}
+			
 		}
     }
 
@@ -131,8 +198,22 @@ class Export_PDS extends Controller {
     }
 
 	private function csEligiblity($spreadsheet, $currentRow = 5){
-		$data['get_eligibility'] = $this->Pds_model->get_eligibility();
+		$data['get_eligibility'] = $this->exPDS->get_eligibility();
+		$align = new Alignment();
 		foreach($data['get_eligibility'] as $eligiblity){
+			if ($eligiblity['service'] === 'N/A') {
+				$spreadsheet->getActiveSheet()
+							->getStyle('A5:M5')
+								->getAlignment()
+								->setHorizontal($align::HORIZONTAL_CENTER);
+				$spreadsheet->getActiveSheet()
+				->setCellValue('A5', 'N/A')
+				->setCellValue('F5', 'N/A')
+				->setCellValue('G5', 'N/A')
+				->setCellValue('I5', 'N/A')
+				->setCellValue('L5', 'N/A')
+				->setCellValue('M5', 'N/A');
+			}
 			$spreadsheet->getActiveSheet()
 				->setCellValue('A'.$currentRow, $eligiblity['service'] )
 				->setCellValue('F'.$currentRow, $eligiblity['rating'])
@@ -148,8 +229,24 @@ class Export_PDS extends Controller {
 	}
 
 	private function workExp($spreadsheet, $currentRow = 18){
-		$data['get_experience'] = $this->Pds_model->get_experience();
+		$data['get_experience'] = $this->exPDS->get_experience();
+		$align = new Alignment();
 		foreach($data['get_experience'] as $exp){
+			if ($exp['_from']) {
+				$spreadsheet->getActiveSheet()
+							->getStyle('A18:M18')
+								->getAlignment()
+								->setHorizontal($align::HORIZONTAL_CENTER);
+				$spreadsheet->getActiveSheet()
+					->setCellValue('A18','N/A')
+					->setCellValue('C18','N/A')
+					->setCellValue('D18','N/A')
+					->setCellValue('G18','N/A')
+					->setCellValue('J18','N/A')
+					->setCellValue('K18','N/A')
+					->setCellValue('L18','N/A')
+					->setCellValue('M18','N/A');
+			}
 			$spreadsheet->getActiveSheet()
 				->setCellValue('A'.$currentRow, $exp['_from'] )
 				->setCellValue('C'.$currentRow, $exp['_to'])
@@ -165,10 +262,23 @@ class Export_PDS extends Controller {
 	}
 
 	private function volWork($spreadsheet, $currentRow = 6){
-		$data['get_voluntary'] = $this->Pds_model->get_voluntary();
+		$data['get_voluntary'] = $this->exPDS->get_voluntary();
+		$align = new Alignment();
 		foreach($data['get_voluntary'] as $vol){
+			if ($vol['_from'] === 'N/A') {
+				$spreadsheet->getActiveSheet()
+							->getStyle('A6:H6')
+								->getAlignment()
+								->setHorizontal($align::HORIZONTAL_CENTER);
+				$spreadsheet->getActiveSheet()
+					->setCellValue('A6','N/A')
+					->setCellValue('E6','N/A')
+					->setCellValue('F6','N/A')
+					->setCellValue('G6','N/A')
+					->setCellValue('H6','N/A');
+			}
 			$spreadsheet->getActiveSheet()
-				->setCellValue('A'.$currentRow, $vol['name'] . ' ' . $vol['org_address'])
+				->setCellValue('A'.$currentRow, $vol['name'] . ' ' . $vol['barangay'] . ', ' . $vol['municipality_city'])
 				->setCellValue('E'.$currentRow, $vol['_from'])
 				->setCellValue('F'.$currentRow, $vol['_to'] )
 				->setCellValue('G'.$currentRow, $vol['hours'])
@@ -179,8 +289,23 @@ class Export_PDS extends Controller {
 	}
 	
 	private function learningIntervention($spreadsheet, $currentRow = 18){
-		$data['get_trainings'] = $this->Pds_model->get_trainings();
+		$data['get_trainings'] = $this->exPDS->get_trainings();
+		$align = new Alignment();
+		
 		foreach($data['get_trainings'] as $train){
+			if ($train['title'] === 'N/A') {
+				$spreadsheet->getActiveSheet()
+								->getStyle('A18:I18')
+									->getAlignment()
+									->setHorizontal($align::HORIZONTAL_CENTER);
+				$spreadsheet->getActiveSheet()
+					->setCellValue('A18', 'N/A')
+					->setCellValue('E18', 'N/A')
+					->setCellValue('F18', 'N/A')
+					->setCellValue('G18', 'N/A')
+					->setCellValue('H18', 'N/A')
+					->setCellValue('I18', 'N/A');
+			}
 			$spreadsheet->getActiveSheet()
 				->setCellValue('A'.$currentRow, $train['title'])
 				->setCellValue('E'.$currentRow,  $train['_from'])
@@ -195,7 +320,16 @@ class Export_PDS extends Controller {
 
 	private function skills($spreadsheet, $currentRow = 42){
 		$data['get_skills'] = $this->Pds_model->get_skills();
+		$align = new Alignment();
 		foreach($data['get_skills'] as $skill){
+			if ($skill['special_skill'] === 'N/A') {
+				$spreadsheet->getActiveSheet()
+								->getStyle('A42')
+									->getAlignment()
+									->setHorizontal($align::HORIZONTAL_CENTER);
+				$spreadsheet->getActiveSheet()
+					->setCellValue('A42','N/A');
+			}
 			$spreadsheet->getActiveSheet()
 				->setCellValue('A'.$currentRow, $skill['special_skill'] );
 			$currentRow++;
@@ -206,7 +340,16 @@ class Export_PDS extends Controller {
 
 	private function acadRecog($spreadsheet, $currentRow = 42){
 		$data['get_distinctions'] = $this->Pds_model->get_distinctions();
+		$align = new Alignment();
 		foreach($data['get_distinctions'] as $recog){
+			if ($recog['award_desc'] === 'N/A') {
+				$spreadsheet->getActiveSheet()
+								->getStyle('C42')
+									->getAlignment()
+									->setHorizontal($align::HORIZONTAL_CENTER);
+				$spreadsheet->getActiveSheet()
+					->setCellValue('C42','N/A');
+			}
 			$spreadsheet->getActiveSheet()
 				->setCellValue('C'.$currentRow, $recog['award_desc'] );
 			$currentRow++;
@@ -215,30 +358,152 @@ class Export_PDS extends Controller {
 
 	private function orgMembership($spreadsheet, $currentRow = 42){
 		$data['get_membership'] = $this->Pds_model->get_membership();
+		$align = new Alignment();
 		foreach($data['get_membership'] as $member){
+			if ($member['assoc_name'] === 'N/A') {
+				$spreadsheet->getActiveSheet()
+								->getStyle('I42')
+									->getAlignment()
+									->setHorizontal($align::HORIZONTAL_CENTER);
+				$spreadsheet->getActiveSheet()
+					->setCellValue('I42','N/A');
+			}
 			$spreadsheet->getActiveSheet()
 				->setCellValue('I'.$currentRow, $member['assoc_name']);
 			$currentRow++;
 		}
 	}
-	
+
+	private function relative_info($spreadsheet){
+		$data['get_rel_info'] = $this->Pds_model->get_rel_info();
+
+		$data['get_rel_info']['third_degree'] === 'YES' ? $this->checkbox($spreadsheet, 20, 2, 'G6') : $this->checkbox($spreadsheet, 23, 3, 'I6');
+
+		$data['get_rel_info']['fourth_degree'] === 'YES' ? $this->checkbox($spreadsheet, 20, 4, 'G8') : $this->checkbox($spreadsheet, 25, 4, 'I8');
+
+		if (($data['get_rel_info']['third_degree'] === 'YES' && $data['get_rel_info']['fourth_degree'] === 'YES') || ($data['get_rel_info']['third_degree'] === 'YES' || $data['get_rel_info']['fourth_degree'] === 'YES')) {
+			$spreadsheet->getActiveSheet()
+				->setCellValue('H11', $data['get_rel_info']['relative_details']);
+		}
+	}
+
+	private function violation_info($spreadsheet){
+		$data['get_violation_info'] = $this->Pds_model->get_violation_info();
+
+		$data['get_violation_info']['admin_offense'] === 'YES' ? $this->checkbox($spreadsheet, 20, 5, 'G13') : $this->checkbox($spreadsheet, 33, 6, 'I13');
+
+		if ($data['get_violation_info']['admin_offense'] === 'YES') {
+			$spreadsheet->getActiveSheet()
+				->setCellValue('H15', $data['get_violation_info']['offense_desc']);
+		}
+
+		$data['get_violation_info']['criminal_charged'] === 'YES' ? $this->checkbox($spreadsheet, 20, 2, 'G18') : $this->checkbox($spreadsheet, 27, 2, 'I18');
+		
+		if ($data['get_violation_info']['criminal_charged'] === 'YES') {
+			$spreadsheet->getActiveSheet()
+				->setCellValue('K19', $data['get_violation_info']['crime_details'])
+				->setCellValue('K20', $data['get_violation_info']['date_crime_filed'])
+				->setCellValue('K21', $data['get_violation_info']['criminal_case_status']);
+		}
+	}
+
+	private function conviction_info($spreadsheet){
+		$data['get_conviction_info'] = $this->Pds_model->get_conviction_info();
+
+		$data['get_conviction_info']['convicted'] === 'YES' ? $this->checkbox($spreadsheet, 20, 5, 'G23') : $this->checkbox($spreadsheet, 4, 6, 'J23');
+		
+		if ($data['get_conviction_info']['convicted'] === 'YES') {
+			$spreadsheet->getActiveSheet()
+				->setCellValue('H25', $data['get_conviction_info']['conviction_details']);
+		}
+	}
+
+	private function separation_info($spreadsheet){
+		$data['get_separation_info'] = $this->Pds_model->get_separation_info();
+
+		$data['get_separation_info']['separated_from_service'] === 'YES' ? $this->checkbox($spreadsheet, 20, 3, 'G27') : $this->checkbox($spreadsheet, 1, 5, 'J27');
+		
+		if ($data['get_separation_info']['separated_from_service'] === 'YES') {
+			$spreadsheet->getActiveSheet()
+				->setCellValue('H29', $data['get_separation_info']['separation_desc']);
+		}
+	}
+
+	private function candidacy_info($spreadsheet){
+		$data['get_candidacy_info'] = $this->Pds_model->get_candidacy_info();
+
+		$data['get_candidacy_info']['political_candidate'] === 'YES' ? $this->checkbox($spreadsheet, 21, 6, 'G31') : $this->checkbox($spreadsheet, 1, 5, 'J31');
+
+		if ($data['get_candidacy_info']['political_candidate'] === 'YES') {
+			$spreadsheet->getActiveSheet()
+				->setCellValue('K32', $data['get_candidacy_info']['candidacy_details']);
+		}
+
+		$data['get_candidacy_info']['resigned_frm_gov'] === 'YES' ? $this->checkbox($spreadsheet, 22, 3, 'G34') : $this->checkbox($spreadsheet, 1, 3, 'J34');
+
+		if ($data['get_candidacy_info']['resigned_frm_gov'] === 'YES') {
+			$spreadsheet->getActiveSheet()
+				->setCellValue('K35', $data['get_candidacy_info']['resignation_desc']);
+		}
+	}
+
+	private function immigrant_info($spreadsheet){
+		$data['get_immigrant_info'] = $this->Pds_model->get_immigrant_info();
+
+		$data['get_immigrant_info']['foreign_residency'] === 'YES' ? $this->checkbox($spreadsheet, 22, 5, 'G37') : $this->checkbox($spreadsheet, 1, 5, 'J37');
+
+		if ($data['get_immigrant_info']['foreign_residency'] === 'YES') {
+			$spreadsheet->getActiveSheet()
+				->setCellValue('H39', $data['get_immigrant_info']['residency_details']);
+		}
+	}
+
+	private function previlege_info($spreadsheet){
+		$data['get_previlage_info'] = $this->Pds_model->get_previlage_info();
+		
+		$data['get_previlage_info']['member_of_ig'] === 'YES' ? $this->checkbox($spreadsheet, 22, 2, 'G43') : $this->checkbox($spreadsheet, 1, 3, 'J43');
+
+		if ($data['get_previlage_info']['member_of_ig'] === 'YES') {
+			$spreadsheet->getActiveSheet()
+				->setCellValue('L44', $data['get_previlage_info']['ig_desc']);
+		}
+
+		$data['get_previlage_info']['pwd'] === 'YES' ? $this->checkbox($spreadsheet, 22, 2, 'G45') : $this->checkbox($spreadsheet, 1, 2, 'J45');
+
+		if ($data['get_previlage_info']['pwd'] === 'YES') {
+			$spreadsheet->getActiveSheet()
+				->setCellValue('L46', $data['get_previlage_info']['pwd_id_no']);
+		}
+		
+		$data['get_previlage_info']['solo_parent'] === 'YES' ? $this->checkbox($spreadsheet, 22, 2, 'G47') : $this->checkbox($spreadsheet, 1, 2, 'J47');
+
+		if ($data['get_previlage_info']['solo_parent'] === 'YES') {
+			$spreadsheet->getActiveSheet()
+				->setCellValue('L48', $data['get_previlage_info']['solo_parent_id_number']);
+		}
+
+
+	}
+
 	private function references($spreadsheet, $currentRow = 52){
 		$data['get_ref'] = $this->Pds_model->get_ref();
 		foreach($data['get_ref'] as $reference){
 			$spreadsheet->getActiveSheet()
-				->setCellValue('A'.$currentRow, $reference['ref_fname'])
-				->setCellValue('F'.$currentRow, $reference['ref_mname'])
-				->setCellValue('G'.$currentRow, $reference['ref_lname']);
+				->setCellValue('A'.$currentRow, $reference['ref_fname'] . ' ' . $reference['ref_mname'] . ' ' . $reference['ref_lname'])
+				->setCellValue('F'.$currentRow, trim($reference['barangay']). ', ' . $reference['municipality_city'])
+				->setCellValue('G'.$currentRow, $reference['ref_telno']);
 			$currentRow++;
 		}
+		$spreadsheet->getActiveSheet()
+				->setCellValue('F64', date('m/d/Y'));
 	}
 	
 	private function govID($spreadsheet){
-		$data['get_id'] = $this->Pds_model->get_id();
+		$data['get_id'] = $this->exPDS->get_id();
 		$spreadsheet->getActiveSheet()
 			->setCellValue('D61', $data['get_id']['id_desc'])
 			->setCellValue('D62', $data['get_id']['idno'])
-			->setCellValue('D64', $data['get_id']['date_issued']);
+			->setCellValue('D64', $data['get_id']['date_issued'] . '/' . $data['get_id']['place_issued']);
 
 	}
 
@@ -261,6 +526,17 @@ class Export_PDS extends Controller {
 		$checked->setOffsetY($offsetY); 
 		$checked->setCoordinates($coordinate); 
 		$checked->setWorksheet($spreadsheet->getActiveSheet());
+		
+	}
+
+	private function photo($spreadsheet, $offsetX, $offsetY, $coordinate, $height = 171, $path = 'D:\Desktop\Second Sem\3 ITP321 Capstone Project 1\Caspstone Project\Checkboxes\SIR RED.jpg'){
+		$photo = new Drawing();
+		$photo->setPath($path);
+		$photo->setHeight($height); 
+		$photo->setOffsetX($offsetX); 
+		$photo->setOffsetY($offsetY); 
+		$photo->setCoordinates($coordinate); 
+		$photo->setWorksheet($spreadsheet->getActiveSheet());
 		
 	}
 
