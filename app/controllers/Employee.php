@@ -34,7 +34,9 @@ class Employee extends Controller {
 	#region start uploading profile picture rma 4/7/2022
 
 	public function view_upload(){
-		$data['emp_profile'] = $this->Employee_model->emp_profile($this->session->userdata('user_id'));
+		$data = [
+			'emp_profile' => $this->Employee_model->emp_profile($this->session->userdata('user_id')),'emp_notif_forpds'=> $this->Employee_model->emp_notif_forpds()
+		] ;
 		$this->call->view('emp/fileupload/photo',$data);
 	}
 
@@ -212,7 +214,8 @@ class Employee extends Controller {
 						
 				if ($this->form_validation->run()) 
                 {
-					$same = $this->io->post('compare-add');
+					$same = NULL;
+					$this->io->post('compare-add') ? $same = $this->io->post('compare-add') : $same = 0;
 					#region birth address
 					$birth_province =  strtoupper($this->io->post('birth-province-text'));
 					$birth_city =  strtoupper($this->io->post('birth-city-text'));
@@ -983,7 +986,7 @@ class Employee extends Controller {
 
 
 
-
+	#region change pass
 
 	public function view_change_password(){
 		$data['emp_notif_forpds'] = $this->Employee_model->emp_notif_forpds();
@@ -1005,7 +1008,7 @@ class Employee extends Controller {
 	}
 
 
-
+	#endregion
 
 
 
@@ -1130,13 +1133,6 @@ class Employee extends Controller {
 	}
 
 	
-
-
-
-
-
-
-
 
 
 

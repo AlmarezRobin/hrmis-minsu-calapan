@@ -71,12 +71,12 @@
                                                             <label for="nameex" class="form-label">Name extension </label>
                                                             <input type="text" class="form-control" name="xname" id="nameex" placeholder="" maxlength="3" size="3" data-toggle="tooltip" data-placement="right" title="Name Extension" value="<?= $emp_profile['name_ex'] ?>">
                                                         </div>
-
+                                                        
                                                         <div class="form-group col-md-4 m-t-10">
                                                             <label class="form-label">Date Of Birth </label>
-                                                            <input type="date" id="" name="dob" class="form-control" placeholder="" required value="<?= $emp_profile['date_of_birth'] ?>">
+                                                            <input type="date" id="" name="dob" class="form-control" placeholder="">
                                                         </div>
-
+                                                       
                                                         <!-- /* start change jcd April 23, 2022 */ -->
 
                                                         <!-- Birth Address  -->
@@ -125,12 +125,12 @@
                                                                 <option value="single">Single</option>
                                                                 <option value="married">Married</option>
                                                                 <option value="seperated">Separated</option>
-                                                                <option value="widower">Widow/er</option>
+                                                                <option value="widowed">Widowed</option>
                                                             </select>
                                                         </div>
 
                                                         <div class="form-group col-md-4 m-t-10">
-                                                            <label for="nameex" class="form-label">Height </label>
+                                                            <label or="nameex" class="form-label">Height </label>
                                                             <input type="text" class="form-control" name="height" id="height" placeholder="" maxlength="3" size="3" data-toggle="tooltip" data-placement="right" title="Name Extension" value="<?= $emp_profile['height'] ?>">
                                                         </div>
 
@@ -189,7 +189,7 @@
                                                         <div class="form-group col-md-4 m-t-10">
                                                             <label for="" class="form-label">Dual Citizenship by: </label>
                                                             <select name="dualby" id="dualby" class="form-control" onchange='enable()'>
-                                                                <option value="<?= $emp_profile['ship_by'] ?>"><?= $emp_profile['ship_by'] ?></option>
+                                                                <option><?= $emp_profile['ship_by'] ?></option>
                                                                 <option value="N/A">N/A</option>
                                                                 <option value="BY BIRTH" id="by-birth">BY BIRTH</option>
                                                                 <option value="BY NATURALIZATION" id="naturalization">BY NATURALIZATION</option>
@@ -213,112 +213,121 @@
                                                         <!-- Residential Address -->
                                                         <p class="h6 mt-4 fw-bold"> Resdential Address</p>
                                                         <?php if(empty($residential_add['address_id'])): ?>
-                                                        <div class="form-group col-md-4 m-t-10">
-                                                            <label for="" class="form-label">Region*</label>
-                                                            <select name="region" id="region" class="form-control">
-                                                            </select>
-                                                            <input type="hidden" class="form-control form-control-md" name="region-text" id="region-text" required>
-                                                        </div>
+                                                            <div class="form-group col-md-4 m-t-10">
+                                                                <label for="" class="form-label">Region*</label>
+                                                                <select name="region" id="region" class="form-control">
+                                                                </select>
+                                                                <input type="hidden" class="form-control form-control-md" name="region-text" id="region-text" required>
+                                                            </div>
 
-                                                        <div class="form-group col-md-4 m-t-10">
-                                                            <label for="" class="form-label">Province*</label>
-                                                            <select name="province" id="province" class="form-control">
-                                                            </select>
-                                                            <input type="hidden" class="form-control form-control-md" name="province-text" id="province-text" required>
-                                                        </div>
+                                                            <div class="form-group col-md-4 m-t-10">
+                                                                <label for="" class="form-label">Province*</label>
+                                                                <select name="province" id="province" class="form-control">
+                                                                </select>
+                                                                <input type="hidden" class="form-control form-control-md" name="province-text" id="province-text" required>
+                                                            </div>
 
-                                                        <div class="form-group col-md-4 m-t-10">
-                                                            <label for="" class="form-label">City/Municipality*</label>
-                                                            <select name="city" id="city" class="form-control">
-                                                            </select>
-                                                            <input type="hidden" class="form-control form-control-md" name="city-text" id="city-text" required>
-                                                        </div>
+                                                            <div class="form-group col-md-4 m-t-10">
+                                                                <label for="" class="form-label">City/Municipality*</label>
+                                                                <select name="city" id="city" class="form-control">
+                                                                </select>
+                                                                <input type="hidden" class="form-control form-control-md" name="city-text" id="city-text" required>
+                                                            </div>
 
-                                                        <div class="form-group col-md-4 m-t-10">
-                                                            <label for="" class="form-label">Barangay*</label>
-                                                            <select name="barangay" id="barangay" class="form-control">
-                                                            </select>
-                                                            <input type="hidden" class="form-control form-control-md" name="barangay-text" id="barangay-text" required>
-                                                        </div>
+                                                            <div class="form-group col-md-4 m-t-10">
+                                                                <label for="" class="form-label">Barangay*</label>
+                                                                <select name="barangay" id="barangay" class="form-control">
+                                                                </select>
+                                                                <input type="hidden" class="form-control form-control-md" name="barangay-text" id="barangay-text" required>
+                                                            </div>
 
-                                                        <div class="form-group col-md-4 m-t-10">
-                                                            <label for="" class="form-label">Street*</label>
-                                                            <input type="text" name="street" id="street" class="form-control" required>
-                                                        </div>
+                                                            <div class="form-group col-md-4 m-t-10">
+                                                                <label for="" class="form-label">Street*</label>
+                                                                <input type="text" name="street" id="street" class="form-control" required>
+                                                            </div>
 
-                                                        <div class="form-group col-md-4 m-t-10">
-                                                            <label for="" class="form-label">House/Block/Lot No.*</label>
-                                                            <input type="text" name="house" id="house" class="form-control" required>
-                                                        </div>
+                                                            <div class="form-group col-md-4 m-t-10">
+                                                                <label for="" class="form-label">House/Block/Lot No.*</label>
+                                                                <input type="text" name="house" id="house" class="form-control" required>
+                                                            </div>
 
-                                                        <div class="form-group col-md-4 m-t-10">
-                                                            <label for="" class="form-label">Village*</label>
-                                                            <input type="text" name="village" id="village" class="form-control" required>
-                                                        </div>
+                                                            <div class="form-group col-md-4 m-t-10">
+                                                                <label for="" class="form-label">Village*</label>
+                                                                <input type="text" name="village" id="village" class="form-control" required>
+                                                            </div>
 
-                                                        <div class="form-group col-md-4 m-t-10">
-                                                            <label for="" class="form-label">Zipcode*</label>
-                                                            <input type="number" name="zipcode" id="zipcode" class="form-control" required>
-                                                        </div>
+                                                            <div class="form-group col-md-4 m-t-10">
+                                                                <label for="" class="form-label">Zipcode*</label>
+                                                                <input type="number" name="zipcode" id="zipcode" class="form-control" required>
+                                                            </div>
                                                         <?php else: ?>
                                                             <div class="form-group col-md-4 m-t-10">
-                                                            <label for="" class="form-label">Region*</label>
-                                                            <select name="region" id="region" class="form-control">
-                                                            </select>
-                                                            <input type="hidden" class="form-control form-control-md" name="region-text" id="region-text" value="<?= $residential_add['region']?>" required>
-                                                        </div>
+                                                                <label for="" class="form-label">Region*</label>
+                                                                <select name="region" id="region" class="form-control">
+                                                                </select>
+                                                                <input type="hidden" class="form-control form-control-md" name="region-text" id="region-text" value="<?= $residential_add['region']?>" required>
+                                                            </div>
 
-                                                        <div class="form-group col-md-4 m-t-10">
-                                                            <label for="" class="form-label">Province*</label>
-                                                            <select name="province" id="province" class="form-control">
-                                                            </select>
-                                                            <input type="hidden" class="form-control form-control-md" name="province-text" id="province-text" value="<?= $residential_add['province']?>" required>
-                                                        </div>
+                                                            <div class="form-group col-md-4 m-t-10">
+                                                                <label for="" class="form-label">Province*</label>
+                                                                <select name="province" id="province" class="form-control">
+                                                                </select>
+                                                                <input type="hidden" class="form-control form-control-md" name="province-text" id="province-text" value="<?= $residential_add['province']?>" required>
+                                                            </div>
 
-                                                        <div class="form-group col-md-4 m-t-10">
-                                                            <label for="" class="form-label">City/Municipality*</label>
-                                                            <select name="city" id="city" class="form-control">
-                                                            </select>
-                                                            <input type="hidden" class="form-control form-control-md" name="city-text" id="city-text" value="<?= $residential_add['municipality_city']?>" required>
-                                                        </div>
+                                                            <div class="form-group col-md-4 m-t-10">
+                                                                <label for="" class="form-label">City/Municipality*</label>
+                                                                <select name="city" id="city" class="form-control">
+                                                                </select>
+                                                                <input type="hidden" class="form-control form-control-md" name="city-text" id="city-text" value="<?= $residential_add['municipality_city']?>" required>
+                                                            </div>
 
-                                                        <div class="form-group col-md-4 m-t-10">
-                                                            <label for="" class="form-label">Barangay*</label>
-                                                            <select name="barangay" id="barangay" class="form-control">
-                                                            </select>
-                                                            <input type="hidden" class="form-control form-control-md" name="barangay-text" id="barangay-text" value="<?= $residential_add['barangay']?>" required>
-                                                        </div>
+                                                            <div class="form-group col-md-4 m-t-10">
+                                                                <label for="" class="form-label">Barangay*</label>
+                                                                <select name="barangay" id="barangay" class="form-control">
+                                                                </select>
+                                                                <input type="hidden" class="form-control form-control-md" name="barangay-text" id="barangay-text" value="<?= $residential_add['barangay']?>" required>
+                                                            </div>
 
-                                                        <div class="form-group col-md-4 m-t-10">
-                                                            <label for="" class="form-label">Street*</label>
-                                                            <input type="text" name="street" id="street" class="form-control"value="<?= $residential_add['street_sitio']?>" required>
-                                                        </div>
+                                                            <div class="form-group col-md-4 m-t-10">
+                                                                <label for="" class="form-label">Street*</label>
+                                                                <input type="text" name="street" id="street" class="form-control"value="<?= $residential_add['street_sitio']?>" required>
+                                                            </div>
 
-                                                        <div class="form-group col-md-4 m-t-10">
-                                                            <label for="" class="form-label">House/Block/Lot No.*</label>
-                                                            <input type="text" name="house" id="house" class="form-control" value="<?= $residential_add['house_block_lotno']?>">
-                                                        </div>
+                                                            <div class="form-group col-md-4 m-t-10">
+                                                                <label for="" class="form-label">House/Block/Lot No.*</label>
+                                                                <input type="text" name="house" id="house" class="form-control" value="<?= $residential_add['house_block_lotno']?>">
+                                                            </div>
 
-                                                        <div class="form-group col-md-4 m-t-10">
-                                                            <label for="" class="form-label">Village*</label>
-                                                            <input type="text" name="village" id="village" class="form-control" value="<?= $residential_add['subdivision_village']?>" required>
-                                                        </div>
+                                                            <div class="form-group col-md-4 m-t-10">
+                                                                <label for="" class="form-label">Village*</label>
+                                                                <input type="text" name="village" id="village" class="form-control" value="<?= $residential_add['subdivision_village']?>" required>
+                                                            </div>
 
-                                                        <div class="form-group col-md-4 m-t-10">
-                                                            <label for="" class="form-label">Zipcode*</label>
-                                                            <input type="number" name="zipcode" id="zipcode" class="form-control" value="<?= $residential_add['zipcode']?>" required>
-                                                        </div>
+                                                            <div class="form-group col-md-4 m-t-10">
+                                                                <label for="" class="form-label">Zipcode*</label>
+                                                                <input type="number" name="zipcode" id="zipcode" class="form-control" value="<?= $residential_add['zipcode']?>" required>
+                                                            </div>
                                                         <?php endif; ?>
                                                         <!-- end Residential Address -->
 
                                                         <!-- Permanent Address -->
                                                         <p class="h6 mt-4 fw-bold"> Permanent Address</p>
-                                                        <div class="form-group mt-1 mb-3">
-                                                            <input class="form-check-input" type="checkbox" value="1" name="compare-add" id="compare-add">
-                                                            <label class="form-check-label" for="">
-                                                                <strong>SAME AS ABOVE</strong> 
-                                                            </label>
+                                                        <?php if($emp_profile['residential_address_id'] == $emp_profile['permanent_address_id']): ?>
+                                                            <div class="form-group mt-1 mb-3">
+                                                                <input class="form-check-input" type="checkbox" value="1" name="compare-add" id="compare-add" checked>
+                                                                <label class="form-check-label" for="">
+                                                                    <strong>SAME AS ABOVE</strong> 
+                                                                </label>
+                                                            </div>
+                                                        <?php else: ?>
+                                                            <div class="form-group mt-1 mb-3">
+                                                                <input class="form-check-input" type="checkbox" value="1" name="compare-add" id="compare-add" checked>
+                                                                <label class="form-check-label" for="">
+                                                                    <strong>SAME AS ABOVE</strong> 
+                                                                </label>
                                                         </div>
+                                                        <?php endif; ?>
                                                         <?php if(empty($permanent_add['address_id'])) :?> 
                                                         <div class="form-group col-md-4 m-t-10 per-add" > 
                                                             <label for="" class="form-label">Region*</label>
@@ -457,6 +466,15 @@
      <script>
 
         $(document).ready(function(){
+            var checked = $('#compare-add').prop('checked');
+            if (checked){
+                $('.per-add').addClass('d-none');
+            }else {
+                $('.per-add').removeClass('d-none');
+            }
+        });
+        
+        $(document).ready(function(){
             $('#compare-add').change(function() {
                 if (this.checked) {
                     $('.per-add').addClass('d-none');
@@ -465,6 +483,8 @@
                 }
             });
         });
+
+       
         
 
     </script>
@@ -476,10 +496,11 @@
         function enable() {
             if (document.getElementById('citizenship').value === "dual citizenship") {
                 document.getElementById('by-birth').disabled = false;
-                document.getElementById('naturalization').disabled = false;
-            } else {
+                document.getElementById('by-naturalization').disabled = false;
+               } else {
                 document.getElementById('by-birth').disabled = true;
-                document.getElementById('naturalization').disabled = true;
+                document.getElementById('by-naturalization').disabled = true;
+
             }
         }
         
