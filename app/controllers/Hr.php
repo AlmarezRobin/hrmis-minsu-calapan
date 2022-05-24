@@ -234,12 +234,12 @@ class Hr extends Controller {
 	}
 	public function rejected(){
 		if($this->form_validation->submitted()){
-			$this->form_validation->name('id')->name('stat');
+			$this->form_validation->name('id')->name('stat')->name('comment')->required();
 			if($this->form_validation->run())
 			{
-				$this->Hr_model->result($this->io->post('id'),$this->io->post('stat'));
+				$this->Hr_model->result($this->io->post('id'),$this->io->post('stat'),$this->io->post('comment'));
 
-				$this->Hr_model->insert_history($this->io->post('id'),$this->io->post('stat'),$this->io->post('issue'));
+				$this->Hr_model->insert_history($this->io->post('id'),$this->io->post('stat'),$this->io->post('issue'),$this->io->post('comment'));
 				redirect('Hr/view_pds_request');
 			}
 		}

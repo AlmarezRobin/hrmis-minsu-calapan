@@ -20,9 +20,9 @@ redirect('Admin');
             <!-- <div class="list-group-item list-group-item-action top-active py-3 lh-tight" aria-current="true"> -->
             <div style="text-align:center;color:white; border-top: 1px solid rgb(255, 255, 255); border-bottom: 2px solid rgb(255, 255, 255)" class="bg-success">
                 <div class="pt-2">
-                    <strong class="pt-2">WILFRED PINE</strong>
+                    <!-- <strong class="pt-2">WILFRED PINE</strong> -->
                 </div>
-                <div class="pb-1 small"><i>Developer</i>
+                <!-- <div class="pb-1 small"><i>Developer</i> -->
                 </div>
             </div>
 
@@ -90,6 +90,15 @@ redirect('Admin');
 
                 </ul>
             </div>
+
+            <a href="<?=site_url('Attendance');?>" class="list-group-item list-group-item-action lh-tight side-menu">
+                <div class="d-flex w-100 align-items-center justify-content-between">
+                    <div class="mb-0">
+                        <i class="fa fa-icon fa-tachometer me-2"></i> Attendance
+                    </div>
+                    <!-- <small class="text-muted"></small> -->
+                </div>
+            </a>
 
             <a href="<?=site_url('Admin/logout');?>" class="list-group-item list-group-item-action lh-tight side-menu" onclick=" return confirm('Are you sure you want to logout this session?')">
                 <div class="d-flex w-100 align-items-center justify-content-between">

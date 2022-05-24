@@ -70,6 +70,8 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
                                             <tr class="odd">
                                                 <td><?php echo 'PERSONAL DATA SHEET' .' ' . 'The Human resource' .' '. $var['remarks'] . ' '. 'the PDS you submitted'?></td>
+                                                <td><button class="btn btn-mini btn-info" data-bs-toggle="modal" data-bs-target="#comments">View Comment</button></td>
+                                                
                                                 <td><?php echo $var['date_returned'] ?></td>
                                             </tr>
                                             <?php endforeach; ?>
@@ -116,7 +118,19 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
 
 
-
+    <div class="modal fade" id="comments">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Comment</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                   <h5> <?php echo $var['comment'] ?> </h5>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 

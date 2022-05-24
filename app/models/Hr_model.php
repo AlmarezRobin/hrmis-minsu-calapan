@@ -110,10 +110,11 @@ defined('PREVENT_DIRECT_ACCESS') or exit('No direct script access allowed');
 		}
 
 
-		public function result($var2,$var1){
+		public function result($var2,$var1,$var3){
 			$bind = [
 				'status_of_pds'=>$var1,
-				'stat_emp_notif'=>0
+				'stat_emp_notif'=>0,
+				'comment'=>$var3
 			];
 
 			return $this->db->table('pds_request_tbl')->where('user_id',$var2)->update($bind);
@@ -125,11 +126,12 @@ defined('PREVENT_DIRECT_ACCESS') or exit('No direct script access allowed');
 		public function pds_history(){
 			return $this->db->table('pds_request_hist_tbl')->order_by('date_returned','DESC')->get_all();
 		}
-		public function insert_history($var1,$var2,$var3){
+		public function insert_history($var1,$var2,$var3,$var4){
 			$hist=[
 				'user_id'=>$var1,
 				'remarks'=>$var2,
-				'date_submitted'=>$var3
+				'date_submitted'=>$var3,
+				'comment'=>$var4
 			];
 			return $this->db->table('pds_request_hist_tbl')->insert($hist);
 

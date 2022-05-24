@@ -7,6 +7,9 @@
     <link rel="stylesheet" href=" <?php echo BASE_URL . PUBLIC_DIR?>/pds/bootstrap.min.css">
 	<link rel="stylesheet" href="<?php echo  BASE_URL . PUBLIC_DIR?>/pds/pds.css">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 </head>
 <?php require_once(APP_DIR .'views\hr\includes\head.php'); ?>
 <body>
@@ -724,16 +727,34 @@
             </form>
         </div>
         <div class="d-flex justify-content-center mb-3" >
-            <form action="<?=site_url('Hr/rejected');?>" method="post">
-                <input type="hidden" name="id" value="<?= $get_id['user_id'] ?>" >
-                <input type="hidden" name="stat" value="REJECT">
-                <input type="hidden" name="issue" value="<?= $get_id['date_submitted'] ?>">
-                <input type="submit" name="submit" value="REJECT" class="btn btn-warning" onclick="return confirm('You are about to Approved this personal data sheet.')">
-            </form>
+        
+            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#comments">REJECT</button>
         </div>
     </div>       
+    <div class="modal fade" id="comments">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Enter Comment</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="<?=site_url('Hr/rejected');?>" method="post">
+                        <input type="hidden" name="id" value="<?= $get_id['user_id'] ?>" >
+                        <input type="hidden" name="stat" value="REJECT">
+                        <input type="hidden" name="issue" value="<?= $get_id['date_submitted'] ?>">
+
+                        <input type="text" name="comment" class="form-control form-control-line mb-2" placeholder="Enter your comment" required>
+                        <input type="submit" name="submit" value="REJECT" class="btn btn-warning float-sm-end" onclick="return confirm('You are about to Approved this personal data sheet.')">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
+
+
 
 
 
