@@ -16,7 +16,7 @@ class Export_PDS extends Controller {
 	/* start change jcd May 15, 2022 */
     public function pds_exportation(){
 		$reader = IOFactory::createReader('Xlsx');
-		$spreadsheet = $reader->load('D:\Desktop\Second Sem\3 ITP321 Capstone Project 1\Caspstone Project\pdsForCapstone.xlsx');
+		$spreadsheet = $reader->load(PUBLIC_DIR .'\export_pds\pdsForCapstone.xlsx');
 		$spreadsheet->setActiveSheetIndex(0);
         $this->personal_info($spreadsheet);
         $this->pds_child($spreadsheet);
@@ -518,7 +518,7 @@ class Export_PDS extends Controller {
         redirect('Pds/view_finished_pds');
 	}
 
-	private function checkbox($spreadsheet, $offsetX, $offsetY, $coordinate, $height= 13, $path = 'D:\Desktop\Second Sem\3 ITP321 Capstone Project 1\Caspstone Project\Checkboxes\checked.png'){
+	private function checkbox($spreadsheet, $offsetX, $offsetY, $coordinate, $height= 13, $path = PUBLIC_DIR . '\export_pds\Checkboxes\checked.png'){
 		$checked = new Drawing();
 		$checked->setPath($path);
 		$checked->setHeight($height); 
