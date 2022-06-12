@@ -11,24 +11,24 @@
     }
 
     public function get_all_child(){
-      return $this->db->table('pds_children_tbl')->select("fname, mname, lname, xname, DATE_FORMAT(bday, '%m/%d/%Y' ) AS bday")->where('user_id', $this->session->userdata('user_id'))->get_all();
+      return $this->db->table('pds_children_tbl')->select("fname, mname, lname, xname, DATE_FORMAT(bday, '%m/%d/%Y' ) AS bday")->order_by('bday', 'ASC')->where('user_id', $this->session->userdata('user_id'))->get_all();
     }
 
     public function get_eligibility(){
-		  return $this->db->table('pds_service_eligibility_tbl')->select("eligibility_id, user_id, service, rating, DATE_FORMAT(date_conferment, '%m/%d/%Y' ) AS date_conferment, place_conferment, license_num, DATE_FORMAT(validity, '%m/%d/%Y') AS validity")->where('user_id', $this->session->userdata('user_id'))->get_all();
+		  return $this->db->table('pds_service_eligibility_tbl')->select("eligibility_id, user_id, service, rating, DATE_FORMAT(date_conferment, '%m/%d/%Y' ) AS date_conferment, place_conferment, license_num, DATE_FORMAT(validity, '%m/%d/%Y') AS validity")->order_by('date_conferment', 'ASC')->where('user_id', $this->session->userdata('user_id'))->get_all();
 	  }
 
     public function get_experience(){
-	  	return $this->db->table('pds_work_experience_tbl')->select("DATE_FORMAT(_from, '%m/%d/%Y') AS _from, DATE_FORMAT(_to, '%m/%d/%Y') AS _to, designation, company, monthly_salary, salary_grade, step_inc, appointment_status, government")->where('user_id', $this->session->userdata('user_id'))->order_by('_from', 'DESC')->get_all();
+	  	return $this->db->table('pds_work_experience_tbl')->select("DATE_FORMAT(_from, '%m/%d/%Y') AS _from, DATE_FORMAT(_to, '%m/%d/%Y') AS _to, designation, company, monthly_salary, salary_grade, step_inc, appointment_status, government")->where('user_id', $this->session->userdata('user_id'))->order_by('_from', 'ASC')->get_all();
   	}
 
     public function get_voluntary(){
-	  	return $this->db->table('pds_voluntary_work_tbl')->select("pds_voluntary_work_tbl.name, DATE_FORMAT(pds_voluntary_work_tbl._from, '%m/%d/%Y') as _from, DATE_FORMAT(pds_voluntary_work_tbl._to, '%m/%d/%Y') as _to, pds_voluntary_work_tbl.hours, pds_voluntary_work_tbl.position, address.barangay, address.municipality_city")->inner_join('address','address.address_id = pds_voluntary_work_tbl.org_address')->where('user_id', $this->session->userdata('user_id'))->get_all();
+	  	return $this->db->table('pds_voluntary_work_tbl')->select("pds_voluntary_work_tbl.name, DATE_FORMAT(pds_voluntary_work_tbl._from, '%m/%d/%Y') as _from, DATE_FORMAT(pds_voluntary_work_tbl._to, '%m/%d/%Y') as _to, pds_voluntary_work_tbl.hours, pds_voluntary_work_tbl.position, address.barangay, address.municipality_city")->inner_join('address','address.address_id = pds_voluntary_work_tbl.org_address')->where('user_id', $this->session->userdata('user_id'))->order_by('_from', 'DESC')->get_all();
       
   	}
 
     public function get_trainings(){
-      return $this->db->table('pds_learning_dev_intervention')->select("title, DATE_FORMAT(_from, '%m/%d/%Y') AS _from, DATE_FORMAT(_to, '%m/%d/%Y') AS _to, hours, type, sponsored")->where('user_id', $this->session->userdata('user_id'))->get_all();
+      return $this->db->table('pds_learning_dev_intervention')->select("title, DATE_FORMAT(_from, '%m/%d/%Y') AS _from, DATE_FORMAT(_to, '%m/%d/%Y') AS _to, hours, type, sponsored")->where('user_id', $this->session->userdata('user_id'))->order_by('_from', 'DESC')->get_all();
     }
 
     public function get_id(){

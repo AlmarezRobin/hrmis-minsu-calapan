@@ -571,7 +571,7 @@ class Employee extends Controller {
 
 
 //////////////////////////////////////////////////
-	#region undone rma 4/9/2022 /* done na */
+	#region educ bg 4/9/2022 /* done na */
 	public function view_educational_background(){
 
 		if ($this->form_validation->submitted()) 
@@ -580,8 +580,8 @@ class Employee extends Controller {
 									->name('level')->required()
 									->name('name')->required()
 									->name('degree')->required()
-									->name('from')->numeric()
-									->name('to')->numeric()
+									->name('from')->required()
+									->name('to')->required()
 									->name('unit_earned')->required()
 									->name('year_grad')->required()
 									->name('honors')->required();
@@ -597,10 +597,10 @@ class Employee extends Controller {
 									strtoupper($this->io->post('name')),
 									strtoupper($this->io->post('degree')),
 									strtoupper($this->io->post('from')),
-									$year, 
+									strtoupper($year), 
 									strtoupper($this->io->post('unit_earned')),
-									$year_grad,
-									$this->io->post('honors')
+									strtoupper($year_grad),
+									strtoupper($this->io->post('honors'))
 															 );
 									redirect('Employee/view_educational_background');
                 }
@@ -623,8 +623,8 @@ class Employee extends Controller {
 									->name('level')->required()
 									->name('name')->required()
 									->name('degree')->required()
-									->name('from')->numeric()
-									->name('to')->numeric()
+									->name('from')->required()
+									->name('to')->required()
 									->name('unit_earned')->required()
 									->name('year_grad')->required()
 									->name('honors')->required();
@@ -641,9 +641,9 @@ class Employee extends Controller {
 									strtoupper($this->io->post('name')),
 									strtoupper($this->io->post('degree')),
 									strtoupper($this->io->post('from')),
-									$year, 
+									strtoupper($year), 
 									strtoupper($this->io->post('unit_earned')),
-									$year_grad,
+									strtoupper($year_grad),
 									strtoupper($this->io->post('honors')),
 									$this->io->post('emid'));
 									redirect('Employee/view_educational_background');
@@ -828,50 +828,73 @@ class Employee extends Controller {
 	}
 
 	public function insert_voluntary(){
-		if ($this->form_validation->submitted()) 
-		{
+		if ($this->form_validation->submitted()){
 			$this->form_validation
-				->name('name')
-				->name('add')
-				->name('from')
-				->name('to')
-				->name('hours')
-				->name('position');
-			if ($this->form_validation->run()) 
-			{
-			  $this->Pds_model->insert_voluntary(
-				strtoupper($this->io->post('name')),
-				strtoupper($this->io->post('add')),
-				$this->io->post('from'),
-				$this->io->post('to'),
-				$this->io->post('hours'),
-				strtoupper($this->io->post('position')),
-											);
-								redirect('Employee/view_voluntary_work');
-			}}
+				->name('name')->required()
+				->name('add-bar')->required()
+				->name('add-city')->required()
+				->name('from')->required()
+				->name('to')->required()
+				->name('hours')->required()
+				->name('position')->required();
+			if ($this->form_validation->run()) {
+				$add_bar = strtoupper($this->io->post('add-bar'));
+				$add_city = strtoupper($this->io->post('add-city'));
+				$data['voluntary_add'] = $this->Address_model->voluntary_add($add_bar, $add_city);
+				
+				if (empty($data['voluntary_add'])) {
+					$this->Address_model->insert_voluntary_add($add_bar, $add_city);
+				}
+
+				$data['voluntary_add'] = $this->Address_model->voluntary_add($add_bar, $add_city);
+
+
+				$this->Pds_model->insert_voluntary(
+					strtoupper($this->io->post('name')),
+					$data['voluntary_add']['address_id'],
+					$this->io->post('from'),
+					$this->io->post('to'),
+					$this->io->post('hours'),
+					strtoupper($this->io->post('position')),
+												);
+									redirect('Employee/view_voluntary_work');
+			}
+		}
 	}
 	public function update_voluntary(){
 		if ($this->form_validation->submitted()) 
 		{
+
 			$this->form_validation
-				->name('name')
-				->name('add')
-				->name('from')
-				->name('to')
-				->name('hours')
-				->name('position');
+				->name('name')->required()
+				->name('update-bar')->required()
+				->name('update-city')->required()
+				->name('from')->required()
+				->name('to')->required()
+				->name('hours')->required()
+				->name('position')->required();
 			if ($this->form_validation->run()) 
 			{
-			  $this->Pds_model->update_voluntary(
-				strtoupper($this->io->post('name')),
-				strtoupper($this->io->post('add')),
-				$this->io->post('from'),
-				$this->io->post('to'),
-				$this->io->post('hours'),
-				strtoupper($this->io->post('position')),
-				$this->io->post('voluntary_id'),
-											);
-								redirect('Employee/view_voluntary_work');
+				$update_bar = strtoupper($this->io->post('update-bar'));
+				$update_city = strtoupper($this->io->post('update-city'));
+				$data['voluntary_add'] = $this->Address_model->voluntary_add($update_bar, $update_city);
+				
+				if (empty($data['voluntary_add'])) {
+					$this->Address_model->insert_voluntary_add($update_bar, $update_city);
+				}
+
+				$data['voluntary_add'] = $this->Address_model->voluntary_add($update_bar, $update_city);
+			
+				$this->Pds_model->update_voluntary(
+					strtoupper($this->io->post('name')),
+					$data['voluntary_add']['address_id'],
+					$this->io->post('from'),
+					$this->io->post('to'),
+					$this->io->post('hours'),
+					strtoupper($this->io->post('position')),
+					$this->io->post('voluntary_id'),
+												);
+									redirect('Employee/view_voluntary_work');
 			}}
 	}
 	public function delete_voluntary()

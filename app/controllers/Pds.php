@@ -210,11 +210,28 @@ class Pds extends Controller {
 	#region for references
 	public function insert_references(){
 		if ($this->form_validation->submitted()) 
-		{
-			$this->form_validation->name('fname')->name('mname')->name('lname')->name('add')->name('tel');
+		{	
+			/* start change jcd May 26, 2022 */
+			$this->form_validation
+				->name('fname')->required()
+				->name('mname')->required()
+				->name('lname')->required()
+				->name('add-bar')->required()
+				->name('add-city')->required()
+				->name('tel')->required();
 			if ($this->form_validation->run()) 
 			{
-				$this->Pds_model->insert_references(strtoupper($this->io->post('fname')),strtoupper($this->io->post('mname')),strtoupper($this->io->post('lname')),strtoupper($this->io->post('add')),$this->io->post('tel'));
+				$add_bar = strtoupper($this->io->post('add-bar'));
+				$add_city = strtoupper($this->io->post('add-city'));
+				$data['reference_add'] = $this->Address_model->reference_add($add_bar, $add_city);
+
+				if (empty($data['reference_add'])) {
+					$this->Address_model->insert_ref_add($add_bar, $add_city);
+				}
+
+				$data['reference_add'] = $this->Address_model->reference_add($add_bar, $add_city);
+
+				$this->Pds_model->insert_references(strtoupper($this->io->post('fname')),strtoupper($this->io->post('mname')),strtoupper($this->io->post('lname')),$data['reference_add']['address_id'],$this->io->post('tel'));
 				redirect('Pds/view_other_information');
 			}
 		}
@@ -222,11 +239,28 @@ class Pds extends Controller {
 	public function update_references(){
 		if ($this->form_validation->submitted()) 
 		{
-			$this->form_validation->name('fname')->name('mname')->name('lname')->name('add')->name('tel');
+			$this->form_validation
+			->name('fname')->required()
+			->name('mname')->required()
+			->name('lname')->required()
+			->name('update-bar')->required()
+			->name('update-city')->required()
+			->name('tel')->required();
 			if ($this->form_validation->run()) 
 			{
-				$this->Pds_model->update_references(strtoupper($this->io->post('fname')),strtoupper($this->io->post('mname')),strtoupper($this->io->post('lname')),strtoupper($this->io->post('add')),$this->io->post('tel'),$this->io->post('ref_id'));
+				$update_bar = strtoupper($this->io->post('update-bar'));
+				$update_city = strtoupper($this->io->post('update-city'));
+				$data['reference_add'] = $this->Address_model->reference_add($update_bar, $update_city);
+
+				if (empty($data['reference_add'])) {
+					$this->Address_model->insert_ref_add($update_bar, $update_city);
+				}
+
+				$data['reference_add'] = $this->Address_model->reference_add($update_bar, $update_city);
+
+				$this->Pds_model->update_references(strtoupper($this->io->post('fname')),strtoupper($this->io->post('mname')),strtoupper($this->io->post('lname')),$data['reference_add']['address_id'],$this->io->post('tel'),$this->io->post('ref_id'));
 				redirect('Pds/view_other_information');
+				/* end change jcd May 26, 2022 */
 			}
 		}
 	}

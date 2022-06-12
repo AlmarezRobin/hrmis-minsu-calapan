@@ -117,7 +117,7 @@ class Pds_model extends Model
 	}
 	public function get_all_child()
 	{
-		return $this->db->table('pds_children_tbl')->where('user_id', $this->session->userdata('user_id'))->get_all();
+		return $this->db->table('pds_children_tbl')->where('user_id', $this->session->userdata('user_id'))->order_by('bday', 'ASC')->get_all();
 	}
 	public function delete_child($id)
 	{
@@ -194,7 +194,7 @@ class Pds_model extends Model
 	}
 	public function get_eligibility()
 	{
-		return $this->db->table('pds_service_eligibility_tbl')->select('eligibility_id, user_id, service, rating, date_conferment, place_conferment, license_num, validity')->where('user_id', $this->session->userdata('user_id'))->get_all();
+		return $this->db->table('pds_service_eligibility_tbl')->select('eligibility_id, user_id, service, rating, date_conferment, place_conferment, license_num, validity')->where('user_id', $this->session->userdata('user_id'))->order_by('date_conferment', 'DESC')->get_all();
 	}
 
 	public function update_eligibility($service, $rating, $date, $place, $number, $validity, $id)
@@ -284,7 +284,7 @@ class Pds_model extends Model
 	}
 	public function get_voluntary()
 	{
-		return $this->db->table('pds_voluntary_work_tbl')->where('user_id', $this->session->userdata('user_id'))->get_all();
+		return $this->db->table('pds_voluntary_work_tbl')->where('user_id', $this->session->userdata('user_id'))->inner_join('address', 'address.address_id = pds_voluntary_work_tbl.org_address')->order_by('_from', 'DESC')->get_all();
 	}
 
 	public function update_voluntary($name, $address, $_from, $_to, $hours, $position, $id)
@@ -329,7 +329,7 @@ class Pds_model extends Model
 	}
 	public function get_trainings()
 	{
-		return $this->db->table('pds_learning_dev_intervention')->where('user_id', $this->session->userdata('user_id'))->get_all();
+		return $this->db->table('pds_learning_dev_intervention')->where('user_id', $this->session->userdata('user_id'))->order_by('_from', 'DESC')->get_all();
 	}
 
 	public function update_trainings($title, $_from, $_to, $hours, $ld, $spon, $id)
@@ -371,7 +371,7 @@ class Pds_model extends Model
 		return $this->db->table('pds_specialskill_and_hobby')->where('ss_id', $id)->update($skill);
 	}
 	public function get_skills(){
-		return $this->db->table('pds_specialskill_and_hobby')->where('user_id', $this->session->userdata('user_id'))->get_all();
+		return $this->db->table('pds_specialskill_and_hobby')->where('user_id', $this->session->userdata('user_id'))->order_by('ss_id', 'DESC')->get_all();
 	}
 	public function delete_skills($id){
 		return $this->db->table('pds_specialskill_and_hobby')->where("ss_id", $id)->delete();
@@ -388,7 +388,7 @@ class Pds_model extends Model
 		return $this->db->table('pds_non_acad_recognition')->where('recognition_id', $id)->update($recognition);
 	}
 	public function get_distinctions(){
-		return $this->db->table('pds_non_acad_recognition')->where('user_id', $this->session->userdata('user_id'))->get_all();
+		return $this->db->table('pds_non_acad_recognition')->where('user_id', $this->session->userdata('user_id'))->order_by('recognition_id', 'DESC')->get_all();
 	}
 
 	public function delete_distinctions($id){
@@ -406,7 +406,7 @@ class Pds_model extends Model
 		return $this->db->table('pds_organization_membership')->where('membership_id', $id)->update($membership);
 	}
 	public function get_membership(){
-		return $this->db->table('pds_organization_membership')->where('user_id', $this->session->userdata('user_id'))->get_all();
+		return $this->db->table('pds_organization_membership')->where('user_id', $this->session->userdata('user_id'))->order_by('membership_id', 'DESC')->get_all();
 	}
 
 	public function delete_membership($id){
@@ -427,7 +427,7 @@ class Pds_model extends Model
 		return $this->db->table('pds_references')->where('ref_id', $id)->update($ref);
 	}
 	public function get_ref(){
-		return $this->db->table('pds_references')->select('pds_references.ref_id, pds_references.ref_fname, pds_references.ref_mname, pds_references.ref_lname, pds_references.ref_telno, address.barangay, address.municipality_city')->inner_join('address', 'address.address_id = pds_references.ref_add')->where('user_id', $this->session->userdata('user_id'))->get_all();
+		return $this->db->table('pds_references')->select('pds_references.ref_id, pds_references.ref_fname, pds_references.ref_mname, pds_references.ref_lname, pds_references.ref_telno, address.barangay, address.municipality_city')->inner_join('address', 'address.address_id = pds_references.ref_add')->where('user_id', $this->session->userdata('user_id'))->order_by('pds_references.ref_lname', 'ASC')->get_all();
 	}
 
 	public function delete_references($id){
