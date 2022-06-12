@@ -74,7 +74,7 @@
                                                         
                                                         <div class="form-group col-md-4 m-t-10">
                                                             <label class="form-label">Date Of Birth </label>
-                                                            <input type="date" id="" name="dob" class="form-control" placeholder="">
+                                                            <input type="date" id="" name="dob" class="form-control" placeholder="" value="<?= $emp_profile['date_of_birth'] ?>">
                                                         </div>
                                                        
                                                         <!-- /* start change jcd April 23, 2022 */ -->

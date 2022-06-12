@@ -209,7 +209,8 @@
                                                 <th>First Name</th>
                                                 <th>Middle Name</th>
                                                 <th>Last Name</th>
-                                                <th>Address</th>
+                                                <th>Barangay</th>
+                                                <th>City/Municipality</th>
                                                 <th>Telephone</th>
                                                 <th>Options</th>
                                             </tr>
@@ -222,8 +223,9 @@
                                                     <td><?php echo $ref['ref_fname'] ?></td>
                                                     <td><?php echo $ref['ref_mname'] ?></td>
                                                     <td><?php echo $ref['ref_lname'] ?></td>
-                                                    <td><?php echo $ref['barangay']. ', ' . $ref['municipality_city'] ?></td>
-                                                    <td><?php echo $ref['ref_telno'] ?></td>
+                                                    <td><?php echo $ref['barangay']?></td>
+                                                    <td><?php echo $ref['municipality_city']?></td>
+                                                    <td><?php echo $ref['ref_telno']?></td>
                                                     <td>
                                                         <button class="btn-mini btn-danger delete-ref-btn" value="" data-bs-toggle="modal" data-bs-target="delete-ref">Delete</button>
                                                         <button class="btn-mini btn-warning edit-ref-btn" value="" data-bs-toggle="modal" data-bs-target="edit-references">Edit</button>
@@ -637,16 +639,20 @@
                             <input type="text" class="form-control" name="fname" placeholder="" required>
                         </div>
                         <div class="form-group col-md-12 mb-2 m-t-20">
-                            <label>Middle Name</label>
+                            <label>Middle Initial</label>
                             <input type="text" class="form-control" name="mname" placeholder="" required>
                         </div>
                         <div class="form-group col-md-12 mb-2 m-t-20">
                             <label>Last Name</label>
                             <input type="text" class="form-control" name="lname" placeholder="" required>
                         </div>
-                        <div class="form-group col-md-12 mb-2 m-t-20">
-                            <label>Address</label>
-                            <input type="text" class="form-control" name="add" placeholder="" required>
+                        <div class="form-group col-md-6 mb-2 m-t-20">
+                            <label>Barangay</label>
+                            <input type="text" class="form-control" name="add-bar" placeholder="" required>
+                        </div>
+                        <div class="form-group col-md-6 mb-2 m-t-20">
+                            <label>City/Municipality</label>
+                            <input type="text" class="form-control" name="add-city" placeholder="" required>
                         </div>
                         <div class="form-group col-md-12 mb-2 m-t-20">
                             <label>Telephone Number</label>
@@ -681,16 +687,20 @@
                             <input type="text" class="form-control" id="fname" name="fname" placeholder="" required>
                         </div>
                         <div class="form-group col-md-12 mb-2 m-t-20">
-                            <label>Middle Name</label>
+                            <label>Middle Initial</label>
                             <input type="text" class="form-control" id="mname" name="mname" placeholder="" required>
                         </div>
                         <div class="form-group col-md-12 mb-2 m-t-20">
                             <label>Last Name</label>
                             <input type="text" class="form-control" id="lname" name="lname" placeholder="" required>
                         </div>
-                        <div class="form-group col-md-12 mb-2 m-t-20">
-                            <label>Address</label>
-                            <input type="text" class="form-control" id="ref-add" name="add" placeholder="" required>
+                        <div class="form-group col-md-6 mb-2 m-t-20">
+                            <label>Barangay</label>
+                            <input type="text" class="form-control" id="update-bar" name="update-bar" placeholder="" required>
+                        </div>
+                        <div class="form-group col-md-6 mb-2 m-t-20">
+                            <label>City/Municipality</label>
+                            <input type="text" class="form-control" id="update-city" name="update-city" placeholder="" required>
                         </div>
                         <div class="form-group col-md-12 mb-2 m-t-20">
                             <label>Telephone Number</label>
@@ -997,8 +1007,9 @@
                 $('#fname').val(data[1]);
                 $('#mname').val(data[2]);
                 $('#lname').val(data[3]);
-                $('#ref-add').val(data[4]);
-                $('#tel').val(data[5]);
+                $('#update-bar').val(data[4]);
+                $('#update-city').val(data[5]);
+                $('#tel').val(data[6]);
             });
         });
     </script>

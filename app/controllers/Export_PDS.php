@@ -15,6 +15,12 @@ class Export_PDS extends Controller {
 
 	/* start change jcd May 15, 2022 */
     public function pds_exportation(){
+		// $data['emp_profile'] = $this->exPDS->emp_profile($this->session->userdata('user_id'));
+		// echo '<pre> <br>';
+		// $photo = new Drawing();
+		// var_dump($photo->getPath($data['emp_profile']['photo']));
+		// echo '</pre>';
+		// exit;
 		$reader = IOFactory::createReader('Xlsx');
 		$spreadsheet = $reader->load(PUBLIC_DIR .'\export_pds\pdsForCapstone.xlsx');
 		$spreadsheet->setActiveSheetIndex(0);
@@ -45,7 +51,8 @@ class Export_PDS extends Controller {
 		$this->previlege_info($spreadsheet);
 		$this->references($spreadsheet);
 		$this->govID($spreadsheet);
-		$this->photo($spreadsheet, -33, -62, 'L53');
+		$this->photo($spreadsheet, -33, -61, 'L53');
+		$this->line($spreadsheet, -45, 24, 'E67');
 
 
 		$spreadsheet->setActiveSheetIndex(0);
@@ -214,15 +221,17 @@ class Export_PDS extends Controller {
 				->setCellValue('L5', 'N/A')
 				->setCellValue('M5', 'N/A');
 			}
-			$spreadsheet->getActiveSheet()
-				->setCellValue('A'.$currentRow, $eligiblity['service'] )
-				->setCellValue('F'.$currentRow, $eligiblity['rating'])
-				->setCellValue('G'.$currentRow, $eligiblity['date_conferment'] )
-				->setCellValue('I'.$currentRow, $eligiblity['place_conferment'])
-				->setCellValue('L'.$currentRow, $eligiblity['license_num'])
-				->setCellValue('M'.$currentRow, $eligiblity['validity']);
+			if($currentRow <12){
+				$spreadsheet->getActiveSheet()
+					->setCellValue('A'.$currentRow, $eligiblity['service'] )
+					->setCellValue('F'.$currentRow, $eligiblity['rating'])
+					->setCellValue('G'.$currentRow, $eligiblity['date_conferment'] )
+					->setCellValue('I'.$currentRow, $eligiblity['place_conferment'])
+					->setCellValue('L'.$currentRow, $eligiblity['license_num'])
+					->setCellValue('M'.$currentRow, $eligiblity['validity']);
 
-			$currentRow++;
+				$currentRow++;
+			}
 		}
 		$spreadsheet->getActiveSheet()
 				->setCellValue('J47', date('m/d/Y'));
@@ -232,7 +241,7 @@ class Export_PDS extends Controller {
 		$data['get_experience'] = $this->exPDS->get_experience();
 		$align = new Alignment();
 		foreach($data['get_experience'] as $exp){
-			if ($exp['_from']) {
+			if ($exp['_from'] === 'N/A') {
 				$spreadsheet->getActiveSheet()
 							->getStyle('A18:M18')
 								->getAlignment()
@@ -247,17 +256,19 @@ class Export_PDS extends Controller {
 					->setCellValue('L18','N/A')
 					->setCellValue('M18','N/A');
 			}
-			$spreadsheet->getActiveSheet()
-				->setCellValue('A'.$currentRow, $exp['_from'] )
-				->setCellValue('C'.$currentRow, $exp['_to'])
-				->setCellValue('D'.$currentRow, $exp['designation'] )
-				->setCellValue('G'.$currentRow, $exp['company'])
-				->setCellValue('J'.$currentRow, $exp['monthly_salary'])
-				->setCellValue('K'.$currentRow, $exp['salary_grade'])
-				->setCellValue('L'.$currentRow, $exp['appointment_status'])
-				->setCellValue('M'.$currentRow, $exp['government']);
+			if($currentRow < 46){
+				$spreadsheet->getActiveSheet()
+					->setCellValue('A'.$currentRow, $exp['_from'] )
+					->setCellValue('C'.$currentRow, $exp['_to'])
+					->setCellValue('D'.$currentRow, $exp['designation'] )
+					->setCellValue('G'.$currentRow, $exp['company'])
+					->setCellValue('J'.$currentRow, $exp['monthly_salary'])
+					->setCellValue('K'.$currentRow, $exp['salary_grade'])
+					->setCellValue('L'.$currentRow, $exp['appointment_status'])
+					->setCellValue('M'.$currentRow, $exp['government']);
 
-			$currentRow++;
+				$currentRow++;
+			}
 		}
 	}
 
@@ -277,14 +288,16 @@ class Export_PDS extends Controller {
 					->setCellValue('G6','N/A')
 					->setCellValue('H6','N/A');
 			}
-			$spreadsheet->getActiveSheet()
-				->setCellValue('A'.$currentRow, $vol['name'] . ' ' . $vol['barangay'] . ', ' . $vol['municipality_city'])
-				->setCellValue('E'.$currentRow, $vol['_from'])
-				->setCellValue('F'.$currentRow, $vol['_to'] )
-				->setCellValue('G'.$currentRow, $vol['hours'])
-				->setCellValue('H'.$currentRow, $vol['position']);
+			if($currentRow < 13){
+				$spreadsheet->getActiveSheet()
+					->setCellValue('A'.$currentRow, $vol['name'] . ' ' . $vol['barangay'] . ', ' . $vol['municipality_city'])
+					->setCellValue('E'.$currentRow, $vol['_from'])
+					->setCellValue('F'.$currentRow, $vol['_to'] )
+					->setCellValue('G'.$currentRow, $vol['hours'])
+					->setCellValue('H'.$currentRow, $vol['position']);
 
-			$currentRow++;
+				$currentRow++;
+			}
 		}
 	}
 	
@@ -306,15 +319,17 @@ class Export_PDS extends Controller {
 					->setCellValue('H18', 'N/A')
 					->setCellValue('I18', 'N/A');
 			}
-			$spreadsheet->getActiveSheet()
-				->setCellValue('A'.$currentRow, $train['title'])
-				->setCellValue('E'.$currentRow,  $train['_from'])
-				->setCellValue('F'.$currentRow, $train['_to'])
-				->setCellValue('G'.$currentRow, $train['hours'] )
-				->setCellValue('H'.$currentRow, $train['type'])
-				->setCellValue('I'.$currentRow, $train['sponsored']);
+			if($currentRow < 39){
+				$spreadsheet->getActiveSheet()
+					->setCellValue('A'.$currentRow, $train['title'])
+					->setCellValue('E'.$currentRow,  $train['_from'])
+					->setCellValue('F'.$currentRow, $train['_to'])
+					->setCellValue('G'.$currentRow, $train['hours'] )
+					->setCellValue('H'.$currentRow, $train['type'])
+					->setCellValue('I'.$currentRow, $train['sponsored']);
 
-			$currentRow++;
+				$currentRow++;
+			}
 		}
 	}
 
@@ -330,9 +345,12 @@ class Export_PDS extends Controller {
 				$spreadsheet->getActiveSheet()
 					->setCellValue('A42','N/A');
 			}
-			$spreadsheet->getActiveSheet()
-				->setCellValue('A'.$currentRow, $skill['special_skill'] );
-			$currentRow++;
+			if ($currentRow < 49) {
+				$spreadsheet->getActiveSheet()
+					->setCellValue('A'.$currentRow, $skill['special_skill'] );
+				$currentRow++;
+			}
+			
 		}
 		$spreadsheet->getActiveSheet()
 				->setCellValue('I50', date('m/d/Y'));
@@ -350,9 +368,11 @@ class Export_PDS extends Controller {
 				$spreadsheet->getActiveSheet()
 					->setCellValue('C42','N/A');
 			}
-			$spreadsheet->getActiveSheet()
-				->setCellValue('C'.$currentRow, $recog['award_desc'] );
-			$currentRow++;
+			if ($currentRow < 49) {
+				$spreadsheet->getActiveSheet()
+					->setCellValue('C'.$currentRow, $recog['award_desc'] );
+				$currentRow++;
+			}
 		}
 	}
 
@@ -368,9 +388,12 @@ class Export_PDS extends Controller {
 				$spreadsheet->getActiveSheet()
 					->setCellValue('I42','N/A');
 			}
-			$spreadsheet->getActiveSheet()
-				->setCellValue('I'.$currentRow, $member['assoc_name']);
-			$currentRow++;
+			if ($currentRow < 49) {
+				$spreadsheet->getActiveSheet()
+					->setCellValue('I'.$currentRow, $member['assoc_name']);
+				$currentRow++;
+			}
+			
 		}
 	}
 
@@ -489,7 +512,7 @@ class Export_PDS extends Controller {
 		$data['get_ref'] = $this->Pds_model->get_ref();
 		foreach($data['get_ref'] as $reference){
 			$spreadsheet->getActiveSheet()
-				->setCellValue('A'.$currentRow, $reference['ref_fname'] . ' ' . $reference['ref_mname'] . ' ' . $reference['ref_lname'])
+				->setCellValue('A'.$currentRow, $reference['ref_lname'] . ', ' . $reference['ref_fname'] . ' ' . $reference['ref_mname'] . '.')
 				->setCellValue('F'.$currentRow, trim($reference['barangay']). ', ' . $reference['municipality_city'])
 				->setCellValue('G'.$currentRow, $reference['ref_telno']);
 			$currentRow++;
@@ -529,14 +552,27 @@ class Export_PDS extends Controller {
 		
 	}
 
-	private function photo($spreadsheet, $offsetX, $offsetY, $coordinate, $height = 171, $path = 'C:\xampp\htdocs\hrmis\uploads\IMG_20190128_074128_845.JPG'){
+	private function photo($spreadsheet, $offsetX, $offsetY, $coordinate, $height = 171, $path = 'C:\xampp\htdocs\hrmis\uploads\ ') {
 		$photo = new Drawing();
-		$photo->setPath($path);
-		$photo->setHeight($height); 
+		$data['emp_profile'] = $this->exPDS->emp_profile($this->session->userdata('user_id'));
+
+		$photo->setPath(trim($path) . $data['emp_profile']['photo']);
+		$photo->setHeight($height);
 		$photo->setOffsetX($offsetX); 
 		$photo->setOffsetY($offsetY); 
 		$photo->setCoordinates($coordinate); 
 		$photo->setWorksheet($spreadsheet->getActiveSheet());
+		
+	}
+
+	private function line($spreadsheet, $offsetX, $offsetY, $coordinate, $height = 2, $path =  PUBLIC_DIR . '\export_pds\Checkboxes\LINE.png'){
+		$line = new Drawing();
+		$line->setPath($path);
+		$line->setHeight($height); 
+		$line->setOffsetX($offsetX); 
+		$line->setOffsetY($offsetY); 
+		$line->setCoordinates($coordinate); 
+		$line->setWorksheet($spreadsheet->getActiveSheet());
 		
 	}
 

@@ -59,7 +59,8 @@
                                         <tr>
                                             <th>#</th>
                                             <th>NAME OF ORGANIZATION</th>
-                                            <th>ADDRESS OF ORGANIZATION</th>
+                                            <th>BARANGAY</th>
+                                            <th>CITY/MUNICIPALITY</th>
                                             <th>FROM</th>
                                             <th>TO</th>
                                             <th>NUMBER OF HOURS</th>
@@ -73,7 +74,8 @@
                                             <tr>
                                                 <td><?php echo $datum['voluntary_id'] ?></td>
                                                 <td><?php echo $datum['name'] ?></td>
-                                                <td><?php echo $datum['org_address'] ?></td>
+                                                <td><?php echo $datum['barangay'] ?></td>
+                                                <td><?php echo $datum['municipality_city'] ?></td>
                                                 <td><?php echo $datum['_from'] ?></td>
                                                 <td><?php echo $datum['_to'] ?></td>
                                                 <td><?php echo $datum['hours'] ?></td>
@@ -93,7 +95,8 @@
                                         <tr>
                                             <th>#</th>
                                             <th>NAME OF ORGANIZATION</th>
-                                            <th>ADDRESS OF ORGANIZATION</th>
+                                            <th>BARANGAY</th>
+                                            <th>CITY/MUNICIPALITY</th>
                                             <th>FROM</th>
                                             <th>TO</th>
                                             <th>NUMBER OF HOURS</th>
@@ -153,9 +156,13 @@
                         <label>NAME OF ORGANIZATION</label>
                         <input type="text" class="form-control" name="name" value="" required minlength="6"> 
                     </div>
-                    <div class="form-group col-md-12 m-t-20">
-                        <label>ADDRESS OF ORGANIZATION</label>
-                        <input type="text" id="" name="add" value="1" class="form-control"> 
+                    <div class="form-group col-md-6 m-t-20">
+                        <label>Barangay</label>
+                        <input type="text" id="" name="add-bar" class="form-control"> 
+                    </div>
+                    <div class="form-group col-md-6 m-t-20">
+                        <label>City/Municipality</label>
+                        <input type="text" id="" name="add-city" class="form-control"> 
                     </div>
                     <div class="form-group col-md-6 m-t-20">
                         <label>FROM</label>
@@ -207,9 +214,13 @@
                         <label>NAME OF ORGANIZATION</label>
                         <input type="text" class="form-control" id="name" name="name" value="" required minlength="6"> 
                     </div>
-                    <div class="form-group col-md-12 m-t-20">
-                        <label>ADDRESS OF ORGANIZATION</label>
-                        <input type="text" id="add" name="add" value="1" class="form-control"> 
+                    <div class="form-group col-md-6 m-t-20">
+                        <label>Barangay</label>
+                        <input type="text" id="update-bar" name="update-bar" class="form-control"> 
+                    </div>
+                    <div class="form-group col-md-6 m-t-20">
+                        <label>City/Municipality</label>
+                        <input type="text" id="update-city" name="update-city" class="form-control"> 
                     </div>
                     <div class="form-group col-md-6 m-t-20">
                         <label>FROM</label>
@@ -292,11 +303,12 @@
 
             $('#voluntary_id').val(data[0]);
             $('#name').val(data[1]);
-            $('#add').val(data[2]);
-            $('#from').val(data[3]);
-            $('#to').val(data[4]);
-            $('#hours').val(data[5]);
-            $('#position').val(data[6]);
+            $('#update-bar').val(data[2]);
+            $('#update-city').val(data[3]);
+            $('#from').val(data[4]);
+            $('#to').val(data[5]);
+            $('#hours').val(data[6]);
+            $('#position').val(data[7]);
             
         });
     });
