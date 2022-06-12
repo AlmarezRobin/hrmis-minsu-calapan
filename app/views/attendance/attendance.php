@@ -42,92 +42,90 @@
                 </div>
                 <!-- end title -->
 
-
+                    <form action="<?=site_url('Attendance/import_attendance') ;?>" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="file" name="file" class="form-control form-control-line" required>
+                    </div>    
+                    <div class="col-md-2">
+                        <input type="submit" name="submit" value="Upload" class="form-control form-control-line btn-success"    >
+                    </div>
+                </div>
+                </form>
+                
                 <!-- container-fluid -->
                 <div class="container-fluid-xxl pb-2">
-
+                    <!-- COL 12 -->
 
                     <!-- Col- -->
                     <div class="col-md-12 float-sm-start">
+
                         <div class="col-md-12 p-2 float-sm-start">
+
                             <div class="card">
+
                                 <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseTable"
                                     aria-expanded="true" aria-controls="collapseTable">
-                                    <span class="card-icon"><i class="fa fa-map"></i></span> Employee's Attendance<i
-                                        class="fa fa-caret-down pull-right"></i>
+                                    <span class="card-icon"><i class="fa fa-th"></i></span>
+                                    List of Registered Employee's
+
+                                    <button class="btn-mini btn-success float-sm-end" data-bs-toogle="modal" data-bs-target="#attendance">Upload Attendance</button>
+
+                                    
                                 </div>
-                                <div class="card-body accordion-collapse collapse show p-0" id="collapseTable-disable">
+                                <div class="card-body accordion-collapse collapse show p-0" id="collapseTable">
 
                                     <!-- Table Div -->
-                                    <div class="table-responsive">
+                                    <div class="table-responsive m-3">
 
                                         <!-- Table -->
-                                        <table class="table table-bordered table-hover table-sm mb-0">
+                                        <table id="example2" class="table table-bordered table-hover table-striped table-sm" style="overflow:hidden;">
 
                                             <thead>
                                                 <tr>
                                                     <th>Employee Name</th>
-                                                    <th>Dpartment</th>
-                                                    <th>Options</th>
+                                                    <th>Action</th>
+                                                    
                                                 </tr>
                                             </thead>
 
                                             <tbody>
+                                                <?php foreach($get_all_attendance as $data) : ?>
+                                                    <tr>
+                                                        <td><?php echo $data['emp_name'];  ?></td>
+                                                        <td>
+                                                            <a href="">View Attendance</a>
+                                                        </td>
+                                                    </tr>
 
-                                                <tr class="odd">
-                                                    <td>1</td>
-                                                    <td>1234</td>
-                                                    <td>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
-                                                    </td>
-                                                </tr>
-
+                                                <?php endforeach; ?>
                                             </tbody>
 
                                             <tfoot>
-                                                <tr></tr>
+                                                <tr>
+                                                    <th>Employee Name</th>
+                                                    <th>Action</th>
+                                                    
+                                                </tr>
                                             </tfoot>
+
                                         </table>
                                         <!-- End Table -->
-
-
-                                        <!-- pagination -->
-                                        <nav class="mt-2 ml-2 mb-0">
-                                            <ul class="pagination pagination-sm">
-                                                <li class="page-item disabled">
-                                                    <a class="page-link" href="#" tabindex="-1"
-                                                        aria-disabled="true">Previous</a>
-                                                </li>
-                                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                                <li class="page-item active" aria-current="page">
-                                                    <a class="page-link" href="#">2 <span
-                                                            class="sr-only">(current)</span></a>
-                                                </li>
-                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#">Next</a>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                        <!-- End pagination -->
 
 
                                     </div>
                                     <!-- End Table Div -->
 
                                 </div>
+                                <!-- End Card Body -->
                             </div>
+                            <!-- End card -->
                         </div>
-                    </div>
-                    <!-- End Col- -->
-                   
 
+                        <!-- END COL 12 -->
+                    </div>
                 </div>
                 <!-- End container-fluid -->
-
 
 
                 <!-- Footer -->
@@ -148,4 +146,64 @@
     <script src="public/chart.js/chart.js"></script>
 
     <?php require_once(APP_DIR . "views/hr/includes/footer.php"); ?>
+
+
+    <div class="modal fade" id="attendance">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Update child information</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                <h4 class="modal-title">Update child information</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+ <!-- DATA TABES SCRIPT -->
+ <script src="<?php echo BASE_URL . PUBLIC_DIR?>/public/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
+        <!-- <script src="public/plugins/DataTables-1.11.4/js/jquery.dataTables.js" type="text/javascript"></script> -->
+
+        <script src="<?php echo BASE_URL . PUBLIC_DIR?>/public/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+        <!-- <script src="public/plugins/DataTables-1.11.4/js/dataTables.bootstrap.js" type="text/javascript"></script> -->
+
+        <!-- page script -->
+        <script type="text/javascript">
+        $(function() {
+            $("#example1").dataTable();
+            $('#example2').dataTable({
+                "Paginate": true,
+                "LengthChange": false,
+                "Filter": false,
+                "Sort": true,
+                "Info": true,
+                "AutoWidth": false
+            });
+        });
+    </script>
+
+<style>
+    .dataTables_paginate>ul.pagination>li>a {
+        padding: 5px;
+        background-color: #066CFB;
+        color: #fff;
+        margin: 0px;
+        text-decoration: none;
+    }
+
+    .dataTables_paginate>ul.pagination>li>a:hover {
+        background-color: #0760DC;
+    }
+
+    .dataTables_paginate>ul.pagination>li:first-child>a {
+        border-radius: 5px 0px 0px 5px
+    }
+
+    .dataTables_paginate>ul.pagination>li:last-child>a {
+        border-radius: 0px 5px 5px 0px
+    }
+</style>
 

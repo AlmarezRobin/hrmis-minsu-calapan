@@ -529,7 +529,7 @@ class Export_PDS extends Controller {
 		
 	}
 
-	private function photo($spreadsheet, $offsetX, $offsetY, $coordinate, $height = 171, $path = 'D:\Desktop\Second Sem\3 ITP321 Capstone Project 1\Caspstone Project\Checkboxes\SIR RED.jpg'){
+	private function photo($spreadsheet, $offsetX, $offsetY, $coordinate, $height = 171, $path = 'C:\xampp\htdocs\hrmis\uploads\IMG_20190128_074128_845.JPG'){
 		$photo = new Drawing();
 		$photo->setPath($path);
 		$photo->setHeight($height); 

@@ -131,7 +131,7 @@
 
                                                         <div class="form-group col-md-4 m-t-10">
                                                             <label or="nameex" class="form-label">Height </label>
-                                                            <input type="text" class="form-control" name="height" id="height" placeholder="" maxlength="3" size="3" data-toggle="tooltip" data-placement="right" title="Name Extension" value="<?= $emp_profile['height'] ?>">
+                                                            <input type="text" class="form-control" name="height" id="height" placeholder="" maxlength="4" size="3" data-toggle="tooltip" data-placement="right" title="Name Extension" value="<?= $emp_profile['height'] ?>">
                                                         </div>
 
                                                         <div class="form-group col-md-4 m-t-10">

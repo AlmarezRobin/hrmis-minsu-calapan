@@ -64,7 +64,7 @@ $database['main'] = array(
     'port'		=> '3306',
     'username'	=> 'root',
     'password'	=> '',
-    'database'	=> 'general_settings',
+    'database'	=> 'general_settings2',
     'charset'	=> 'utf8',
     'dbprefix'	=> '',
 );
