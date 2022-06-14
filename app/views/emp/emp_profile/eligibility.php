@@ -68,7 +68,7 @@
                                         </div>
                                         <div class="form-group col-md-12 mb-2 m-t-20">
                                             <label>NUMBER</label>
-                                            <input type="number" class="form-control" name="number" value="" required minlength="6"> 
+                                            <input type="text" class="form-control" name="number" value="" required minlength="6"> 
                                         </div>
                                         <div class="form-group col-md-12 mb-2 m-t-20">
                                             <label>DATE OF VALIDITY </label>
@@ -117,7 +117,7 @@
                                         </div>
                                         <div class="form-group col-md-12 mb-2 m-t-20">
                                             <label>NUMBER</label>
-                                            <input type="number" class="form-control" id="number" name="number" value="" required minlength="6"> 
+                                            <input type="text" class="form-control" id="number" name="number" value="" required minlength="6"> 
                                         </div>
                                         <div class="form-group col-md-12 mb-2 m-t-20">
                                             <label>DATE OF VALIDITY </label>

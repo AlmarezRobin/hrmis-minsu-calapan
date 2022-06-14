@@ -72,6 +72,17 @@
                 </div>
             </a>
 
+            <a href="<?=site_url('');?>" class="list-group-item list-group-item-action lh-tight side-menu mb-1">
+                <div class="d-flex w-100 align-items-center justify-content-between">
+                    <div class="mb-0">
+                    <i class="fa fa-icon fa-file-text-o me-2" aria-hidden="true"></i> Attendance
+                    </div>
+                </div>
+            </a>
+
+
+
+
             <a href="<?=site_url('Locator');?>" class="list-group-item list-group-item-action lh-tight side-menu mb-1">
                 <div class="d-flex w-100 align-items-center justify-content-between">
                     <div class="mb-0">

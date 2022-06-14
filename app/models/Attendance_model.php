@@ -25,7 +25,7 @@ class Attendance_model extends Model {
 
     }
     public function get_all_attendance(){
-        return $this->db->table('attendace_tbl')->order_by('date_imported','DESC')->get_all();
+        return $this->db->table('attendace_tbl')->order_by('emp_name','ASC' && 'date_imported','DESC')->get_all();
             
     }
 

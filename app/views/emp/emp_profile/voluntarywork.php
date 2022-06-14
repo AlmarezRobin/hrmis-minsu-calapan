@@ -154,7 +154,7 @@
                 <form class="row" action="<?=site_url('Employee/insert_voluntary');?>" method="post" enctype="multipart/form-data">
                     <div class="form-group col-md-12 m-t-20">
                         <label>NAME OF ORGANIZATION</label>
-                        <input type="text" class="form-control" name="name" value="" required minlength="6"> 
+                        <input type="text" class="form-control" name="name" value="" required > 
                     </div>
                     <div class="form-group col-md-6 m-t-20">
                         <label>Barangay</label>
@@ -166,20 +166,20 @@
                     </div>
                     <div class="form-group col-md-6 m-t-20">
                         <label>FROM</label>
-                        <input type="date" class="form-control" name="from" value="" required minlength="6"> 
+                        <input type="date" class="form-control" name="from" value=""  > 
                     </div>
                     <div class="form-group col-md-6 m-t-20">
                         <label>TO</label>
-                        <input type="date" class="form-control" name="to" value="" required minlength="6"> 
+                        <input type="date" class="form-control" name="to" value=""  > 
                     </div>
 
                     <div class="form-group col-md-12 m-t-20">
                         <label>NUMBER OF HOURS</label>
-                        <input type="number" class="form-control" name="hours" value="" required minlength="6"> 
+                        <input type="number" class="form-control" name="hours" value=""  > 
                     </div>
                     <div class="form-group col-md-12 m-t-20">
                         <label>POSITION OF NATURE OF WORK </label>
-                        <input type="text" id="" name="position" class="form-control " required minlength="6"> 
+                        <input type="text" id="" name="position" class="form-control " required > 
                     </div>
                     
                     
@@ -212,7 +212,7 @@
                     <input type="hidden" name="voluntary_id" id="voluntary_id">
                     <div class="form-group col-md-12 m-t-20">
                         <label>NAME OF ORGANIZATION</label>
-                        <input type="text" class="form-control" id="name" name="name" value="" required minlength="6"> 
+                        <input type="text" class="form-control" id="name" name="name" value="" required > 
                     </div>
                     <div class="form-group col-md-6 m-t-20">
                         <label>Barangay</label>
@@ -224,20 +224,20 @@
                     </div>
                     <div class="form-group col-md-6 m-t-20">
                         <label>FROM</label>
-                        <input type="date" class="form-control" id="from" name="from" value="" required minlength="6"> 
+                        <input type="date" class="form-control" id="from" name="from" value=""  > 
                     </div>
                     <div class="form-group col-md-6 m-t-20">
                         <label>TO</label>
-                        <input type="date" class="form-control" id="to" name="to" value="" required minlength="6"> 
+                        <input type="date" class="form-control" id="to" name="to" value=""  > 
                     </div>
 
                     <div class="form-group col-md-12 m-t-20">
                         <label>NUMBER OF HOURS</label>
-                        <input type="text" class="form-control" id="hours" name="hours" value="" required minlength="6"> 
+                        <input type="text" class="form-control" id="hours" name="hours" value=""  > 
                     </div>
                     <div class="form-group col-md-12 m-t-20">
                         <label>POSITION OF NATURE OF WORK </label>
-                        <input type="text" id="position" name="position" class="form-control " required minlength="6"> 
+                        <input type="text" id="position" name="position" class="form-control " required > 
                     </div>
                     
                     

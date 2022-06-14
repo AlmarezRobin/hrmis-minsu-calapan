@@ -67,13 +67,13 @@
                                 <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseTable"
                                     aria-expanded="true" aria-controls="collapseTable">
                                     <span class="card-icon"><i class="fa fa-th"></i></span>
-                                    List of Registered Employee's
+                                    Employee's Attendance
 
-                                    <button class="btn-mini btn-success float-sm-end" data-bs-toogle="modal" data-bs-target="#attendance">Upload Attendance</button>
+                                    <!-- <button class="btn-mini btn-success float-sm-end" data-bs-toogle="modal" data-bs-target="#attendance">Upload Attendance</button> -->
 
                                     
                                 </div>
-                                <div class="card-body accordion-collapse collapse show p-0" id="collapseTable">
+                                <div class="card-body ">
 
                                     <!-- Table Div -->
                                     <div class="table-responsive m-3">
@@ -84,8 +84,22 @@
                                             <thead>
                                                 <tr>
                                                     <th>Employee Name</th>
-                                                    <th>Action</th>
                                                     
+                                                    <th>Date</th>
+                                                    <th>IN AM</th>
+                                                    <th>OUT PM</th>
+                                                    <th>IN PM</th>
+                                                    <th>OUT PM</th>
+                                                    <th>IN OT</th>
+                                                    <th>OUT OT</th>
+                                                    <th>ROT</th>
+                                                    <th>SOT</th>
+                                                    <th>ND</th>
+                                                    <th>LT/UT</th>
+                                                    <th>LWOP</th>
+                                                    <th>DATE IMPORTED</th>
+
+
                                                 </tr>
                                             </thead>
 
@@ -93,9 +107,19 @@
                                                 <?php foreach($get_all_attendance as $data) : ?>
                                                     <tr>
                                                         <td><?php echo $data['emp_name'];  ?></td>
-                                                        <td>
-                                                            <a href="">View Attendance</a>
-                                                        </td>
+                                                        <td><?php echo $data['date'];  ?></td>
+                                                        <td><?php echo $data['inam'];  ?></td>
+                                                        <td><?php echo $data['outam'];  ?></td>
+                                                        <td><?php echo $data['inpm'];  ?></td>
+                                                        <td><?php echo $data['outpm'];  ?></td>
+                                                        <td><?php echo $data['inot'];  ?></td>
+                                                        <td><?php echo $data['outot'];  ?></td>
+                                                        <td><?php echo $data['rot'];  ?></td>
+                                                        <td><?php echo $data['sot'];  ?></td>
+                                                        <td><?php echo $data['nd'];  ?></td>
+                                                        <td><?php echo $data['lt_ut'];  ?></td>
+                                                        <td><?php echo $data['lwop'];  ?></td>
+                                                        <td><?php echo $data['date_imported'];  ?></td>
                                                     </tr>
 
                                                 <?php endforeach; ?>

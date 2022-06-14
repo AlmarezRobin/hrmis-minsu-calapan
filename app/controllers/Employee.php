@@ -518,7 +518,7 @@ class Employee extends Controller {
 				->name('mname')->required()
 				->name('lname')->required()
 				->name('xname')
-				->name('bday')->required();
+				->name('bday');
 
 			if ($this->form_validation->run()) {
 				$this->Pds_model->insert_child(
@@ -833,9 +833,9 @@ class Employee extends Controller {
 				->name('name')->required()
 				->name('add-bar')->required()
 				->name('add-city')->required()
-				->name('from')->required()
-				->name('to')->required()
-				->name('hours')->required()
+				->name('from')
+				->name('to')
+				->name('hours')
 				->name('position')->required();
 			if ($this->form_validation->run()) {
 				$add_bar = strtoupper($this->io->post('add-bar'));
@@ -869,9 +869,9 @@ class Employee extends Controller {
 				->name('name')->required()
 				->name('update-bar')->required()
 				->name('update-city')->required()
-				->name('from')->required()
-				->name('to')->required()
-				->name('hours')->required()
+				->name('from')
+				->name('to')
+				->name('hours')
 				->name('position')->required();
 			if ($this->form_validation->run()) 
 			{
@@ -1149,6 +1149,7 @@ class Employee extends Controller {
 	public function view_notif(){
 		$this->Employee_model->stat_emp_notif();
 		$data = [
+			'emp_profile' => $this->Employee_model->emp_profile($this->session->userdata('user_id')),
 			'emp_notif_forpds'=> $this->Employee_model->emp_notif_forpds(),
 			'get_notif_pds' => $this->Employee_model->get_notif_pds()
 		];

@@ -214,7 +214,34 @@ class Hr extends Controller {
 	public function view_emp_pds($id)
 	{
 		$data = [
-			'get_id'=>$this->Hr_model->get_id($id)
+			'get_id'=>$this->Hr_model->get_id($id),
+			'emp_profile'=>$this->Hr_model->emp_profile($id),
+			'get_all_child'=>$this->Hr_model->get_all_child($id),
+			'get_eligibility'=>$this->Hr_model->get_eligibility($id),
+
+			'get_educ_background'=>$this->Hr_model->get_educ_background($id),
+
+			'get_experience'=>$this->Hr_model->get_experience($id),
+			'get_voluntary'=>$this->Hr_model->get_voluntary($id),
+			'get_trainings'=>$this->Hr_model->get_trainings($id),
+			'get_gov_id'=>$this->Hr_model->get_gov_id($id),
+			'get_skill_hobby'=>$this->Hr_model->get_skill_hobby($id),
+			'get_recognition'=>$this->Hr_model->get_recognition($id),
+			'get_membership'=>$this->Hr_model->get_membership($id),
+			'get_references'=>$this->Hr_model->get_references($id),
+			'get_gov_id'=>$this->Hr_model->get_gov_id($id),
+			'get_spouse'=>$this->Hr_model->get_spouse($id),
+			'get_father'=>$this->Hr_model->get_father($id),
+			'get_mother'=>$this->Hr_model->get_mother($id),
+			'get_rel_info'=>$this->Hr_model->get_rel_info($id),
+			'get_violation_info'=>$this->Hr_model->get_violation_info($id),
+			'get_conviction_info'=>$this->Hr_model->get_conviction_info($id),
+			'get_separation_info'=>$this->Hr_model->get_separation_info($id),
+			'get_candidacy_info'=>$this->Hr_model->get_candidacy_info($id),
+			'get_immigrant_info'=>$this->Hr_model->get_immigrant_info($id),
+			'get_previlage_info'=>$this->Hr_model->get_previlage_info($id),
+			// ''=>$this->Hr_model->($id),
+			
 		];
 		$this->call->view('hr/employee_pds/pdsview',$data);
 	}
