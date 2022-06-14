@@ -55,7 +55,7 @@
                     <div class="row">
                         <div class="col-md-3 mb-2">
                             <label for="status" class="form-label">PLACE OF BIRTH</label>
-                            <input type="text" value="<?=$emp_profile['birth_place_address_id']?>" disabled class="form-control form-control-line">
+                            <input type="text" value="<?=$emp_profile['municipality_city'].' ' . $emp_profile['province']?>" disabled class="form-control form-control-line">
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="status" class="form-label">DATE OF BIRTH</label>
@@ -128,89 +128,75 @@
                         </div>
                     </div>
                     <hr>
-                    <h6>RESIDENTIAL ADDRESS</h6>
+                    <h6 class="fw-bold">RESIDENTIAL ADDRESS</h6>
                     <div class="row">
                         <div class="col-md-6 mb-2">
-                            <label for="status" class="form-label"></label>
-                            <input type="text" value="" disabled class="form-control form-control-line">
+                            <label for="status" class="form-label">House/Block/Lot No.</label>
+                            <input type="text" value="<?= $residential_address['house_block_lotno'] ?>" disabled class="form-control form-control-line">
                         </div>
                         <div class="col-md-6 mb-2">
-                            <label for="status" class="form-label"> </label>
-                            <input type="text" value="" disabled class="form-control form-control-line">
+                            <label for="status" class="form-label">Street</label>
+                            <input type="text" value="<?= $residential_address['street_sitio'] ?>" disabled class="form-control form-control-line">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-2">
-                            <label for="status" class="form-label"></label>
-                            <input type="text" value="" disabled class="form-control form-control-line">
+                            <label for="status" class="form-label">Subdivision/Village</label>
+                            <input type="text" value="<?= $residential_address['subdivision_village'] ?>" disabled class="form-control form-control-line">
                         </div>
                         <div class="col-md-6 mb-2">
-                            <label for="status" class="form-label"> </label>
-                            <input type="text" value="" disabled class="form-control form-control-line">
+                            <label for="status" class="form-label">Barangay</label>
+                            <input type="text" value="<?= $residential_address['barangay'] ?>" disabled class="form-control form-control-line">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6 mb-2">
-                            <label for="status" class="form-label"></label>
-                            <input type="text" value="" disabled class="form-control form-control-line">
+                        <div class="col-md-4 mb-2">
+                            <label for="status" class="form-label">City/Municipality</label>
+                            <input type="text" value="<?= $residential_address['municipality_city'] ?>" disabled class="form-control form-control-line">
                         </div>
-                        <div class="col-md-5 mb-2">
-                            <label for="status" class="form-label"> </label>
-                            <input type="text" value="" disabled class="form-control form-control-line">
+                        <div class="col-md-4 mb-2">
+                            <label for="status" class="form-label">Province</label>
+                            <input type="text" value="<?= $residential_address['province'] ?>" disabled class="form-control form-control-line">
                         </div>
-                        <div class="col-md-1 mb-2">
-                            <label for="status" class="form-label"> </label>
-                            <input type="text" value="" disabled class="form-control form-control-line">
+                        <div class="col-md-4 mb-2">
+                            <label for="status" class="form-label">Zipcode</label>
+                            <input type="text" value="<?= $residential_address['zipcode'] ?>" disabled class="form-control form-control-line">
                         </div>
                     </div>
                     <br>
-                    <h6>PERMANENT ADDRESS</h6>
+                    <h6 class="fw-bold">PERMANENT ADDRESS</h6>
                     <div class="row">
                         <div class="col-md-6 mb-2">
-                            <label for="status" class="form-label"></label>
-                            <input type="text" value="" disabled class="form-control form-control-line">
+                            <label for="status" class="form-label">House/Block/Lot No.</label>
+                            <input type="text" value="<?= $permanent_address['house_block_lotno'] ?>" disabled class="form-control form-control-line">
                         </div>
                         <div class="col-md-6 mb-2">
-                            <label for="status" class="form-label"> </label>
-                            <input type="text" value="" disabled class="form-control form-control-line">
+                            <label for="status" class="form-label">Street</label>
+                            <input type="text" value="<?= $permanent_address['street_sitio'] ?>" disabled class="form-control form-control-line">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-2">
-                            <label for="status" class="form-label"></label>
-                            <input type="text" value="" disabled class="form-control form-control-line">
+                            <label for="status" class="form-label">Subdivision/Village</label>
+                            <input type="text" value="<?= $permanent_address['subdivision_village'] ?>" disabled class="form-control form-control-line">
                         </div>
                         <div class="col-md-6 mb-2">
-                            <label for="status" class="form-label"> </label>
-                            <input type="text" value="" disabled class="form-control form-control-line">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-2">
-                            <label for="status" class="form-label"></label>
-                            <input type="text" value="" disabled class="form-control form-control-line">
-                        </div>
-                        <div class="col-md-5 mb-2">
-                            <label for="status" class="form-label"> </label>
-                            <input type="text" value="" disabled class="form-control form-control-line">
-                        </div>
-                        <div class="col-md-1 mb-2">
-                            <label for="status" class="form-label"> </label>
-                            <input type="text" value="" disabled class="form-control form-control-line">
+                            <label for="status" class="form-label">Barangay</label>
+                            <input type="text" value="<?= $permanent_address['barangay'] ?>" disabled class="form-control form-control-line">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4 mb-2">
-                            <label for="status" class="form-label"></label>
-                            <input type="text" value="" disabled class="form-control form-control-line">
+                            <label for="status" class="form-label">City/Municipality</label>
+                            <input type="text" value="<?= $permanent_address['municipality_city'] ?>" disabled class="form-control form-control-line">
                         </div>
                         <div class="col-md-4 mb-2">
-                            <label for="status" class="form-label"> </label>
-                            <input type="text" value="" disabled class="form-control form-control-line">
+                            <label for="status" class="form-label">Province</label>
+                            <input type="text" value="<?= $permanent_address['province'] ?>" disabled class="form-control form-control-line">
                         </div>
                         <div class="col-md-4 mb-2">
-                            <label for="status" class="form-label"> </label>
-                            <input type="text" value="" disabled class="form-control form-control-line">
+                            <label for="status" class="form-label">Zipcode</label>
+                            <input type="text" value="<?= $permanent_address['zipcode'] ?>" disabled class="form-control form-control-line">
                         </div>
                     </div>
                 </div>

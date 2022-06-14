@@ -240,6 +240,8 @@ class Hr extends Controller {
 			'get_candidacy_info'=>$this->Hr_model->get_candidacy_info($id),
 			'get_immigrant_info'=>$this->Hr_model->get_immigrant_info($id),
 			'get_previlage_info'=>$this->Hr_model->get_previlage_info($id),
+			'residential_address' => $this->Address_model->residential_add($id),
+			'permanent_address' => $this->Address_model->permanent_add($id),
 			// ''=>$this->Hr_model->($id),
 			
 		];

@@ -682,111 +682,7 @@
 
 
 
-        <div class="col-md-12 p-2 float-sm-start">
-            <div class="row">
-                <div class="col-md-4 mb-2">
-                    <div class="card">
-                        <div class="card-header" data-bs-toggle="collapse"
-                            data-bs-target="#collapseSchoolInfo" aria-expanded="true"
-                            aria-controls="collapseSchoolInfo">
-                            <span class="card-icon"><i class="fa fa-graduation-cap"></i></span>
-                            SPECIAL SKILL AND HOBBIES
-                            <i class="fa fa-caret-down pull-right"></i>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12 mb-2">
-                                    <table class="table table-bordered table-hover mb-0">
-                                        <?php if(empty($get_skills)): ?>
-                                            <tr>
-                                                <td class="text-center fw-bold">N/A</td>
-                                            </tr>
-                                        <?php endif; ?>
-                                        <?php foreach($get_skills as $skill): ?>
-                                            <tr>
-                                                <td><?= $skill['special_skill'] ?></td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    </table>
-
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <!-- End Card Body -->
-                    </div>
-                    <!-- End card -->
-                </div>
-                <div class="col-md-4 mb-2">
-                    <div class="card">
-                        <div class="card-header" data-bs-toggle="collapse"
-                            data-bs-target="#collapseSchoolInfo" aria-expanded="true"
-                            aria-controls="collapseSchoolInfo">
-                            <span class="card-icon"><i class="fa fa-graduation-cap"></i></span>
-                            NON-ACADEMIC DISTINCTIONS
-                            <i class="fa fa-caret-down pull-right"></i>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12 mb-2">
-                                    <table class="table table-bordered table-hover mb-0">
-                                        <?php if(empty($get_distinctions)): ?>
-                                            <tr>
-                                                <td class="text-center fw-bold"></td>
-                                            </tr>
-                                        <?php endif; ?>
-                                        <?php foreach($get_distinctions as $recog): ?>
-                                            <tr>
-                                                <td><?= $recog['award_desc'] ?></td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    </table>
-
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <!-- End Card Body -->
-                    </div>
-                    <!-- End card -->
-                </div>
-                <div class="col-md-4 mb-2">
-                    <div class="card">
-                        <div class="card-header" data-bs-toggle="collapse"
-                            data-bs-target="#collapseSchoolInfo" aria-expanded="true"
-                            aria-controls="collapseSchoolInfo">
-                            <span class="card-icon"><i class="fa fa-graduation-cap"></i></span>
-                            MEMBERSHIP IN ORGANIZATION
-                            <i class="fa fa-caret-down pull-right"></i>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12 mb-2">
-                                    <table class="table table-bordered table-hover mb-0">
-                                    <?php if(empty($get_membership)): ?>
-                                            <tr>
-                                                <td class="text-center fw-bold"></td>
-                                            </tr>
-                                        <?php endif; ?>
-                                        <?php foreach($get_membership as $member): ?>
-                                            <tr>
-                                                <td><?= $member['assoc_name'] ?></td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    </table>
-
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <!-- End Card Body -->
-                    </div>
-                    <!-- End card -->
-                </div>
-
-            </div>
-           
-        </div>
+       
 
 
 
@@ -802,6 +698,200 @@
                     OTHER INFORMATION <i class="fa fa-caret-down pull-right"></i>
                 </div>
                 <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 mb-2">
+                            <div class="card">
+                                <div class="card-header" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseSchoolInfo" aria-expanded="true"
+                                    aria-controls="collapseSchoolInfo">
+                                    <span class="card-icon"><i class="fa fa-graduation-cap"></i></span>
+                                    SPECIAL SKILL AND HOBBIES
+                                    <i class="fa fa-caret-down pull-right"></i>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12 mb-2">
+                                            <table class="table table-bordered table-hover mb-0">
+                                                <?php if(empty($get_skills)): ?>
+                                                    <tr>
+                                                        <td class="text-center fw-bold">N/A</td>
+                                                    </tr>
+                                                <?php endif; ?>
+                                                <?php foreach($get_skills as $skill): ?>
+                                                    <tr>
+                                                        <td><?= $skill['special_skill'] ?></td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <!-- End Card Body -->
+                            </div>
+                            <!-- End card -->
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <div class="card">
+                                <div class="card-header" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseSchoolInfo" aria-expanded="true"
+                                    aria-controls="collapseSchoolInfo">
+                                    <span class="card-icon"><i class="fa fa-graduation-cap"></i></span>
+                                    NON-ACADEMIC DISTINCTIONS
+                                    <i class="fa fa-caret-down pull-right"></i>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12 mb-2">
+                                            <table class="table table-bordered table-hover mb-0">
+                                                <?php if(empty($get_distinctions)): ?>
+                                                    <tr>
+                                                        <td class="text-center fw-bold"></td>
+                                                    </tr>
+                                                <?php endif; ?>
+                                                <?php foreach($get_distinctions as $recog): ?>
+                                                    <tr>
+                                                        <td><?= $recog['award_desc'] ?></td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <!-- End Card Body -->
+                            </div>
+                            <!-- End card -->
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <div class="card">
+                                <div class="card-header" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseSchoolInfo" aria-expanded="true"
+                                    aria-controls="collapseSchoolInfo">
+                                    <span class="card-icon"><i class="fa fa-graduation-cap"></i></span>
+                                    MEMBERSHIP IN ORGANIZATION
+                                    <i class="fa fa-caret-down pull-right"></i>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12 mb-2">
+                                            <table class="table table-bordered table-hover mb-0">
+                                            <?php if(empty($get_membership)): ?>
+                                                    <tr>
+                                                        <td class="text-center fw-bold"></td>
+                                                    </tr>
+                                                <?php endif; ?>
+                                                <?php foreach($get_membership as $member): ?>
+                                                    <tr>
+                                                        <td><?= $member['assoc_name'] ?></td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <!-- End Card Body -->
+                            </div>
+                            <!-- End card -->
+                        </div>
+
+                    </div>
+                    <div class="row border border-dark m-1">
+                        <div class="form-group col-md-6 m-t-10 mb-2">
+                            <label for="" class="form-label">34. Are you related by consangguity of affinity to the appointing or recommending authority, or the chief of bureau or office or to the person who has immediate supervision over you in the office Bureau or department where you will be appointed.</label>
+                            <label for="">a. within the third degree?  <strong> <?=$get_rel_info['third_degree']?>  </strong> </label>
+                            <br>
+                            <label for="">b. within the fourth degree (for Local Governtment Unit-career Employee's)? <strong> <?=$get_rel_info['fourth_degree']?>  </strong> </label>
+                            <br>
+                            <label for="">
+                                <?=$get_rel_info['relative_details']?>
+                            </label>
+                        </div>
+                        <div class="form-group col-md-6 m-t-10 mb-2">
+                            <label for="">35. a. Have you ever been found guilty of any administrative offense? <strong><?= $get_violation_info['admin_offense']?></strong> </label>
+                            
+                            <label for=""><?= $get_violation_info['offense_desc']?></label>
+                            <br>
+
+                            <label for="">b. Have you been criminally charged before any court? <strong><?= $get_violation_info['criminal_charged']?></strong></label>
+                            
+                            <br>
+                            <?php if($get_violation_info['criminal_charged'] === 'YES'): ?>
+                            <div class="col-md-12" onchange='_35byes()' id="35bdetails">
+                                <label for="">If yes, give details:</label>
+                                <input type="text" name="detail"  class="form-control" value="<?= $get_violation_info['crime_details']?>" >
+                                <label for="">Date Filed: </label>
+                                <input type="date" name="35bfiled" class="form-control" value="<?= $get_violation_info['date_crime_filed']?>">
+                                <label for="">Status of Case/s:</label>
+                                <input type="text" name="35bstatus"  class="form-control" value="<?= $get_violation_info['criminal_case_status']?>" >
+                            </div>
+                            <?php else: ?>
+                            <div class="col-md-12" onchange='_35byes()' id="35bdetails"  hidden>
+                                <label for="">If yes, give details:</label>
+                                <input type="text" name="detail"  class="form-control" >
+                                <label for="">Date Filed: </label>
+                                <input type="date" name="35bfiled" class="form-control" >
+                                <label for="">Status of Case/s:</label>
+                                <input type="text" name="35bstatus"  class="form-control"  >
+                            </div>
+                            <?php endif; ?>
+                        </div>
+                        <div class="form-group col-md-6 m-t-10 mb-2">
+                            <label for="">36. Have you ever been convicted of any crime or violation of any law, decree, ordinance or regulation by any court or tribunal? <strong><?= $get_conviction_info['convicted'] ?></strong></label>
+                            <br>
+                            <label for="">If yes, give details:</label><strong for=""><?= $get_conviction_info['conviction_details'] ?></strong>
+                        </div>
+                        <div class="form-group col-md-6 m-t-10 mb-2">
+                            <label for="">37. Have you ever been separated from the service in any of the following modes: resignation, retirement, dropped from the rolls, dismissal, termination, end of term, finished contract or phased out (abolition) in the public or private sector? <strong><?= $get_separation_info['separated_from_service'] ?></strong></label>
+                            <br>
+                            
+                            <label for="">If yes give details: <strong><?= $get_separation_info['separation_desc'] ?></strong></label>
+                            <input type="text" name="37txtyes" id="37txt" onchange='_37yes()' class="form-control" hidden>
+                        </div>
+                        <div class="form-group col-md-6 m-t-10 mb-2">
+                            <label for="">38. a. Have you ever been a candidate in a national or local election held within the last year (except Barangay election)? <strong><?= $get_candidacy_info['political_candidate'] ?></strong></label>
+                            <br>
+                            
+                            <label for="">If yes give details: <strong><?= $get_candidacy_info['candidacy_details'] ?></strong></label>
+                            
+                            <label for="">b. Have you ever been a candidate in a national or local election held within the last year (except Barangay election)?<strong><?= $get_candidacy_info['resigned_frm_gov'] ?></strong></label>
+                            <br>
+                            
+                            <label for="">If yes give details: <strong><?= $get_candidacy_info['resignation_desc'] ?></strong></label>
+                        </div>
+
+                        <div class="form-group col-md-6 m-t-10 mb-2">
+                            <label for="">39. Have you acquired the status of an immigrant or permanent resident of another country? <strong><?= $get_immigrant_info['foreign_residency'] ?></strong></label>
+                            <br>
+                            <label for="">If yes, give details: <strong><?= $get_immigrant_info['residency_details'] ?></strong> </label>
+                        </div>
+
+
+                        <div class="form-group col-md-6 m-t-10 mb-2">
+                            <label for="">40. Pusuant to: (a) Indigenous People's Act (RA 8371); (b) Magna Carta for Disabled Persons (RA 7277); and (c) Solo Parents Welfare Act of 2020 (RA 8972), please answer the following items:</label>
+                            <label for="">a. Are you a member of any indigenous group? <strong><?= $get_previlage_info['member_of_ig'] ?></strong></label>
+                            <br>
+                            
+                            <label for="">If yes, please specify: <strong><?= $get_previlage_info['ig_desc'] ?></strong></label>
+                            <input type="text" name="40atxtyes" id="40atxt" onchange='_40ayes()' class="form-control" hidden>
+                            <br>
+                            <label for="">b. Are you a person with disability?<strong><?= $get_previlage_info['pwd'] ?></strong></label>
+                            <br>
+                            
+                            <label for="">If yes, please specify ID No: <strong><?= $get_previlage_info['pwd_id_no'] ?></strong></label>
+                            <input type="text" name="40btxtyes" id="40btxt" onchange='_40byes()' class="form-control" hidden>
+                            <br>
+                            <label for="">c. Are you a solo parent?<strong><?= $get_previlage_info['solo_parent'] ?></strong></label>
+                            <br>
+                            
+                            <label for="">If yes, please specify ID No:<strong><?= $get_previlage_info['solo_parent_id_number'] ?></strong></label>
+                            <input type="text" name="40ctxtyes" id="40ctxt" onchange='_40cyes()' class="form-control" hidden>
+                        </div>
+                    </div>
                     <div class="row">
                         <h6>REFERENCES</h6>
                         <div class="col-md-8 mb-2">
