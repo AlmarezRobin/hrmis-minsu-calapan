@@ -75,19 +75,19 @@
                                                 <hr>
                                                 <div class="form-group col-md-6 m-t-5">
                                                     <small class="form-text text-muted"> MOTHER'S MAINDEN FIRST NAME*</small>
-                                                    <input type="text" name="momainame"class="form-control form-control-line mb-2" placeholder="Maiden Name" required>
+                                                    <input type="text" name="momainame"class="form-control form-control-line mb-2" placeholder="First Name" required>
                                                 </div> 
                                                 <div class="form-group col-md-6 m-t-5">
-                                                    <small class="form-text text-muted">MOTHER'S's Given Name*</small>
-                                                    <input type="text" name="mofname" class="form-control form-control-line mb-2" placeholder="First Name" required>
+                                                    <small class="form-text text-muted">MOTHER'S' MAIDENN MIDLE NAME*</small>
+                                                    <input type="text" name="mofname" class="form-control form-control-line mb-2" placeholder="Middle Name" required>
                                                 </div> 
                                                 <div class="form-group col-md-6 m-t-5">
-                                                    <small class="form-text text-muted"> MOTHER'S Middle Name</small>
-                                                    <input type="text" name="momname" class="form-control form-control-line mb-2" placeholder="Middle Name">
+                                                    <small class="form-text text-muted"> MOTHER'S MAIDEN LAST NAME</small>
+                                                    <input type="text" name="momname" class="form-control form-control-line mb-2" placeholder="Last Name">
                                                 </div> 
                                                 <div class="form-group col-md-6 m-t-5">
                                                     <small class="form-text text-muted">MOTHER'S's Family Name*</small>
-                                                <input type="text" name="molname" class="form-control form-control-line mb-2" placeholder="Last Name"required>
+                                                <input type="text" name="molname" class="form-control form-control-line mb-2" placeholder="Married Last Name"required>
                                                 </div> 
                                                 <div class="form-actions col-md-12">
                                                     <input type="submit" class="btn btn-success" name="submit" value="Insert">

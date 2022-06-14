@@ -79,8 +79,8 @@
                                                 <small class="form-text text-muted">
                                                     Name Extension*
                                                 </small>
-                                            <input type="text" name="slname"
-                                                class="form-control form-control-line mb-2" placeholder="Last Name" value="<?= $get_spouse_info['name_ext'] ?>"
+                                            <input type="text" name="sxname"
+                                                class="form-control form-control-line mb-2" placeholder="Name Extension" value="<?= $get_spouse_info['name_ext'] ?>"
                                                 maxlength="30" size="30" data-toggle="tooltip"
                                                 data-placement="right" title="Name Extension" required>
                                             </div> 

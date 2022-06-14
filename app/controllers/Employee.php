@@ -518,7 +518,7 @@ class Employee extends Controller {
 				->name('mname')->required()
 				->name('lname')->required()
 				->name('xname')
-				->name('bday')->required();
+				->name('bday');
 
 			if ($this->form_validation->run()) {
 				$this->Pds_model->insert_child(
@@ -540,7 +540,7 @@ class Employee extends Controller {
 				->name('mname')->required()
 				->name('lname')->required()
 				->name('xname')
-				->name('bday')->required();
+				->name('bday');
 
 			if ($this->form_validation->run()) {
 				$this->Pds_model->update_child(
@@ -583,7 +583,7 @@ class Employee extends Controller {
 									->name('from')->required()
 									->name('to')->required()
 									->name('unit_earned')->required()
-									->name('year_grad')->required()
+									->name('year_grad')
 									->name('honors')->required();
 									
 				if ($this->form_validation->run()) 
