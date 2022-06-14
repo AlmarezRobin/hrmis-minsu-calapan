@@ -180,7 +180,11 @@
                                             </div>
                                             <div class="col-md-12 mb-2">
                                                 <label for="f1" class="form-label">Child's Birth Date*</label>
+<<<<<<< HEAD
                                                 <input type="date" class="form-control form-control-sm" name="bday" id="date">
+=======
+                                                <input type="date" class="form-control form-control-sm" name="bday" id="date" >
+>>>>>>> 419aecfff076bae926d6337ca9dbecf1c5c1aebc
                                             </div>
                                             
                                         </div>

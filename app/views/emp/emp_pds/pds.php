@@ -63,1177 +63,798 @@
                     </div>
                     <!-- end title -->
 
-                    <!-- container-fluid -->
-                    <div class="container-fluid-xxl pb-2">
-                        <!-- COL 12 -->
-                        <div class="col-md-12 float-sm-start">
+                <?php 
+                    // echo '<pre> <br>';
+                    // var_dump($data['get_id']);
+                    // echo '</pre>';
+                    // exit;
+                ?>
 
-                        <div class="table-responsive p-3">
-            <form action="">
-                <table id="pds-table">
+                    <div class="justify-content-between align-items-center pt-1 pb-2 mb-3 border-bottom mx-2">
+        <h5 class="h5 mt-3 mb-0 color-darkgray"> <a href="<?= site_url('Hr/view_pds_request');?>"> <i class=" fa fa-solid fa-arrow-left fa-lg"></i></a>
+            &nbsp; PERSONAL DATA SHEET<small></small></h5>
+    </div>
+    <!-- col -->
+    <div class="col-md-12 float-sm-start">
+        <div class="col-md-12 p-2 float-sm-start">
+            <div class="card">
+                <div class="card-header" data-bs-toggle="collapse"
+                    data-bs-target="#collapseSchoolInfo" aria-expanded="true"
+                    aria-controls="collapseSchoolInfo">
+                    <span class="card-icon"><i class="fa fa-graduation-cap"></i></span>
+                    PERSONAL INFORMATION <i class="fa fa-caret-down pull-right"></i>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 mb-2">
+                            <label for="status" class="form-label">SURNAME</label>
+                            <input type="text" value="<?= $emp_profile['l_name'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="status" class="form-label">FIRST NAME</label>
+                            <input type="text" value="<?= $emp_profile['f_name'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="status" class="form-label">MIDDLE NAME</label>
+                            <input type="text" value="<?= $emp_profile['m_name'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-2">
+                            <label for="status" class="form-label">NAME EX.</label>
+                            <input type="text" value="<?= $emp_profile['name_ex'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="status" class="form-label">DATE OF BIRTH</label>
+                            <input type="text" value="<?= $emp_profile['date_of_birth'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="status" class="form-label">PLACE OF BIRTH</label>
+                            <input type="text" value="<?php echo $emp_profile['municipality_city'] . ' ' . $emp_profile['province'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                    </div>
 
-                    <tbody class="table-header">
-                        <tr>
-                            <td colspan="12" class="h5"><i><b>CS Form No. 212</b></i></td>
-                        </tr>
-                        <tr>
-                            <td colspan="12" class="align-top" style="max-height: 12px;">
-                                <i><b>Revised 2017</b></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="12" class="text-center"><h1><b>PERSONAL DATA SHEET</b></h1></td>
-                        </tr>
-                        <tr>
-                            <td colspan="12"><i><b>WARNING: Any misrepresentation main in the Personal Data Sheet and the Work Experience Sheet shall cause the filing of administative/criminal case/s against the person concerned.</b></i></td>
-                        </tr>
-                        <tr>
-                            <td colspan="12"><i><b>READ THE ATTACHED GUIDE TO FILLING OUT THE PERSONAL DATA SHEET (PDS) BEFORE ACCOMPLISHING THE PDS FORM</b></i></td>
-                        </tr>
-                        <tr>
-                            <td colspan="9">Print legibly. Tick appropriate boxes ( <input type="checkbox" checked> ) ad use seperate sheet if necessary. Indicate N/A if not applicable. <b>DO NOT ABBREVIATE.</b></td>
-                            <td colspan="1" style="border:1px solid#000b;background:#757575;width:8%;"><small>1. CS ID No.</small></td>
-                            <td colspan="2" class="text-right" style="border:1px solid #000;width:20%;"><small>(Do not fill up. For CSC use only)</small></td>
-                        </tr>
-                    </tbody>
-
-                    <tbody class="table-body">
-                        <tr>
-                            <td colspan="12" class="text-white separator">I. PERSONAL INFORMATION</td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label border-bottom-0">
-                                <span class="count">2.</span> SURNAME
-                            </td>
-                            <td colspan="11"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label border-0"><span class="count"></span> FIRST NAME</td>
-                            <td colspan="9"> </td>
-                            <td colspan="2" class="align-top"><small>NAME EXTENSION (JR.,SR)</small></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label border-0"><span class="count"></span> MIDDLE NAME</td>
-                            <td colspan="11"> </td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label border-bottom-0">
-                                <span class="count">3.</span> DATE OF BIRTH<br>
-                                <span class="count"></span> (mm/dd/yyyy)
-                            </td>
-                            <td colspan="5"> </td>
-                            <td colspan="3" class="s-label align-top border-bottom-0">
-                                <span class="count">16.</span> CITIZENSHIP
-                            </td>
-                            <td colspan="3" rowspan="2">
-                                <input type="checkbox" name="" id=""><label for="">Filipino</label>
-                                <input type="checkbox" name="" id=""><label for="">Dual Citizenship</label>
-                                <br>
-                                <input type="checkbox" name="" id=""><label for="">by birth</label>
-                                <input type="checkbox" name="" id=""><label for="">by naturalization</label>
-                                <br>
-                                <label for="">If YES, Pls indicate country</label>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label border-0"></td>
-                            <td colspan="5"></td>
-                            <td colspan="3" class="s-label align-top border-0 text-center small">
-                                If holder of dual citizenship,
-                            </td>
-                            <td colspan="3">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label"><span class="count">4.</span> PLACE OR BIRTH</td>
-                            <td colspan="5"></td>
-                            <td colspan="3" class="s-label align-top border-0 text-center small"> please indicate the details.</td>
-                            <td colspan="3" rowspan="2"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label"><span class="count">5.</span> SEX</td>
-                            <td colspan="5"></td>
-                            <td colspan="3" class="s-label align-top border-0"></td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label border-bottom-0"><span class="count">6.</span> CIVIL STATUS</td>
-                            <td colspan="5"></td>
-                            <td colspan="2" class="s-label align-top border-bottom-0 small">
-                                <span class="count">17.</span> RESIDENTIAL ADDRESS
-                            </td>
-                            <td colspan="2"></td>
-                            <td colspan="2"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label border-top-0"><span class="count"></span></td>
-                            <td colspan="5"></td>
-                            <td colspan="2" class="s-label align-top border-0"></td>
-                            <td colspan="2"></td>
-                            <td colspan="2"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label"><span class="count">7.</span> HEIGHT (m)</td>
-                            <td colspan="5"></td>
-                            <td colspan="2" class="s-label align-top border-0"></td>
-                            <td colspan="2"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label"><span class="count">8.</span> WEIGHT (kg)</td>
-                            <td colspan="5"></td>
-                            <td colspan="2" class="s-label border-0 text-center">
-                                ZIP CODE
-                            </td>
-                            <td colspan="4"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label"><span class="count">9.</span> BLOOD TYPE</td>
-                            <td colspan="5"></td>
-                            <td colspan="2" class="s-label border-bottom-0"><span class="count">18.</span> PERMANENT ADDRESS</td>
-                            <td colspan="2"></td>
-                            <td colspan="2"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label"><span class="count">10.</span> GSIS ID NO.</td>
-                            <td colspan="5"></td>
-                            <td colspan="2" class="s-label border-0"></td>
-                            <td colspan="2"></td>
-                            <td colspan="2"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label"><span class="count">11.</span> PAG-IBIG NO.</td>
-                            <td colspan="5"></td>
-                            <td colspan="2" class="s-label border-0"></td>
-                            <td colspan="2"></td>
-                            <td colspan="2"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label"><span class="count">12.</span> PHILHEALTH NO.</td>
-                            <td colspan="5"></td>
-                            <td colspan="2" class="s-label text-center border-0">ZIP CODE</td>
-                            <td colspan="4"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label"><span class="count">13.</span> SSS NO.</td>
-                            <td colspan="5"></td>
-                            <td colspan="2" class="s-label"><span class="count">19.</span> TELEPHONE NO.</td>
-                            <td colspan="4"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label"><span class="count">14.</span> TIN NO.</td>
-                            <td colspan="5"></td>
-                            <td colspan="2" class="s-label"><span class="count">20.</span> MOBILE NO.</td>
-                            <td colspan="4"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label"><span class="count">15.</span> AGENCY EMPLOYEE NO.</td>
-                            <td colspan="5"></td>
-                            <td colspan="2" class="s-label"><span class="count">21.</span> EMAIL ADDRESS (if any)</td>
-                            <td colspan="4"></td>
-                        </tr>
-                    </tbody>
-
-                    <tbody class="table-body">
-                        <tr>
-                            <td colspan="12" class="text-white separator">II. FAMILY BACKGROUND</td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label border-bottom-0">
-                                <span class="count">22.</span> SPOUSE SURNAME
-                            </td>
-                            <td colspan="5"></td>
-                            <td colspan="3" class="s-label">
-                                <span class="count">23.</span> NAME of CHILDREN (Write full name and list all)
-                            </td>
-                            <td colspan="3" class="s-label text-center" style="width: 18%;">DATE OF BIRTH (mm/dd/yyyy)</td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label border-0">
-                                <span class="count"></span> FIRST NAME
-                            </td>
-                            <td colspan="4"></td>
-                            <td colspan="1" class="align-top s-label">
-                                <small>
-                                    NAME EXTENSION (JR.,SR)
-                                </small>
-                            </td>
-                            <td colspan="3"></td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label border-0">
-                                <span class="count"></span> MIDDLE NAME
-                            </td>
-                            <td colspan="5"></td>
-                            <td colspan="3"></td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label">
-                                <span class="count"></span> OCCUPATION
-                            </td>
-                            <td colspan="5"></td>
-                            <td colspan="3"></td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label">
-                                <span class="count"></span> EMPLOYER/BUSINESS NAME
-                            </td>
-                            <td colspan="5"></td>
-                            <td colspan="3"></td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label">
-                                <span class="count"></span> BUSINESS ADDRESS
-                            </td>
-                            <td colspan="5"></td>
-                            <td colspan="3"></td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label">
-                                <span class="count"></span> TELEPHONE NO.
-                            </td>
-                            <td colspan="5"></td>
-                            <td colspan="3"></td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label border-bottom-0">
-                                <span class="count">24.</span> FATHER'S SURNAME
-                            </td>
-                            <td colspan="5"></td>
-                            <td colspan="3"></td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label border-0">
-                                <span class="count"></span> FIRST NAME
-                            </td>
-                            <td colspan="4"></td>
-                            <td colspan="1" class="align-top s-label">
-                                <small>
-                                    NAME EXTENSION (JR.,SR)
-                                </small>
-                            </td>
-                            <td colspan="3"></td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label border-0">
-                                <span class="count"></span> MIDDLE NAME
-                            </td>
-                            <td colspan="5"></td>
-                            <td colspan="3"></td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label border-bottom-0">
-                                <span class="count">25.</span> MOTHERS MAIDEN NAME
-                            </td>
-                            <td colspan="5"></td>
-                            <td colspan="3"></td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label border-0">
-                                <span class="count"></span> SURNAME
-                            </td>
-                            <td colspan="5"></td>
-                            <td colspan="3"></td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label border-0">
-                                <span class="count"></span> FIRST NAME
-                            </td>
-                            <td colspan="5"></td>
-                            <td colspan="3"></td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label border-0">
-                                <span class="count"></span> MIDDLE NAME
-                            </td>
-                            <td colspan="5"></td>
-                            <td colspan="6" class="s-label text-danger text-center"><i><b>(Continue on seperate sheet if necessary)</b></i></td>
-                        </tr>
-                    </tbody>
-
-                    <tbody class="table-body">
-                        <tr>
-                            <td colspan="12" class="text-white separator">III. EDUCATIONAL BACKGROUND</td>
-                        </tr>
-                        <tr class="text-center">
-                            <td colspan="1" class="s-label border-bottom-0">
-                                <span class="count">26.</span>
-                                <span class="d-block text-center">LEVEL</span>
-                            </td>
-                            <td colspan="4" class="s-label border-bottom-0">
-                                NAME OF SCHOOL<br>(Write in full)
-                            </td>
-                            <td colspan="2" class="s-label border-bottom-0">
-                                BASIC EDUCATION/DEGREE/COURSE<br>
-                                (Write in full)
-                            </td>
-                            <td colspan="2" class="s-label border-bottom-0">
-                                PERIOD OF ATTENDANCE
-                            </td>
-                            <td colspan="1" class="s-label border-bottom-0">HIGHEST LEVEL/UNITS EARNED<br>(If not graduated)</td>
-                            <td colspan="1" class="s-label border-bottom-0">YEAR GRADUATED</td>
-                            <td colspan="1" class="s-label border-bottom-0">SCHOLARSHIP/<br>ACADEMIC<br>HONORS<br>RECEIVED</td>
-                        </tr>
-                        <tr class="text-center" style="margin-top: -20px;">
-                            <td colspan="1" class="s-label border-top-0"></td>
-                            <td colspan="4" class="s-label border-top-0"></td>
-                            <td colspan="2" class="s-label border-top-0"></td>
-                            <td colspan="1" class="s-label">From</td>
-                            <td colspan="1" class="s-label">To</td>
-                            <td colspan="1" class="s-label border-top-0"></td>
-                            <td colspan="1" class="s-label border-top-0"></td>
-                            <td colspan="1" class="s-label border-top-0"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label">
-                                <span class="count"></span> ELEMENTARY
-                            </td>
-                            <td colspan="4"></td>
-                            <td colspan="2"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label">
-                                <span class="count"></span> SECONDARY
-                            </td>
-                            <td colspan="4"></td>
-                            <td colspan="2"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label">
-                                <span class="count"></span> VOCATIONAL/<br>
-                                <span class="count"></span> TRADE COURSE
-                            </td>
-                            <td colspan="4"></td>
-                            <td colspan="2"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label">
-                                <span class="count"></span> COLLEGE
-                            </td>
-                            <td colspan="4"></td>
-                            <td colspan="2"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="s-label">
-                                <span class="count"></span> GRADUATE STUDIES
-                            </td>
-                            <td colspan="4"></td>
-                            <td colspan="2"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                        </tr>
-                    </tbody>
-
-                    <tbody class="table-body">
-                        <tr>
-                            <td colspan="12" class="text-white separator bg-transparent text-danger text-center">
-                                <i>(Continue on seperate sheet if necessary)</i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="text-center"><i><b>SIGNATURE</b></i></td>
-                            <td colspan="6"></td>
-                            <td colspan="2" class="text-center"><i><b>DATE</b></i></td>
-                            <td colspan="3"></td>
-                        </tr>
-                    </tbody>
-
-                    <!-- End of Page 1 -->
-
-                    <tbody class="table-body">
-                        <tr>
-                            <td colspan="12" class="text-white separator">IV.  CIVIL SERVICE ELIGIBILITY</td>
-                        </tr>
-                        <tr class="text-center">
-                            <td colspan="5" class="s-label border-bottom-0" style="width:30%">
-                                <span class="count float-left">27.</span>
-                                CAREER SERVICE/ RA 1080 (BOARD/ BAR) UNDER SPECIAL LAWS/ CES/ CSEE
-                                BARANGAY ELIGIBILITY / DRIVER'S LICENSE
-                            </td>
-                            <td colspan="1" class="s-label border-bottom-0">RATING<br>(If Applicable)</td>
-                            <td colspan="2" class="s-label border-bottom-0">DATE OF EXAMINATION / CONFERMENT</td>
-                            <td colspan="2" class="s-label border-bottom-0">PLACE OF EXAMINATION / CONFERMENT</td>
-                            <td colspan="2" class="s-label border-bottom-0">LICENSE<br>(if applicable)</td>
-                        </tr>
-                        <tr class="text-center">
-                            <td colspan="5" class="s-label border-top-0"></td>
-                            <td colspan="1" class="s-label border-top-0"></td>
-                            <td colspan="2" class="s-label border-top-0"></td>
-                            <td colspan="2" class="s-label border-top-0"></td>
-                            <td colspan="1" class="s-label">NUMBER</td>
-                            <td colspan="1" class="s-label">Date of Validity</td>
-                        </tr>
-                        <tr>
-                            <td colspan="5"></td>
-                            <td colspan="1"></td>
-                            <td colspan="2"></td>
-                            <td colspan="2"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="5"></td>
-                            <td colspan="1"></td>
-                            <td colspan="2"></td>
-                            <td colspan="2"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="5"></td>
-                            <td colspan="1"></td>
-                            <td colspan="2"></td>
-                            <td colspan="2"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="5"></td>
-                            <td colspan="1"></td>
-                            <td colspan="2"></td>
-                            <td colspan="2"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                        </tr>
-                    </tbody>
-
-                    <tbody class="table-body">
-                        <tr>
-                            <td colspan="12" class="text-white separator bg-transparent text-danger text-center">
-                                <i>(Continue on seperate sheet if necessary)</i>
-                            </td>
-                        </tr>
-                    </tbody>
-
-                    <tbody class="table-body">
-                        <tr>
-                            <td colspan="12" class="text-white separator">
-                                V.  WORK EXPERIENCE<br>
-                                <small><i>(Include private employment.  Start from your recent work) Description of duties should be indicated in the attached Work Experience sheet.</i></small>
-                            </td>
-                        </tr>
-                        <tr class="text-center">
-                            <td colspan="1" class="s-label border-bottom-0" style="width: 20%;">
-                                <span class="count float-left">28.</span>
-                                INCLUSIVE DATES<br>(mm/dd/yyyy)
-                                
-                            </td>
-                            <td colspan="5" class="s-label border-bottom-0">
-                                POSITION TITLE<br>
-                                Write in full/Do not abbreviate)
-                            </td>
-                            <td colspan="2" class="s-label border-bottom-0">
-                                DEPARTMENT/AGENCY/OFFICE/COMPANY<br>
-                                (Write in full/Do not abbreviate)
-                            </td>
-                            <td colspan="1" class="s-label border-bottom-0">MONTHLY<br>SALARY</td>
-                            <td colspan="1" class="s-label border-bottom-0"><small>SALARY/ JOB/ PAY<br>GRADE (if applicable)& STEP  (Format "00-0")/ INCREMENT</small></td>
-                            <td colspan="1" class="s-label border-bottom-0">STATUS OF<br>APPOINTMENT</td>
-                            <td colspan="1" class="s-label border-bottom-0">GOV'T SERVICE<br>
-                                <small>(Y/ N)</small></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="p-0">
-                            <table class="w-100 border-0">
-                                <tbody class="border-0">
-                                    <tr class="text-center">
-                                        <td class="s-label border-0 border-bottom-0" style="width: 50%;">From</td>
-                                        <td class="s-label border-top-0 border-right-0 border-bottom-0" style="width: 50%;">To</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            </td>
-                            <td colspan="5" class="s-label border-top-0"></td>
-                            <td colspan="2" class="s-label border-top-0"></td>
-                            <td colspan="1" class="s-label border-top-0"></td>
-                            <td colspan="1" class="s-label border-top-0"></td>
-                            <td colspan="1" class="s-label border-top-0"></td>
-                            <td colspan="1" class="s-label border-top-0"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="p-0">
-                            <table class="w-100 border-0">
-                                <tbody class="border-0">
-                                    <tr>
-                                        <td class="border-0 border-bottom-0" style="width: 50%;"></td>
-                                        <td class="border-top-0 border-right-0 border-bottom-0" style="width: 50%;"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            </td>
-                            <td colspan="5"></td>
-                            <td colspan="2"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="p-0">
-                            <table class="w-100 border-0">
-                                <tbody class="border-0">
-                                    <tr>
-                                        <td class="border-0 border-bottom-0" style="width: 50%;"></td>
-                                        <td class="border-top-0 border-right-0 border-bottom-0" style="width: 50%;"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            </td>
-                            <td colspan="5"></td>
-                            <td colspan="2"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="p-0">
-                            <table class="w-100 border-0">
-                                <tbody class="border-0">
-                                    <tr>
-                                        <td class="border-0 border-bottom-0" style="width: 50%;"></td>
-                                        <td class="border-top-0 border-right-0 border-bottom-0" style="width: 50%;"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            </td>
-                            <td colspan="5"></td>
-                            <td colspan="2"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="p-0">
-                            <table class="w-100 border-0">
-                                <tbody class="border-0">
-                                    <tr>
-                                        <td class="border-0 border-bottom-0" style="width: 50%;"></td>
-                                        <td class="border-top-0 border-right-0 border-bottom-0" style="width: 50%;"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            </td>
-                            <td colspan="5"></td>
-                            <td colspan="2"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                        </tr>
-                    </tbody>
-
-                    <tbody class="table-body">
-                        <tr>
-                            <td colspan="12" class="text-white separator bg-transparent text-danger text-center">
-                                <i>(Continue on seperate sheet if necessary)</i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="text-center"><i><b>SIGNATURE</b></i></td>
-                            <td colspan="6"></td>
-                            <td colspan="2" class="text-center"><i><b>DATE</b></i></td>
-                            <td colspan="3"></td>
-                        </tr>
-                    </tbody>
-
-                    <!-- End of Page 2 -->
-
-                    <tbody class="table-body">
-                        <tr>
-                            <td colspan="12" class="text-white separator">VI. VOLUNTARY WORK OR INVOLVEMENT IN CIVIC / NON-GOVERNMENT / PEOPLE / VOLUNTARY ORGANIZATION/S</td>
-                        </tr>
-                        <tr class="text-center">
-                            <td colspan="6" class="s-label border-bottom-0">
-                                <span class="count float-left">29.</span> NAME & ADDRESS OF ORGANIZATION<br>
-                                (Write in full)
-                            </td>
-                            <td colspan="2" class="s-label border-bottom-0">INCLUSIVE DATES</td>
-                            <td colspan="1" class="s-label border-bottom-0">NUMBER OF HOURS</td>
-                            <td colspan="3" class="s-label border-bottom-0">POSITION / NATURE OF WORK</td>
-                        </tr>
-                        <tr class="text-center">
-                            <td colspan="6" class="s-label border-top-0"></td>
-                            <td colspan="1" class="s-label">From</td>
-                            <td colspan="1" class="s-label">To</td>
-                            <td colspan="1" class="s-label border-top-0"></td>
-                            <td colspan="3" class="s-label border-top-0"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="6"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="6"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="6"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="6"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="3"></td>
-                        </tr>
-                    </tbody>
-
-                    <tbody class="table-body">
-                        <tr>
-                            <td colspan="12" class="text-white separator bg-transparent text-danger text-center">
-                                <i>(Continue on seperate sheet if necessary)</i>
-                            </td>
-                        </tr>
-                    </tbody>
-
-                    <tbody class="table-body">
-                        <tr>
-                            <td colspan="12" class="text-white separator">VI. VOLUNTARY WORK OR INVOLVEMENT IN CIVIC / NON-GOVERNMENT / PEOPLE / VOLUNTARY ORGANIZATION/S<br>
-                                <small><i>(Start from the most recent L&D/training program and include only the relevant L&D/training taken for the last five (5) years for Division Chief/Executive/Managerial positions)</i></small>
-                            </td>
-                        </tr>
-                        <tr class="text-center">
-                            <td colspan="6" class="s-label border-bottom-0">
-                                <span class="count float-left">30.</span> TITLE OF LEARNING AND DEVELOPMENT INTERVENTIONS/TRAINING PROGRAMS<br>
-                                (Write in full)
-                            </td>
-                            <td colspan="2" class="s-label border-bottom-0">INCLUSIVE DATES</td>
-                            <td colspan="1" class="s-label border-bottom-0">NUMBER OF HOURS</td>
-                            <td colspan="1" class="s-label border-bottom-0">Type of LD ( Managerial/ Supervisory/Technical/etc)</td>
-                            <td colspan="2" class="s-label border-bottom-0">CONDUCTED/ SPONSORED BY<br>(Write in full)</td>
-                        </tr>
-                        <tr class="text-center">
-                            <td colspan="6" class="s-label border-top-0"></td>
-                            <td colspan="1" class="s-label">From</td>
-                            <td colspan="1" class="s-label">To</td>
-                            <td colspan="1" class="s-label border-top-0"></td>
-                            <td colspan="1" class="s-label border-top-0"></td>
-                            <td colspan="2" class="s-label border-top-0"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="6"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="2"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="6"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="2"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="6"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="2"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="6"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="2"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="6"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="1"></td>
-                            <td colspan="2"></td>
-                        </tr>
-                    </tbody>
-
-                    <tbody class="table-body">
-                        <tr>
-                            <td colspan="12" class="text-white separator bg-transparent text-danger text-center">
-                                <i>(Continue on seperate sheet if necessary)</i>
-                            </td>
-                        </tr>
-                    </tbody>
-                    
-                    <tbody class="table-body">
-                        <tr>
-                            <td colspan="12" class="text-white separator">VIII.  OTHER INFORMATION</td>
-                        </tr>
-                        <tr class="text-center">
-                            <td colspan="4" class="s-label">
-                                <span class="count float-left">31.</span> SPECIAL SKILLS and HOBBIES
-                            </td>
-                            <td colspan="4" class="s-label">
-                                <span class="count float-left">32.</span> NON-ACADEMIC DISTINCTIONS / RECOGNITION<br>(Write in full)
-                            </td>
-                            <td colspan="4" class="s-label">
-                                <span class="count float-left">33.</span> MEMBERSHIP IN ASSOCIATION/ORGANIZATION<br>(Write in full)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="4"></td>
-                            <td colspan="4"></td>
-                            <td colspan="4"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="4"></td>
-                            <td colspan="4"></td>
-                            <td colspan="4"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="4"></td>
-                            <td colspan="4"></td>
-                            <td colspan="4"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="4"></td>
-                            <td colspan="4"></td>
-                            <td colspan="4"></td>
-                        </tr>
-                    </tbody>
-
-                    <tbody class="table-body">
-                        <tr>
-                            <td colspan="12" class="text-white separator bg-transparent text-danger text-center">
-                                <i>(Continue on seperate sheet if necessary)</i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="4" class="text-center"><i><b>SIGNATURE</b></i></td>
-                            <td colspan="3"></td>
-                            <td colspan="1" class="text-center"><i><b>DATE</b></i></td>
-                            <td colspan="4"></td>
-                        </tr>
-                    </tbody>
-
-                    <!-- End of Page 3 -->
-
-                    <!-- Q1 -->
-                    <tbody class="table-body question-block">
-                        <tr>
-                            <td colspan="12" class="separator"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="7" class="s-label border-bottom-0">
-                                <span class="count">34.</span> Are you related by consanguinity or affinity to the appointing or recommending authority, or to the<br>
-                                <span class="count"></span>chief of bureau or office or to the person who has immediate supervision over you in the Office,<br>
-                                <span class="count"></span>Bureau or Department where you will beapppointed,<br>
-                            </td>
-                            <td colspan="2">
-                                
-                            </td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="7" class="s-label">
-                                <span class="count"></span>a. within the third degree?<br>
-                            </td>
-                            <td colspan="2"></td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="7" class="s-label">
-                                <span class="count"></span>b. within the fourth degree (for Local Government Unit - Career Employees)?
-                            </td>
-                            <td colspan="2"></td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="7" class="s-label">
-                            </td>
-                            <td colspan="2">If YES, give details:</td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="7" class="s-label"></td>
-                            <td colspan="5"></td>
-                        </tr>
-                    </tbody>
-
-                    <!-- Q2 -->
-                    <tbody class="table-body question-block">
-                        <tr>
-                            <td colspan="7" class="s-label border-bottom-0">
-                                <span class="count">35.</span> a. Have you ever been found guilty of any administrative offense?
-                            </td>
-                            <td colspan="2">
-                                
-                            </td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="7" class="s-label"></td>
-                            <td colspan="5">If YES, give details:</td>
-                        </tr>
-                        <tr>
-                            <td colspan="7" class="s-label"></td>
-                            <td colspan="5"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="7" class="s-label">
-                                <span class="count"></span> b. within the fourth degree (for Local Government Unit - Career Employees)?
-                            </td>
-                            <td colspan="2" style="border-top-width: 1px !important;"></td>
-                            <td colspan="3" style="border-top-width: 1px !important;"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="7" class="s-label"></td>
-                            <td colspan="5">If YES, give details:</td>
-                        </tr>
-                        <tr>
-                            <td colspan="7" class="s-label"></td>
-                            <td colspan="2">Date Filed:</td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="7" class="s-label"></td>
-                            <td colspan="2">Status of Case/s:</td>
-                            <td colspan="3"></td>
-                        </tr>
-                    </tbody>
-
-                    <!-- Q3 -->
-                    <tbody class="table-body question-block">
-                        <tr>
-                            <td colspan="7" class="s-label border-bottom-0">
-                                <span class="count">36.</span> Have you ever been convicted of any crime or violation of any law, decree, ordinance or regulation by any court or tribunal?
-                            </td>
-                            <td colspan="2"></td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="7" class="s-label"></td>
-                            <td colspan="5">If YES, give details:</td>
-                        </tr>
-                        <tr>
-                            <td colspan="7" class="s-label"></td>
-                            <td colspan="5"></td>
-                        </tr>
-                    </tbody>
-
-                    <!-- Q4 -->
-                    <tbody class="table-body question-block">
-                        <tr>
-                            <td colspan="7" class="s-label border-bottom-0">
-                                <span class="count">37.</span> Have you ever been separated from the service in any of the following modes: resignation,<br>
-                                
-                                
-                            </td>
-                            <td colspan="2"></td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="7" class="s-label">
-                                <span class="count"></span> retirement, dropped from the rolls, dismissal, termination, end of term, finished contract or phased<br>
-                            </td>
-                            <td colspan="5">If YES, give details:</td>
-                        </tr>
-                        <tr>
-                            <td colspan="7" class="s-label">
-                                <span class="count"></span> out (abolition) in the public or private sector?
-                            </td>
-                            <td colspan="2"></td>
-                            <td colspan="3"></td>
-                        </tr>
-                    </tbody>
-
-                    <!-- Q5 -->
-                    <tbody class="table-body question-block">
-                        <tr>
-                            <td colspan="7" class="s-label border-bottom-0">
-                                <span class="count">38.</span> a. Have you ever been a candidate in a national or local election held within the last year (except Barangay election)?
-                            </td>
-                            <td colspan="2"></td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="7" class="s-label">
-                                <span class="count"></span><br>
-                            </td>
-                            <td colspan="2">If YES, give details:</td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="7" class="s-label">
-                                <span class="count"></span> b. Have you resigned from the government service during the three (3)-month period before the last
-                            </td>
-                            <td colspan="2"></td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="7" class="s-label">
-                                <span class="count"></span> election to promote/actively campaign for a national or local candidate?
-                            </td>
-                            <td colspan="2">If YES, give details:</td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="7" class="s-label"></td>
-                            <td colspan="2"></td>
-                            <td colspan="3"></td>
-                        </tr>
-                    </tbody>
-
-                    <!-- Q6 -->
-                    <tbody class="table-body question-block">
-                        <tr>
-                            <td colspan="7" class="s-label border-bottom-0">
-                                <span class="count">39.</span> Have you acquired the status of an immigrant or permanent resident of another country?
-                            </td>
-                            <td colspan="2">
-                                
-                            </td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="7" class="s-label">
-                            </td>
-                            <td colspan="2">if YES, give details (country):</td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="7" class="s-label">
-                            </td>
-                            <td colspan="2"></td>
-                            <td colspan="3"></td>
-                        </tr>
-                    </tbody>
-
-                    <!-- Q7 -->
-                    <tbody class="table-body question-block">
-                        <tr>
-                            <td colspan="7" class="s-label border-bottom-0">
-                                <span class="count">40.</span> Pursuant to: (a) Indigenous People's Act (RA 8371); (b) Magna Carta for Disabled Persons (RA<br>
-                                <span class="count"></span> 7277); and (c) Solo Parents Welfare Act of 2000 (RA 8972), please answer the following items:
-                            </td>
-                            <td colspan="2">
-                                
-                            </td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="7" class="s-label">
-                                <span class="count"></span>a. Are you a member of any indigenous group?<br>
-                            </td>
-                            <td colspan="2"></td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="7" class="s-label">
-                                <span class="count"></span><br>
-                            </td>
-                            <td colspan="2">If YES, please specify:</td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="7" class="s-label">
-                                <span class="count"></span>b. Are you a person with disability?
-                            </td>
-                            <td colspan="2"></td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="7" class="s-label">
-                            </td>
-                            <td colspan="2">If YES, please specify:</td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="7" class="s-label">
-                                <span class="count"></span>c. Are you a solo parent?
-                            </td>
-                            <td colspan="2"></td>
-                            <td colspan="3"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="7" class="s-label"></td>
-                            <td colspan="2">If YES, please specify:</td>
-                            <td colspan="3"></td>
-                        </tr>
-                    </tbody>
-
-                    <!-- End of Page 4 -->
-
-                    <tbody class="table-body">
-                        <tr>
-                            <td colspan="8" class="s-label">
-                                <span class="count">41.</span> REFERENCES <span class="text-danger">(Person not related by consanguinity or affinity to applicant /appointee)</span>
-                            </td>
-                            <td colspan="4" rowspan="5" class="p-5">
-                                <table class="w-75 mx-auto border-0">
-                                    <tbody class="border-0">
-                                        <tr>
-                                            <td class="text-center p-3">ID picture taken within the last  6 months3.5 cm. X 4.5 cm(passport size)With full and handwrittenname tag and signature overprinted nameComputer generated or photocopied picture is not acceptable</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="border-0 text-muted lead text-center">PHOTO</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </td>
-                        </tr>
-                        <tr class="text-center">
-                            <td colspan="4" class="s-label">NAME</td>
-                            <td colspan="2" class="s-label">ADDRESS</td>
-                            <td colspan="2" class="s-label">TEL. NO.</td>
-                        </tr>
-                        <tr>
-                            <td colspan="4"></td>
-                            <td colspan="2"></td>
-                            <td colspan="2"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="4"></td>
-                            <td colspan="2"></td>
-                            <td colspan="2"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="8">
-                                <span class="count">42.</span> I declare under oath that I have personally accomplished this Personal Data Sheet which is a true correct and<br><span class="count"></span> complete statement pursuant to the provisions of pertinent laws, rules and regulations of the Republic of the<br><span class="count"></span> Philippines. I authorize the agency head / authorized representative t verify validate the contents stated herein.<br><span class="count"></span> I agree that any misrepresentation made in this document and its attachments shall cause the filing of<br><span class="count"></span> administrative/criminal case/s against me.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="12" class="border-0 p-0">
-                                <table class="border-0 w-100">
-                                    <tbody class="border-0">
-                                        <tr>
-                                            <td colspan="4" class="border-0 p-3" style="width: 38.5%;">
-                                                <table class="border-0 w-100">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="s-label py-2">Government Issued ID(i.e.Passport, GSIS, SSS, PRC, Driver's License, etc.)<br>                               PLEASE INDICATE ID Number and Date of Issuance</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="width: 30%;">Government Issued ID:</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="width: 30%;">ID/License/Passport No.:</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="width: 30%;">Date/Place of Issuance:</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                            <td colspan="4" class="border-0 p-3" style="width: 38.5%;">
-                                                <table class="border-0 w-100">
-                                                    <tbody class="border-0 text-center">
-                                                        <tr>
-                                                            <td class="py-4"></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="s-label"><small>Signature (Sign inside the box)</small></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="s-label"><small>Date Accomplished</small></td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                            <td colspan="4" class="border-0 p-3">
-                                                <table class="border-0 w-100">
-                                                    <tbody class="border-0">
-                                                        <tr>
-                                                            <td class="py-5"></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="s-label text-center">Right Thumbmark</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-
-                                    <tbody class="table-body">
-                                        <tr>
-                                            <td colspan="12" class="text-center py-2">
-                                                SUBSCRIBED AND SWORN to before me this <input type="text" class="border-top-0 border-left-0 border-right-0" style="width: 25%;"> , affiant exhibiting his/her validly issued government ID as indicated above.
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="12" class="py-5">
-                                                <table class="w-25 mx-auto">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="py-5"></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="s-label text-center">Person Administering Oath</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-
-                                </table>
-                            </td>
-                        </tr>
-                    </tbody>
-
-                    <!-- End of References -->
-
-
-
-                </table>
-            </form>
+                    <div class="row">
+                        
+                        <div class="col-md-4 mb-2">
+                            <label for="status" class="form-label">SEX</label>
+                            <input type="text" value="<?= $emp_profile['sex'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="status" class="form-label">CIVIL STATUS</label>
+                            <input type="text" value="<?= $emp_profile['civil_status'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                    </div>
+                    <div class="row"> 
+                        <div class="col-md-3 mb-2">
+                            <label for="status" class="form-label">HEIGHT (m)</label>
+                            <input type="text" value="<?= $emp_profile['height'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <label for="status" class="form-label">WEIGHT (kg)</label>
+                            <input type="text" value="<?= $emp_profile['weight'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <label for="status" class="form-label">BLOOD TYPE</label>
+                            <input type="text" value="<?= $emp_profile['blood_type'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <label for="status" class="form-label">GSIS ID NO.</label>
+                            <input type="text" value="<?= $emp_profile['gsisno'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <label for="status" class="form-label">PAG-IBIG ID NO.</label>
+                            <input type="text" value="<?= $emp_profile['pag_ibig_no'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <label for="status" class="form-label">PHILHEALTH NO.</label>
+                            <input type="text" value="<?= $emp_profile['philhealth_no'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <label for="status" class="form-label">SSS NO.</label>
+                            <input type="text" value="<?= $emp_profile['sss_no'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <label for="status" class="form-label">TIN NO.</label>
+                            <input type="text" value="<?= $emp_profile['tin_no'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <label for="status" class="form-label">AGENCY EMPLOYEE NO.</label>
+                            <input type="text" value="<?= $emp_profile['agency_emp_no'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <label for="status" class="form-label">CITIZENSHIP</label>
+                            <input type="text" value="<?= $emp_profile['citizenship'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <label for="status" class="form-label">CITIZENSHIP CATEGORY</label>
+                            <input type="text" value="<?= $emp_profile['ship_by'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <label for="status" class="form-label">COUNTRY</label>
+                            <input type="text" value="<?= $emp_profile['citizenship_country'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <label for="status" class="form-label">Telephone</label>
+                            <input type="text" value="<?= $emp_profile['telephone'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <label for="status" class="form-label">Mobile No.</label>
+                            <input type="text" value="<?= $emp_profile['mobile'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="status" class="form-label">E-mail Address</label>
+                            <input type="text" value="<?= $this->session->userdata('email') ?>" disabled class="form-control form-control-line">
+                        </div>
+                    </div>
+                    <hr>
+                    <h6 class="fw-bold">RESIDENTIAL ADDRESS</h6>
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <label for="status" class="form-label">House/Block/Lot No.</label>
+                            <input type="text" value="<?= $residential_address['house_block_lotno'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label for="status" class="form-label">Street</label>
+                            <input type="text" value="<?= $residential_address['street_sitio'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <label for="status" class="form-label">Subdivision/Village</label>
+                            <input type="text" value="<?= $residential_address['subdivision_village'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label for="status" class="form-label">Barangay</label>
+                            <input type="text" value="<?= $residential_address['barangay'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-2">
+                            <label for="status" class="form-label">City/Municipality</label>
+                            <input type="text" value="<?= $residential_address['municipality_city'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="status" class="form-label">Province</label>
+                            <input type="text" value="<?= $residential_address['province'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="status" class="form-label">Zipcode</label>
+                            <input type="text" value="<?= $residential_address['zipcode'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                    </div>
+                    <br>
+                    <h6 class="fw-bold">PERMANENT ADDRESS</h6>
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <label for="status" class="form-label">House/Block/Lot No.</label>
+                            <input type="text" value="<?= $permanent_address['house_block_lotno'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label for="status" class="form-label">Street</label>
+                            <input type="text" value="<?= $permanent_address['street_sitio'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <label for="status" class="form-label">Subdivision/Village</label>
+                            <input type="text" value="<?= $permanent_address['subdivision_village'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label for="status" class="form-label">Barangay</label>
+                            <input type="text" value="<?= $permanent_address['barangay'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-2">
+                            <label for="status" class="form-label">City/Municipality</label>
+                            <input type="text" value="<?= $permanent_address['municipality_city'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="status" class="form-label">Province</label>
+                            <input type="text" value="<?= $permanent_address['province'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="status" class="form-label">Zipcode</label>
+                            <input type="text" value="<?= $permanent_address['zipcode'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                    </div>
+                </div>
+                <!-- End Card Body -->
+            </div>
+            <!-- End card -->
         </div>
+
+
+        <div class="col-md-12 p-2 float-sm-start">
+            <div class="card">
+                <div class="card-header" data-bs-toggle="collapse"
+                    data-bs-target="#collapseSchoolInfo" aria-expanded="true"
+                    aria-controls="collapseSchoolInfo">
+                    <span class="card-icon"><i class="fa fa-graduation-cap"></i></span>
+                    II. FAMILY BACKGROUND<i class="fa fa-caret-down pull-right"></i>
+                </div>
+                <div class="card-body">
+                    <h6 class="fw-bold">SPOUSE</h6>
+                    <div class="row">
+                        <div class="col-md-4 mb-2">
+                            <label for="status" class="form-label">SPOUSE'S SURNAME</label>
+                            <input type="text" value="<?= $get_spouse_info['lname'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="status" class="form-label">FIRST NAME</label>
+                            <input type="text" value="<?= $get_spouse_info['fname'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="status" class="form-label">MIDDLE NAME</label>
+                            <input type="text" value="<?= $get_spouse_info['mname'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="status" class="form-label">NAME EXTENSION</label>
+                            <input type="text" value="<?= $get_spouse_info['name_ext'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="status" class="form-label">OCCUPATION</label>
+                            <input type="text" value="<?= $get_spouse_info['occupation'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="status" class="form-label">EMPLOYER/BUSSINESS NAME</label>
+                            <input type="text" value="<?= $get_spouse_info['bus_name'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="status" class="form-label">BUSINESS ADDRESS</label>
+                            <input type="text" value="<?= $get_spouse_info['bus_add'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="status" class="form-label">TELEPHONE NO.</label>
+                            <input type="text" value="<?= $get_spouse_info['tel_num'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                    </div>
+                    <br><hr>
+                    <h6 class="fw-bold">FATHER</h6>
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <label for="status" class="form-label">FATHER'S SURNAME</label>
+                            <input type="text" value="<?= $get_father_info['father_lname'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label for="status" class="form-label">FIRST NAME</label>
+                            <input type="text" value="<?= $get_father_info['father_fname'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label for="status" class="form-label">MIDDLE NAME</label>
+                            <input type="text" value="<?= $get_father_info['father_mname'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label for="status" class="form-label">NAME EXTENSION</label>
+                            <input type="text" value="<?= $get_father_info['father_ex'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                    </div> 
+                    <br><hr>
+                    <h6 class="fw-bold">MOTHER</h6>
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <label for="status" class="form-label">MOTHER'S MAIDEN NAME</label>
+                            <input type="text" value="<?php echo $get_mother_info['maiden_fname'] . ' ' . $get_mother_info['maiden_mname'] . ' ' . $get_mother_info['maiden_lname'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label for="status" class="form-label">SURNAME</label>
+                            <input type="text" value="<?= $get_mother_info['lname']?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label for="status" class="form-label">FIRST NAME</label>
+                            <input type="text" value="<?= $get_mother_info['maiden_fname']?>" disabled class="form-control form-control-line">
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label for="status" class="form-label">MIDDLE NAME</label>
+                            <input type="text" value="<?= $get_mother_info['maiden_mname']?>" disabled class="form-control form-control-line">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 mb-2">
+                            <table class="table table-bordered table-hover mb-0">
+                                <tr>
+                                    <th>NAME OF CHILDREN</th>
+                                    <th>DATE OF BIRTH</th>
+                                </tr>
+                                <?php foreach ($get_all_child as $child): ?>
+                                    <?php if($child['fname'] === 'N/A'): ?>
+                                        <tr>
+                                            <td class="text-center fw-bold">N/A</td>
+                                            <td class="text-center fw-bold">N/A</td>
+                                        </tr>
+                                    <?php else: ?>
+                                        <tr>
+                                            <td><?php echo $child['fname'] . ' ' . $child['mname'] . ' ' . $child['lname'] ?></td>
+                                            <td><?= $child['bday'] ?></td>
+                                        </tr>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </table>
+
+                        </div>
+                    </div>
+
+                    
+                    
+                </div>
+                <!-- End Card Body -->
+            </div>
+            <!-- End card -->
+        </div>
+
+
+
+        <div class="col-md-12 p-2 float-sm-start">
+            <div class="card">
+                <div class="card-header" data-bs-toggle="collapse"
+                    data-bs-target="#collapseSchoolInfo" aria-expanded="true"
+                    aria-controls="collapseSchoolInfo">
+                    <span class="card-icon"><i class="fa fa-graduation-cap"></i></span>
+                    III. EDUCATIONAL BACKGROUND <i class="fa fa-caret-down pull-right"></i>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12 mb-2">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover mb-0">
+                                    <tr>
+                                        <th>LEVEL</th>
+                                        <th>NAME OF SCHOOL</th>
+                                        <th>BASIC EDUCATION/DEGREE/COURSE</th>
+                                        <th>FROM</th>
+                                        <th>TO</th>
+                                        <th>UNITS EARNED</th>
+                                        <th>YEAR GRADUATED</th>
+                                        <th>HONORS RECEIVED</th>
+                                    </tr>
+                                    <?php foreach($get_educational as $educbg): ?>
+                                    <tr>
+                                        <td><?= $educbg['level'] ?></td>
+                                        <td><?= $educbg['school_name'] ?></td>
+                                        <td><?= $educbg['degree'] ?></td>
+                                        <td><?= $educbg['from_date'] ?></td>
+                                        <td><?= $educbg['to_date'] ?></td>
+                                        <td><?= $educbg['highest_level'] ?></td>
+                                        <td><?= $educbg['year_graduated'] ?></td>
+                                        <td><?= $educbg['honors_received'] ?></td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                </table>
+                            </div>
+                            
+
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- End Card Body -->
+            </div>
+            <!-- End card -->
+        </div>
+
+        <div class="col-md-12 p-2 float-sm-start">
+            <div class="card">
+                <div class="card-header" data-bs-toggle="collapse"
+                    data-bs-target="#collapseSchoolInfo" aria-expanded="true"
+                    aria-controls="collapseSchoolInfo">
+                    <span class="card-icon"><i class="fa fa-graduation-cap"></i></span>
+                    IV. CIVIL SERVICE ELEGIBILITY  <i class="fa fa-caret-down pull-right"></i>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12 mb-2">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover mb-0">
+                                    <tr>
+                                        <th>CAREER SERVICE/ RA 1080 (BOARD/ BAR) UNDER SPECIAL LAWS/ CES/ CSEE                                                    BARANGAY ELIGIBILITY / DRIVER'S LICENSE</th>
+                                        <th>RATING (If Applicable)</th>
+                                        <th>DATE OF EXAMINATION / CONFERMENT</th>
+                                        <th>PLACE OF EXAMINATION / CONFERMENT</th>
+                                        <th>LICENSE NUMBER</th>
+                                        <th>LICENSE Date of Validity</th>
+                                    </tr>
+                                    <?php if(empty($get_eligibility)): ?>
+                                        <tr>
+                                            <td class="text-center fw-bold">N/A</td>
+                                            <td class="text-center fw-bold">N/A</td>
+                                            <td class="text-center fw-bold">N/A</td>
+                                            <td class="text-center fw-bold">N/A</td>
+                                            <td class="text-center fw-bold">N/A</td>
+                                            <td class="text-center fw-bold">N/A</td>
+                                        </tr>
+                                    <?php endif; ?>
+                                    <?php foreach($get_eligibility as $cse): ?>
+                                        <tr>
+                                            <td><?= $cse['service'] ?></td>
+                                            <td><?= $cse['rating'] ?></td>
+                                            <td><?= $cse['date_conferment'] ?></td>
+                                            <td><?= $cse['place_conferment'] ?></td>
+                                            <td><?= $cse['license_num'] ?></td>
+                                            <td><?= $cse['validity'] ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </table>
+                            </div>
+                            
+
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- End Card Body -->
+            </div>
+            <!-- End card -->
+        </div>
+        <div class="col-md-12 p-2 float-sm-start">
+            <div class="card">
+                <div class="card-header" data-bs-toggle="collapse"
+                    data-bs-target="#collapseSchoolInfo" aria-expanded="true"
+                    aria-controls="collapseSchoolInfo">
+                    <span class="card-icon"><i class="fa fa-graduation-cap"></i></span>
+                    V. WORK EXPERIENCE  <i class="fa fa-caret-down pull-right"></i>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12 mb-2">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover mb-0">
+                                    <tr>
+                                        <th>FROM</th>
+                                        <th>TO</th>
+                                        <th>POSITION/TITLE</th>
+                                        <th>COMPANY</th>
+                                        <th>MONTHLY SALARY</th>
+                                        <th>SALARY GRADE</th>
+                                        <th>STATUS OF APPOINTMENT</th>
+                                        <th>GOV'T SEVICE (Y/N)</th>
+                                    </tr>
+                                    <?php if(empty($get_experience)): ?>
+                                            <tr>
+                                                <td class="text-center fw-bold">N/A</td>
+                                                <td class="text-center fw-bold">N/A</td>
+                                                <td class="text-center fw-bold">N/A</td>
+                                                <td class="text-center fw-bold">N/A</td>
+                                                <td class="text-center fw-bold">N/A</td>
+                                                <td class="text-center fw-bold">N/A</td>
+                                                <td class="text-center fw-bold">N/A</td>
+                                                <td class="text-center fw-bold">N/A</td>
+                                            </tr>
+                                    <?php endif; ?>
+                                    <?php foreach($get_experience as $workExp): ?>
+                                        <?php if($workExp['_from'] === 'N/A'): ?>
+                                            <tr>
+                                                <td>N/A</td>
+                                                <td>N/A</td>
+                                                <td>N/A</td>
+                                                <td>N/A</td>
+                                                <td>N/A</td>
+                                                <td>N/A</td>
+                                                <td>N/A</td>
+                                                <td>N/A</td>
+                                            </tr>
+                                        <?php elseif($workExp['step_inc'] != 'N/A'): ?>
+                                            <tr>
+                                                <td><?= $workExp['_from'] ?></td>
+                                                <td><?= $workExp['_to'] ?></td>
+                                                <td><?= $workExp['designation'] ?></td>
+                                                <td><?= $workExp['company'] ?></td>
+                                                <td><?= $workExp['monthly_salary'] ?></td>
+                                                <td><?php echo $workExp['salary_grade'] . '/' . $workExp['step_inc']  ?></td>
+                                                <td><?= $workExp['appointment_status'] ?></td>
+                                                <td><?= $workExp['government'] ?></td>
+                                            </tr>
+                                        <?php else: ?>
+                                            <tr>
+                                                <td><?= $workExp['_from'] ?></td>
+                                                <td><?= $workExp['_to'] ?></td>
+                                                <td><?= $workExp['designation'] ?></td>
+                                                <td><?= $workExp['company'] ?></td>
+                                                <td><?= $workExp['monthly_salary'] ?></td>
+                                                <td><?= $workExp['salary_grade'] ?></td>
+                                                <td><?= $workExp['appointment_status'] ?></td>
+                                                <td><?= $workExp['government'] ?></td>
+                                            </tr>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </table>
+                        </div>
+
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- End Card Body -->
+            </div>
+            <!-- End card -->
+        </div>
+
+
+        <div class="col-md-12 p-2 float-sm-start">
+            <div class="card">
+                <div class="card-header" data-bs-toggle="collapse"
+                    data-bs-target="#collapseSchoolInfo" aria-expanded="true"
+                    aria-controls="collapseSchoolInfo">
+                    <span class="card-icon"><i class="fa fa-graduation-cap"></i></span>
+                    VI. VOLUNTARY WORK OR INVOLVEMENT IN CIVIC / NON-GOVERNMENT / PEOPLE / VOLUNTARY ORGANIZATION/S  <i class="fa fa-caret-down pull-right"></i>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12 mb-2">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover mb-0">
+                                    <tr>
+                                        <th>NAME & ADDRESS OF ORGANIZATION  <br> (Write in full)</th>
+                                        <th>FROM</th>
+                                        <th>TO</th>
+                                        <th>NUMBER OF HOURS</th>
+                                        <th>POSITION / NATURE OF WORK</th>
+                                    </tr>
+                                    <?php if(empty($get_voluntary)): ?>
+                                        <tr>
+                                            <td class="text-center fw-bold">N/A</td>
+                                            <td class="text-center fw-bold">N/A</td>
+                                            <td class="text-center fw-bold">N/A</td>
+                                            <td class="text-center fw-bold">N/A</td>
+                                            <td class="text-center fw-bold">N/A</td>
+                                        </tr>
+                                    <?php endif; ?>
+                                    <?php foreach($get_voluntary as $vol): ?>
+                                        <tr>
+                                            <td><?php echo $vol['name'] . ' ' . $vol['barangay'] . ' ' . $vol['municipality_city'] ?></td>
+                                            <td><?= $vol['_from'] ?></td>
+                                            <td><?= $vol['_to'] ?></td>
+                                            <td><?= $vol['hours'] ?></td>
+                                            <td><?= $vol['position'] ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </table>
+                            </div>
+                            
+
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- End Card Body -->
+            </div>
+            <!-- End card -->
+        </div>
+
+
+        <div class="col-md-12 p-2 float-sm-start">
+            <div class="card">
+                <div class="card-header" data-bs-toggle="collapse"
+                    data-bs-target="#collapseSchoolInfo" aria-expanded="true"
+                    aria-controls="collapseSchoolInfo">
+                    <span class="card-icon"><i class="fa fa-graduation-cap"></i></span>
+                    VII.  LEARNING AND DEVELOPMENT (L&D) INTERVENTIONS/TRAINING PROGRAMS ATTENDED<i class="fa fa-caret-down pull-right"></i>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12 mb-2">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover mb-0">
+                                    <tr>
+                                        <th>TITLE OF LEARNING AND DEVELOPMENT INTERVENTIONS/TRAINING PROGRAMS <br> (Write in full)</th>
+                                        <th>FROM</th>
+                                        <th>TO</th>
+                                        <th>NUMBER OF HOURS</th>
+                                        <th>Type of LD ( Managerial/ Supervisory/Technical/etc)</th>
+                                        <th> CONDUCTED/ SPONSORED BY                                                               (Write in full)</th>
+                                    </tr>
+                                    <?php if(empty($get_trainings)): ?>
+                                        <tr>
+                                            <td class="text-center fw-bold">N/A</td>
+                                            <td class="text-center fw-bold">N/A</td>
+                                            <td class="text-center fw-bold">N/A</td>
+                                            <td class="text-center fw-bold">N/A</td>
+                                            <td class="text-center fw-bold">N/A</td>
+                                            <td class="text-center fw-bold">N/A</td>
+                                        </tr>
+                                    <?php endif; ?>
+                                    <?php foreach($get_trainings as $train): ?>
+                                        <tr>
+                                            <td><?= $train['title'] ?></td>
+                                            <td><?= $train['_from'] ?></td>
+                                            <td><?= $train['_to'] ?></td>
+                                            <td><?= $train['hours'] ?></td>
+                                            <td><?= $train['type'] ?></td>
+                                            <td><?= $train['sponsored'] ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </table>
+                            </div>
+                            
+
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- End Card Body -->
+            </div>
+            <!-- End card -->
+        </div>
+
+
+
+
+
+
+        <div class="col-md-12 p-2 float-sm-start">
+            <div class="row">
+                <div class="col-md-4 mb-2">
+                    <div class="card">
+                        <div class="card-header" data-bs-toggle="collapse"
+                            data-bs-target="#collapseSchoolInfo" aria-expanded="true"
+                            aria-controls="collapseSchoolInfo">
+                            <span class="card-icon"><i class="fa fa-graduation-cap"></i></span>
+                            SPECIAL SKILL AND HOBBIES
+                            <i class="fa fa-caret-down pull-right"></i>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 mb-2">
+                                    <table class="table table-bordered table-hover mb-0">
+                                        <?php if(empty($get_skills)): ?>
+                                            <tr>
+                                                <td class="text-center fw-bold">N/A</td>
+                                            </tr>
+                                        <?php endif; ?>
+                                        <?php foreach($get_skills as $skill): ?>
+                                            <tr>
+                                                <td><?= $skill['special_skill'] ?></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </table>
+
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <!-- End Card Body -->
+                    </div>
+                    <!-- End card -->
+                </div>
+                <div class="col-md-4 mb-2">
+                    <div class="card">
+                        <div class="card-header" data-bs-toggle="collapse"
+                            data-bs-target="#collapseSchoolInfo" aria-expanded="true"
+                            aria-controls="collapseSchoolInfo">
+                            <span class="card-icon"><i class="fa fa-graduation-cap"></i></span>
+                            NON-ACADEMIC DISTINCTIONS
+                            <i class="fa fa-caret-down pull-right"></i>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 mb-2">
+                                    <table class="table table-bordered table-hover mb-0">
+                                        <?php if(empty($get_distinctions)): ?>
+                                            <tr>
+                                                <td class="text-center fw-bold"></td>
+                                            </tr>
+                                        <?php endif; ?>
+                                        <?php foreach($get_distinctions as $recog): ?>
+                                            <tr>
+                                                <td><?= $recog['award_desc'] ?></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </table>
+
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <!-- End Card Body -->
+                    </div>
+                    <!-- End card -->
+                </div>
+                <div class="col-md-4 mb-2">
+                    <div class="card">
+                        <div class="card-header" data-bs-toggle="collapse"
+                            data-bs-target="#collapseSchoolInfo" aria-expanded="true"
+                            aria-controls="collapseSchoolInfo">
+                            <span class="card-icon"><i class="fa fa-graduation-cap"></i></span>
+                            MEMBERSHIP IN ORGANIZATION
+                            <i class="fa fa-caret-down pull-right"></i>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 mb-2">
+                                    <table class="table table-bordered table-hover mb-0">
+                                    <?php if(empty($get_membership)): ?>
+                                            <tr>
+                                                <td class="text-center fw-bold"></td>
+                                            </tr>
+                                        <?php endif; ?>
+                                        <?php foreach($get_membership as $member): ?>
+                                            <tr>
+                                                <td><?= $member['assoc_name'] ?></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </table>
+
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <!-- End Card Body -->
+                    </div>
+                    <!-- End card -->
+                </div>
+
+            </div>
+           
+        </div>
+
+
+
+
+
+
+        <div class="col-md-12 p-2 float-sm-start">
+            <div class="card">
+                <div class="card-header" data-bs-toggle="collapse"
+                    data-bs-target="#collapseSchoolInfo" aria-expanded="true"
+                    aria-controls="collapseSchoolInfo">
+                    <span class="card-icon"><i class="fa fa-graduation-cap"></i></span>
+                    OTHER INFORMATION <i class="fa fa-caret-down pull-right"></i>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <h6>REFERENCES</h6>
+                        <div class="col-md-8 mb-2">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover mb-0">
+                                    <tr>
+                                        <th>NAME</th>
+                                        <th>ADDRESS</th>
+                                        <th>TEL.NO</th>
+                                    </tr>
+                                    <?php if(empty($get_ref)): ?>
+                                        <tr>
+                                            <td class="text-center fw-bold">N/A</td>
+                                            <td class="text-center fw-bold">N/A</td>
+                                            <td class="text-center fw-bold">N/A</td>
+                                        </tr>
+                                    <?php endif; ?>
+                                    <?php foreach($get_ref as $ref): ?>
+                                        <tr>
+                                            <td><?= $ref['ref_lname'] . ', ' . $ref['ref_fname'] . ' ' . $ref['ref_mname'] . '.' ?></td>
+                                            <td><?= $ref['barangay'] . ', ' . $ref['municipality_city'] ?></td>
+                                            <td><?= $ref['ref_telno'] ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </table>
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for=""> <strong> Government Issued. Please Indicate ID number and Date of Issuance</strong>   </label>
+                            <label for="status" class="form-label">Government Issued ID: </label>
+                            <input type="text" value="<?= $get_id['id_desc'] ?>" disabled class="form-control form-control-line">
+                            <label for="status" class="form-label">ID/License/Passport No.: </label>
+                            <input type="text" value="<?= $get_id['idno'] ?>" disabled class="form-control form-control-line">
+                            <label for="status" class="form-label">Date/Place of Issuance:</label>
+                            <input type="text" value="<?php echo $get_id['date_issued'] . '/' . $get_id['place_issued'] ?>" disabled class="form-control form-control-line">
+                        </div>
+                    </div>
+                    
+
+                    
+                </div>
+                <!-- End Card Body -->
+            </div>
+            <!-- End card -->
+        </div>
+    </div>
+    <!-- end col- -->
+    
+    
+
+
+
                         <div class="row mb-2">
 							<div class="d-flex justify-content-center">
                                 <?php if(isset($get_stat_pds['pds_id'])): ?>

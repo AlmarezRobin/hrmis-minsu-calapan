@@ -13,15 +13,31 @@ class Pds extends Controller {
 	// * end change jcd april 21, 2022	
 
 	public function view_finished_pds(){
+		$this->call->model('Export_PDS_model', 'exPDS');
+
 		$data=[
-			'emp_profile' => $this->Employee_model->emp_profile($this->session->userdata('user_id')),
+			'emp_profile' => $this->exPDS->emp_profile($this->session->userdata('user_id')), /* change jcd June 13, 2022 */
 
 			'get_spouse_info'=> $this->Pds_model->get_spouse_info(),
 			'get_father_info'=> $this->Pds_model->get_father_info(),
 			'get_mother_info' =>$this->Pds_model->get_mother_info(),
-			'get_all_child' => $this->Pds_model->get_all_child(),
+			'get_all_child' => $this->exPDS->get_all_child(),
+			
+			/* start change jcd June 13, 2022 */
+			'get_educational' => $this->Pds_model->get_educational(),
+			'residential_address' => $this->Address_model->residential_add($this->session->userdata('user_id')),
+			'permanent_address' => $this->Address_model->permanent_add($this->session->userdata('user_id')),
+			'get_eligibility' => $this->exPDS->get_eligibility(),
+			'get_experience' => $this->exPDS->get_experience(),
+			'get_voluntary' => $this->exPDS->get_voluntary(),
+			'get_trainings' => $this->exPDS->get_trainings(),
 
-
+			'get_skills' => $this->Pds_model->get_skills(),
+			'get_distinctions' => $this->Pds_model->get_distinctions(),
+			'get_membership' => $this->Pds_model->get_membership(),
+			'get_ref' => $this->Pds_model->get_ref(),
+			'get_id' => $this->exPDS->get_id(),
+			/* end change jcd June 13, 2022 */
 
 
 			'get_rel_info'=>$this->Pds_model->get_rel_info(),
@@ -31,12 +47,11 @@ class Pds extends Controller {
 			'get_candidacy_info'=>$this->Pds_model->get_candidacy_info(),
 			'get_immigrant_info'=>$this->Pds_model->get_immigrant_info(),
 			'get_previlage_info'=>$this->Pds_model->get_previlage_info(),
-			'get_id' => $this->Pds_model->get_id(),
 			'get_stat_pds'=>$this->Employee_model->get_stat_pds(), //para sa pagkuha ng status ng submitted pds 5422
 			'emp_notif_forpds'=> $this->Employee_model->emp_notif_forpds()
 
 		];
-		$data['emp_profile'] = $this->Employee_model->emp_profile($this->session->userdata('user_id'));
+		// $data['emp_profile'] = $this->Employee_model->emp_profile($this->session->userdata('user_id'));
 		$this->call->view('emp/emp_pds/pds',$data);
 	}
 
