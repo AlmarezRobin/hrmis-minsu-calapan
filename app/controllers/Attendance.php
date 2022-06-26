@@ -12,6 +12,12 @@
        
         
         public function import_attendance(){
+
+            $target_dir = "uploads/AttendanceFiles/";
+            $target_file = $target_dir . basename($_FILES["file"]["name"]);
+            $uploadOk = 1;
+            $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+            
             if (isset($_POST['submit'])) {
   
                 $file_mimes = array('text/x-comma-separated-values', 'text/comma-separated-values', 'application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'text/plain', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -50,8 +56,6 @@
                                 $year = ltrim( $spreadsheet->getActiveSheet()->getCell('D'.$count)->getValue(),'Year:');
                             }
             
-                            //month & year
-            
                             if($count >= 7){
             
                                 if($select_date == true)
@@ -72,34 +76,13 @@
                                        $var12 = $sheetData[$count][11];
                                       $realDay = day_of_month(trim($month), trim($year));
 
-                                      $this->Attendance_model->import_attendance(
-                                          $month,
-                                          $year,
-                                          $name, 
-                                          $var1, 
-                                          $var2,
-                                          $var3, 
-                                          $var4,
-                                          $var5, 
-                                          $var6,
-                                          $var7, 
-                                          $var8,
-                                          $var9, 
-                                          $var10,
-                                          $var11, 
-                                          $var12);
-                                    // insert to db
-                                    // $db->query("INSERT INTO attendace_tbl(month,year,emp_name,date,inam,outam,inpm,	outpm,	inot,	outot,	rot,	sot,	nd,	lt_ut,	lwop) VALUES('$month','$year','$name', '$var1', '$var2','$var3', '$var4','$var5', '$var6','$var7', '$var8','$var9', '$var10','$var11', '$var12') ");
-            
-                                   
+                                      $this->Attendance_model->import_attendance($month,$year,$name, $var1, $var2,$var3, $var4, $var5,$var6,$var7,$var8,$var9,$var10,$var11,$var12);
                                     if($date_counter > $realDay){ // get last day of month
                                         $select_date = false;
                                         $date_counter = 0;
                                         $skip = true;
                                     }
-                                  
                                 }
-            
                                 if($skip == true)
                                 {
                                     $skip_counter++;
@@ -108,7 +91,6 @@
                                         $select_date = true;
                                         $skip = false;
                                         $skip_counter = 0;
-                                        
                                     }
                                     
                                 }
@@ -117,7 +99,7 @@
                         }
             
                     }
-                  echo '';
+                    move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
                     redirect('Attendance');
                     // "Records inserted successfully. " ;
                 } else {
@@ -128,12 +110,7 @@
             
         }
 
-        #region
-        public function get_all_attendance(){
-
-        }
-        #endregion
-
+       
 
 
 

@@ -79,18 +79,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                                 </div>
 
 
-                                                <div class="col-md-12 mb-2 mt-2">
-                                                    <label for="">Designation</label>
-                                                    <select name="designation" id="" class="form-control form-control-sm">
-                                                        <option >Option</option>
-                                                        
-                                                        <?php foreach($data as $datum): ?>
-                                                        <option value="<?php echo $datum['designation_id'] ?>"><?php echo $datum['designation_desc'] ?></option>
-                                                        <?php endforeach;?>
-
-                                                    </select>
-                                                    
-                                                </div>
+                                                
                                             </div>
                                             <div class="row ">
                                                 <div class="col-md-12">

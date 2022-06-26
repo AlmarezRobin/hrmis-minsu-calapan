@@ -57,7 +57,15 @@ header>.topbar-landing {
     float: right;
 }
 
+
+/* #MenuTop {
+    display: block;
+} */
+
 @media (max-width: 767.98px) {
+    /* .landing-page-menu {
+        display: none;
+    } */
     header>.topbar-landing {
         margin-left: 0px;
         padding-right: 0px;
@@ -122,7 +130,6 @@ header>.topbar-landing {
     .landing-container {
         padding: 205px 0px 0 0px;
         margin-bottom: 0;
-        
     }
     .dp-home {
         display: none;

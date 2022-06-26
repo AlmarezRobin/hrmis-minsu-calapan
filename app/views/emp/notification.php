@@ -34,18 +34,21 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-2 maincontent">
 
                 <!-- BreadCrumb -->
-                <!-- <nav aria-label="breadcrumb" class="pt-3 mb-2 bg-white border-bottom mx-2">
+                <nav aria-label="breadcrumb" class="pt-3 mb-2 bg-white border-bottom mx-2">
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="" class="breadcrumb-link"><i class="fa fa-dashboard"></i>
                                 Dashboard</a></li>
-                        <li class="breadcrumb-item"> index </li>
+                        <li class="breadcrumb-item"> Notifications </li>
                     </ul>
-                </nav> -->
+                </nav>
                 <!-- End BreadCrumb -->
 
                 <!-- title -->
                 <div class="justify-content-between align-items-center pt-1 pb-2 mb-3 border-bottom mx-2">
-                    <h5 class="h5 mt-3 mb-0 color-darkgray"> <a href="<?=site_url('#');?>"> <i class=" fa fa-solid fa-arrow-left fa-lg"></i></a> Notifications</h5>
+                    <h5 class="h5 mt-3 mb-0 color-darkgray"> 
+                        <!-- <a href="<?=site_url('#');?>"> <i class=" fa fa-solid fa-arrow-left fa-lg"></i></a> -->
+                         Notifications
+                    </h5>
                     
                 </div>
                 <!-- end title -->
@@ -66,13 +69,13 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                     <div class="table-responsive">
                                         <!-- Table -->
                                         <table class="table table-bordered table-hover table-striped ">
-                                            <?php foreach($get_notif_pds as $var): ?>
+                                            <?php foreach($get_notif_get_all as $var): ?>
 
                                             <tr class="odd">
                                                 <td><?php echo 'PERSONAL DATA SHEET' .' ' . 'The Human resource' .' '. $var['remarks'] . ' '. 'the PDS you submitted'?></td>
                                                 <td><button class="btn btn-mini btn-info" data-bs-toggle="modal" data-bs-target="#comments">View Comment</button></td>
                                                 
-                                                <td><?php echo $var['date_returned'] ?></td>
+                                                <td><?php echo $var['date_submitted'] ?></td>
                                             </tr>
                                             <?php endforeach; ?>
 
@@ -126,7 +129,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                   <h5> <?php echo $var['comment'] ?> </h5>
+                   <h5> <?php echo $var['remarks'] ?> </h5>
                 </div>
             </div>
         </div>

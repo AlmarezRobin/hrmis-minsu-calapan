@@ -81,6 +81,7 @@ $config['ENVIRONMENT']             = 'development';
 |
 */
 $config['base_url'] 				= 'http://localhost/hrmis/';
+// $config['base_url'] 				= 'https://72aa77ff43eb6f.lhrtunnel.link/';
 
 /*
 |--------------------------------------------------------------------------

@@ -815,10 +815,10 @@
 
     <div class="row mb-2">
         <div class="d-flex justify-content-center col-md-6 " >
-            <form action="<?=site_url('Hr/approved');?>" method="post">
-                <input type="hidden" name="id" value="<?= $get_id['user_id'] ?>" >
+            <form action="<?=site_url('Request/approval_of_pds');?>" method="post">
+                <input type="hidden" name="user_id" value="<?= $get_id['user_id'] ?>" >
                 <input type="hidden" name="stat" value="APPROVED">
-                <input type="hidden" name="issue" value="<?= $get_id['date_submitted'] ?>">
+                <input type="hidden" name="remarks" value="You're PDS is Approved, you may now proceed to export your PDS.">
                 <input type="submit" name="submit" value="APPROVE" class="btn btn-primary btn-lg btn-block" onclick="return confirm('You are about to Approved this personal data sheet.')">
             </form>
         </div>
@@ -835,13 +835,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="<?=site_url('Hr/rejected');?>" method="post">
-                        <input type="hidden" name="id" value="<?= $get_id['user_id'] ?>" >
-                        <input type="hidden" name="stat" value="REJECT">
-                        <input type="hidden" name="issue" value="<?= $get_id['date_submitted'] ?>">
-
-                        <input type="text" name="comment" class="form-control form-control-line mb-2" placeholder="Enter your comment" required>
-                        <input type="submit" name="submit" value="REJECT" class="btn btn-warning float-sm-end" onclick="return confirm('You are about to Approved this personal data sheet.')">
+                    <form action="<?=site_url('Request/rejection_of_pds');?>" method="post">
+                        <input type="hidden" name="user_id" value="<?= $get_id['user_id'] ?>" >
+                        <input type="hidden" name="stat" value="REJECTED">
+                        <input type="text" name="remarks"  class="form-control form-control-line" required>
+                        <input type="submit" name="submit" value="REJECT" class="btn btn-warning float-sm-end" onclick="return confirm('You are about to reject this personal data sheet.')">
                     </form>
                 </div>
             </div>

@@ -833,3 +833,11 @@
    
 
     <?php require_once(APP_DIR . 'views/emp/includes/footer.php'); ?>
+
+    
+<style>
+    input[type=text] {
+    border: none;
+    border-bottom: 1px solid black;
+    }
+</style>

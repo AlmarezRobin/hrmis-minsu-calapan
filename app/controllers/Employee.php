@@ -23,7 +23,7 @@ class Employee extends Controller {
 			'permanent_add' => $this->Address_model->permanent_add($this->session->userdata('user_id')),
 
 			//para sa notification
-			'emp_notif_forpds'=> $this->Employee_model->emp_notif_forpds()
+			'get_emp_notif'=> $this->Request_model->get_emp_notif()
 		];
 		/* end change jcd May 4, 2022 */
 		
@@ -1147,11 +1147,11 @@ class Employee extends Controller {
 
 	//for notification
 	public function view_notif(){
-		$this->Employee_model->stat_emp_notif();
+		$this->Request_model->view_notif_clear();
 		$data = [
 			'emp_profile' => $this->Employee_model->emp_profile($this->session->userdata('user_id')),
-			'emp_notif_forpds'=> $this->Employee_model->emp_notif_forpds(),
-			'get_notif_pds' => $this->Employee_model->get_notif_pds()
+			'get_notif_get_all'=> $this->Request_model->get_notif_get_all(),
+			'get_emp_notif' => $this->Request_model->get_emp_notif()
 		];
 		$this->call->view('emp/notification',$data);
 	}
@@ -1159,6 +1159,34 @@ class Employee extends Controller {
 	
 
 
+
+	#endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	#region employee Attendance
+	public function view_emp_attendance(){
+
+		$data=[
+			'emp_profile'=>$this->Employee_model->emp_profile($this->session->userdata('user_id')),
+			'get_emp_notif'=>$this->Request_model->get_emp_notif(),
+			
+		];
+		$this->call->view('emp/attendance/attendance',$data);
+	}
 
 	#endregion
 

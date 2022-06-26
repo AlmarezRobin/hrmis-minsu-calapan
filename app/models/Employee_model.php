@@ -200,14 +200,9 @@ public function change_password($pass){
       return $this->db->table('pds_request_tbl')->where('user_id', $this->session->userdata('user_id'))->update($bind);
    }
 
-   public function get_stat_pds(){
-      return $this->db->table('pds_request_tbl')->where('user_id', $this->session->userdata('user_id'))->get();
-   }
+   
 
-   public function get_notif_pds(){
-      return $this->db->table('pds_request_hist_tbl')->where('user_id', $this->session->userdata('user_id'))->order_by('date_returned', 'DESC')->get_all();
-   }
-
+  
 
    //function notification to notif employee
 
@@ -220,13 +215,13 @@ public function change_password($pass){
    }
 
    //pra iupdate ung status nung notification at para clear once na naclick
-   public function stat_emp_notif(){
+   // public function stat_emp_notif(){
 
-      $bind = [
-         'stat_emp_notif'=>1
-      ];
-      return $this->db->table('pds_request_tbl')->where('user_id', $this->session->userdata('user_id'))->update($bind);
-   }
+   //    $bind = [
+   //       'stat_emp_notif'=>1
+   //    ];
+   //    return $this->db->table('pds_request_tbl')->where('user_id', $this->session->userdata('user_id'))->update($bind);
+   // }
 
 
    #endregion

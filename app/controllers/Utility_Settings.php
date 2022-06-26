@@ -91,7 +91,7 @@ class Utility_Settings extends Controller {
 									strtoupper($this->io->post('designation_desc')),
 									strtoupper($this->io->post('salary_grade')),
 									strtoupper($this->io->post('salary_rate_cat')),
-									strtoupper($this->io->post('salary_rate_amount'))))
+									$this->io->post('salary_rate_amount')))
                 {
                     // $this->session->set_flashdata(array('status'=>'Inserted Succesfully'));
                     redirect('Utility_Settings/view_designation');

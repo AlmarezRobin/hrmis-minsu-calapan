@@ -7,7 +7,7 @@ class Hr extends Controller {
 	// ! loads index page
 	public function index() {
 		$data =[
-			'get_user_profile'=>$this->call->Hr_model->get_user_profile(),
+			'get_user_profile'=>$this->Hr_model->get_user_profile(),
 			
 			//para sa pag count ng mga pending notif rma 5422
 			'count_pending' =>$this->Hr_model->count_pending(),
@@ -148,9 +148,9 @@ class Hr extends Controller {
 			}
 		}
 
-		$data = $this->Utility_model->designation();
+		// $data = $this->Utility_model->designation();
 
-		$this->call->view('hr/register_employee', $data);
+		$this->call->view('hr/register_employee');
 	}
 
 	#endregion
@@ -206,7 +206,7 @@ class Hr extends Controller {
 	#region for view pds notif
 	public function view_pds_request(){
 		$data = [
-			'get_all_request'=>$this->Hr_model->get_all_request()
+			'get_request'=>$this->Request_model->get_request()
 		];
 		$this->call->view('hr/employee_pds/request',$data);
 	}
@@ -214,7 +214,7 @@ class Hr extends Controller {
 	public function view_emp_pds($id)
 	{
 		$data = [
-			'get_id'=>$this->Hr_model->get_id($id),
+			'get_id'=>$this->Request_model->get_id($id),
 			'emp_profile'=>$this->Hr_model->emp_profile($id),
 			'get_all_child'=>$this->Hr_model->get_all_child($id),
 			'get_eligibility'=>$this->Hr_model->get_eligibility($id),
@@ -248,31 +248,7 @@ class Hr extends Controller {
 		$this->call->view('hr/employee_pds/pdsview',$data);
 	}
 
-	public function approved(){
-		if($this->form_validation->submitted()){
-			$this->form_validation->name('id')->name('stat');
-			if($this->form_validation->run())
-			{
-				$this->Hr_model->result($this->io->post('id'),$this->io->post('stat'));
-
-				$this->Hr_model->insert_history($this->io->post('id'),$this->io->post('stat'),$this->io->post('issue'));
-
-				redirect('Hr/view_pds_request');
-			}
-		}
-	}
-	public function rejected(){
-		if($this->form_validation->submitted()){
-			$this->form_validation->name('id')->name('stat')->name('comment')->required();
-			if($this->form_validation->run())
-			{
-				$this->Hr_model->result($this->io->post('id'),$this->io->post('stat'),$this->io->post('comment'));
-
-				$this->Hr_model->insert_history($this->io->post('id'),$this->io->post('stat'),$this->io->post('issue'),$this->io->post('comment'));
-				redirect('Hr/view_pds_request');
-			}
-		}
-	}
+	
 
 
 
@@ -285,8 +261,52 @@ class Hr extends Controller {
 	}
 	#endregion
 
-	public function view_emp_profile(){
-		$this->call->view('hr/emp_profile');
+	public function view_emp_profile($id){
+
+		$data = [
+			'get_id'=>$this->Request_model->get_id($id),
+			'emp_profile'=>$this->Hr_model->emp_profile($id),
+			'get_all_child'=>$this->Hr_model->get_all_child($id),
+			'get_eligibility'=>$this->Hr_model->get_eligibility($id),
+
+			'get_educ_background'=>$this->Hr_model->get_educ_background($id),
+
+			'get_experience'=>$this->Hr_model->get_experience($id),
+			'get_voluntary'=>$this->Hr_model->get_voluntary($id),
+			'get_trainings'=>$this->Hr_model->get_trainings($id),
+			'get_gov_id'=>$this->Hr_model->get_gov_id($id),
+			'get_skill_hobby'=>$this->Hr_model->get_skill_hobby($id),
+			'get_recognition'=>$this->Hr_model->get_recognition($id),
+			'get_membership'=>$this->Hr_model->get_membership($id),
+			'get_references'=>$this->Hr_model->get_references($id),
+			'get_gov_id'=>$this->Hr_model->get_gov_id($id),
+			'get_spouse'=>$this->Hr_model->get_spouse($id),
+			'get_father'=>$this->Hr_model->get_father($id),
+			'get_mother'=>$this->Hr_model->get_mother($id),
+			'get_rel_info'=>$this->Hr_model->get_rel_info($id),
+			'get_violation_info'=>$this->Hr_model->get_violation_info($id),
+			'get_conviction_info'=>$this->Hr_model->get_conviction_info($id),
+			'get_separation_info'=>$this->Hr_model->get_separation_info($id),
+			'get_candidacy_info'=>$this->Hr_model->get_candidacy_info($id),
+			'get_immigrant_info'=>$this->Hr_model->get_immigrant_info($id),
+			'get_previlage_info'=>$this->Hr_model->get_previlage_info($id),
+			'residential_address' => $this->Address_model->residential_add($id),
+			'permanent_address' => $this->Address_model->permanent_add($id),
+			// ''=>$this->Hr_model->($id),
+			
+		];
+		$this->call->view('hr/emp_profile',$data);
+	}
+
+
+
+
+
+	public function temp_ced(){
+		$data=[
+			'get_all_locator_request'=>$this->Request_model->get_all_locator_request(),
+		];
+		$this->call->view('ced/index',$data);
 	}
 
 	

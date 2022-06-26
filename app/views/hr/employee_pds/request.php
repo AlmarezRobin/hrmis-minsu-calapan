@@ -84,7 +84,8 @@ redirect('Admin');
 
                                             <thead>
                                                 <tr>
-                                                    <td>User ID</td>
+                                                    <td>Employee Name</td>
+                                                    <td>Application</td>
                                                     <td>Status</td>
                                                     <th>Date Submitted</th>
                                                     <th>Action</th>
@@ -93,15 +94,16 @@ redirect('Admin');
                                             </thead>
 
                                             <tbody>
-                                                <?php foreach($get_all_request as $req): ?>
+                                                <?php foreach($get_request as $req): ?>
 
                                                 <tr class="odd">
-                                                    <td><?php echo $req['user_id'] ?></td>
-                                                    <td><?php echo $req['status_of_pds'] ?></td>
+                                                    <td><?php echo $req['f_name'].' '. $req['l_name'] ?></td>
+                                                    <td><?php echo $req['type_of_app'] ?></td>
+                                                    <td><?php echo $req['status_of_app'] ?></td>
                                                     <td><?php echo $req['date_submitted'] ?></td>
                                                     <td>
                                                         <a href="<?=site_url('Hr/view_emp_pds/' . $req['user_id'] );?>" class="btn btn-mini btn-success">
-                                                            VIEW PDS
+                                                            View Application
                                                         </a>
                                                     </td>
                                                 </tr>
@@ -110,7 +112,8 @@ redirect('Admin');
 
                                             <tfoot>
                                                 <tr>
-                                                    <td>User ID</td>
+                                                    <td>Employee Name</td>
+                                                    <td>Application</td>
                                                     <td>Status</td>
                                                     <th>Date Submitted</th>
                                                     <th>Action</th>

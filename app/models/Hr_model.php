@@ -7,7 +7,9 @@ defined('PREVENT_DIRECT_ACCESS') or exit('No direct script access allowed');
 		}
 
 		public function get_user_profile(){
-			return $this->db->table('user_profile')->get_all();
+			// return $this->db->table('user_profile')->get_all();
+
+			return $this->db->table('user_profile')->select('designation.designation_desc, user_profile.f_name, user_profile.l_name,user_profile.m_name, user_profile.user_id')->INNER_JOIN('designation','designation.designation_id = user_profile.designation_id')->get_all();
 		}
 
 		public function get_all_admin(){
@@ -105,9 +107,7 @@ defined('PREVENT_DIRECT_ACCESS') or exit('No direct script access allowed');
 		}
 
 
-		public function get_id($var){
-			return $this->db->table('pds_request_tbl')->where('user_id',$var)->get();
-		}
+		
 
 
 		public function result($var2,$var1,$var3){
@@ -123,25 +123,25 @@ defined('PREVENT_DIRECT_ACCESS') or exit('No direct script access allowed');
 
 		
 
-		public function pds_history(){
-			return $this->db->table('pds_request_hist_tbl')->order_by('date_returned','DESC')->get_all();
-		}
-		public function insert_history($var1,$var2,$var3,$var4){
-			$hist=[
-				'user_id'=>$var1,
-				'remarks'=>$var2,
-				'date_submitted'=>$var3,
-				'comment'=>$var4
-			];
-			return $this->db->table('pds_request_hist_tbl')->insert($hist);
+		// public function pds_history(){
+		// 	return $this->db->table('pds_request_hist_tbl')->order_by('date_returned','DESC')->get_all();
+		// }
+		// public function insert_history($var1,$var2,$var3,$var4){
+		// 	$hist=[
+		// 		'user_id'=>$var1,
+		// 		'remarks'=>$var2,
+		// 		'date_submitted'=>$var3,
+		// 		'comment'=>$var4
+		// 	];
+		// 	return $this->db->table('pds_request_hist_tbl')->insert($hist);
 
-		}
+		// }
 
 
 		#region for cards in Human resources
 
 		public function count_pending(){
-			return $this->db->table('pds_request_tbl')->where('status_of_pds', 'PENDING')->select_count('pds_id', 'pending')->get();
+			return $this->db->table('request_tbl')->where('status_of_app', 'PENDING')->select_count('request_id', 'pending')->get();
 		}
 		public function count_registered_employee(){
 			return $this->db->table('user')->select_count('user_id', 'emp')->get();

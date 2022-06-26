@@ -51,7 +51,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
                                             <thead>
                                                 <tr>
-                                                    <th>Designation ID</th>
+                                                    <!-- <th>Designation ID</th> -->
                                                     <th>Designation Description</th>
                                                     <th>Salary Grade</th>
                                                     <th>Salary Rate Category</th>
@@ -63,7 +63,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                             <tbody>
                                                 <?php foreach($data as $datum) : ?>
                                                     <tr>
-                                                        <td><?php echo $datum['designation_id'];  ?></td>
+                                                        <!-- <td><?php #echo $datum['designation_id'];  ?></td> -->
                                                         <td><?php echo $datum['designation_desc'];  ?></td>
                                                         <td><?php echo $datum['salary_grade']; ?></td>
                                                         <td><?php echo $datum['salary_rate_cat'];?></td>
@@ -88,7 +88,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
                                             <tfoot>
                                                 <tr>
-                                                    <th>Designation ID</th>
+                                                    <!-- <th>Designation ID</th> -->
                                                     <th>Designation Description</th>
                                                     <th>Salary Grade</th>
                                                     <th>Salary Rate Category</th>

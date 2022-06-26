@@ -47,8 +47,10 @@ class Pds extends Controller {
 			'get_candidacy_info'=>$this->Pds_model->get_candidacy_info(),
 			'get_immigrant_info'=>$this->Pds_model->get_immigrant_info(),
 			'get_previlage_info'=>$this->Pds_model->get_previlage_info(),
-			'get_stat_pds'=>$this->Employee_model->get_stat_pds(), //para sa pagkuha ng status ng submitted pds 5422
-			'emp_notif_forpds'=> $this->Employee_model->emp_notif_forpds()
+
+
+			'get_stat_pds'=>$this->Request_model->get_stat_pds(), //para sa pagkuha ng status ng submitted pds 5422
+			'get_emp_notif'=> $this->Request_model->get_emp_notif()
 
 		];
 		// $data['emp_profile'] = $this->Employee_model->emp_profile($this->session->userdata('user_id'));

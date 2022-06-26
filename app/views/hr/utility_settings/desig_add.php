@@ -68,6 +68,29 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                                             <option value="SALARY GRADE 8">SALARY GRADE 8</option>
                                                             <option value="SALARY GRADE 9">SALARY GRADE 9</option>
                                                             <option value="SALARY GRADE 10">SALARY GRADE 10</option>
+                                                            <option value="SALARY GRADE 11">SALARY GRADE 11</option>
+                                                            <option value="SALARY GRADE 12">SALARY GRADE 12</option>
+                                                            <option value="SALARY GRADE 13">SALARY GRADE 13</option>
+                                                            <option value="SALARY GRADE 14">SALARY GRADE 14</option>
+                                                            <option value="SALARY GRADE 15">SALARY GRADE 15</option>
+                                                            <option value="SALARY GRADE 16">SALARY GRADE 16</option>
+                                                            <option value="SALARY GRADE 17">SALARY GRADE 17</option>
+                                                            <option value="SALARY GRADE 18">SALARY GRADE 18</option>
+                                                            <option value="SALARY GRADE 19">SALARY GRADE 19</option>
+                                                            <option value="SALARY GRADE 20">SALARY GRADE 20</option>
+                                                            <option value="SALARY GRADE 21">SALARY GRADE 21</option>
+                                                            <option value="SALARY GRADE 22">SALARY GRADE 22</option>
+                                                            <option value="SALARY GRADE 23">SALARY GRADE 23</option>
+                                                            <option value="SALARY GRADE 24">SALARY GRADE 24</option>
+                                                            <option value="SALARY GRADE 25">SALARY GRADE 25</option>
+                                                            <option value="SALARY GRADE 26">SALARY GRADE 26</option>
+                                                            <option value="SALARY GRADE 27">SALARY GRADE 27</option>
+                                                            <option value="SALARY GRADE 28">SALARY GRADE 28</option>
+                                                            <option value="SALARY GRADE 29">SALARY GRADE 29</option>
+                                                            <option value="SALARY GRADE 30">SALARY GRADE 30</option>
+                                                            <option value="SALARY GRADE 31">SALARY GRADE 31</option>
+                                                            <option value="SALARY GRADE 32">SALARY GRADE 32</option>
+                                                            <option value="SALARY GRADE 33">SALARY GRADE 33</option>
                                                         </select>
                                                     </div>
                                                     <div class="col-md-12 mb-2">
@@ -112,19 +135,42 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                                             data-toggle="tooltip" data-placement="right" title=""
                                                             required>
                                                             <option value="SALARY GRADE 1">SALARY GRADE 1</option>
-                                                            <option value="SALARY GRADE 1">SALARY GRADE 2</option>
-                                                            <option value="SALARY GRADE 1">SALARY GRADE 3</option>
-                                                            <option value="SALARY GRADE 1">SALARY GRADE 4</option>
-                                                            <option value="SALARY GRADE 1">SALARY GRADE 5</option>
-                                                            <option value="SALARY GRADE 1">SALARY GRADE 6</option>
-                                                            <option value="SALARY GRADE 1">SALARY GRADE 7</option>
-                                                            <option value="SALARY GRADE 1">SALARY GRADE 8</option>
-                                                            <option value="SALARY GRADE 1">SALARY GRADE 9</option>
-                                                            <option value="SALARY GRADE 1">SALARY GRADE 10</option>
+                                                            <option value="SALARY GRADE 2">SALARY GRADE 2</option>
+                                                            <option value="SALARY GRADE 3">SALARY GRADE 3</option>
+                                                            <option value="SALARY GRADE 4">SALARY GRADE 4</option>
+                                                            <option value="SALARY GRADE 5">SALARY GRADE 5</option>
+                                                            <option value="SALARY GRADE 6">SALARY GRADE 6</option>
+                                                            <option value="SALARY GRADE 7">SALARY GRADE 7</option>
+                                                            <option value="SALARY GRADE 8">SALARY GRADE 8</option>
+                                                            <option value="SALARY GRADE 9">SALARY GRADE 9</option>
+                                                            <option value="SALARY GRADE 10">SALARY GRADE 10</option>
+                                                            <option value="SALARY GRADE 11">SALARY GRADE 11</option>
+                                                            <option value="SALARY GRADE 12">SALARY GRADE 12</option>
+                                                            <option value="SALARY GRADE 13">SALARY GRADE 13</option>
+                                                            <option value="SALARY GRADE 14">SALARY GRADE 14</option>
+                                                            <option value="SALARY GRADE 15">SALARY GRADE 15</option>
+                                                            <option value="SALARY GRADE 16">SALARY GRADE 16</option>
+                                                            <option value="SALARY GRADE 17">SALARY GRADE 17</option>
+                                                            <option value="SALARY GRADE 18">SALARY GRADE 18</option>
+                                                            <option value="SALARY GRADE 19">SALARY GRADE 19</option>
+                                                            <option value="SALARY GRADE 20">SALARY GRADE 20</option>
+                                                            <option value="SALARY GRADE 21">SALARY GRADE 21</option>
+                                                            <option value="SALARY GRADE 22">SALARY GRADE 22</option>
+                                                            <option value="SALARY GRADE 23">SALARY GRADE 23</option>
+                                                            <option value="SALARY GRADE 24">SALARY GRADE 24</option>
+                                                            <option value="SALARY GRADE 25">SALARY GRADE 25</option>
+                                                            <option value="SALARY GRADE 26">SALARY GRADE 26</option>
+                                                            <option value="SALARY GRADE 27">SALARY GRADE 27</option>
+                                                            <option value="SALARY GRADE 28">SALARY GRADE 28</option>
+                                                            <option value="SALARY GRADE 29">SALARY GRADE 29</option>
+                                                            <option value="SALARY GRADE 30">SALARY GRADE 30</option>
+                                                            <option value="SALARY GRADE 31">SALARY GRADE 31</option>
+                                                            <option value="SALARY GRADE 32">SALARY GRADE 32</option>
+                                                            <option value="SALARY GRADE 33">SALARY GRADE 33</option>
                                                         </select>
                                                     </div>
                                                     <div class="col-md-12 mb-2">
-                                                        <label for="gender" class="form-label">Salary rate category*</label>
+                                                        <label for="" class="form-label">Salary rate category*</label>
                                                         <select class="form-control form-control-sm" name="salary_rate_cat" id=""
                                                             data-toggle="tooltip" data-placement="right" title=""
                                                             required>
@@ -133,7 +179,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                                         </select>
                                                     </div>
                                                     <div class="col-md-12 mb-2">
-                                                        <label for="gender" class="form-label">Salary Rate Amount*</label>
+                                                        <label for="" class="form-label">Salary Rate Amount*</label>
                                                         <input type="number" class="form-control form-control-sm" name="salary_rate_amount" id=""
                                                             data-toggle="tooltip" data-placement="right" title=""
                                                             required>
