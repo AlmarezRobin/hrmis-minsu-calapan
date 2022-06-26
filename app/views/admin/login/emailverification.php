@@ -25,6 +25,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                     <!-- <h3>Verify by email</h3> -->
                     </div>
                     <form action="<?=site_url('Admin/emailverification')?>" method="post">
+                        <?php flash_alert() ?>
                         <div class="form-group mb-3">
                             <label for="">Admin's Username</label>
                             <input type="text" class="form-control" name="admin_username" id="" placeholder="Enter Admin's Username..." required   >

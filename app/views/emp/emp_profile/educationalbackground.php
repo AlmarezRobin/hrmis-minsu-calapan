@@ -43,7 +43,7 @@
 
                 
                    
-
+                    <?php flash_alert() ?>
                     <!-- start table for Work Experience -->
                     <div class="col-md-12 p-2 float-sm-start">
                         <div class="card">
@@ -120,7 +120,7 @@
                     <!-- /* start change jcd May 5,2022 */ -->
                     <!-- modal for adding educational background -->
                     <!-- dipa napasok yung other sa db *reminder -->
-                    <div class="modal fade" id="adding">
+                    <div class="modal fade" id="adding" data-bs-backdrop="static" data-bs-keyboard="false">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <!-- Modal Header -->
@@ -153,13 +153,15 @@
                                                 <label>Basic Education/Degree/Course of School</label>
                                                 <input type="text" name="degree" class="form-control form-control-line" placeholder="Basic Education/Degree/Course of School (write in full)"> 
                                             </div>
-                                            <div class="col-md-6 mb-2">
-                                                <label>Period of Attendace</label>
-                                                <input type="text" name ="from"class="form-control form-control-line" placeholder="From: e.g. 2006">  
-                                            </div>
-                                            <div class="col-md-6 mb-2">
-                                                <label for=""></label>
-                                                <input type="text" name="to" class="form-control form-control-line" placeholder="To: e.g. 2012"> 
+                                            <div class="row">
+                                                <div class="col-md-6 mb-2">
+                                                    <label>Period of Attendace</label>
+                                                    <input type="text" name ="from"class="form-control form-control-line" placeholder="From: e.g. 2006">  
+                                                </div>
+                                                <div class="col-md-6 mb-2">
+                                                    <label for=""></label>
+                                                    <input type="text" name="to" class="form-control form-control-line" placeholder="To: e.g. 2012"> 
+                                                </div>
                                             </div>
                                             <div class="col-md-12 mb-2">
                                                 <label>Highest Level Unit Earned</label>
@@ -189,7 +191,7 @@
 
 
                     <!-- modal for updating educational background -->
-                    <div class="modal fade" id="updating">
+                    <div class="modal fade" id="updating" data-bs-backdrop="static" data-bs-keyboard="false">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <!-- Modal Header -->
@@ -257,7 +259,7 @@
                     <!-- end modal for updating educational background -->
 
                     <!-- modal for deleting educational background -->
-                    <div class="modal fade" id="deleting">
+                    <div class="modal fade" id="deleting" data-bs-backdrop="static" data-bs-keyboard="false">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <!-- Modal Header -->

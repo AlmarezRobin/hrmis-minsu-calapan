@@ -39,7 +39,7 @@
                 <!-- container-fluid -->
                 <div class="container-fluid-xxl pb-2">
                     <!-- modal for add eligibility -->
-                    <div class="modal fade" id="add">
+                    <div class="modal fade" id="add" data-bs-backdrop="static" data-bs-keyboard="false">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <!-- Modal Header -->
@@ -56,7 +56,7 @@
                                         </div>
                                         <div class="form-group col-md-12 mb-2 m-t-20">
                                             <label>RATING</label>
-                                            <input type="text" id="" name="rating" class="form-control " required > 
+                                            <input type="text" id="" name="rating" class="form-control"> 
                                         </div>
                                         <div class="form-group col-md-12 mb-2 m-t-20">
                                             <label>DATE OF CONFERMENT</label>
@@ -87,7 +87,7 @@
                     <!-- end modal for addd eligibility -->
 
                     <!-- modal for updating eligibility -->
-                    <div class="modal fade" id="edit">
+                    <div class="modal fade" id="edit" data-bs-backdrop="static" data-bs-keyboard="false">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <!-- Modal Header -->
@@ -105,7 +105,7 @@
                                         </div>
                                         <div class="form-group col-md-12 mb-2 m-t-20">
                                             <label>RATING</label>
-                                            <input type="text" id="rating" name="rating" class="form-control " required > 
+                                            <input type="text" id="rating" name="rating" class="form-control "> 
                                         </div>
                                         <div class="form-group col-md-12 mb-2 m-t-20">
                                             <label>DATE OF CONFERMENT</label>
@@ -134,7 +134,7 @@
                     <!-- end modal for updating eligibility -->
 
                     <!-- modal for deleting eligibility -->
-                    <div class="modal fade" id="delete">
+                    <div class="modal fade" id="delete" data-bs-backdrop="static" data-bs-keyboard="false">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <!-- Modal Header -->
@@ -164,7 +164,7 @@
                         </div>
                     </div>
                     <!-- end modal for deleting eligibility -->
-
+                    <?php flash_alert() ?>
                      <!-- start table for eligibility -->
                      <div class="col-md-12 p-2 float-sm-start">
                         <div class="card">

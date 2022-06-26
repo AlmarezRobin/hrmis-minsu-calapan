@@ -73,7 +73,7 @@
         public function emailverification(){
             if($this->form_validation->submitted()){
                 $this->form_validation->name('id_number')
-                                        ->alpha_numeric_dash('Id number must be valid and a combination of character and number.')
+                                        ->alpha_numeric_dash('Id number must be valid and a combination of character, dash, and number.')
                                         ->required('This field must not be empty.');
                 $this->call->model('auth/login_model');
                 if($this->form_validation->run()){
@@ -81,11 +81,18 @@
                     $id_number = $this->io->post('id_number');
                     $data = $this->login_model->get_email($id_number);
                     
-                    if ($data['email']) {
+                    if($data === false){
+                        set_flash_alert('danger' ,'Id number is not valid.');
+                    }
+                    elseif ($data['email']) {
                         $this->session->unset_userdata('otp');
                         $this->send_OTP($data['email']);
                         redirect('login/otp_code');
                     }
+                    
+                }
+                else {
+                    set_flash_alert('danger' ,$this->form_validation->errors());
                 }
             }
             $this->call->view('login/emailverification');
@@ -94,14 +101,23 @@
         public function otp_code(){
             if ($this->form_validation->submitted()) {
                 $this->form_validation->name('otp')
-                                        ->required();
-                
+                                        ->max_length(6, 'This must be six digits.')
+                                        ->required('This field must not be empty.');
+
                 if ($this->form_validation->run()) {
                     if($this->session->userdata('otp') == $this->io->post('otp')){
                         redirect('login/change_pass');
                     }
+                    else {
+                    set_flash_alert('danger' ,'This must be matched with the code sent to you registered email address.');
+                        
+                    }
+                }
+                else {
+                    set_flash_alert('danger' ,$this->form_validation->errors());
                 }
             }
+           
             $this->call->view('login/code');
         }
 
@@ -116,17 +132,26 @@
                     ->min_length(8, 'Password must be at least 8 characters long')
                 ->name('conf_pass')
                     ->required('This field must not be empty')
-                    ->matches('pass', 'This field must match with the Password.');
+                    ->matches('pass', 'Confirmation field must match with the Password field.');
                 if ($this->form_validation->run()) {
                     
                     $this->call->model('auth/login_model');
                     
                     if ($this->login_model->update_pass($this->session->userdata('email'), $pass)) {
                         $this->session->sess_destroy();
+                        // $this->session->unset_userdata('otp', 'email');
+                        // var_dump($this->session->userdata('otp', 'email'));
+                        // exit;
+                        // set_flash_alert('success' ,'Please log in using your newly changed password.');
+                        $this->session->sess_destroy();
                         redirect('login');
+
                     }
                 }
-            }
+                else{
+                    set_flash_alert('danger' ,$this->form_validation->errors());
+                }
+            } 
             $this->call->view('login/changepass');
         }
 

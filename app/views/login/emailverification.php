@@ -25,6 +25,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                     <!-- <h3>Verify by email</h3> -->
                     </div>
                     <form action="<?=site_url('Login/emailverification')?>" method="post">
+                    <?php flash_alert() ?>
                     <div class="form-group mb-3">
                             <label for="">Employee ID</label>
                             <input type="text" class="form-control" name="id_number" id="" placeholder="Enter Employee ID..." required   >

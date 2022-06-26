@@ -36,7 +36,7 @@
                 </div>
                 <!-- end title -->
 
-
+                <?php flash_alert() ?>
                 <!-- container-fluid -->
                 <div class="container-fluid-xxl pb-2">
                     <!-- start table special skills and hobby -->
@@ -341,7 +341,7 @@
     <!-- |----------------------------------------------------------------------------------| -->
 
     <!-- modal for adding skill and hobby -->
-    <div class="modal fade" id="skill">
+    <div class="modal fade" id="skill" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <!-- Modal Header -->
@@ -369,7 +369,7 @@
     <!-- end modal for adding skill and hobby -->
 
     <!-- modal for updating skill and hobby -->
-    <div class="modal fade" id="edit-skill">
+    <div class="modal fade" id="edit-skill" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <!-- Modal Header -->
@@ -398,7 +398,7 @@
     <!-- end modal for updating skill and hobby -->
 
     <!-- modal for deleting skill and hobby -->
-    <div class="modal fade" id="delete-skill">
+    <div class="modal fade" id="delete-skill" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <!-- Modal Header -->
@@ -435,7 +435,7 @@
     <!-- |----------------------------------------------------------------------------------| -->
 
     <!-- inserting non-academic distinctions -->
-    <div class="modal fade" id="distinctions">
+    <div class="modal fade" id="distinctions" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <!-- Modal Header -->
@@ -463,7 +463,7 @@
 
 
     <!-- updating non-academic distinctions -->
-    <div class="modal fade" id="edit-recog">
+    <div class="modal fade" id="edit-recog" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <!-- Modal Header -->
@@ -490,7 +490,7 @@
     <!-- end updating non-academic distinctions -->
 
     <!-- modal for deleting non-academic distinctions -->
-    <div class="modal fade" id="delete-recog">
+    <div class="modal fade" id="delete-recog" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <!-- Modal Header -->
@@ -528,7 +528,7 @@
     <!-- |----------------------------------------------------------------------------------| -->
 
     <!-- modal for membership -->
-    <div class="modal fade" id="membership">
+    <div class="modal fade" id="membership" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <!-- Modal Header -->
@@ -555,7 +555,7 @@
     <!-- end modal for adding membership -->
 
     <!-- modal for updating membership -->
-    <div class="modal fade" id="edit-membership">
+    <div class="modal fade" id="edit-membership" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <!-- Modal Header -->
@@ -583,7 +583,7 @@
     <!-- end modal for updating membership -->
 
      <!-- modal for deleting membership -->
-     <div class="modal fade" id="delete-membership">
+     <div class="modal fade" id="delete-membership" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <!-- Modal Header -->
@@ -623,7 +623,7 @@
     <!-- |----------------------------------------------------------------------------------| -->
 
     <!-- modal for adding references -->
-    <div class="modal fade" id="references">
+    <div class="modal fade" id="references" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <!-- Modal Header -->
@@ -670,7 +670,7 @@
     <!-- end modal for adding references -->
 
     <!-- modal for updating references -->
-    <div class="modal fade" id="edit-references">
+    <div class="modal fade" id="edit-references" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <!-- Modal Header -->
@@ -717,7 +717,7 @@
     <!-- end modal for updating references -->
 
     <!-- modal for deleting reference -->
-    <div class="modal fade" id="delete-ref">
+    <div class="modal fade" id="delete-ref" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <!-- Modal Header -->
@@ -756,7 +756,7 @@
     <!-- |----------------------------------------------------------------------------------| -->
    
     <!-- modal for adding government issued i.d. -->
-    <div class="modal fade" id="gov-id">
+    <div class="modal fade" id="gov-id" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <!-- Modal Header -->
@@ -795,7 +795,7 @@
     <!-- end modal for adding government issued i.d. -->
     
     <!-- modal for updating government issued i.d. -->
-    <div class="modal fade" id="edit-gov-id">
+    <div class="modal fade" id="edit-gov-id" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <!-- Modal Header -->
@@ -835,7 +835,7 @@
     <!-- end modal for updating government issued i.d. -->
 
     <!-- modal for deleting governement issued i.d. -->
-    <div class="modal fade" id="delete-id">
+    <div class="modal fade" id="delete-id" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <!-- Modal Header -->

@@ -37,8 +37,8 @@
                 <div class="container-fluid-xxl pb-2">
                     <!-- COL 12 -->
                     <!-- The Modal -->
-                    <div class="modal fade" id="myModal">
-                        <div class="modal-dialog">
+                    <div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"  role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="dialog">
                             <div class="modal-content">
 
                             <!-- Modal Header -->
@@ -85,6 +85,7 @@
                             </div>
                         </div>
                     </div>
+                    <?php flash_alert() ?>
                     <div class="col-md-12 p-2 float-sm-start">
                         <div class="card">
                             <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseTable"
@@ -94,7 +95,7 @@
                                 <button type="button" class="btn btn-sm btn-primary float-sm-end" data-bs-toggle="modal" data-bs-target="#myModal">add new child</button>
                             </div>
                             <div class="card-body accordion-collapse collapse show p-0" id="collapseTable-d">
-
+                                
                                 <!-- Table Div -->
                                 <div class="table-responsive">
                                     <!-- Table -->
@@ -146,7 +147,7 @@
                         </div>
                     </div>
                     <!-- modal for edit -->
-                    <div class="modal fade" id="editmodal">
+                    <div class="modal fade" id="editmodal" data-bs-backdrop="static" data-bs-keyboard="false">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <!-- Modal Header -->

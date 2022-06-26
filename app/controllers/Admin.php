@@ -75,12 +75,17 @@
                     
                     $admin_username = $this->io->post('admin_username');
                     $data = $this->admin_model->get_email($admin_username);
-                    
-                    if ($data['email']) {
+                    if($data === false){
+                        set_flash_alert('danger' ,'Username is not valid.');
+                    }
+                    elseif ($data['email']) {
                         $this->session->unset_userdata('otp');
                         $this->send_OTP($data['email']);
                         redirect('admin/otp_code');
                     }
+                }
+                else {
+                    set_flash_alert('danger' ,$this->form_validation->errors());
                 }
             }
             $this->call->view('admin/login/emailverification');
@@ -95,6 +100,12 @@
                     if($this->session->userdata('otp') == $this->io->post('otp')){
                         redirect('admin/change_pass');
                     }
+                    else {
+                        set_flash_alert('danger' ,'This must be matched with the code sent to you registered email address.');    
+                    }
+                } 
+                else {
+                    set_flash_alert('danger' ,$this->form_validation->errors());
                 }
             }
             $this->call->view('admin/login/code');
@@ -120,6 +131,9 @@
                         $this->session->sess_destroy();
                         redirect('Admin');
                     }
+                }
+                else{
+                    set_flash_alert('danger' ,$this->form_validation->errors());
                 }
             }
             $this->call->view('admin/login/changepass');
