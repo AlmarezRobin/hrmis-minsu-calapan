@@ -75,27 +75,42 @@ class Pds extends Controller {
 	#region for special skills
 	public function insert_skill(){
 		if ($this->form_validation->submitted()) {
-			$this->form_validation->name('skill');
+				$this->form_validation
+					->name('skill')
+						->requred('Special skill must not be empty.')
+						->alpha_space('Special skill must be composed of letters.');
 			if ($this->form_validation->run()) {
-				$this->Pds_model->insert_skills(strtoupper($this->io->post('skill')));
+				$this->Pds_model->insert_skills(strtoupper(html_escape($this->io->post('skill'))));
+				set_flash_alert('success', 'Special skill added successfully.');
 				redirect('Pds/view_other_information');
+			}
+			else {
+				set_flash_alert('danger', $this->form_validation->errors());
 			}
 		}
 	}
 
 	public function update_skill(){
 		if ($this->form_validation->submitted()) {
-			$this->form_validation->name('skill');
+			$this->form_validation
+				->name('skill')
+					->requred('Special skill must not be empty.')
+					->alpha_space('Special skill must be composed of letters.');
 			if ($this->form_validation->run()) {
-				$this->Pds_model->update_skills($this->io->post('sps_id'),strtoupper($this->io->post('skill')));
+				$this->Pds_model->update_skills(html_escape($this->io->post('sps_id')),strtoupper(html_escape($this->io->post('skill'))));
+				set_flash_alert('success', 'Special skill updated successfully.');
 				redirect('Pds/view_other_information');
+			}
+			else {
+				set_flash_alert('danger', $this->form_validation->errors());
 			}
 		}
 	}
 
 	public function delete_skill(){
 		if ($this->form_validation->run()) {
-			$this->Pds_model->delete_skills($this->io->post('ss_id'));
+			$this->Pds_model->delete_skills(html_escape($this->io->post('ss_id')));
+			set_flash_alert('success', 'Special Skill has been deleted sucessfully.');
 			redirect('Pds/view_other_information');
 			exit();
 		}
@@ -105,30 +120,40 @@ class Pds extends Controller {
 
 	#region for non acad distinctions and recognition
 	public function insert_acad_recognition(){
-		if ($this->form_validation->submitted()) 
-		{
-			$this->form_validation->name('distinction');
-			if ($this->form_validation->run()) 
-			{
-				$this->Pds_model->insert_distinctions(strtoupper($this->io->post('distinction')));
+		if ($this->form_validation->submitted()){
+			$this->form_validation
+				->name('distinction')
+					->required('Non-academic distinction must not be empty.')
+					->alpha_numeric_space('Non-academic distinction must be composed of letters.');
+			if ($this->form_validation->run()) {
+				$this->Pds_model->insert_distinctions(strtoupper(html_escape($this->io->post('distinction'))));
+				set_flash_alert('success', 'Non-academic distinction has been added successfully.');
 				redirect('Pds/view_other_information');
+			}else {
+				set_flash_alert('danger', $this->form_validation->errors());
 			}
 		}
 	}
 	public function update_acad_recognition(){
-		if ($this->form_validation->submitted()) 
-		{
-			$this->form_validation->name('distinction');
-			if ($this->form_validation->run()) 
-			{
-				$this->Pds_model->update_distinctions(strtoupper($this->io->post('distinction')), $this->io->post('recognition_id'));
+		if ($this->form_validation->submitted()) {
+			$this->form_validation
+				->name('distinction')
+					->required('Non-academic distinction must not be empty.')
+					->alpha_numeric_space('Non-academic distinction must be composed of letters.');
+			if ($this->form_validation->run()){
+				$this->Pds_model->update_distinctions(strtoupper(html_escape($this->io->post('distinction'))), html_escape($this->io->post('recognition_id')));
+				set_flash_alert('success', 'Non-academic distinction has been updated successfully.');
 				redirect('Pds/view_other_information');
+			}
+			else {
+				set_flash_alert('danger', $this->form_validation->errors());
 			}
 		}
 	}
 	public function delete_distinctions(){
 		if ($this->form_validation->run()) {
-			$this->Pds_model->delete_distinctions($this->io->post('recognition_id'));
+			$this->Pds_model->delete_distinctions(html_escape($this->io->post('recognition_id')));
+			set_flash_alert('success', 'Non academic distinction has been deleted successfully.');
 			redirect('Pds/view_other_information');
 			exit();
 		}
@@ -138,24 +163,34 @@ class Pds extends Controller {
 
 	#region membership
 	public function insert_membership(){
-		if ($this->form_validation->submitted()) 
-		{
-			$this->form_validation->name('name');
-			if ($this->form_validation->run()) 
-			{
-				$this->Pds_model->insert_membership(strtoupper($this->io->post('name')));
+		if ($this->form_validation->submitted()){
+			$this->form_validation
+				->name('name')
+					->required('Association name must not be empty.')
+					->alhpa_numeric_space('Association name must be composed of letters.');
+			if ($this->form_validation->run()) {
+				$this->Pds_model->insert_membership(strtoupper(html_escape($this->io->post('name'))));
+				set_flash_alert('success', 'Association name has been added successfully.');
 				redirect('Pds/view_other_information');
+			}
+			else {
+				set_flash_alert('danger', $this->form_validation->errors());
 			}
 		}
 	}
 	public function update_membership(){
-		if ($this->form_validation->submitted()) 
-		{
-			$this->form_validation->name('name');
-			if ($this->form_validation->run()) 
-			{
-				$this->Pds_model->update_membership(strtoupper($this->io->post('name')),$this->io->post('org_id'));
+		if ($this->form_validation->submitted()) {
+			$this->form_validation
+				->name('name')
+					->required('Association name must not be empty.')
+					->alhpa_numeric_space('Association name must be composed of letters.');
+			if ($this->form_validation->run()) {
+				$this->Pds_model->update_membership(strtoupper(html_escape($this->io->post('name'))),html_escape($this->io->post('org_id')));
+				set_flash_alert('success', 'Association name has been updated successfully.');
 				redirect('Pds/view_other_information');
+			}
+			else {
+				set_flash_alert('danger', $this->form_validation->errors());
 			}
 		}
 	}
@@ -171,53 +206,72 @@ class Pds extends Controller {
 	
 	
 	#region gov issued id
-	public function insert_id()
-	{
+	public function insert_id(){
 		if ($this->form_validation->submitted()) {
 			$this->form_validation
-				->name('id-desc')->required()
-				->name('id-num')->required()
-				->name('date-issued')->required()
-				->name('place-issued')->required();
+				->name('id-desc')
+					->required('I.D. description must not be empty.')
+					->custom_pattern('[a-zA-Z0-9,- ]', 'I.D. description must be composed of letters.')
+				->name('id-num')
+					->required('I.D. number must be not be empty.')
+					->custom_pattern('[a-zA-Z0-9 _-  ]', 'I.D. number must be valid.')
+				->name('date-issued')
+					->required('Date issued must not be empty.')
+				->name('place-issued')
+					->required('Place of issuance must not be empty.')
+					->alpha_numeric_space('Place of issuance must be composed of letters.');
 			if ($this->form_validation->run()) {
-				$idDesc = strtoupper($this->io->post('id-desc'));
-				$idNum = strtoupper($this->io->post('id-num'));
-				$date = $this->io->post('date-issued');
-				$place = strtoupper($this->io->post('place-issued'));
+				$idDesc = strtoupper(html_escape($this->io->post('id-desc')));
+				$idNum = strtoupper(html_escape($this->io->post('id-num')));
+				$date = html_escape($this->io->post('date-issued'));
+				$place = strtoupper(html_escape($this->io->post('place-issued')));
 				if ($this->Pds_model->insert_id($idDesc, $idNum, $date, $place)) {
+					set_flash_alert('success', 'Government Issued I.D. has been added successfully.');
 					redirect('Pds/view_other_information');
 				}
+			}
+			else {
+				set_flash_alert('danger', $this->form_validation->errors());
 			}
 		}
 	}
 
-	public function update_gov_id()
-	{
+	public function update_gov_id(){
 		if ($this->form_validation->submitted()) {
 			$this->form_validation
-				->name('id-desc')->required()
-				->name('id-num')->required()
-				->name('date-issued')->required()
-				->name('place-issued')->required()
-				->name('pk-id')->required();
+				->name('id-desc')	
+					->required('I.D. description must not be empty.')
+					->custom_pattern('[a-zA-Z0-9,- ]', 'I.D. description must be composed of letters.')
+				->name('id-num')
+					->required('I.D. number must be not be empty.')
+					->custom_pattern('[a-zA-Z0-9 _-  ]', 'I.D. number must be valid.')
+				->name('date-issued')
+					->required('Date issued must not be empty.')
+				->name('place-issued')
+					->required('Place of issuance must not be empty.')
+					->alpha_numeric_space('Place of issuance must be composed of letters.');
 			if ($this->form_validation->run()) {
-				$idDesc = strtoupper($this->io->post('id-desc'));
-				$idNum = strtoupper($this->io->post('id-num'));
-				$date = $this->io->post('date-issued');
-				$place = strtoupper($this->io->post('place-issued'));
-				$gid = $this->io->post('pk-id');
+				$idDesc = strtoupper(html_escape($this->io->post('id-desc')));
+				$idNum = strtoupper(html_escape($this->io->post('id-num')));
+				$date = html_escape($this->io->post('date-issued'));
+				$place = strtoupper(html_escape($this->io->post('place-issued')));
+				$gid = html_escape($this->io->post('pk-id'));
 				if ($this->Pds_model->update_id($idDesc, $idNum, $date, $place, $gid)) {
+					set_flash_alert('success', 'Government issued I.D. has been updated successfully.');
 					redirect('Pds/view_other_information');
 				}
+			}
+			else {
+				set_flash_alert('danger', $this->form_validation->errors());
 			}
 		}
 	}
 
 
-	public function delete_id()
-	{
+	public function delete_id(){
 		if($this->form_validation->run()) {
-			if ($this->Pds_model->delete_id($this->io->post('gov-issued-id'))) {
+			if ($this->Pds_model->delete_id(html_escape($this->io->post('gov-issued-id')))) {
+				set_flash_alert('success', 'Government issued I.D. has been deleted successfully.');
 				redirect('Pds/view_other_information');
 			}
 		}
@@ -226,20 +280,30 @@ class Pds extends Controller {
 
 	#region for references
 	public function insert_references(){
-		if ($this->form_validation->submitted()) 
-		{	
+		if ($this->form_validation->submitted()) {	
 			/* start change jcd May 26, 2022 */
 			$this->form_validation
-				->name('fname')->required()
-				->name('mname')->required()
-				->name('lname')->required()
-				->name('add-bar')->required()
-				->name('add-city')->required()
-				->name('tel')->required();
-			if ($this->form_validation->run()) 
-			{
-				$add_bar = strtoupper($this->io->post('add-bar'));
-				$add_city = strtoupper($this->io->post('add-city'));
+				->name('fname')
+					->required('First Name must not be empty.')
+					->alpha_space('First Name must be composed of letters.')
+				->name('mname')
+					->required('Middle Name must not be empty.')
+					->alpha_space('Middle Name must be composed of letters.')
+				->name('lname')
+					->required('Last Name must not be empty.')
+					->alpha_space('Last Name must be composed of letters.')				
+				->name('update-bar')
+					->required('Barangay must not be empty.')
+					->alpha_numeric_space('Barangay must be composed of letters.')
+				->name('update-city')
+					->required('City/Municipality must not be empty.')
+					->alpha_numeric_space('City/Municipality must be composed of letters.')
+				->name('tel')
+					->required('Telephone number must not be empty.')
+					->pattern('tel', 'Telephone number must be valid.');
+			if ($this->form_validation->run()) {
+				$add_bar = strtoupper(html_escape($this->io->post('add-bar')));
+				$add_city = strtoupper(html_escape($this->io->post('add-city')));
 				$data['reference_add'] = $this->Address_model->reference_add($add_bar, $add_city);
 
 				if (empty($data['reference_add'])) {
@@ -248,25 +312,39 @@ class Pds extends Controller {
 
 				$data['reference_add'] = $this->Address_model->reference_add($add_bar, $add_city);
 
-				$this->Pds_model->insert_references(strtoupper($this->io->post('fname')),strtoupper($this->io->post('mname')),strtoupper($this->io->post('lname')),$data['reference_add']['address_id'],$this->io->post('tel'));
+				$this->Pds_model->insert_references(strtoupper(html_escape($this->io->post('fname'))),strtoupper(html_escape($this->io->post('mname'))),strtoupper(html_escape($this->io->post('lname'))),$data['reference_add']['address_id'],html_escape($this->io->post('tel')));
+				set_flash_alert('success', 'Reference has been added successfully.');
 				redirect('Pds/view_other_information');
+			}
+			else {
+				set_flash_alert('danger', $this->form_validation->errors());
 			}
 		}
 	}
 	public function update_references(){
-		if ($this->form_validation->submitted()) 
-		{
+		if ($this->form_validation->submitted()) {
 			$this->form_validation
-			->name('fname')->required()
-			->name('mname')->required()
-			->name('lname')->required()
-			->name('update-bar')->required()
-			->name('update-city')->required()
-			->name('tel')->required();
-			if ($this->form_validation->run()) 
-			{
-				$update_bar = strtoupper($this->io->post('update-bar'));
-				$update_city = strtoupper($this->io->post('update-city'));
+				->name('fname')
+					->required('First Name must not be empty.')
+					->alpha_space('First Name must be composed of letters.')
+				->name('mname')
+					->required('Middle Name must not be empty.')
+					->alpha_space('Middle Name must be composed of letters.')
+				->name('lname')
+					->required('Last Name must not be empty.')
+					->alpha_space('Last Name must be composed of letters.')				
+				->name('update-bar')
+					->required('Barangay must not be empty.')
+					->alpha_numeric_space('Barangay must be composed of letters.')
+				->name('update-city')
+					->required('City/Municipality must not be empty.')
+					->alpha_numeric_space('City/Municipality must be composed of letters.')
+				->name('tel')
+					->required('Telephone number must not be empty.')
+					->pattern('tel', 'Telephone number must be valid.');
+			if ($this->form_validation->run()) {
+				$update_bar = strtoupper(html_escape($this->io->post('update-bar')));
+				$update_city = strtoupper(html_escape($this->io->post('update-city')));
 				$data['reference_add'] = $this->Address_model->reference_add($update_bar, $update_city);
 
 				if (empty($data['reference_add'])) {
@@ -275,15 +353,20 @@ class Pds extends Controller {
 
 				$data['reference_add'] = $this->Address_model->reference_add($update_bar, $update_city);
 
-				$this->Pds_model->update_references(strtoupper($this->io->post('fname')),strtoupper($this->io->post('mname')),strtoupper($this->io->post('lname')),$data['reference_add']['address_id'],$this->io->post('tel'),$this->io->post('ref_id'));
+				$this->Pds_model->update_references(strtoupper(html_escape($this->io->post('fname'))),strtoupper(html_escape($this->io->post('mname'))),strtoupper(html_escape($this->io->post('lname'))),$data['reference_add']['address_id'],html_escape($this->io->post('tel')),html_escape($this->io->post('ref_id')));
+				set_flash_alert('success', 'Reference has been updated sucessfully.');
 				redirect('Pds/view_other_information');
 				/* end change jcd May 26, 2022 */
+			}
+			else {
+				set_flash_alert('danger', $this->form_validation->errors());
 			}
 		}
 	}
 	public function delete_references(){
 		if ($this->form_validation->run()) {
-			$this->Pds_model->delete_references($this->io->post('ref_id'));
+			$this->Pds_model->delete_references(html_escape($this->io->post('ref_id')));
+			set_flash_alert('success', 'Reference has been deleted successfully.');
 			redirect('Pds/view_other_information');
 			exit();
 		}

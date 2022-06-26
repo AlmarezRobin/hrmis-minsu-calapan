@@ -25,6 +25,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                     <!-- <h3>Verify by email</h3> -->
                     </div>
                     <form action="" method="post">
+                        <?php flash_alert() ?>
                         <div class="form-group mb-3">
                             <label for="">Password</label>
                             <input type="password" name="pass" class="form-control" id="pass" placeholder="New Password" required   >

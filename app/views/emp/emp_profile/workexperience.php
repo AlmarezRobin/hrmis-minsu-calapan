@@ -35,7 +35,7 @@
                 </div>
                 <!-- end title -->
 
-
+                <?php flash_alert() ?>
                 <!-- container-fluid -->
                 <div class="container-fluid-xxl pb-2">
                     <!-- start table for Work Experience -->
@@ -133,7 +133,7 @@
     
 
 <!-- modal for adding workexperience -->
-<div class="modal fade" id="adding">
+<div class="modal fade" id="adding" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- Modal Header -->
@@ -201,7 +201,7 @@
 
 
 <!-- modal for updating workexperience -->
-<div class="modal fade" id="updating">
+<div class="modal fade" id="updating" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- Modal Header -->
@@ -264,7 +264,7 @@
 <!-- end modal for updating workexperience -->
 
 <!-- modal for deleting eligibility -->
-<div class="modal fade" id="deleting">
+<div class="modal fade" id="deleting" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- Modal Header -->

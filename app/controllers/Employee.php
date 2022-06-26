@@ -153,178 +153,233 @@ class Employee extends Controller {
 	}
 
 	public function update_profile(){
-		if ($this->form_validation->submitted()) 
-            {
-                $this->form_validation
-						->name('fname')->required()
-						->name('mname')->required()
-						->name('lname')->required()
-						->name('xname')
-						->name('dob')->required()
 
-						// * added jcd april 24, 2022 /* modified jcd may 10, 2022 */
-						->name('birth-province-text')->required()
-						->name('birth-city-text')->required()
-						
+		if ($this->form_validation->submitted()){
+			$this->form_validation
+				->name('fname')
+					->required('First Name must not be empty.')
+					->alpha_space('First Name accepts series of letters only.')
+				->name('mname')
+					->required('Middle Name must not be empty.')
+					->alpha_space('Middle Name accepts series of letters only.')
+				->name('lname')
+					->required('Last Name must not be empty.')
+					->alpha_space('Last Name accepts series of letters only.')
+				->name('xname')
+					->custom_pattern('^[a-zA-Z \/]+', 'Name extension accepts series of letter only.')
+					->max_length(5, 'Name extension must be less than five characters.')
+				->name('dob')
+					->required('Date of birth must not be empty')
 
-						->name('sex')->required()
-						->name('cstat')->required()
-						
-						// * added jcd april 24, 2022
-						->name('height')->required()
-						->name('weight')->required()
-						->name('blood-type')->required()
-						->name('gsis-no')->required()
-						->name('pag-ibig-no')->required()
-						->name('philhealth-no')->required()
-						->name('sss-no')->required()
-						->name('tin-no')->required()
-						->name('agency-emp-no')->required()
-
-						// added 4-16-22 rma 
-						->name('citizenship')->required()
-						->name('dualby')->required()
-						->name('country')->required()
-
-						// * added jcd april 24, 2022
-						->name('region-text')->required()
-						->name('province-text')->required()
-						->name('city-text')->required()
-						->name('barangay-text')->required()
-						->name('street')->required()
-						->name('house')->required()
-						->name('village')->required()
-						->name('zipcode')->required()
-						->name('compare-add') //* added May 10,2022
-
-						// * added jcd april 24, 2022
-						->name('permanent-region-text')
-						->name('permanent-province-text')
-						->name('permanent-city-text')
-						->name('permanent-barangay-text')
-						->name('permanent-street')
-						->name('permanent-house')
-						->name('permanent-village')
-						->name('permanent-zipcode')
-
-						->name('tnumber')->required()
-						->name('cnumber')->required();
-									
+				// * added jcd april 24, 2022 /* modified jcd may 10, 2022 */
+				->name('birth-province-text')
+					->required('Brith Place must not be empty.')
+					->alpha_space('Brith Place City/Municipality accepts series of letters only.')
+				->name('birth-city-text')
+					->required('Brith Place must not be empty.')
+					->alpha_space('Brith Place Province accepts series of letters only.')
 				
-						
-				if ($this->form_validation->run()) 
-                {
-					$same = NULL;
-					$this->io->post('compare-add') ? $same = $this->io->post('compare-add') : $same = 0;
-					#region birth address
-					$birth_province =  strtoupper($this->io->post('birth-province-text'));
-					$birth_city =  strtoupper($this->io->post('birth-city-text'));
-					#endregion
 
-					#region residential address
-					$res_region =  strtoupper($this->io->post('region-text'));
-					$res_province =  strtoupper($this->io->post('province-text'));
-					$res_city =  strtoupper($this->io->post('city-text'));
-					$res_barangay =  strtoupper($this->io->post('barangay-text'));
-					$res_street =  strtoupper($this->io->post('street'));
-					$res_house =  strtoupper($this->io->post('house'));
-					$res_village =  strtoupper($this->io->post('village'));
-					$res_zipcode = $this->io->post('zipcode');
-					#endregion
-					
-					#region permanent address
-					$per_region =  strtoupper($this->io->post('permanent-region-text'));
-					$per_province =  strtoupper($this->io->post('permanent-province-text'));
-					$per_city =  strtoupper($this->io->post('permanent-city-text'));
-					$per_barangay =  strtoupper($this->io->post('permanent-barangay-text'));
-					$per_street =  strtoupper($this->io->post('permanent-street'));
-					$per_house =  strtoupper($this->io->post('permanent-house'));
-					$per_village =  strtoupper($this->io->post('permanent-village'));
-					$per_zipcode = $this->io->post('permanent-zipcode');
-					#endregion
-					
-					/* start change jcd april 24, 2022  ** modified May 10, 2022 */
-				  	$data['select_birth_add'] = $this->Address_model->select_birth_add($birth_province, $birth_city);
-				  	$data['select_residential_add'] = $this->Address_model->select_residential_add($res_region, $res_province, $res_city, $res_barangay, $res_street, $res_house, $res_village, $res_zipcode);
-				  	$data['select_permanent_add'] = $this->Address_model->select_permanent_add($per_region, $per_province, $per_city, $per_barangay, $per_street, $per_house, $per_village, $per_zipcode);
+				->name('sex')
+					->required('Must select one sex orientation.')
+				->name('cstat')
+					->required('Must select one civil status')
+				
+				// * added jcd april 24, 2022
+				->name('height')
+					->required('Height must not be empty')
+					->numeric('Height must be a number')
+				->name('weight')
+					->required('Weight must not be empty')
+					->numeric('Weight must be a number')
+				->name('blood-type')
+					->required('Blood type must not be empty.')
+				->name('gsis-no')
+					->required('GSIS No. must not be empty.')
+					->numeric('GSIS No. must be a number')
+					->max_length(11,'GSIS No. must be exactly 11 digits.')
+				->name('pag-ibig-no')
+					->required('PAG-IBIG ID No. must not be empty.')
+					->numeric('PAG-IBIG ID No. must be a number')
+					->max_length(12, 'PAG-IBIG No. must be exactly 12 digits.')
+				->name('philhealth-no')
+					->required('PHILHEALTH No. must not be empty.')
+					->custom_pattern('^[0-9-]+','PHILHEALTH No. must be a combination of dash and number')
+				->name('sss-no')
+					->required('SSS No. must not be empty')
+					->custom_pattern('^[0-9-]+','SSS No. must be a combination of dash and a number')
+				->name('tin-no')
+					->required('TIN No. must not be empty.')
+					->custom_pattern('^[0-9-]+','TIN No. must be a a combination of dash and number')
+				->name('agency-emp-no')
+					->required('AGENCY EMPLOYEE No. must not be empty.')
+					->alpha_numeric_dash('AGENCY EMPLOYEE No must be a combination of letters, number, and dash.')
+				// added 4-16-22 rma 
+				->name('citizenship')
+					->required('Must select one citizenship category.')
+				// ->name('dualby')
+				// 	->required()
+				// ->name('country')
+				// 	->required()
 
+				// * added jcd april 24, 2022
+				->name('region-text')
+					->required('Must select one region.')
+				->name('province-text')
+					->required('Must select one province.')
+				->name('city-text')
+					->required('Must select one city.')
+				->name('barangay-text')
+					->required('Must select one barangay.')
+				->name('street')
+					->required('Street must not be empty.')
+				->name('house')
+					->required('House/Block/Lot No. must not be empty.')
+				->name('village')
+					->required('Subdivision/Village must not be empty.')
+				->name('zipcode')
+					->required('Zipcode must not be empty.')
+				->name('compare-add') //* added May 10,2022
+
+				// * added jcd april 24, 2022
+				->name('permanent-region-text')
+				->name('permanent-province-text')
+				->name('permanent-city-text')
+				->name('permanent-barangay-text')
+				->name('permanent-street')
+				->name('permanent-house')
+				->name('permanent-village')
+				->name('permanent-zipcode')
+
+				->name('tnumber')
+					->required('Telephone No. must not be empty.')
+					->pattern('tel', 'Telephone No. does not contain any letters and special characters.')
+				->name('cnumber')
+					->required('Mobile No. must not be empty.')
+					->pattern('tel', 'Mobile No. does not contain any letters and special chracters');
+								
+			
 					
-					/* start change jcd april 30, 2022 ** modified May 10, 2022 */
-					
-					if(empty($data['select_birth_add'])){
-						$this->Address_model->insert_birth_address($birth_province, $birth_city);
+			if ($this->form_validation->run()) {
+				$same = NULL;
+				$this->io->post('compare-add') ? $same = html_escape($this->io->post('compare-add')) : $same = 0;
+				#region birth address
+				$birth_province =  strtoupper(html_escape($this->io->post('birth-province-text')));
+				$birth_city =  strtoupper(html_escape($this->io->post('birth-city-text')));
+				#endregion
+
+				#region residential address
+				$res_region =  strtoupper(html_escape($this->io->post('region-text')));
+				$res_province =  strtoupper(html_escape($this->io->post('province-text')));
+				$res_city =  strtoupper(html_escape($this->io->post('city-text')));
+				$res_barangay =  strtoupper(html_escape($this->io->post('barangay-text')));
+				$res_street =  strtoupper(html_escape($this->io->post('street')));
+				$res_house =  strtoupper(html_escape($this->io->post('house')));
+				$res_village =  strtoupper(html_escape($this->io->post('village')));
+				$res_zipcode = html_escape($this->io->post('zipcode'));
+				#endregion
+				
+				#region permanent address
+				$per_region =  strtoupper(html_escape($this->io->post('permanent-region-text')));
+				$per_province =  strtoupper(html_escape($this->io->post('permanent-province-text')));
+				$per_city =  strtoupper(html_escape($this->io->post('permanent-city-text')));
+				$per_barangay =  strtoupper(html_escape($this->io->post('permanent-barangay-text')));
+				$per_street =  strtoupper(html_escape($this->io->post('permanent-street')));
+				$per_house =  strtoupper(html_escape($this->io->post('permanent-house')));
+				$per_village =  strtoupper(html_escape($this->io->post('permanent-village')));
+				$per_zipcode = html_escape($this->io->post('permanent-zipcode'));
+				#endregion
+				
+				/* start change jcd april 24, 2022  ** modified May 10, 2022 */
+				$data['select_birth_add'] = $this->Address_model->select_birth_add($birth_province, $birth_city);
+				$data['select_residential_add'] = $this->Address_model->select_residential_add($res_region, $res_province, $res_city, $res_barangay, $res_street, $res_house, $res_village, $res_zipcode);
+				$data['select_permanent_add'] = $this->Address_model->select_permanent_add($per_region, $per_province, $per_city, $per_barangay, $per_street, $per_house, $per_village, $per_zipcode);
+
+				
+				/* start change jcd april 30, 2022 ** modified May 10, 2022 */
+				
+				if(empty($data['select_birth_add'])){
+					$this->Address_model->insert_birth_address($birth_province, $birth_city);
+				}
+
+				if ($same) {
+					#region new values for permanent address
+					$per_region = $res_region;
+					$per_province = $res_province;
+					$per_city = $res_city;
+					$per_barangay = $res_barangay;
+					$per_street = $res_street;
+					$per_house = $res_house;
+					$per_village =$res_village;
+					$per_zipcode = $res_zipcode;
+					#endregion
+					if(empty($data['select_residential_add'])){
+						$this->Address_model->insert_address($res_region, $res_province, $res_city, $res_barangay, $res_street, $res_house, $res_village, $res_zipcode);
 					}
-
-					if ($same) {
-						#region new values for permanent address
-						$per_region = $res_region;
-						$per_province = $res_province;
-						$per_city = $res_city;
-						$per_barangay = $res_barangay;
-						$per_street = $res_street;
-						$per_house = $res_house;
-						$per_village =$res_village;
-						$per_zipcode = $res_zipcode;
-						#endregion
-						if(empty($data['select_residential_add'])){
-							$this->Address_model->insert_address($res_region, $res_province, $res_city, $res_barangay, $res_street, $res_house, $res_village, $res_zipcode);
-						}
-					} else {
-						if(empty($data['select_residential_add'])){
-							$this->Address_model->insert_address($res_region, $res_province, $res_city, $res_barangay, $res_street, $res_house, $res_village, $res_zipcode);
-						}
-						if(empty($data['select_residential_add'])){
-							$this->Address_model->insert_address($per_region, $per_province, $per_city, $per_barangay, $per_street, $per_house, $per_village, $per_zipcode);
-						}
+				} 
+				else {
+					if(empty($data['select_residential_add'])){
+						$this->Address_model->insert_address($res_region, $res_province, $res_city, $res_barangay, $res_street, $res_house, $res_village, $res_zipcode);
 					}
-					
-					/* end change jcd april 30, 2022 ** modified May 10, 2022 */
-					
-					$data['select_birth_add'] = $this->Address_model->select_birth_add($birth_province, $birth_city);
-				  	$data['select_residential_add'] = $this->Address_model->select_residential_add($res_region, $res_province, $res_city, $res_barangay, $res_street, $res_house, $res_village, $res_zipcode);
-				  	$data['select_permanent_add'] = $this->Address_model->select_permanent_add($per_region, $per_province, $per_city, $per_barangay, $per_street, $per_house, $per_village, $per_zipcode);
-					
-                  	$this->Employee_model->update_user_profile(
+					if(empty($data['select_permanent_add'])){
+						$this->Address_model->insert_address($per_region, $per_province, $per_city, $per_barangay, $per_street, $per_house, $per_village, $per_zipcode);
+					}
+				}
+				
+				/* end change jcd april 30, 2022 ** modified May 10, 2022 */
+				
+				$data['select_birth_add'] = $this->Address_model->select_birth_add($birth_province, $birth_city);
+				$data['select_residential_add'] = $this->Address_model->select_residential_add($res_region, $res_province, $res_city, $res_barangay, $res_street, $res_house, $res_village, $res_zipcode);
+				$data['select_permanent_add'] = $this->Address_model->select_permanent_add($per_region, $per_province, $per_city, $per_barangay, $per_street, $per_house, $per_village, $per_zipcode);
+				
+				$this->Employee_model->update_user_profile(
 
-									// * added jcd april 24, 2022
-									$data['select_birth_add']['address_id'],
-									$data['select_residential_add']['address_id'],
-									$data['select_permanent_add']['address_id'],
+								// * added jcd april 24, 2022
+								$data['select_birth_add']['address_id'],
+								$data['select_residential_add']['address_id'],
+								$data['select_permanent_add']['address_id'],
 
-									strtoupper($this->io->post('fname')),
-									strtoupper($this->io->post('mname')),
-									strtoupper($this->io->post('lname')),
-									strtoupper($this->io->post('xname')),
-									$this->io->post('dob'), 
-									strtoupper($this->io->post('sex')),
-									strtoupper($this->io->post('cstat')),
+								strtoupper(html_escape($this->io->post('fname'))),
+								strtoupper(html_escape($this->io->post('mname'))),
+								strtoupper(html_escape($this->io->post('lname'))),
+								strtoupper(html_escape($this->io->post('xname'))),
+								html_escape($this->io->post('dob')), 
+								strtoupper(html_escape($this->io->post('sex'))),
+								strtoupper(html_escape($this->io->post('cstat'))),
 
-									// * added jcd april 24, 2022
-									strtoupper($this->io->post('height')),
-									strtoupper($this->io->post('weight')),
-									strtoupper($this->io->post('blood-type')),
-									strtoupper($this->io->post('gsis-no')),
-									strtoupper($this->io->post('pag-ibig-no')),
-									strtoupper($this->io->post('philhealth-no')),
-									strtoupper($this->io->post('sss-no')),
-									strtoupper($this->io->post('tin-no')),
-									strtoupper($this->io->post('agency-emp-no')),
-									/* end change jcd april 24, 2022 ** modified May 10, 2022 */
-             
-									// added 4-16-22 rma
-									strtoupper($this->io->post('citizenship')),
-									strtoupper($this->io->post('dualby')),
-									strtoupper($this->io->post('country')),
+								// * added jcd april 24, 2022
+								strtoupper(html_escape($this->io->post('height'))),
+								strtoupper(html_escape($this->io->post('weight'))),
+								strtoupper(html_escape($this->io->post('blood-type'))),
+								strtoupper(html_escape($this->io->post('gsis-no'))),
+								strtoupper(html_escape($this->io->post('pag-ibig-no'))),
+								strtoupper(html_escape($this->io->post('philhealth-no'))),
+								strtoupper(html_escape($this->io->post('sss-no'))),
+								strtoupper(html_escape($this->io->post('tin-no'))),
+								strtoupper(html_escape($this->io->post('agency-emp-no'))),
+								/* end change jcd april 24, 2022 ** modified May 10, 2022 */
+			
+								// added 4-16-22 rma
+								strtoupper(html_escape($this->io->post('citizenship'))),
+								strtoupper(html_escape($this->io->post('dualby'))),
+								strtoupper(html_escape($this->io->post('country'))),
 
 
-									$this->io->post('tnumber'),
-									$this->io->post('cnumber'));
-									redirect('Employee');
-                }
+								html_escape($this->io->post('tnumber')),
+								html_escape($this->io->post('cnumber')));
+								set_flash_alert('success' ,'Profile details updated successfully.');
+								redirect('Employee');
+			}
+			else {
+				// var_dump($this->form_validation->errors());
+				// exit;
+				set_flash_alert('danger' ,$this->form_validation->errors());
+				redirect('Employee/view_edit_profile');
+			}
 
-                
-            }
+			
 		}
+	}
 		// $this->call->view('hr/register_admin');
 	#endregion
 
@@ -341,26 +396,46 @@ class Employee extends Controller {
 
 		if ($this->form_validation->submitted()) {
 			$this->form_validation
-				->name('sfname')->required()
-				->name('smname')->required()
-				->name('slname')->required()
-				->name('sxname')->required()
+				->name('sfname')
+					->required('First Name must not be empty.')
+					->alpha_space('First Name accepts series of letter only.')
+				->name('smname')
+					->required('Middle Name must not be empty.')
+					->alpha_space('Middle Name accepts series of letter only.')
+				->name('slname')
+					->required('Last Name must not be empty.')
+					->alpha_space('Last Name accepts series of letter only.')
+				->name('sxname')
+					->custom_pattern('^[a-zA-Z \/]+','Name extension accepts series of letter only.')
+					->max_length(5, 'Name extension must be less than or equal to five characters.')
 				->name('occupation')
+					->required('Occupation must not be empty.')
+					->alpha_space('Occupation accepts series of letters only.')
 				->name('bname')
+					->required('Employer/Business Name must not be empty.')
 				->name('baddress')
-				->name('tnumber');
+					->required('Business Address must not be empty.')
+					->custom_pattern('^[a-zA-Z0-9- \/ ]+', 'Business Address does not special characters except for a dash.')
+				->name('tnumber')
+					->required('Telephone No. must not be empty.')
+					->pattern('tel', 'Telephone No. does not contain any letters and special chracters');
 
 			if ($this->form_validation->run()) {
 				$this->Pds_model->insert_spouse(
-					strtoupper($this->io->post('sfname')),
-					strtoupper($this->io->post('smname')),
-					strtoupper($this->io->post('slname')),
-					strtoupper($this->io->post('sxname')),
-					strtoupper($this->io->post('occupation')),
-					strtoupper($this->io->post('bname')),
-					strtoupper($this->io->post('baddress')),
-					$this->io->post('tnumber')
+					strtoupper(html_escape($this->io->post('sfname'))),
+					strtoupper(html_escape($this->io->post('smname'))),
+					strtoupper(html_escape($this->io->post('slname'))),
+					strtoupper(html_escape($this->io->post('sxname'))),
+					strtoupper(html_escape($this->io->post('occupation'))),
+					strtoupper(html_escape($this->io->post('bname'))),
+					strtoupper(html_escape($this->io->post('baddress'))),
+					html_escape($this->io->post('tnumber'))
 				);
+				set_flash_alert('success', 'Spouse Information inserted successfully.');
+				redirect('Employee/view_spouse');
+			}
+			else {
+				set_flash_alert('danger', $this->form_validation->errors);
 				redirect('Employee/view_spouse');
 			}
 		}
@@ -370,26 +445,46 @@ class Employee extends Controller {
 
 		if ($this->form_validation->submitted()) {
 			$this->form_validation
-				->name('sfname')->required()
-				->name('smname')->required()
-				->name('slname')->required()
-				->name('sxname')->required()
-				->name('occupation')->required()
-				->name('bname')->required()
-				->name('baddress')->required()
-				->name('tnumber')->required();
+				->name('sfname')
+					->required('First Name must not be empty.')
+					->alpha_space('First Name accepts series of letter only.')
+				->name('smname')
+					->required('Middle Name must not be empty.')
+					->alpha_space('Middle Name accepts series of letter only.')
+				->name('slname')
+					->required('Last Name must not be empty.')
+					->alpha_space('Last Name accepts series of letter only.')
+				->name('sxname')
+					->custom_pattern('^[a-zA-Z \/]+', 'Name extension accepts series of letter only.')
+					->max_length(5, 'Name extension must be less than or equal to five characters.')
+				->name('occupation')
+					->required('Occupation must not be empty.')
+					->alpha_space('Occupation accepts series of letters only.')
+				->name('bname')
+					->required('Employer/Business Name must not be empty.')
+				->name('baddress')
+					->required('Business Address must not be empty.')
+					->custom_pattern('^[a-zA-Z0-9- \/]+', 'Business Address does not special characters except for a dash.')
+				->name('tnumber')
+					->required('Telephone No. must not be empty.')
+					->pattern('tel', 'Telephone No. does not contain any letters and special chracters');
 
 			if ($this->form_validation->run()) {
 				$this->Pds_model->update_spouse(
-					strtoupper($this->io->post('sfname')),
-					strtoupper($this->io->post('smname')),
-					strtoupper($this->io->post('slname')),
-					strtoupper($this->io->post('sxname')),
-					strtoupper($this->io->post('occupation')),
-					strtoupper($this->io->post('bname')),
-					strtoupper($this->io->post('baddress')),
-					$this->io->post('tnumber')
+					strtoupper(html_escape($this->io->post('sfname'))),
+					strtoupper(html_escape($this->io->post('smname'))),
+					strtoupper(html_escape($this->io->post('slname'))),
+					strtoupper(html_escape($this->io->post('sxname'))),
+					strtoupper(html_escape($this->io->post('occupation'))),
+					strtoupper(html_escape($this->io->post('bname'))),
+					strtoupper(html_escape($this->io->post('baddress'))),
+					html_escape($this->io->post('tnumber'))
 				);
+				set_flash_alert('success', 'Spouse Information updated successfully.');
+				redirect('Employee/view_spouse');
+			}
+			else {
+				set_flash_alert('danger', $this->form_validation->errors());
 				redirect('Employee/view_spouse');
 			}
 		}
@@ -409,38 +504,65 @@ class Employee extends Controller {
 
 		if ($this->form_validation->submitted()) {
 			$this->form_validation
-				->name('fafname')->required()
-				->name('famname')->required()
-				->name('falname')->required()
-				->name('faxname');
+				->name('fafname')
+					->required('First Name must not be empty.')
+					->alpha_space('First Name accepts series of letter only.')
+				->name('famname')
+					->required('First Name must not be empty.')
+					->alpha_space('First Name accepts series of letter only.')
+				->name('falname')
+					->required('First Name must not be empty.')
+					->alpha_space('First Name accepts series of letter only.')
+				->name('faxname')
+					->custom_pattern('^[a-zA-Z \/]+', 'Name extension accepts series of letter only.')
+					->max_length(5, 'Name extension must be less than or equal to five characters.');
 
 			if ($this->form_validation->run()) {
 				$this->Pds_model->insert_father(
-					strtoupper($this->io->post('fafname')),
-					strtoupper($this->io->post('famname')),
-					strtoupper($this->io->post('falname')),
-					strtoupper($this->io->post('faxname'))
+					strtoupper(html_escape($this->io->post('fafname'))),
+					strtoupper(html_escape($this->io->post('famname'))),
+					strtoupper(html_escape($this->io->post('falname'))),
+					strtoupper(html_escape($this->io->post('faxname')))
 				);
+				set_flash_alert('success', "Father's information is inserted successfully.");
+				redirect('Employee/view_father');
+			}
+			else {
+				set_flash_alert('danger', $this->form_validation->errors());
 				redirect('Employee/view_father');
 			}
 		}
 	}
+
 	public function update_father(){
 
 		if ($this->form_validation->submitted()) {
 			$this->form_validation
-				->name('fafname')->required()
-				->name('famname')->required()
-				->name('falname')->required()
-				->name('faxname');
+				->name('fafname')
+					->required('First Name must not be empty.')
+					->alpha_space('First Name accepts series of letter only.')
+				->name('famname')
+					->required('First Name must not be empty.')
+					->alpha_space('First Name accepts series of letter only.')
+				->name('falname')
+					->required('First Name must not be empty.')
+					->alpha_space('First Name accepts series of letter only.')
+				->name('faxname')
+					->custom_pattern('^[a-zA-Z \/]+', 'Name extension accepts series of letter only.')
+					->max_length(5, 'Name extension must be less than or equal to five characters.');
 
 			if ($this->form_validation->run()) {
 				$this->Pds_model->update_father(
-					strtoupper($this->io->post('fafname')),
-					strtoupper($this->io->post('famname')),
-					strtoupper($this->io->post('falname')),
-					strtoupper($this->io->post('faxname'))
+					strtoupper(html_escape($this->io->post('fafname'))),
+					strtoupper(html_escape($this->io->post('famname'))),
+					strtoupper(html_escape($this->io->post('falname'))),
+					strtoupper(html_escape($this->io->post('faxname')))
 				);
+				set_flash_alert('success', "Father's information is updated successfully.");
+				redirect('Employee/view_father');
+			}
+			else {
+				set_flash_alert('danger', $this->form_validation->errors());
 				redirect('Employee/view_father');
 			}
 		}
@@ -454,44 +576,68 @@ class Employee extends Controller {
 		$this->checkpass(); // * added jcd april 21, 2022
 		$this->call->view('emp/emp_profile/family_background/mother_info',$data);
 	}
-	public function insert_mother(){
-		if ($this->form_validation->submitted()) 
-		{
-			$this->form_validation
-				->name('momainame')->required()
-				->name('mofname')->required()
-				->name('momname')->required()
-				->name('molname')->required();
 
-			if ($this->form_validation->run()) 
-			{
+	public function insert_mother(){
+		if ($this->form_validation->submitted()) {
+			$this->form_validation
+				->name('momainame')
+					->required("Mother's Maiden First Name must not be empty.")
+					->alpha_space("Mother's Maiden First Name accepts series of letter only.")
+				->name('mofname')
+					->required("Mother's Maiden Middle Name must not be empty.")
+					->alpha_space("Mother's Maiden Middle Name accepts series of letter only.")
+				->name('momname')
+					->required("Mother's Maiden Last Name must not be empty.")
+					->alpha_space("Mother's Maiden Last Name accepts series of letter only.")
+				->name('molname')
+					->required("Mother's Last Name must not be empty.")
+					->alpha_space("Mother's Last Name accepts series of letter only.");
+
+			if ($this->form_validation->run()) {
 				$this->Pds_model->insert_mother(
-					strtoupper($this->io->post('momainame')),
-					strtoupper($this->io->post('mofname')),
-					strtoupper($this->io->post('momname')),
-					strtoupper($this->io->post('molname'))
+					strtoupper(html_escape($this->io->post('momainame'))),
+					strtoupper(html_escape($this->io->post('mofname'))),
+					strtoupper(html_escape($this->io->post('momname'))),
+					strtoupper(html_escape($this->io->post('molname')))
 				);
+				set_flash_alert('success', "Mother's information is inserted successfully.");
+				redirect('Employee/view_mother');
+			}
+			else {
+				set_flash_alert('danger', $this->form_validation->errors);
 				redirect('Employee/view_mother');
 			}
 		}
 	}
+	
 	public function update_mother(){
-		if ($this->form_validation->submitted()) 
-		{
+		if ($this->form_validation->submitted()) {
 			$this->form_validation
-				->name('momainame')->required()
-				->name('mofname')->required()
-				->name('momname')->required()
-				->name('molname')->required();
+				->name('momainame')
+					->required("Mother's Maiden First Name must not be empty.")
+					->alpha_space("Mother's Maiden First Name accepts series of letter only.")
+				->name('mofname')
+					->required("Mother's Maiden Middle Name must not be empty.")
+					->alpha_space("Mother's Maiden Middle Name accepts series of letter only.")
+				->name('momname')
+					->required("Mother's Maiden Last Name must not be empty.")
+					->alpha_space("Mother's Maiden Last Name accepts series of letter only.")
+				->name('molname')
+					->required("Mother's Last Name must not be empty.")
+					->alpha_space("Mother's Last Name accepts series of letter only.");
 
-			if ($this->form_validation->run()) 
-			{
+			if ($this->form_validation->run()) {
 				$this->Pds_model->update_mother(
-					strtoupper($this->io->post('momainame')),
-					strtoupper($this->io->post('mofname')),
-					strtoupper($this->io->post('momname')),
-					strtoupper($this->io->post('molname'))
+					strtoupper(html_escape($this->io->post('momainame'))),
+					strtoupper(html_escape($this->io->post('mofname'))),
+					strtoupper(html_escape($this->io->post('momname'))),
+					strtoupper(html_escape($this->io->post('molname')))
 				);
+				set_flash_alert('success', "Mother's information is updated successfully.");
+				redirect('Employee/view_mother');
+			}
+			else {
+				set_flash_alert('danger', $this->form_validation->errors);
 				redirect('Employee/view_mother');
 			}
 		}
@@ -514,20 +660,33 @@ class Employee extends Controller {
 
 		if ($this->form_validation->submitted()) {
 			$this->form_validation
-				->name('fname')->required()
-				->name('mname')->required()
-				->name('lname')->required()
+				->name('fname')
+					->required('First Name must no be empty.')
+					->alpha_space('First Name accepts series of letter only.')
+				->name('mname')
+					->required('Middle Name must not be empty.')
+					->alpha_space('Middle Name accepts series of letter only.')
+				->name('lname')
+					->required('Last Name must not be empty.')
+					->alpha_space('Last Name accepts series of letter only.')
 				->name('xname')
-				->name('bday');
+					->required('Name extenstion must not be empty.')
+					->max_length(5, 'Name extension must be less than or equal to five characters.');
+				
 
 			if ($this->form_validation->run()) {
 				$this->Pds_model->insert_child(
-					strtoupper($this->io->post('fname')),
-					strtoupper($this->io->post('mname')),
-					strtoupper($this->io->post('lname')),
-					strtoupper($this->io->post('xname')),
-					$this->io->post('bday')
+					strtoupper(html_escape($this->io->post('fname'))),
+					strtoupper(html_escape($this->io->post('mname'))),
+					strtoupper(html_escape($this->io->post('lname'))),
+					strtoupper(html_escape($this->io->post('xname'))),
+					html_escape($this->io->post('bday'))
 				);
+				set_flash_alert('success', "Child's information added successfully.");
+				redirect('Employee/view_child');
+			}
+			else {
+				set_flash_alert('danger', $this->form_validation->errors());
 				redirect('Employee/view_child');
 			}
 		}
@@ -536,30 +695,42 @@ class Employee extends Controller {
 
 		if ($this->form_validation->submitted()) {
 			$this->form_validation
-				->name('fname')->required()
-				->name('mname')->required()
-				->name('lname')->required()
+				->name('fname')
+					->required('First Name must no be empty.')
+					->alpha_space('First Name accepts series of letter only.')
+				->name('mname')
+					->required('Middle Name must not be empty.')
+					->alpha_space('Middle Name accepts series of letter only.')
+				->name('lname')
+					->required('Last Name must not be empty.')
+					->alpha_space('Last Name accepts series of letter only.')
 				->name('xname')
-				->name('bday');
+					->required('Name extenstion must not be empty.')
+					->max_length(5, 'Name extension must be less than or equal to five characters.');
 
 			if ($this->form_validation->run()) {
 				$this->Pds_model->update_child(
-					strtoupper($this->io->post('fname')),
-					strtoupper($this->io->post('mname')),
-					strtoupper($this->io->post('lname')),
-					strtoupper($this->io->post('xname')),
-					$this->io->post('bday'),
-					$this->io->post('child_id')
+					strtoupper(html_escape($this->io->post('fname'))),
+					strtoupper(html_escape($this->io->post('mname'))),
+					strtoupper(html_escape($this->io->post('lname'))),
+					strtoupper(html_escape($this->io->post('xname'))),
+					html_escape($this->io->post('bday')),
+					html_escape($this->io->post('child_id'))
 				);
+				set_flash_alert('success', "Child's information updated successfully.");
+				redirect('Employee/view_child');
+			}
+			else {
+				set_flash_alert('danger', $this->form_validation->errors());
 				redirect('Employee/view_child');
 			}
 		}
 	}
 
-	public function delete_child()
-	{
+	public function delete_child(){
 		if ($this->form_validation->run()) {
-			$this->Pds_model->delete_child($this->io->post('child_id'));
+			$this->Pds_model->delete_child(html_escape($this->io->post('child_id')));
+			set_flash_alert('success', "Child's information deleted successfully.");
 			redirect('Employee/view_child');
 		}
 	}
@@ -574,39 +745,56 @@ class Employee extends Controller {
 	#region educ bg 4/9/2022 /* done na */
 	public function view_educational_background(){
 
-		if ($this->form_validation->submitted()) 
-            {
-                $this->form_validation
-									->name('level')->required()
-									->name('name')->required()
-									->name('degree')->required()
-									->name('from')->required()
-									->name('to')->required()
-									->name('unit_earned')->required()
-									->name('year_grad')
-									->name('honors')->required();
-									
-				if ($this->form_validation->run()) 
-                {
-					$year = '';
-					$year_grad = '';
-					$this->io->post('to') == date('Y') ? $year = 'PRESENT' : $year = $this->io->post('to');
-					$this->io->post('year_grad') === date('Y') ? $year_grad = 'PURSUING' : $year_grad = $this->io->post('year_grad');
-                  $this->Pds_model->insert_educational_bg(
-									strtoupper($this->io->post('level')),
-									strtoupper($this->io->post('name')),
-									strtoupper($this->io->post('degree')),
-									strtoupper($this->io->post('from')),
-									strtoupper($year), 
-									strtoupper($this->io->post('unit_earned')),
-									strtoupper($year_grad),
-									strtoupper($this->io->post('honors'))
-															 );
-									redirect('Employee/view_educational_background');
-                }
+		if ($this->form_validation->submitted()) {
+			$this->form_validation
+				->name('level')
+					->required('Must select the the appropriate level of educational attainment.')
+				->name('name')
+					->required('School name must not be empty.')
+					->alpha_numeric_space('School name must only contain series of letters.')
+				->name('degree')
+					->required('Degree/course must not be empty.')
+					->alpha_space('Degree/course must only contain series of letters')
+				->name('from')
+					->required('Period of attendance must not be empty.')
+					->numeric('Period of atttendance must be a valid year.')
+				->name('to')
+					->required('Period of attendance must not be empty.')
+					->numeric('Period of attendace must be a valid year.')
+				->name('unit_earned')
+					->required('Unit earned must not be empty.')
+					->alpha_numeric_space('Scholarship/Academic honors must only contain series of letters.')
+				->name('year_grad')
+					->numeric('Year graduated must be a valid year.')
+				->name('honors')
+					->required('Scholarship/Academic honors received must not be empty.')
+					->alpha_numeric_space('Scholarship/Academic honors must only contain series of letters.');
+								
+			if ($this->form_validation->run()) {
+				$year = '';
+				$year_grad = '';
+				$this->io->post('to') == date('Y') ? $year = 'PRESENT' : $year = $this->io->post('to');
+				$this->io->post('year_grad') === date('Y') ? $year_grad = 'PURSUING' : $year_grad = $this->io->post('year_grad');
+				$this->Pds_model->insert_educational_bg(
+					strtoupper(html_escape($this->io->post('level'))),
+					strtoupper(html_escape($this->io->post('name'))),
+					strtoupper(html_escape($this->io->post('degree'))),
+					strtoupper(html_escape($this->io->post('from'))),
+					strtoupper(html_escape($year)), 
+					strtoupper(html_escape($this->io->post('unit_earned'))),
+					strtoupper(html_escape($year_grad)),
+					strtoupper(html_escape($this->io->post('honors')))
+				);
+				set_flash_alert('success', 'Educational Background information added successfully.');
+				redirect('Employee/view_educational_background');
+			}
+			else {
+				set_flash_alert('danger', $this->form_validation->errors());
+				redirect('Employee/view_educational_background');
+			}
 
-                
-            }
+			
+		}
 		$data = ['get_educational' => $this->Pds_model->get_educational(),
 		'emp_notif_forpds' => $this->Employee_model->emp_notif_forpds()
 		];
@@ -615,46 +803,63 @@ class Employee extends Controller {
 	}
 
 	/* start change jcd May 6, 2022 */
-	public function update_educ_bg()
-	{
-		if ($this->form_validation->submitted()) 
-            {
-                $this->form_validation
-									->name('level')->required()
-									->name('name')->required()
-									->name('degree')->required()
-									->name('from')->required()
-									->name('to')->required()
-									->name('unit_earned')->required()
-									->name('year_grad')->required()
-									->name('honors')->required();
-									
-				if ($this->form_validation->run()) 
-                {
-					$year = '';
-					$year_grad = '';
-					$this->io->post('to') === date('Y') ? $year = 'PRESENT' : $year = $this->io->post('to');
-					$this->io->post('year_grad') === date('Y') ? $year_grad = 'PURSUING' : $year_grad = $this->io->post('year_grad');
-					
-					$this->Pds_model->update_educ_bg(
-									strtoupper($this->io->post('level')),
-									strtoupper($this->io->post('name')),
-									strtoupper($this->io->post('degree')),
-									strtoupper($this->io->post('from')),
-									strtoupper($year), 
-									strtoupper($this->io->post('unit_earned')),
-									strtoupper($year_grad),
-									strtoupper($this->io->post('honors')),
-									$this->io->post('emid'));
-									redirect('Employee/view_educational_background');
-                }
+	public function update_educ_bg(){
+		if ($this->form_validation->submitted()) {
+			$this->form_validation
+				->name('level')
+					->required('Must select the the appropriate level of educational attainment.')
+				->name('name')
+					->required('School name must not be empty.')
+					->alpha_numeric_space('School name must only contain series of letters.')
+				->name('degree')
+					->required('Degree/course must not be empty.')
+					->alpha_space('Degree/course must only contain series of letters')
+				->name('from')
+					->required('Period of attendance must not be empty.')
+					->numeric('Period of atttendance must be a valid year.')
+				->name('to')
+					->required('Period of attendance must not be empty.')
+					->numeric('Period of attendace must be a valid year.')
+				->name('unit_earned')
+					->required('Unit earned must not be empty.')
+					->alpha_numeric_space('Scholarship/Academic honors must only contain series of letters.')
+				->name('year_grad')
+					->numeric('Year graduated must be a valid year.')
+				->name('honors')
+					->required('Scholarship/Academic honors received must not be empty.')
+					->alpha_numeric_space('Scholarship/Academic honors must only contain series of letters.');
+								
+			if ($this->form_validation->run()) {
+				$year = '';
+				$year_grad = '';
+				$this->io->post('to') === date('Y') ? $year = 'PRESENT' : $year = $this->io->post('to');
+				$this->io->post('year_grad') === date('Y') ? $year_grad = 'PURSUING' : $year_grad = $this->io->post('year_grad');
+				
+				$this->Pds_model->update_educ_bg(
+					strtoupper(html_escape($this->io->post('level'))),
+					strtoupper(html_escape($this->io->post('name'))),
+					strtoupper(html_escape($this->io->post('degree')),
+					strtoupper(html_escape($this->io->post('from'))),
+					strtoupper(html_escape($year)), 
+					strtoupper(html_escape($this->io->post('unit_earned'))),
+					strtoupper(html_escape($year_grad)),
+					strtoupper(html_escape($this->io->post('honors'))),
+					html_escape($this->io->post('emid')))
+				);
+				set_flash_alert('success', 'Educational Background information updated successfully.');
+				redirect('Employee/view_educational_background');
+			}
+			else {
+				set_flash_alert('danger', $this->form_validation->errors());
+				redirect('Employee/view_educational_background');
+			}
 		}
 	}
 
-	public function delete_educ_bg()
-	{
+	public function delete_educ_bg(){
 		if ($this->form_validation->run()) {
-			$this->Pds_model->delete_educ_bg($this->io->post('emid'));
+			$this->Pds_model->delete_educ_bg(html_escape($this->io->post('emid')));
+			set_flash_alert('success', 'Edacational background information has been deleted successfully.');
 			redirect('Employee/view_educational_background');
 		}
 	}
@@ -663,27 +868,38 @@ class Employee extends Controller {
 
 	#region eligibility
 	public function view_eligibility(){
-		if ($this->form_validation->submitted()) 
-		{
-			$this->form_validation->name('service')
-								->name('rating')
-								->name('date')
-								->name('place')
-								->name('number')
-								->name('validity');
+		if ($this->form_validation->submitted()){
+			$this->form_validation
+				->name('service')
+					->required('Career service must not be empty.')
+				->name('rating')
+				->name('date')
+					->required('Date of conferment must not be empty.')
+				->name('place')
+					->required('Place of conferment must not be empty.')
+					->alpha_numeric_space('Place of conferment must be composed of letters.')
+				->name('number')
+					->required('License number must not be empty.')
+					->alpha_numeric_dash('License numbers must combination of letter/s, numbers, and dash.')
+				->name('validity')
+					->required('Date of validity must not be empty.');
 								
 								
-			if ($this->form_validation->run()) 
-			{
-			  $this->Pds_model->insert_eligibility(
-								strtoupper($this->io->post('service')),
-								strtoupper($this->io->post('rating')),
-								strtoupper($this->io->post('date')),
-								strtoupper($this->io->post('place')),
-								$this->io->post('number'), 
-								strtoupper($this->io->post('validity')),
-														 );
-								redirect('Employee/view_eligibility');
+			if ($this->form_validation->run()) {
+			  	$this->Pds_model->insert_eligibility(
+					strtoupper($this->io->post('service')),
+					strtoupper($this->io->post('rating')),
+					strtoupper($this->io->post('date')),
+					strtoupper($this->io->post('place')),
+					$this->io->post('number'), 
+					strtoupper($this->io->post('validity')),
+				);
+				set_flash_alert('success','Eligibility information added successfully.');
+				redirect('Employee/view_eligibility');
+			}
+			else{
+				set_flash_alert('danger', $this->form_validation->errors());
+				redirect('Employee/view_eligibility');
 			}
 
 			
@@ -696,40 +912,51 @@ class Employee extends Controller {
 		$this->call->view('emp/emp_profile/eligibility',$data);
 	}
 
-	public function update_eligibility()
-	{
-		if ($this->form_validation->submitted()) 
-		{
-			$this->form_validation->name('service')
-								->name('rating')
-								->name('date')
-								->name('place')
-								->name('number')
-								->name('validity')
-								->name('eligibility-id');
+	public function update_eligibility(){
+		if ($this->form_validation->submitted()){
+			$this->form_validation
+				->name('service')
+					->required('Career service must not be empty.')
+				->name('rating')
+				->name('date')
+					->required('Date of conferment must not be empty.')
+				->name('place')
+					->required('Place of conferment must not be empty.')
+					->alpha_numeric_space('Place of conferment must be composed of letters.')
+				->name('number')
+					->required('License number must not be empty.')
+					->alpha_numeric_dash('License numbers must combination of letter/s, numbers, and dash.')
+				->name('validity')
+					->required('Date of validity must not be empty.')
+				->name('eligibility-id');
 								
 								
-			if ($this->form_validation->run()) 
-			{
-			  $this->Pds_model->update_eligibility(
-								strtoupper($this->io->post('service')),
-								strtoupper($this->io->post('rating')),
-								strtoupper($this->io->post('date')),
-								strtoupper($this->io->post('place')),
-								$this->io->post('number'), 
-								strtoupper($this->io->post('validity')),
-								$this->io->post('eligibility-id')						 );
-								redirect('Employee/view_eligibility');
+			if ($this->form_validation->run()) {
+			  	$this->Pds_model->update_eligibility(
+					strtoupper(html_escape($this->io->post('service'))),
+					strtoupper(html_escape($this->io->post('rating'))),
+					strtoupper(html_escape($this->io->post('date'))),
+					strtoupper(html_escape($this->io->post('place'))),
+					html_escape($this->io->post('number')), 
+					strtoupper($this->io->post('validity')),
+					html_escape($this->io->post('eligibility-id'))						 
+				);
+				set_flash_alert('success', 'Eligibility information updated successfully.');
+				redirect('Employee/view_eligibility');
+			}
+			else{
+				set_flash_alert('danger', $this->form_validation->errors());
+				redirect('Employee/view_eligibility');
 			}
 
 			
 		}
 	}
 
-	public function delete_eligibility()
-	{
+	public function delete_eligibility(){
 		if ($this->form_validation->run()) {
-			$this->Pds_model->delete_eligibility($this->io->post('eligibility_id'));
+			$this->Pds_model->delete_eligibility(html_escape($this->io->post('eligibility_id')));
+			set_flash_alert('success', 'Eligibility information has been deleted successfully.');
 			redirect('Employee/view_eligibility');
 		}
 	}
@@ -745,75 +972,103 @@ class Employee extends Controller {
 	}
 
 	public function insert_experience(){
-		if ($this->form_validation->submitted()) 
-		{
-			$this->form_validation->name('from')
-								->name('to')
-								->name('position')
-								->name('company')
-								->name('month_sal')
-								->name('step_incre')
-								->name('status')
-								->name('gov_ser');
+		if ($this->form_validation->submitted()) {
+			$this->form_validation
+				->name('from')
+					->required('Inclusive dates must not be empty.')
+				->name('to')
+					->required('Inclusive dates must not be empty.')
+				->name('position')
+					->required('Position title must not be empty.')
+					->alpha_space('Position title must be composed of letters.')
+				->name('company')
+					->required('Company must not be empty.')
+					->alpha_space('Company must be composed of letters')
+				->name('month_sal')
+					->required('Monthly salary must not be empty.')
+					->numeric('Monthly salary must be valid denomination of money.')
+				->name('step_incre')
+					->required('Step increment must not be empty.')
+				->name('status')
+					->required('Status of appointment must not be empty.')
+					->alpha_space('Status of appointment must be composed of letters.')
+				->name('gov_ser')
+					->required('Must select one value on Goverment Service.');
 								
 								
-			if ($this->form_validation->run()) 
-			{
-			  $this->Pds_model->insert_experience(
-								$this->io->post('from'),
-								$this->io->post('to'),
-								strtoupper($this->io->post('position')),
-								strtoupper($this->io->post('company')),
-								strtoupper($this->io->post('month_sal')),
-								strtoupper($this->io->post('salary_grade')), 
-								strtoupper($this->io->post('step_incre')), 
-								strtoupper($this->io->post('status')),
-								strtoupper($this->io->post('gov_ser')),
-														 );
-												redirect('Employee/view_experience');
+			if ($this->form_validation->run()) {
+			  	$this->Pds_model->insert_experience(
+					html_escape($this->io->post('from')),
+					html_escape($this->io->post('to')),
+					strtoupper(html_escape($this->io->post('position'))),
+					strtoupper(html_escape($this->io->post('company'))),
+					strtoupper(html_escape($this->io->post('month_sal'))),
+					strtoupper(html_escape($this->io->post('salary_grade'))), 
+					strtoupper(html_escape($this->io->post('step_incre'))), 
+					strtoupper(html_escape($this->io->post('status'))),
+					strtoupper(html_escape($this->io->post('gov_ser'))),
+				);
+				set_flash_alert('success', 'Work experience information added successfully.');
+				redirect('Employee/view_experience');
+			}
+			else {
+				set_flash_alert('danger', $this->form_validation->errors());
+				redirect('Employee/view_experience');
 			}
 		}
 	}
 	public function update_experience(){
-		if ($this->form_validation->submitted()) 
-		{
-			$this->form_validation->name('from')
-								->name('to')
-								->name('position')
-								->name('company')
-								->name('month_sal')
-								->name('salary_grade')
-								->name('step_incre')
-								->name('status')
-								->name('gov_ser');
+		if ($this->form_validation->submitted()) {
+			$this->form_validation
+				->name('from')
+					->required('Inclusive dates must not be empty.')
+				->name('to')
+					->required('Inclusive dates must not be empty.')
+				->name('position')
+					->required('Position title must not be empty.')
+					->alpha_space('Position title must be composed of letters.')
+				->name('company')
+					->required('Company must not be empty.')
+					->alpha_space('Company must be composed of letters')
+				->name('month_sal')
+					->required('Monthly salary must not be empty.')
+					->numeric('Monthly salary must be valid denomination of money.')
+				->name('step_incre')
+					->required('Step increment must not be empty.')
+				->name('status')
+					->required('Status of appointment must not be empty.')
+					->alpha_space('Status of appointment must be composed of letters.')
+				->name('gov_ser')
+					->required('Must select one value on Goverment Service.');
 								
 								
-			if ($this->form_validation->run()) 
-			{
-				// echo '<pre> <br>';
-				// var_dump($this->io->post());
-				// echo '</pre>';
-				// exit;
+			if ($this->form_validation->run()) {
 			  	$this->Pds_model->update_experience(
-								$this->io->post('from'),
-								$this->io->post('to'),
-								strtoupper($this->io->post('position')),
-								strtoupper($this->io->post('company')),
-								strtoupper($this->io->post('month_sal')),
-								$this->io->post('salary_grade'), 
-								$this->io->post('step_incre'), 
-								strtoupper($this->io->post('status')),
-								strtoupper($this->io->post('gov_ser')),
-								$this->io->post('work_exp_id'));
-												redirect('Employee/view_experience');
+					html_escape($this->io->post('from')),
+					html_escape($this->io->post('to')),
+					strtoupper(html_escape($this->io->post('position'))),
+					strtoupper(html_escape($this->io->post('company'))),
+					strtoupper(html_escape($this->io->post('month_sal'))),
+					html_escape($this->io->post('salary_grade')), 
+					html_escape($this->io->post('step_incre')), 
+					strtoupper(html_escape($this->io->post('status'))),
+					strtoupper(html_escape($this->io->post('gov_ser'))),
+					html_escape($this->io->post('work_exp_id'))
+				);
+				set_flash_alert('success', 'Work experience information updated successfully.');
+				redirect('Employee/view_experience');
+			}
+			else {
+				set_flash_alert('danger', $this->form_validation->errors());
+				redirect('Employee/view_experience');
 			}
 		}
 	}
 
-	public function delete_experience()
-	{
+	public function delete_experience(){
 		if ($this->form_validation->run()) {
-			$this->Pds_model->delete_experience($this->io->post('work_exp'));
+			$this->Pds_model->delete_experience(html_escape($this->io->post('work_exp')));
+			set_flash_alert('success', 'Work experience information has been deleted successfully.');
 			redirect('Employee/view_experience');
 		}
 	}
@@ -821,7 +1076,6 @@ class Employee extends Controller {
 
 	#region voluntary work
 	public function view_voluntary_work(){
-
 		$data = $this->Pds_model->get_voluntary();
 		$this->checkpass(); // * added jcd april 21, 2022
 		$this->call->view('emp/emp_profile/voluntarywork',$data);
@@ -830,16 +1084,26 @@ class Employee extends Controller {
 	public function insert_voluntary(){
 		if ($this->form_validation->submitted()){
 			$this->form_validation
-				->name('name')->required()
-				->name('add-bar')->required()
-				->name('add-city')->required()
+				->name('name')
+					->required('Organization name must not be empty.')
+					->alpha_numeric_space('Organization name must be composed of letters.')
+				->name('add-bar')
+					->required('Barangay must not be empty.')
+				->name('add-city')
+					->required('City/Municipality must not be empty.')
 				->name('from')
+					->required('Inclusive dates must not be empty.')
 				->name('to')
+					->required('Inclusive dates must not be empty.')
 				->name('hours')
-				->name('position')->required();
+					->required('must not be empty.')
+					->numeric('Hours must be a number.')
+				->name('position')
+					->required('must not be empty.')
+					->alpha_numeric_space('Positon must be composed of letters.');
 			if ($this->form_validation->run()) {
-				$add_bar = strtoupper($this->io->post('add-bar'));
-				$add_city = strtoupper($this->io->post('add-city'));
+				$add_bar = strtoupper(html_escape($this->io->post('add-bar')));
+				$add_city = strtoupper(html_escape($this->io->post('add-city')));
 				$data['voluntary_add'] = $this->Address_model->voluntary_add($add_bar, $add_city);
 				
 				if (empty($data['voluntary_add'])) {
@@ -850,33 +1114,47 @@ class Employee extends Controller {
 
 
 				$this->Pds_model->insert_voluntary(
-					strtoupper($this->io->post('name')),
+					strtoupper(html_escape($this->io->post('name'))),
 					$data['voluntary_add']['address_id'],
-					$this->io->post('from'),
-					$this->io->post('to'),
-					$this->io->post('hours'),
-					strtoupper($this->io->post('position')),
-												);
-									redirect('Employee/view_voluntary_work');
+					html_escape($this->io->post('from')),
+					html_escape($this->io->post('to')),
+					html_escape($this->io->post('hours')),
+					strtoupper(html_escape($this->io->post('position'))),
+				);
+				set_flash_alert('success', 'Voluntary work information added successfully.');
+				redirect('Employee/view_voluntary_work');
+			}
+			else {
+				set_flash_alert('danger', $this->form_validation->errors());
+				redirect('Employee/view_voluntary_work');
 			}
 		}
 	}
 	public function update_voluntary(){
-		if ($this->form_validation->submitted()) 
-		{
+		if ($this->form_validation->submitted()){
 
 			$this->form_validation
-				->name('name')->required()
-				->name('update-bar')->required()
-				->name('update-city')->required()
+				->name('name')
+					->required('Organization name must not be empty.')
+					->alpha_numeric_space('Organization name must be composed of letters.')
+				->name('add-bar')
+					->required('Barangay must not be empty.')
+				->name('add-city')
+					->required('City/Municipality must not be empty.')
 				->name('from')
+					->required('Inclusive dates must not be empty.')
 				->name('to')
+					->required('Inclusive dates must not be empty.')
 				->name('hours')
-				->name('position')->required();
-			if ($this->form_validation->run()) 
-			{
-				$update_bar = strtoupper($this->io->post('update-bar'));
-				$update_city = strtoupper($this->io->post('update-city'));
+					->required('must not be empty.')
+					->numeric('Hours must be a number.')
+				->name('position')
+					->required('must not be empty.')
+					->alpha_numeric_space('Positon must be composed of letters.');
+
+			if ($this->form_validation->run()) {
+				$update_bar = strtoupper(html_escape($this->io->post('update-bar')));
+				$update_city = strtoupper(html_escape($this->io->post('update-city')));
 				$data['voluntary_add'] = $this->Address_model->voluntary_add($update_bar, $update_city);
 				
 				if (empty($data['voluntary_add'])) {
@@ -886,21 +1164,27 @@ class Employee extends Controller {
 				$data['voluntary_add'] = $this->Address_model->voluntary_add($update_bar, $update_city);
 			
 				$this->Pds_model->update_voluntary(
-					strtoupper($this->io->post('name')),
+					strtoupper(html_escape($this->io->post('name'))),
 					$data['voluntary_add']['address_id'],
-					$this->io->post('from'),
-					$this->io->post('to'),
-					$this->io->post('hours'),
-					strtoupper($this->io->post('position')),
+					html_escape($this->io->post('from')),
+					html_escape($this->io->post('to')),
+					html_escape($this->io->post('hours')),
+					strtoupper(html_escape($this->io->post('position'))),
 					$this->io->post('voluntary_id'),
-												);
-									redirect('Employee/view_voluntary_work');
-			}}
+				);
+				set_flash_alert('success', 'Voluntary work information updated successfully.');
+				redirect('Employee/view_voluntary_work');
+			}
+			else {
+				set_flash_alert('danger', $this->form_validation->errors());
+				redirect('Employee/view_voluntary_work');
+			}
+		}
 	}
-	public function delete_voluntary()
-	{
+	public function delete_voluntary(){
 		if ($this->form_validation->run()) {
-			$this->Pds_model->delete_voluntary($this->io->post('vol_id'));
+			$this->Pds_model->delete_voluntary(html_escape($this->io->post('vol_id')));
+			set_flash_alert('success', 'Voluntary work information has been deleted successfully.');
 			redirect('Employee/view_voluntary_work');
 		}
 	}
@@ -915,59 +1199,85 @@ class Employee extends Controller {
 	}
 
 	public function insert_trainings(){
-		if ($this->form_validation->submitted()) 
-		{
+		if ($this->form_validation->submitted()){
 			$this->form_validation
 				->name('title')
+					->required('Training programs must not be empty.')
+					->custom_pattern('[a-zA-Z0-9,- ]','Training programs must be composed of letters.')
 				->name('from')
+					->required('Inclusive dates must not be empty.')
 				->name('to')
+					->required('Inclusive dates must not be empty.')
 				->name('hours')
+					->required('Number of hours must not be empty.')
+					->numeric('Number of hours must be a number.')
 				->name('type')
-				->name('spon');
-			if ($this->form_validation->run()) 
-			{
-			  $this->Pds_model->insert_trainings(
-				strtoupper($this->io->post('title')),
-				$this->io->post('from'),
-				$this->io->post('to'),
-				$this->io->post('hours'),
-				strtoupper($this->io->post('type')),
-				strtoupper($this->io->post('spon')),
-											);
-								redirect('Employee/view_trainings');
+					->required('Type of LD must not be empty.')
+					->alpha_space('Type of LD must be composed of letters.')
+				->name('spon')
+					->required('Sponsor must not be empty.')
+					->custom_pattern('[a-zA-Z0-9,- ]', 'Sponsor must be composed of letters.');
+			if ($this->form_validation->run()){
+			  	$this->Pds_model->insert_trainings(
+					strtoupper(html_escape($this->io->post('title'))),
+					html_escape($this->io->post('from')),
+					html_escape($this->io->post('to')),
+					html_escape($this->io->post('hours')),
+					strtoupper(html_escape($this->io->post('type'))),
+					strtoupper(html_escape($this->io->post('spon'))),
+				);
+				set_flash_alert('success', 'Learning and Development, Interventions/Training Programs Attended information added successfully.');
+				redirect('Employee/view_trainings');
+			}
+			else {
+				set_flash_alert('danger', $this->form_validation->errors());
+				redirect('Employee/view_trainings');
 			}
 		}
 	}
 
-	public function update_trainings()
-	{
-		if ($this->form_validation->submitted()) 
-		{
+	public function update_trainings(){
+		if ($this->form_validation->submitted()) {
 			$this->form_validation
 				->name('title')
+					->required('Training programs must not be empty.')
+					->custom_pattern('[a-zA-Z0-9,- ]','Training programs must be composed of letters.')
 				->name('from')
+					->required('Inclusive dates must not be empty.')
 				->name('to')
+					->required('Inclusive dates must not be empty.')
 				->name('hours')
+					->required('Number of hours must not be empty.')
+					->numeric('Number of hours must be a number.')
 				->name('type')
-				->name('spon');
-			if ($this->form_validation->run()) 
-			{
+					->required('Type of LD must not be empty.')
+					->alpha_space('Type of LD must be composed of letters.')
+				->name('spon')
+					->required('Sponsor must not be empty.')
+					->custom_pattern('[a-zA-Z0-9,- ]', 'Sponsor must be composed of letters.');
+			if ($this->form_validation->run()) {
 			  $this->Pds_model->update_trainings(
-				strtoupper($this->io->post('title')),
-				$this->io->post('from'),
-				$this->io->post('to'),
-				$this->io->post('hours'),
-				strtoupper($this->io->post('type')),
-				strtoupper($this->io->post('spon')),
-				$this->io->post('ldi_id'));
-								redirect('Employee/view_trainings');
+				strtoupper(html_escape($this->io->post('title'))),
+				html_escape($this->io->post('from')),
+				html_escape($this->io->post('to')),
+				html_escape($this->io->post('hours')),
+				strtoupper(html_escape($this->io->post('type'))),
+				strtoupper(html_escape($this->io->post('spon'))),
+				html_escape($this->io->post('ldi_id'))
+			);
+			set_flash_alert('success', 'Learning and Development, Interventions/Training Programs Attended information has been updated successfully.');
+			redirect('Employee/view_trainings');
+			}
+			else {
+				set_flash_alert('danger', $this->form_validation->errors());
+				redirect('Employee/view_trainings');
 			}
 		}
 	}
-	public function delete_trainings()
-	{
+	public function delete_trainings(){
 		if ($this->form_validation->run()) {
-			$this->Pds_model->delete_trainings($this->io->post('ld_id'));
+			$this->Pds_model->delete_trainings(html_escape($this->io->post('ld_id')));
+			set_flash_alert('success', 'Learning and Development, Interventions/Training Programs Attended has been deleted successfully.');
 			redirect('Employee/view_trainings');
 		}
 	}
@@ -1046,7 +1356,7 @@ class Employee extends Controller {
 
 
 
-	#region uploading of signature rma 4/8/2022 
+	#region uploading of signature rma 4/8/2022 n
 	public function view_upload_signature(){
 		if ($_POST) {
 			$target_dir = "signatures/";
@@ -1117,8 +1427,7 @@ class Employee extends Controller {
 		}
 
 
-	$data = ['emp_profile' => $this->Employee_model->emp_profile($this->session->userdata('user_id')), 'emp_notif_forpds' => $this->Employee_model->emp_notif_forpds()] ;
-
+		$data = ['emp_profile' => $this->Employee_model->emp_profile($this->session->userdata('user_id')), 'emp_notif_forpds' => $this->Employee_model->emp_notif_forpds()] ;
 		$this->call->view('emp/emp_profile/uploadsignature',$data);
 	}
 	#endregion

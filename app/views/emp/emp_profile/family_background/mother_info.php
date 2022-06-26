@@ -35,7 +35,7 @@
                 </div>
                 <!-- end title -->
 
-
+                <?php flash_alert() ?>
                 <!-- container-fluid -->
                 <div class="container-fluid-xxl pb-2">
                     <!-- COL 12 -->

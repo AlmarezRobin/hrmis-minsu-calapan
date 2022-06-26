@@ -50,8 +50,8 @@
                                                 <?php if (isset($emp_profile['profile_id'])) : ?>
                                                     <!-- Update User Profile -->
                                                     <form class="row" method="post" action="<?= site_url('Employee/update_profile'); ?>" enctype="multipart/form-data">
-
                                                         <input type="hidden" name="profile_id" value="<?= $emp_profile['profile_id'] ?>">
+                                                        <?php flash_alert() ?>
                                                         <div class="form-group col-md-4 m-t-10">
                                                             <label for="firstname" class="form-label">First Name*</label>
                                                             <input type="text" class="form-control  " name="fname" id="firstname" placeholder="" maxlength="50" size="50" data-toggle="tooltip" data-placement="right" title="First Name" required value="<?= $emp_profile['f_name'] ?>">
@@ -156,17 +156,17 @@
 
                                                         <div class="form-group col-md-4 m-t-10">
                                                             <label for="nameex" class="form-label">PHILHEALTH NO. </label>
-                                                            <input type="text" class="form-control" name="philhealth-no" id="philhealth_no" placeholder="" maxlength="12" size="12" data-toggle="tooltip" data-placement="right" title="Name Extension" value="<?= $emp_profile['philhealth_no'] ?>">
+                                                            <input type="text" class="form-control" name="philhealth-no" id="philhealth_no" placeholder="" maxlength="14" size="14" data-toggle="tooltip" data-placement="right" title="Name Extension" value="<?= $emp_profile['philhealth_no'] ?>">
                                                         </div>
 
                                                         <div class="form-group col-md-4 m-t-10">
                                                             <label for="nameex" class="form-label">SSS NO. </label>
-                                                            <input type="text" class="form-control" name="sss-no" id="sss-no" placeholder="" maxlength="10" size="10" data-toggle="tooltip" data-placement="right" title="Name Extension" value="<?= $emp_profile['sss_no'] ?>">
+                                                            <input type="text" class="form-control" name="sss-no" id="sss-no" placeholder="" maxlength="12" size="12" data-toggle="tooltip" data-placement="right" title="Name Extension" value="<?= $emp_profile['sss_no'] ?>">
                                                         </div>
 
                                                         <div class="form-group col-md-4 m-t-10">
                                                             <label for="nameex" class="form-label">TIN NO. </label>
-                                                            <input type="text" class="form-control" name="tin-no" id="tin-no" placeholder="" maxlength="13" size="13" data-toggle="tooltip" data-placement="right" title="Name Extension" value="<?= $emp_profile['tin_no'] ?>">
+                                                            <input type="text" class="form-control" name="tin-no" id="tin-no" placeholder="" maxlength="16" size="16" data-toggle="tooltip" data-placement="right" title="Name Extension" value="<?= $emp_profile['tin_no'] ?>">
                                                         </div>
 
                                                         <div class="form-group col-md-4 m-t-10">
@@ -315,14 +315,16 @@
                                                         <p class="h6 mt-4 fw-bold"> Permanent Address</p>
                                                         <?php if($emp_profile['residential_address_id'] == $emp_profile['permanent_address_id']): ?>
                                                             <div class="form-group mt-1 mb-3">
-                                                                <input class="form-check-input" type="checkbox" value="1" name="compare-add" id="compare-add" checked>
+                                                                <input class="form-check-input" type="checkbox" value="1" name="compare-add" id="compare-add" checked >
+                                                                <input type="hidden" name="compare-add" value="0">
                                                                 <label class="form-check-label" for="">
                                                                     <strong>SAME AS ABOVE</strong> 
                                                                 </label>
                                                             </div>
                                                         <?php else: ?>
                                                             <div class="form-group mt-1 mb-3">
-                                                                <input class="form-check-input" type="checkbox" value="1" name="compare-add" id="compare-add" checked>
+                                                                <input class="form-check-input" type="checkbox" value="1" name="compare-add" id="compare-add" >
+                                                                <input type="hidden" name="compare-add" id="compare-add-text" value="0">
                                                                 <label class="form-check-label" for="">
                                                                     <strong>SAME AS ABOVE</strong> 
                                                                 </label>
@@ -464,13 +466,15 @@
     <!-- End Container - Fluid -->
      <!-- comparing address /* start change jcd May 10, 2022 */ -->
      <script>
-
+        // checks if the #compare-add ischecked on load
         $(document).ready(function(){
             var checked = $('#compare-add').prop('checked');
             if (checked){
                 $('.per-add').addClass('d-none');
+                $('#compare-add-text').prop('disabled', true);
             }else {
                 $('.per-add').removeClass('d-none');
+                $('#compare-add-text').prop('disabled', false);
             }
         });
         
@@ -478,14 +482,14 @@
             $('#compare-add').change(function() {
                 if (this.checked) {
                     $('.per-add').addClass('d-none');
+                    $('#compare-add-text').prop('disabled', true);
                 } else {
                     $('.per-add').removeClass('d-none');
+                    $('#compare-add-text').prop('disabled', false);
                 }
             });
         });
 
-       
-        
 
     </script>
     <!-- comparing address /* end change jcd May 10, 2022 */ -->

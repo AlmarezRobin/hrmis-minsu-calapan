@@ -25,9 +25,10 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                     <!-- <h3>Verify by email</h3> -->
                     </div>
                     <form action="<?=site_url('Login/otp_code')?>" method="post">
+                    <?php flash_alert() ?>
                     <div class="form-group mb-3">
                             <label for="">Code</label>
-                            <input type="number" class="form-control" id="pass" name="otp" placeholder="Code verification..." required   >
+                            <input type="number" class="form-control" id="pass" name="otp" placeholder="Code verification..."  required >
                         </div>
                         <div class="form-group" style="float:right">
                             <input type="submit" value="next" name="submit" class="btn btn-primary">
