@@ -14,20 +14,19 @@
             <!-- <div class="list-group-item list-group-item-action top-active py-3 lh-tight" aria-current="true"> -->
             <div style="text-align:center; background-color: rgb(212, 212, 212); border-bottom: 2px solid rgb(12, 114, 56)">
                 <div class="pt-1">
-                    <strong class="pt-2">WILFRED PINE</strong>
+                    <strong class="pt-2">CED</strong>
                 </div>
-                <div class="pb-1 small"><i>Developer</i>
+                <div class="pb-1 small"><i>Campus Executive Director</i>
                 </div>
             </div>
 
-            <a href="index.php" class="list-group-item list-group-item-action lh-tight side-menu">
+            <!-- <a href="index.php" class="list-group-item list-group-item-action lh-tight side-menu">
                 <div class="d-flex w-100 align-items-center justify-content-between">
                     <div class="mb-0">
                         <i class="fa fa-icon fa-tachometer me-2"></i> Dashboard
                     </div>
-                    <!-- <small class="text-muted"></small> -->
                 </div>
-            </a>
+            </a> -->
 
 
 

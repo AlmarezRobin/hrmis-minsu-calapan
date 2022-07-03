@@ -115,10 +115,10 @@ redirect('Admin');
             </a>
 
 
-            <a href="<?=site_url('Hr/temp_ced');?>" class="list-group-item list-group-item-action lh-tight side-menu">
+            <a href="<?=site_url('CED');?>" class="list-group-item list-group-item-action lh-tight side-menu">
                 <div class="d-flex w-100 align-items-center justify-content-between">
                     <div class="mb-0">
-                        <i class="fa fa-icon fa-tachometer me-2"></i> Temp CED
+                        <i class="fa fa-icon fa-tachometer me-2"></i> Temporary CED
                     </div>
                     <!-- <small class="text-muted"></small> -->
                 </div>

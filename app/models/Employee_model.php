@@ -226,5 +226,16 @@ public function change_password($pass){
 
    #endregion
 
+
+   #region for locator
+   public function get_mylocator(){
+      return $this->db->table('locator_tbl')->where('user_id', $this->session->userdata('user_id'))->order_by('locator_id','desc')->get_all();
+   }
+   public function get_myleave(){
+      return $this->db->table('leave_details_tbl')->where('user_id', $this->session->userdata('user_id'))->order_by('leave_id','desc')->get_all();
+   }
+
+   #endregion for locator
+
 }
 ?>

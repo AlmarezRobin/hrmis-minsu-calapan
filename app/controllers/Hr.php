@@ -302,12 +302,7 @@ class Hr extends Controller {
 
 
 
-	public function temp_ced(){
-		$data=[
-			'get_all_locator_request'=>$this->Request_model->get_all_locator_request(),
-		];
-		$this->call->view('ced/index',$data);
-	}
+	
 
 	
 }

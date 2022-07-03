@@ -59,7 +59,7 @@
                   
 
                     <!-- title -->
-                    <!-- <div class="justify-content-between pt-1 pb-2 mb-3  mx-2">
+                    <div class="justify-content-between pt-1 pb-2 mb-3  mx-2 ">
                             <button class="btn btn-sm btn-success float-sm-end dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                                 Actions
                             </button>
@@ -68,7 +68,7 @@
                             </div>
 
                                 
-                    </div> -->
+                    </div>
                     <!-- end title -->
 
                
@@ -86,12 +86,12 @@
                                     aria-controls="collapseSchoolInfo">
                                     <span class="card-icon"><i class="fa fa-graduation-cap"></i></span>
                                     PERSONAL INFORMATION 
-                                    <button class="btn btn-sm btn-success float-sm-end dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                            <!-- <button class="btn btn-sm btn-success float-sm-end dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                                 Actions
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" class=" ">
                                 <a class="dropdown-item" href="<?=site_url('Export_PDS/pds_exportation');?>">Export PDS</a>
-                            </div>
+                            </div> -->
                                     <!-- <i class="fa fa-caret-down pull-right"></i> -->
                                 </div>
                                 <div class="card-body">

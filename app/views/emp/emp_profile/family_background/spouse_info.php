@@ -90,7 +90,7 @@
                                                     OCCUPATION
                                                 </small>
                                                 <input type="text" name="occupation"
-                                                    class="form-control form-control-line mb-2" placeholder="First Name" value="<?= $get_spouse_info['occupation'] ?>"
+                                                    class="form-control form-control-line mb-2" placeholder="Spouse Occupation" value="<?= $get_spouse_info['occupation'] ?>"
                                                     maxlength="50" size="50" data-toggle="tooltip"
                                                     data-placement="right" title="First Name" required>
                                             </div> 
@@ -99,7 +99,7 @@
                                                     EMPLOYEER/BUSINESS NAME
                                                 </small>
                                                 <input type="text" name="bname"
-                                                    class="form-control form-control-line mb-2" placeholder="Middle Name" value="<?= $get_spouse_info['bus_name'] ?>"
+                                                    class="form-control form-control-line mb-2" placeholder="Spouse Business Name" value="<?= $get_spouse_info['bus_name'] ?>"
                                                     maxlength="30" size="30" data-toggle="tooltip"
                                                     data-placement="right" title="Middle Name">
                                             </div> 
@@ -108,7 +108,7 @@
                                                 BUSINESS ADDRESS
                                             </small>
                                             <input type="text" name="baddress"
-                                                class="form-control form-control-line mb-2" placeholder="Last Name" value="<?= $get_spouse_info['bus_add'] ?>"
+                                                class="form-control form-control-line mb-2" placeholder="Spouse Business Address" value="<?= $get_spouse_info['bus_add'] ?>"
                                                 maxlength="30" size="30" data-toggle="tooltip"
                                                 data-placement="right" title="Last Name" required>
                                             </div> 
@@ -174,27 +174,27 @@
                                                     OCCUPATION
                                                 </small>
                                                 <input type="text" name="occupation"
-                                                    class="form-control form-control-line mb-2" placeholder="First Name"
+                                                    class="form-control form-control-line mb-2" placeholder="Spouse Occcupation"
                                                     maxlength="50" size="50" data-toggle="tooltip"
-                                                    data-placement="right" title="First Name" required>
+                                                    data-placement="right" title="  Occcupation" required>
                                             </div> 
                                             <div class="col-md-6 mb-2">
                                                 <small class="form-text text-muted">
                                                     EMPLOYEER/BUSINESS NAME
                                                 </small>
                                                 <input type="text" name="bname"
-                                                    class="form-control form-control-line mb-2" placeholder="Middle Name"
+                                                    class="form-control form-control-line mb-2" placeholder="Spouse Business Name"
                                                     maxlength="30" size="30" data-toggle="tooltip"
-                                                    data-placement="right" title="Middle Name">
+                                                    data-placement="right" title="Business Name">
                                             </div> 
                                             <div class="col-md-6 mb-2">
                                                 <small class="form-text text-muted">
                                                 BUSINESS ADDRESS
                                             </small>
                                             <input type="text" name="baddress"
-                                                class="form-control form-control-line mb-2" placeholder="Last Name"
+                                                class="form-control form-control-line mb-2" placeholder="Spouse Business Address"
                                                 maxlength="30" size="30" data-toggle="tooltip"
-                                                data-placement="right" title="Last Name" required>
+                                                data-placement="right" title="Business Address" required>
                                             </div> 
                                             <div class="col-md-6 mb-2">
                                                 <small class="form-text text-muted">

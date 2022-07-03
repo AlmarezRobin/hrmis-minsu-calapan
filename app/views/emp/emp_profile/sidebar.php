@@ -91,7 +91,7 @@
             <a href="<?=site_url('Employee/view_voluntary_work');?>" class="list-group-item list-group-item-action lh-tight side-menu">
                 <div class="d-flex w-100 align-items-center justify-content-between">
                     <div class="mb-0">
-                    <i class="fa fa-icon fa-edit me-1"></i>VOLUNTARY WORK
+                    <i class="fa fa-icon fa-edit me-1"></i>Voluntary Work
                     </div>
                 </div>
             </a>

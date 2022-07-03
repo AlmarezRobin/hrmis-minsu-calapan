@@ -18,11 +18,6 @@
                 <li><a href="#" class="nav-link px-2 text-white"> Home </a></li>
                 <li><a href="#" class="nav-link px-2 text-white"> About </a></li>
                 <li><a href="#" class="nav-link px-2 text-white"> Contact Us </a></li>
-                <li>
-                    <a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/" target="_blank" class="nav-link px-2">
-                        <!-- <i class="fa fa-icon fa-info-circle"></i>  -->
-                        Bootstrap 5.0 </a>
-                </li>
             </ul>
 
             <form action="" class="col-12 col-lg-auto mb-3 mb-lg-0 me-0 justify-content-center d-flex searchform" method="POST">

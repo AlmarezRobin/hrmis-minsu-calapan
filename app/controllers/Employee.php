@@ -35,6 +35,7 @@ class Employee extends Controller {
 
 	public function view_upload(){
 		$data = [
+			'get_emp_notif' => $this->Request_model->get_emp_notif(), 
 			'emp_profile' => $this->Employee_model->emp_profile($this->session->userdata('user_id')),'emp_notif_forpds'=> $this->Employee_model->emp_notif_forpds()
 		] ;
 		$this->call->view('emp/fileupload/photo',$data);
