@@ -13,7 +13,7 @@ defined('PREVENT_DIRECT_ACCESS') or exit('No direct script access allowed');
 		}
 
 		public function get_all_admin(){
-			return $this->db->table('admin')->get_all();
+			return $this->db->table('admin')->select('admin.admin_id, admin.email, admin.username, admin.email, admin._password, admin.fname, admin.mname, admin.lname, admin.role, admin.date_registered, o.office_id, o.office_description')->inner_join('office as o', 'admin.office_id = o.office_id')->get_all();
 		}
 
 		public function register_admin($username,$email, $_password, $fname,$mname,$lname,$role,$office)
@@ -26,9 +26,9 @@ defined('PREVENT_DIRECT_ACCESS') or exit('No direct script access allowed');
 				'mname'=>$mname,
 				'lname'=>$lname,
 				'role'=>$role,
-				'office'=>$office
+				'office_id'=>$office
 				);
-			return $this->db->table('admin')->insert($bind)->exec();
+			return $this->db->table('admin')->insert($bind);
 		}
 
 		public function login_admin($username, $password)
@@ -48,7 +48,7 @@ defined('PREVENT_DIRECT_ACCESS') or exit('No direct script access allowed');
 		}
 
 		public function get_single_admin($id){
-			return $this->db->table('admin')->where('admin_id', $id)->get();
+			return $this->db->table('admin')->select('admin.admin_id, admin.email, admin.username, admin.email, admin._password, admin.fname, admin.mname, admin.lname, admin.role, office.office_id, office.office_description')->inner_join('office', 'admin.office_id = office.office_id')->where('admin_id', $id)->get();
 		}
 	
 		public function update_admin($id,$username,$email, $fname,$mname,$lname,$role,$office){
@@ -62,12 +62,12 @@ defined('PREVENT_DIRECT_ACCESS') or exit('No direct script access allowed');
 				'role'=>$role,
 				'office'=>$office
 			];
-			return $this->db->table('admin')->where('admin_id', $id)->update($admin)->exec();
+			return $this->db->table('admin')->where('admin_id', $id)->update($admin);
 
 		}
 
 		public function delete_admin($id){
-			return $this->db->table('admin')->where('admin_id', $id)->delete()->exec();
+			return $this->db->table('admin')->where('admin_id', $id)->delete();
 		}
 
 		public function passwordhash($password)

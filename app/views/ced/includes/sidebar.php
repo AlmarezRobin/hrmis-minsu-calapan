@@ -1,3 +1,4 @@
+
 <!-- sidebar -->
 <!-- <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-white sidebar collapse align-items-stretch overflow-auto scrollbar-success"> -->
 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse overflow-auto scrollbar-success border-e">
@@ -34,7 +35,7 @@
          
 
 
-            <a href="<?=site_url('Hr/temp_ced');?>" class="list-group-item list-group-item-action lh-tight side-menu ">
+            <a href="<?=site_url('CED/');?>" class="list-group-item list-group-item-action lh-tight side-menu ">
                 <div class="d-flex w-100 align-items-center justify-content-between">
                     <div class="mb-0">
                         <i class="fa fa-icon fa-th-list me-2"></i> Locator
@@ -42,16 +43,16 @@
                     <!-- <small class="text-muted"></small> -->
                 </div>
             </a>
-            <a href="layout.php" class="list-group-item list-group-item-action lh-tight side-menu ">
+            <!-- <a href="layout.php" class="list-group-item list-group-item-action lh-tight side-menu ">
                 <div class="d-flex w-100 align-items-center justify-content-between">
                     <div class="mb-0">
                         <i class="fa fa-icon fa-th-list me-2"></i> Leave
                     </div>
-                    <!-- <small class="text-muted"></small> -->
+                    <small class="text-muted"></small>
                 </div>
-            </a>
+            </a> -->
 
-            <a href="login.html" class="list-group-item list-group-item-action lh-tight side-menu">
+            <a href="<?= site_url('Admin/logout') ?>" class="list-group-item list-group-item-action lh-tight side-menu">
                 <div class="d-flex w-100 align-items-center justify-content-between">
                     <div class="mb-0">
                         <i class="fa fa-icon fa-key me-2"></i> Logout

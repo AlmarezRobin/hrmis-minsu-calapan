@@ -32,14 +32,22 @@
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="" class="breadcrumb-link"><i class="fa fa-dashboard"></i>
                                 Dashboard</a></li>
+<<<<<<< Updated upstream
                         <li class="breadcrumb-item"> Locator </li>
+=======
+                        <li class="breadcrumb-item"> </li>
+>>>>>>> Stashed changes
                     </ul>
                 </nav>
                 <!-- End BreadCrumb -->
 
                 <!-- title -->
                 <div class="justify-content-between align-items-center pt-1 pb-2 mb-3 border-bottom mx-2">
+<<<<<<< Updated upstream
                     <h5 class="h5 mt-3 mb-0 color-darkgray"> Locator <small>Request</small></h5>
+=======
+                    <h5 class="h5 mt-3 mb-0 color-darkgray"> Locator <small>Request </small></h5>
+>>>>>>> Stashed changes
                 </div>
                 <!-- end title -->
 
@@ -100,6 +108,7 @@
                                                     <td><?php echo $locator['locator_type']?></td>
 
                                                     <td>
+<<<<<<< Updated upstream
 
                                                     <form action="<?=site_url('CED/returning_locator');?>" method="post" class="d-inline">
                                                      <input type="hidden" name="locator_id" value="<?= $locator['locator_id'] ?>" >
@@ -119,6 +128,12 @@
                                                         <input type="submit" value="Reject" class="btn btn-warning btn-mini" onclick="return confirm('You are about to Reject this this locator.')">
                                                     </form>
                                                     
+=======
+                                                        <a href="<?=site_url('CED/view_emp_locator/'. $locator['user_id'] . '');?>"><button
+                                                                class="btn btn-mini btn-info">View</button></a>
+                                                        <!-- <a href="#"><button
+                                                                class="btn btn-mini btn-warning">Edit</button></a> -->
+>>>>>>> Stashed changes
                                                     </td>
                                                 </tr>
                                                 <?php endforeach; ?>

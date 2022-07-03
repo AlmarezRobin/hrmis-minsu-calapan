@@ -123,9 +123,9 @@ class Request_model extends Model {
 
 
 
-    public function get_emp_locator($userid){
-        return $this->db->table('locator_tbl')->where('user_id',$user_id)->get();
-    }
+    // public function get_emp_locator($userid){
+    //     return $this->db->table('locator_tbl')->where('user_id',$user_id)->get();
+    // }
 
 						
 

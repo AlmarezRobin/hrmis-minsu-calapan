@@ -120,9 +120,9 @@ redirect('Admin');
                     <div class="mb-0">
                         <i class="fa fa-icon fa-tachometer me-2"></i> Temporary CED
                     </div>
-                    <!-- <small class="text-muted"></small> -->
+                    <small class="text-muted"></small>
                 </div>
-            </a>
+            </a> -->
 
             <a href="<?=site_url('Admin/logout');?>" class="list-group-item list-group-item-action lh-tight side-menu" onclick=" return confirm('Are you sure you want to logout this session?')">
                 <div class="d-flex w-100 align-items-center justify-content-between">

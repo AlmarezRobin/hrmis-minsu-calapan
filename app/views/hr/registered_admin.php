@@ -81,16 +81,16 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                                         <td><?php echo $datum['mname'];?></td>
                                                         <td><?php echo $datum['lname'];?></td>
                                                         <td><?php echo $datum['role'];     ?></td>
-                                                        <td><?php echo $datum['office_id'] ?></td>
+                                                        <td><?php echo $datum['office_description'] ?></td>
 
                                                         <td><?php echo $datum['date_registered'];?></td>
                                                         <td>
-                                                        <form action="<?= site_url('Hr/get_single_admin')?>" method="post" class="d-inline">
+                                                        <!-- <form action="<?= site_url('Hr/get_single_admin')?>" method="post" class="d-inline">
                                                                 <input type="hidden" name="admin_id" value="<?= $datum['admin_id']?>">
                                                                 <button class="btn btn-success" >
                                                                 <i class="fa fa-edit" aria-hidden="true"></i>
                                                                 </button>
-                                                            </form>
+                                                            </form> -->
                                                             <form action="<?= site_url('Hr/delete_admin')?>" method="post" class="d-inline">
                                                                 <input type="hidden" name="admin_id" value="<?= $datum['admin_id']?>">
                                                                 <button class="btn btn-danger" onclick="return confirm('are you sure your want to delete this admin?');" >
