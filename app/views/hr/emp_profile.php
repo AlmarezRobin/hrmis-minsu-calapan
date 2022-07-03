@@ -72,7 +72,6 @@
                                                             </li>
                                                         </ul>
                                                         <div class="tab-content pt-2">
-        
                                                             <div class="tab-pane fade show active profile-overview" id="profile-overview">
                                                             
                                                                 <h5 class="card-title">Profile Details</h5>
@@ -210,36 +209,36 @@
         
                                                                 <div class="row">
                                                                     <div class="col-lg-3 col-md-4 label ">House/Block/Lot No.</div>
-                                                                    <div class="col-lg-9 col-md-8"><?php empty($residential_add['house_block_lotno']) ? print 'N/A' : print $residential_add['house_block_lotno'] ?></div>
+                                                                    <div class="col-lg-9 col-md-8"><?php empty($residential_address['house_block_lotno']) ? print 'N/A' : print $residential_address['house_block_lotno'] ?></div>
                                                                 </div>
         
                                                                 <div class="row">
                                                                     <div class="col-lg-3 col-md-4 label">Street</div>
-                                                                    <div class="col-lg-9 col-md-8"><?php empty($residential_add['street_sitio']) ? print 'N/A' : print $residential_add['street_sitio'] ?></div>
+                                                                    <div class="col-lg-9 col-md-8"><?php empty($residential_address['street_sitio']) ? print 'N/A' : print $residential_address['street_sitio'] ?></div>
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-lg-3 col-md-4 label">Subdivision/Village</div>
-                                                                    <div class="col-lg-9 col-md-8"><?php empty($residential_add['subdivision_village']) ? print 'N/A' : print $residential_add['subdivision_village'] ?></div>
+                                                                    <div class="col-lg-9 col-md-8"><?php empty($residential_address['subdivision_village']) ? print 'N/A' : print $residential_address['subdivision_village'] ?></div>
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-lg-3 col-md-4 label">Barangay</div>
-                                                                    <div class="col-lg-9 col-md-8"><?php empty($residential_add['barangay']) ? print 'N/A' : print $residential_add['barangay'] ?></div>
+                                                                    <div class="col-lg-9 col-md-8"><?php empty($residential_address['barangay']) ? print 'N/A' : print $residential_address['barangay'] ?></div>
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-lg-3 col-md-4 label">City/Municipality</div>
-                                                                    <div class="col-lg-9 col-md-8"><?php empty($residential_add['municipality_city']) ? print 'N/A' : print $residential_add['municipality_city'] ?></div>
+                                                                    <div class="col-lg-9 col-md-8"><?php empty($residential_address['municipality_city']) ? print 'N/A' : print $residential_address['municipality_city'] ?></div>
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-lg-3 col-md-4 label">Province</div>
-                                                                    <div class="col-lg-9 col-md-8"><?php empty($residential_add['province']) ? print 'N/A' : print $residential_add['province'] ?></div>
+                                                                    <div class="col-lg-9 col-md-8"><?php empty($residential_address['province']) ? print 'N/A' : print $residential_address['province'] ?></div>
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-lg-3 col-md-4 label">Region</div>
-                                                                    <div class="col-lg-9 col-md-8"><?php empty($residential_add['region']) ? print 'N/A' : print $residential_add['region'] ?></div>
+                                                                    <div class="col-lg-9 col-md-8"><?php empty($residential_address['region']) ? print 'N/A' : print $residential_address['region'] ?></div>
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-lg-3 col-md-4 label">Zipcode</div>
-                                                                    <div class="col-lg-9 col-md-8"><?php empty($residential_add['zipcode']) ? print 'N/A' : print $residential_add['zipcode'] ?></div>
+                                                                    <div class="col-lg-9 col-md-8"><?php empty($residential_address['zipcode']) ? print 'N/A' : print $residential_address['zipcode'] ?></div>
                                                                 </div>
         
         
@@ -247,38 +246,45 @@
         
                                                                 <div class="row">
                                                                     <div class="col-lg-3 col-md-4 label ">House/Block/Lot No.</div>
-                                                                    <div class="col-lg-9 col-md-8"><?php empty($permanent_add['house_block_lotno']) ? print 'N/A' : print $permanent_add['house_block_lotno'] ?></div>
+                                                                    <div class="col-lg-9 col-md-8"><?php empty($permanent_address['house_block_lotno']) ? print 'N/A' : print $permanent_address['house_block_lotno'] ?></div>
                                                                 </div>
         
                                                                 <div class="row">
                                                                     <div class="col-lg-3 col-md-4 label">Street</div>
-                                                                    <div class="col-lg-9 col-md-8"><?php empty($permanent_add['street_sitio']) ? print 'N/A' : print $permanent_add['street_sitio'] ?></div>
+                                                                    <div class="col-lg-9 col-md-8"><?php empty($permanent_address['street_sitio']) ? print 'N/A' : print $permanent_address['street_sitio'] ?></div>
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-lg-3 col-md-4 label">Subdivision/Village</div>
-                                                                    <div class="col-lg-9 col-md-8"><?php empty($permanent_add['subdivision_village']) ? print 'N/A' : print $permanent_add['subdivision_village'] ?></div>
+                                                                    <div class="col-lg-9 col-md-8"><?php empty($permanent_address['subdivision_village']) ? print 'N/A' : print $permanent_address['subdivision_village'] ?></div>
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-lg-3 col-md-4 label">Barangay</div>
-                                                                    <div class="col-lg-9 col-md-8"><?php empty($permanent_add['barangay']) ? print 'N/A' : print $permanent_add['barangay'] ?></div>
+                                                                    <div class="col-lg-9 col-md-8"><?php empty($permanent_address['barangay']) ? print 'N/A' : print $permanent_address['barangay'] ?></div>
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-lg-3 col-md-4 label">City/Municipality</div>
-                                                                    <div class="col-lg-9 col-md-8"><?php empty($permanent_add['municipality_city']) ? print 'N/A' : print $permanent_add['municipality_city'] ?></div>
+                                                                    <div class="col-lg-9 col-md-8"><?php empty($permanent_address['municipality_city']) ? print 'N/A' : print $permanent_address['municipality_city'] ?></div>
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-lg-3 col-md-4 label">Province</div>
-                                                                    <div class="col-lg-9 col-md-8"><?php empty($permanent_add['province']) ? print 'N/A' : print $permanent_add['province'] ?></div>
+                                                                    <div class="col-lg-9 col-md-8"><?php empty($permanent_address['province']) ? print 'N/A' : print $permanent_address['province'] ?></div>
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-lg-3 col-md-4 label">Region</div>
-                                                                    <div class="col-lg-9 col-md-8"><?php empty($permanent_add['region']) ? print 'N/A' : print $permanent_add['region'] ?></div>
+                                                                    <div class="col-lg-9 col-md-8"><?php empty($permanent_address['region']) ? print 'N/A' : print $permanent_address['region'] ?></div>
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-lg-3 col-md-4 label">Zipcode</div>
-                                                                    <div class="col-lg-9 col-md-8"><?php empty($residential_add['zipcode']) ? print 'N/A' : print $residential_add['zipcode'] ?></div>
+                                                                    <div class="col-lg-9 col-md-8"><?php empty($residential_address['zipcode']) ? print 'N/A' : print $residential_address['zipcode'] ?></div>
                                                                 </div>
                                                             </div>
+                                                           
+
+
+
+
+
+                                                                
                                                         </div><!-- End Bordered Tabs -->
         
                                                     </div>

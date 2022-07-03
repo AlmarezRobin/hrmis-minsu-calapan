@@ -170,7 +170,7 @@
     
 
     public function add_leave($desc, $days, $spec){
-      $leave = array('leave_desc'=>$desc, 'no_of_days'=>$days, 'leave_specification'=> $spec);
+      $leave = array('leave_desc'=>$desc, 'leave_specification'=> $spec);
       return $this->db->table('leave_tbl')->insert($leave);
 
     }

@@ -54,7 +54,6 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                                 <tr>
                                                     <th>Leave ID</th>
                                                     <th>Leave Description</th>
-                                                    <th>Number of Days</th>
                                                     <th>Leave Specification</th>
                                                     <th>Actions</th>
                                                 </tr>
@@ -65,7 +64,6 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                                     <tr>
                                                         <td><?php echo $datum['leave_id'];  ?></td>
                                                         <td><?php echo $datum['leave_desc'] ?></td>
-                                                        <td><?php echo $datum['no_of_days'];?></td>
                                                         <td><?php echo $datum['leave_specification'];?></td>
                                                         <td>
                                                         <form action="<?= site_url('Utility_Settings/leave_delete')?>" method="post" class="d-inline">
@@ -91,7 +89,6 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                                 <tr>
                                                 <th>Leave ID</th>
                                                     <th>Leave Description</th>
-                                                    <th>Number of Days</th>
                                                     <th>Leave Specification</th>
                                                     <th>Actions</th>
                                                 </tr>

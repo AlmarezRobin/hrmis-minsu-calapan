@@ -56,13 +56,13 @@
                         <div class="col-md-12 p-2 float-sm-start">
 
                             <div class="card p-5">
-
                                 <div class="row">
-                                    <div class="col-md-12 mt-3">
-                                        <p class="float-sm-end"  style="margin-right:2em;"> _____________2022</p>
+                                    <div class="col-md-9">
+
                                     </div>
-                                    <div class="col-md-12">
-                                        <p class="float-sm-end" style="margin-right:6em;"> Date</p>
+                                    <div class="col-md-3  mt-3">
+                                        <p class="text-center" > <?php echo $get_locator_data['current_datetime'] ?></p>
+                                        <p class="text-center">DATE</p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -89,6 +89,7 @@
                                             <h6>Approved</h6>
                                         </div>
                                         <div class="col-md-6 text-center">
+                                            <h5><?php echo $get_locator_data['f_name'].' '. $get_locator_data['l_name'];?> </h5>
                                             _________________________________
                                             <h6>Signature over Printed Name</h6>
                                         </div>
@@ -103,11 +104,12 @@
                                         <label for="">Personal</label>
                                     </div>
 
-                                    <div class="row mt-3">
+                                    <div class="row mt-3 mb-2">
                                         <div class="col-md-6">
                                             
                                         </div>
                                         <div class="col-md-6 text-center">
+                                            <h5>  <?php echo $get_designation['designation_desc'] ?></h5>
                                             _________________________________
                                             <h6>Designation</h6>
                                         </div>
@@ -115,7 +117,7 @@
 
                                     
                                 </div>
-                                <div class="row">
+                                <div class="row mt-3 ">
                                 <div class="col-md-12 text-center">
                                         <h3><strong>DR. MA. ARLYN M. REDUBLO</strong></h3>
                                         _____________________________________________________________________________________
@@ -123,7 +125,12 @@
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-md-6 text-center">
-                                        <a href="#"><button class="btn btn-success btn-sm">ACCEPT</button></a>
+                                        <form action="<?=site_url('CED/returning_locator');?>" method="post">
+                                            <input type="hidden" name="user_id" value="<?= $get_locator_data['user_id'] ?>" >
+                                            <!-- <input type="hidden" name="stat" value="APPROVED">
+                                            <input type="hidden" name="remarks" value="You're Locator is Approved, you may now proceed to print your Locator."> -->
+                                            <input type="submit" value="ACCEPT" class="btn btn-success btn-sm" class="btn btn-primary btn-lg btn-block" onclick="return confirm('You are about to Approved this personal data sheet.')">
+                                        </form>
                                     </div>
                                     <div class="col-md-6  text-center">
                                         <a href="#"><button class="btn btn-warning btn-sm">REJECT</button></a>

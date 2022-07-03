@@ -32,14 +32,14 @@
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="" class="breadcrumb-link"><i class="fa fa-dashboard"></i>
                                 Dashboard</a></li>
-                        <li class="breadcrumb-item"> Student </li>
+                        <li class="breadcrumb-item"> Locator </li>
                     </ul>
                 </nav>
                 <!-- End BreadCrumb -->
 
                 <!-- title -->
                 <div class="justify-content-between align-items-center pt-1 pb-2 mb-3 border-bottom mx-2">
-                    <h5 class="h5 mt-3 mb-0 color-darkgray"> Locator <small>Request_model</small></h5>
+                    <h5 class="h5 mt-3 mb-0 color-darkgray"> Locator <small>Request</small></h5>
                 </div>
                 <!-- end title -->
 
@@ -60,7 +60,7 @@
                                 <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseTable"
                                     aria-expanded="true" aria-controls="collapseTable">
                                     <span class="card-icon"><i class="fa fa-th"></i></span>
-                                    Students<i class="fa fa-caret-down pull-right"></i>
+                                    Locator<i class="fa fa-caret-down pull-right"></i>
                                 </div>
                                 <div class="card-body accordion-collapse collapse show p-0" id="collapseTable">
 
@@ -69,27 +69,56 @@
 
                                         <!-- Table -->
                                         <table class="table table-bordered table-hover table-sm mb-0">
+                                        
+
+
+
+
 
                                             <thead>
                                                 <tr>
-                                                    <th>userid</th>
-                                                    <th>Employee</th>
-                                                    <th>Options</th>
+                                                    <th>Employee Name</th>
+                                                    <th>Date Filed</th>
+                                                    <th>Departure Time</th>
+                                                    <th>Location</th>
+                                                    <th>Reason</th>
+                                                    <th>Expected Arrival Time</th>
+                                                    <th>Type</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
 
                                             <tbody>
                                             <?php foreach($get_all_locator_request as $locator): ?>
                                                 <tr class="odd">
-                                                    <td><?php echo $locator['user_id']?></td>
-
                                                     <td><?php echo $locator['l_name']. ' ' . $locator['f_name']?></td>
+                                                    <td><?php echo $locator['current_datetime']?></td>
+                                                    <td><?php echo $locator['departure_time']?></td>
+                                                    <td><?php echo $locator['location']?></td>
+                                                    <td><?php echo $locator['reason']?></td>
+                                                    <td><?php echo $locator['expected_arrival_time']?></td>
+                                                    <td><?php echo $locator['locator_type']?></td>
 
                                                     <td>
-                                                        <a href="<?=site_url('CED/view_locator_emp');?>"><button
-                                                                class="btn btn-mini btn-info">View</button></a>
-                                                        <a href="#"><button
-                                                                class="btn btn-mini btn-warning">Edit</button></a>
+
+                                                    <form action="<?=site_url('CED/returning_locator');?>" method="post" class="d-inline">
+                                                     <input type="hidden" name="locator_id" value="<?= $locator['locator_id'] ?>" >
+                                                        <input type="hidden" name="user_id" value="<?= $locator['user_id'] ?>" >
+                                                        <input type="hidden" name="status" value="APPROVED">
+                                                        <input type="hidden" name="cedsign" value="1">
+                                                     <!--    <input type="hidden" name="remarks" value="You're Locator is Approved, you may now proceed to print your Locator."> -->
+                                                        <input type="submit" value="Approve" class="btn btn-success btn-mini" onclick="return confirm('You are about to Approved this this locator.')">
+                                                    </form> 
+                                                    <form action="<?=site_url('CED/returning_locator');?>" method="post" class="d-inline ">
+                                                        <input type="hidden" name="locator_id" value="<?= $locator['locator_id'] ?>" >
+                                                        <input type="hidden" name="user_id" value="<?= $locator['user_id'] ?>" >
+                                                        <input type="hidden" name="status" value="REJECTED">
+                                                        <input type="hidden" name="cedsign" value="0">
+                                                        <!-- <input type="hidden" name="stat" value="APPROVED">
+                                                        <input type="hidden" name="remarks" value="You're Locator is Approved, you may now proceed to print your Locator."> -->
+                                                        <input type="submit" value="Reject" class="btn btn-warning btn-mini" onclick="return confirm('You are about to Reject this this locator.')">
+                                                    </form>
+                                                    
                                                     </td>
                                                 </tr>
                                                 <?php endforeach; ?>

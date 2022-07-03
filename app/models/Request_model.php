@@ -104,16 +104,24 @@ class Request_model extends Model {
             'expected_arrival_time'=>$ex_arriv_time,
             'locator_type'=>$type,
             'user_sign_status'=>0,
-            'user_id'=>$this->session->userdata('user_id')
+            'user_id'=>$this->session->userdata('user_id'),
+            'status'=>"PENDING"
         ];
         return $this->db->table('locator_tbl')->insert($data);
     }
 
     public function get_all_locator_request(){
-        return $this->db->table('locator_tbl')->select('locator_tbl.locator_id, locator_tbl.user_id, user_profile.l_name, user_profile.f_name')->inner_join('user_profile','locator_tbl.user_id = user_profile.user_id')->get_all();
+        return $this->db->table('locator_tbl')->select('locator_tbl.locator_id, locator_tbl.user_id, user_profile.l_name, user_profile.f_name,
+        locator_tbl.current_datetime,locator_tbl.departure_time,locator_tbl.location,locator_tbl.reason,locator_tbl.expected_arrival_time,locator_tbl.locator_type,locator_tbl.current_datetime')->inner_join('user_profile','locator_tbl.user_id = user_profile.user_id')->where('status','PENDING')->get_all();
 
         // return $thi  s->db->table('locator_tbl')->get_all();
     }
+    
+
+
+
+
+
 
     public function get_emp_locator($userid){
         return $this->db->table('locator_tbl')->where('user_id',$user_id)->get();
@@ -155,8 +163,12 @@ class Request_model extends Model {
 
     //pagkuha ng lahat ng request para maview sa admin side
     public function get_request(){
+        $where=[
+            'status_of_app'=>"PENDING",
+            'type_of_app'=>"PDS"
+        ];
         return $this->db->table('request_tbl')->select('request_tbl.type_of_app, request_tbl.status_of_app,request_tbl.date_submitted, user_profile.user_id,user_profile.f_name,user_profile.m_name, user_profile.l_name')
-        ->inner_join('user_profile','request_tbl.user_id = user_profile.user_id')->where('status_of_app','PENDING')->get_all();
+        ->inner_join('user_profile','request_tbl.user_id = user_profile.user_id')->where($where)->get_all();
     }
 
     public function get_id($var){
