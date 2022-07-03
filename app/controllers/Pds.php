@@ -77,7 +77,7 @@ class Pds extends Controller {
 		if ($this->form_validation->submitted()) {
 				$this->form_validation
 					->name('skill')
-						->requred('Special skill must not be empty.')
+						->required('Special skill must not be empty.')
 						->alpha_space('Special skill must be composed of letters.');
 			if ($this->form_validation->run()) {
 				$this->Pds_model->insert_skills(strtoupper(html_escape($this->io->post('skill'))));
@@ -86,6 +86,7 @@ class Pds extends Controller {
 			}
 			else {
 				set_flash_alert('danger', $this->form_validation->errors());
+				redirect('Pds/view_other_information');
 			}
 		}
 	}
@@ -167,7 +168,7 @@ class Pds extends Controller {
 			$this->form_validation
 				->name('name')
 					->required('Association name must not be empty.')
-					->alhpa_numeric_space('Association name must be composed of letters.');
+					->alpha_numeric_space('Association name must be composed of letters.');
 			if ($this->form_validation->run()) {
 				$this->Pds_model->insert_membership(strtoupper(html_escape($this->io->post('name'))));
 				set_flash_alert('success', 'Association name has been added successfully.');
@@ -183,7 +184,7 @@ class Pds extends Controller {
 			$this->form_validation
 				->name('name')
 					->required('Association name must not be empty.')
-					->alhpa_numeric_space('Association name must be composed of letters.');
+					->alpha_numeric_space('Association name must be composed of letters.');
 			if ($this->form_validation->run()) {
 				$this->Pds_model->update_membership(strtoupper(html_escape($this->io->post('name'))),html_escape($this->io->post('org_id')));
 				set_flash_alert('success', 'Association name has been updated successfully.');
@@ -206,21 +207,23 @@ class Pds extends Controller {
 	
 	
 	#region gov issued id
-	public function insert_id(){
+	public function insert_gov_id(){
 		if ($this->form_validation->submitted()) {
 			$this->form_validation
 				->name('id-desc')
 					->required('I.D. description must not be empty.')
-					->custom_pattern('[a-zA-Z0-9,- ]', 'I.D. description must be composed of letters.')
+					//->custom_pattern("a-zA-Z0-9,\-\' ", 'I.D. description must be composed of letters.')
 				->name('id-num')
 					->required('I.D. number must be not be empty.')
-					->custom_pattern('[a-zA-Z0-9 _-  ]', 'I.D. number must be valid.')
+					//->custom_pattern('[a-z0-9\-]', 'I.D. number must be valid.')
 				->name('date-issued')
 					->required('Date issued must not be empty.')
 				->name('place-issued')
 					->required('Place of issuance must not be empty.')
 					->alpha_numeric_space('Place of issuance must be composed of letters.');
 			if ($this->form_validation->run()) {
+				// var_dump($this->io->post());
+				// exit;
 				$idDesc = strtoupper(html_escape($this->io->post('id-desc')));
 				$idNum = strtoupper(html_escape($this->io->post('id-num')));
 				$date = html_escape($this->io->post('date-issued'));
@@ -232,6 +235,7 @@ class Pds extends Controller {
 			}
 			else {
 				set_flash_alert('danger', $this->form_validation->errors());
+				redirect('Pds/view_other_information');
 			}
 		}
 	}
@@ -241,10 +245,10 @@ class Pds extends Controller {
 			$this->form_validation
 				->name('id-desc')	
 					->required('I.D. description must not be empty.')
-					->custom_pattern('[a-zA-Z0-9,- ]', 'I.D. description must be composed of letters.')
+					//->custom_pattern('[a-zA-Z0-9,\- ]', 'I.D. description must be composed of letters.')
 				->name('id-num')
 					->required('I.D. number must be not be empty.')
-					->custom_pattern('[a-zA-Z0-9 _-  ]', 'I.D. number must be valid.')
+					//->custom_pattern('[a-zA-Z0-9,\-]', 'I.D. number must be valid.')
 				->name('date-issued')
 					->required('Date issued must not be empty.')
 				->name('place-issued')
@@ -263,6 +267,7 @@ class Pds extends Controller {
 			}
 			else {
 				set_flash_alert('danger', $this->form_validation->errors());
+				redirect('Pds/view_other_information');
 			}
 		}
 	}
@@ -292,10 +297,10 @@ class Pds extends Controller {
 				->name('lname')
 					->required('Last Name must not be empty.')
 					->alpha_space('Last Name must be composed of letters.')				
-				->name('update-bar')
+				->name('add-bar')
 					->required('Barangay must not be empty.')
 					->alpha_numeric_space('Barangay must be composed of letters.')
-				->name('update-city')
+				->name('add-city')
 					->required('City/Municipality must not be empty.')
 					->alpha_numeric_space('City/Municipality must be composed of letters.')
 				->name('tel')
@@ -318,6 +323,7 @@ class Pds extends Controller {
 			}
 			else {
 				set_flash_alert('danger', $this->form_validation->errors());
+				redirect('Pds/view_other_information');
 			}
 		}
 	}
@@ -360,6 +366,7 @@ class Pds extends Controller {
 			}
 			else {
 				set_flash_alert('danger', $this->form_validation->errors());
+				redirect('Pds/view_other_information');
 			}
 		}
 	}
