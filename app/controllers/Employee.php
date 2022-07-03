@@ -35,7 +35,7 @@ class Employee extends Controller {
 
 	public function view_upload(){
 		$data = [
-			'get_emp_notif' => $this->Request_model->get_emp_notif(), 
+			'get_emp_notif' => $this->Request_model->get_emp_notif(),
 			'emp_profile' => $this->Employee_model->emp_profile($this->session->userdata('user_id')),'emp_notif_forpds'=> $this->Employee_model->emp_notif_forpds()
 		] ;
 		$this->call->view('emp/fileupload/photo',$data);
@@ -989,7 +989,7 @@ class Employee extends Controller {
 					->required('Monthly salary must not be empty.')
 					->numeric('Monthly salary must be valid denomination of money.')
 				->name('step_incre')
-					->required('Step increment must not be empty.')
+					//->required('Step increment must not be empty.')
 				->name('status')
 					->required('Status of appointment must not be empty.')
 					->alpha_space('Status of appointment must be composed of letters.')
@@ -1035,7 +1035,7 @@ class Employee extends Controller {
 					->required('Monthly salary must not be empty.')
 					->numeric('Monthly salary must be valid denomination of money.')
 				->name('step_incre')
-					->required('Step increment must not be empty.')
+					//->required('Step increment must not be empty.')
 				->name('status')
 					->required('Status of appointment must not be empty.')
 					->alpha_space('Status of appointment must be composed of letters.')

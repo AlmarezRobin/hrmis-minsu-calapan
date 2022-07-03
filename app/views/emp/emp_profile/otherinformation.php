@@ -766,7 +766,7 @@
                 </div>
             <!-- Modal body -->
                 <div class="modal-body">
-                    <form class="row" action="<?= site_url('Pds/insert_id'); ?>" method="post" enctype="multipart/form-data">
+                    <form class="row" action="<?= site_url('Pds/insert_gov_id'); ?>" method="POST" enctype="multipart/form-data">
                         <div class="form-group col-md-12 mb-2 m-t-20">
                             <label>I.D. Description</label>
                             <input type="text" class="form-control" name="id-desc" placeholder="e.g. Driver's License" required>
