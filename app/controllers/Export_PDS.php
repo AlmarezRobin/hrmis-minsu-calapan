@@ -21,6 +21,10 @@ class Export_PDS extends Controller {
 		// var_dump($photo->getPath($data['emp_profile']['photo']));
 		// echo '</pre>';
 		// exit;
+		// $data['get_id'] = $this->exPDS->get_id();
+		
+		//  echo htmlspecialchars_decode($data['get_id']['id_desc']);
+		//  exit;
 		$reader = IOFactory::createReader('Xlsx');
 		$spreadsheet = $reader->load(PUBLIC_DIR .'\export_pds\pdsForCapstone.xlsx');
 		$spreadsheet->setActiveSheetIndex(0);
@@ -523,8 +527,9 @@ class Export_PDS extends Controller {
 	
 	private function govID($spreadsheet){
 		$data['get_id'] = $this->exPDS->get_id();
+		$id_desc = htmlspecialchars_decode($data['get_id']['id_desc'], ENT_QUOTES);
 		$spreadsheet->getActiveSheet()
-			->setCellValue('D61', $data['get_id']['id_desc'])
+			->setCellValue('D61', $id_desc)
 			->setCellValue('D62', $data['get_id']['idno'])
 			->setCellValue('D64', $data['get_id']['date_issued'] . '/' . $data['get_id']['place_issued']);
 
