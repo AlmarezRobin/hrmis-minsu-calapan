@@ -22,6 +22,7 @@ class Hr extends Controller {
 		$data = $this->Hr_model->get_all_admin();
 		$this->call->view('hr/registered_admin',$data);
 	}
+
 	public function add_admin(){
 		if ($this->form_validation->submitted()) 
             {
@@ -50,7 +51,8 @@ class Hr extends Controller {
 
                 
             }
-		$this->call->view('hr/register_admin');
+		$data['get_office'] = $this->Utility_model->get_office();
+		$this->call->view('hr/register_admin', $data);
 	}
 
 	
@@ -299,11 +301,7 @@ class Hr extends Controller {
 	}
 
 
-
-
-
-	
-
-	
 }
-?>
+	
+
+	

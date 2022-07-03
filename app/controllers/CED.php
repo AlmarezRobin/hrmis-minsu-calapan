@@ -4,6 +4,13 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 class CED extends Controller {
     public function __construct(){
         parent:: __construct();
+        if (! is_logged_in()) {
+            redirect('Admin');
+        }
+        
+        if ($this->session->userdata('role') != 'ced') {
+            redirect('Admin');
+        }
         $this->call->model('CED_model');
     }
     public function index(){

@@ -7,9 +7,19 @@
             parent::__construct();
         }
 
+         public function check_login_admin()
+         {
+            if ($this->session->userdata('role') == "ADMIN" || $this->session->userdata('role') == "Admin" || $this->session->userdata('role') == "HR") {
+                redirect('Hr');
+            }
+            elseif ($this->session->userdata('role') == "ced") {
+                redirect('CED');
+            }
+         }
+
+
         // start change jcd April 15, 2022
         public function index(){
-            
             $this->call->view('admin/login/login');
         }
         
@@ -37,8 +47,9 @@
                         )
                     );
 
-                    if(is_logged_in())
-                        redirect('Hr');
+                    if(is_logged_in()){
+                        $this->check_login_admin();
+                    }
                 }
             }
         }
