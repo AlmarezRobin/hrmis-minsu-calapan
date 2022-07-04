@@ -98,7 +98,7 @@
                                                     <td><?php echo $locator['expected_arrival_time']?></td>
                                                     <td><?php echo $locator['locator_type']?></td>
                                                     <td><?php echo $locator['status'] ?></td>
-                                                    <td><a href="#" class="btn btn-mini btn-success">Export</a></td>
+                                                    <td><a href="<?= site_url('Export_Locator/export_locator/'. $locator['locator_id']. '') ?>" class="btn btn-mini btn-success">Export</a></td>
                                                 </tr>
                                                 <?php endforeach; ?>
 

@@ -53,7 +53,13 @@
 
                 <!-- title -->
                 <div class="justify-content-between align-items-center pt-1 pb-2 mb-3 border-bottom mx-2">
-                    <h5 class="h5 mt-3 mb-0 color-darkgray"> Personal Data Sheet ||<small style="color:green"><?php echo$get_stat_pds['status_of_app'] ?></small></h5>
+                    <h5 class="h5 mt-3 mb-0 color-darkgray"> Personal Data Sheet ||<small style="color:green">
+                    <?php if(isset($get_stat_pds['request_id'])) :?>
+                        <?php echo$get_stat_pds['status_of_app'] ?></small>
+                    <?php else: ?>
+
+                    <?php endif; ?>
+                    </h5>
                 </div>
                 <!-- end title -->
                   
