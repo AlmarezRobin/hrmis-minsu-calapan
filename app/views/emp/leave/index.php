@@ -85,15 +85,6 @@
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
-                                            
-  
-
-
-
-
-
-
-
                                             <tbody>
                                             <?php foreach($get_myleave as $leave): ?>
                                                 <tr class="odd">

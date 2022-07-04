@@ -114,18 +114,11 @@ class Request_model extends Model {
         return $this->db->table('locator_tbl')->select('locator_tbl.locator_id, locator_tbl.user_id, user_profile.l_name, user_profile.f_name,
         locator_tbl.current_datetime,locator_tbl.departure_time,locator_tbl.location,locator_tbl.reason,locator_tbl.expected_arrival_time,locator_tbl.locator_type,locator_tbl.current_datetime')->inner_join('user_profile','locator_tbl.user_id = user_profile.user_id')->where('status','PENDING')->get_all();
 
-        // return $thi  s->db->table('locator_tbl')->get_all();
     }
     
 
 
 
-
-
-
-    // public function get_emp_locator($userid){
-    //     return $this->db->table('locator_tbl')->where('user_id',$user_id)->get();
-    // }
 
 						
 
@@ -198,6 +191,17 @@ class Request_model extends Model {
             
         ];
         return $this->db->table('leave_details_tbl')->insert($data);
+    }
+
+
+    //para sa admin
+    public function get_all_leave_request(){
+
+        return $this->db->table('leave_details_tbl')->select('leave_details_tbl.leave_id,leave_details_tbl.dept_id,leave_details_tbl.user_id,leave_details_tbl.designation_id,leave_details_tbl.type_of_leave,leave_details_tbl.details_of_leave,leave_details_tbl.details_desc,leave_details_tbl.no_days_applied,leave_details_tbl.from_date,leave_details_tbl.to_date,leave_details_tbl.commutation,leave_details_tbl.date_filed,user_profile.f_name,user_profile.l_name,user_profile.l_name, designation.designation_desc, department.dept_description')
+        ->inner_join('user_profile','user_profile.user_id = leave_details_tbl.user_id')
+        ->inner_join('designation','designation.designation_id = leave_details_tbl.designation_id')
+        ->inner_join('department','department.dept_id = leave_details_tbl.dept_id')->get_all();
+
     }
 
 

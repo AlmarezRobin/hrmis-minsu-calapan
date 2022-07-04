@@ -125,14 +125,14 @@ redirect('Admin');
             </a>
 
 
-            <a href="<?=site_url('CED');?>" class="list-group-item list-group-item-action lh-tight side-menu">
+            <a href="<?=site_url('Hr/view_leave_request');?>" class="list-group-item list-group-item-action lh-tight side-menu">
                 <div class="d-flex w-100 align-items-center justify-content-between">
                     <div class="mb-0">
-                        <i class="fa fa-icon fa-tachometer me-2"></i> Temporary CED
+                        <i class="fa fa-icon fa-tachometer me-2"></i> Leave
                     </div>
                     <small class="text-muted"></small>
                 </div>
-            </a> -->
+            </a> 
 
             <a href="<?=site_url('Admin/logout');?>" class="list-group-item list-group-item-action lh-tight side-menu" onclick=" return confirm('Are you sure you want to logout this session?')">
                 <div class="d-flex w-100 align-items-center justify-content-between">

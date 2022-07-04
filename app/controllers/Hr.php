@@ -308,6 +308,16 @@ class Hr extends Controller {
 	}
 
 
+
+
+	//para sa hr
+	public function view_leave_request(){
+		$data =	[
+			'get_all_leave_request'=>$this->Request_model->get_all_leave_request()
+		];
+        $this->call->view('hr/leave/index',$data);
+	}
+
 }
 	
 
