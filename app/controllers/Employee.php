@@ -839,13 +839,13 @@ class Employee extends Controller {
 				$this->Pds_model->update_educ_bg(
 					strtoupper(html_escape($this->io->post('level'))),
 					strtoupper(html_escape($this->io->post('name'))),
-					strtoupper(html_escape($this->io->post('degree')),
+					strtoupper(html_escape($this->io->post('degree'))),
 					strtoupper(html_escape($this->io->post('from'))),
 					strtoupper(html_escape($year)), 
 					strtoupper(html_escape($this->io->post('unit_earned'))),
 					strtoupper(html_escape($year_grad)),
 					strtoupper(html_escape($this->io->post('honors'))),
-					html_escape($this->io->post('emid')))
+					html_escape($this->io->post('emid'))
 				);
 				set_flash_alert('success', 'Educational Background information updated successfully.');
 				redirect('Employee/view_educational_background');
@@ -1204,7 +1204,7 @@ class Employee extends Controller {
 			$this->form_validation
 				->name('title')
 					->required('Training programs must not be empty.')
-					->custom_pattern('[a-zA-Z0-9,- ]','Training programs must be composed of letters.')
+					//->custom_pattern('[a-zA-Z0-9,- ]','Training programs must be composed of letters.')
 				->name('from')
 					->required('Inclusive dates must not be empty.')
 				->name('to')
@@ -1216,8 +1216,8 @@ class Employee extends Controller {
 					->required('Type of LD must not be empty.')
 					->alpha_space('Type of LD must be composed of letters.')
 				->name('spon')
-					->required('Sponsor must not be empty.')
-					->custom_pattern('[a-zA-Z0-9,- ]', 'Sponsor must be composed of letters.');
+					->required('Sponsor must not be empty.');
+					//->custom_pattern('[a-zA-Z0-9,- ]', 'Sponsor must be composed of letters.');
 			if ($this->form_validation->run()){
 			  	$this->Pds_model->insert_trainings(
 					strtoupper(html_escape($this->io->post('title'))),
@@ -1242,7 +1242,7 @@ class Employee extends Controller {
 			$this->form_validation
 				->name('title')
 					->required('Training programs must not be empty.')
-					->custom_pattern('[a-zA-Z0-9,- ]','Training programs must be composed of letters.')
+					//->custom_pattern('[a-zA-Z0-9,- ]','Training programs must be composed of letters.')
 				->name('from')
 					->required('Inclusive dates must not be empty.')
 				->name('to')
@@ -1254,8 +1254,8 @@ class Employee extends Controller {
 					->required('Type of LD must not be empty.')
 					->alpha_space('Type of LD must be composed of letters.')
 				->name('spon')
-					->required('Sponsor must not be empty.')
-					->custom_pattern('[a-zA-Z0-9,- ]', 'Sponsor must be composed of letters.');
+					->required('Sponsor must not be empty.');
+					//->custom_pattern('[a-zA-Z0-9,- ]', 'Sponsor must be composed of letters.');
 			if ($this->form_validation->run()) {
 			  $this->Pds_model->update_trainings(
 				strtoupper(html_escape($this->io->post('title'))),
