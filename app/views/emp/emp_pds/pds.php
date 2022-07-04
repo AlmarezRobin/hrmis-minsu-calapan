@@ -366,7 +366,7 @@
 
                                     <!-- father start -->
                                     <h6 class="fw-bold">FATHER</h6>
-                                    <?php if(isset($get_father_info['father_id'])): ?>>
+                                    <?php if(isset($get_father_info['father_id'])): ?>
                                         <div class="row">
                                             <div class="col-md-6 mb-2">
                                                 <label for="status" class="form-label">FATHER'S SURNAME</label>
@@ -1109,12 +1109,13 @@
                                             
                                         </div>
                                         <div class="col-md-4 mb-2">
-                                        <?php if(isset($get_id['gov_issued_id'])): ?>
+                                            <?php //var_dump($get_id); exit; ?>
+                                        <?php if(! empty($get_id)): ?>
                                             <label for=""> <strong> Government Issued. Please Indicate ID number and Date of Issuance</strong>   </label>
                                             <label for="status" class="form-label">Government Issued ID: </label>
-                                            <input type="text" value="<?= $get_id['id_desc'] ?>" disabled class="form-control form-control-line">
+                                            <input type="text" value="<?php echo $get_id['id_desc'] ?>" disabled class="form-control form-control-line">
                                             <label for="status" class="form-label">ID/License/Passport No.: </label>
-                                            <input type="text" value="<?= $get_id['idno'] ?>" disabled class="form-control form-control-line">
+                                            <input type="text" value="<?php echo $get_id['idno'] ?>" disabled class="form-control form-control-line">
                                             <label for="status" class="form-label">Date/Place of Issuance:</label>
                                             <input type="text" value="<?php echo $get_id['date_issued'] . '/' . $get_id['place_issued'] ?>" disabled class="form-control form-control-line">
                                             <?php else:?>

@@ -132,7 +132,11 @@ redirect('Admin');
                     </div>
                     <small class="text-muted"></small>
                 </div>
+<<<<<<< HEAD
             </a> 
+=======
+            </a>
+>>>>>>> 12514929d8aa067e0e4a6c1be79d05224ae20eeb
 
             <a href="<?=site_url('Admin/logout');?>" class="list-group-item list-group-item-action lh-tight side-menu" onclick=" return confirm('Are you sure you want to logout this session?')">
                 <div class="d-flex w-100 align-items-center justify-content-between">
