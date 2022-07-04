@@ -99,6 +99,11 @@
       return $this->db->table('department')->inner_join('office', 'department.dept_id = office.dept_id')->get_all();
     }
 
+    public function get_office()
+    {
+      return $this->db->table('office')->select('office_id, office_description')->get_all();
+    }
+
     public function add_office($dept_id, $office_code,$office_description){
       $office = array(
                         'dept_id'=>$dept_id,
