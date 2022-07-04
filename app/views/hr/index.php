@@ -97,7 +97,7 @@ redirect('Admin');
                             </div>
                         <!-- </div> -->
                         </a>
-                        <a href="<?=site_url('Hr/registeredcutomers');?>" class="feature col" style="text-decoration: none;">
+                        <a href="#" class="feature col" style="text-decoration: none;">
                         <!-- <div class="feature col"> -->
                             <div class="overflow-hidden rounded-2 shadow-sm border border-solid border-gray p-0">
                                 <div class="feature-icon bg-warning bg-gradient m-0" style="height: 0px">
