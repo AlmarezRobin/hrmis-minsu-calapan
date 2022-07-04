@@ -69,12 +69,6 @@
 
                                         <!-- Table -->
                                         <table class="table table-bordered table-hover table-sm mb-0">
-                                        
-
-
-
-
-
                                             <thead>
                                                 <tr>
                                                     <th>Employee Name</th>

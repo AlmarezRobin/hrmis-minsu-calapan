@@ -32,7 +32,7 @@
             <?php else: ?>
                 <div class="top-active align-items-center brandside">
                     <div class="p-2" style="text-align:center">
-                        <img src="<?php echo BASE_URL . PUBLIC_DIR;?>/public/img/brand.png" height="100px" alt="DA">
+                        <img src="<?php echo BASE_URL . PUBLIC_DIR;?>/public/img/profile.png" height="100px" alt="DA">
                     </div>
                 </div>
             <?php endif; ?>

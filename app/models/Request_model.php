@@ -181,6 +181,28 @@ class Request_model extends Model {
 
 
 
+
+    public function file_leave($type,$details, $specify, $days,$from, $to,$commutation,$dept, $desig){
+        $data=[
+            'type_of_leave'=>$type,
+            'details_of_leave'=>$details,
+            'details_desc'=>$specify,
+            'no_days_applied'=>$days,
+            'from_date'=>$from,
+            'to_date'=>$to,
+            'commutation'=>$commutation,
+            'dept_id'=>$dept,
+            'designation_id'=>$desig,
+            'user_id'=>$this->session->userdata('user_id'),
+            'status'=>"PENDING"
+            
+        ];
+        return $this->db->table('leave_details_tbl')->insert($data);
+    }
+
+
+
+
     
     
 

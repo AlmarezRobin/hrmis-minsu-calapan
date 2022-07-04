@@ -367,12 +367,10 @@ class Utility_Settings extends Controller {
 	public function leave_add(){
 		if($this->form_validation->submitted()){
 			$this->form_validation->name('leave_description')->required()
-								->name('no_of_days')->required()
 								->name('leave_specification')->required();
 			if ($this->form_validation->run()) {
 				if($this->Utility_model->add_leave(
 					strtoupper($this->io->post('leave_description')),
-					$this->io->post('no_of_days'),
 					strtoupper($this->io->post('leave_specification'))
 				))
 				redirect('Utility_Settings/view_leave');
@@ -392,13 +390,11 @@ class Utility_Settings extends Controller {
 	public function leave_update(){
 		if($this->form_validation->submitted()){
 			$this->form_validation->name('leave_description')->required()
-								->name('no_of_days')->required()
 								->name('leave_specification')->required();
 			if ($this->form_validation->run()) {
 				if($this->Utility_model->update_leave(
 					$this->io->post('leave_id'),
 					strtoupper($this->io->post('leave_description')),
-					$this->io->post('no_of_days'),
 					strtoupper($this->io->post('leave_specification'))
 				))
 				redirect('Utility_Settings/view_leave');

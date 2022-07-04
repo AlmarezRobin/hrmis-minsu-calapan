@@ -3,6 +3,11 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
 class Hr extends Controller {
 
+	public function __construct(){
+		parent::__construct();
+		$this->call->model('Locator_model');
+	}
+
 	#region employee
 	// ! loads index page
 	public function index() {
@@ -11,7 +16,9 @@ class Hr extends Controller {
 			
 			//para sa pag count ng mga pending notif rma 5422
 			'count_pending' =>$this->Hr_model->count_pending(),
-			'count_registered_employee'=>$this->Hr_model->count_registered_employee()
+			'count_registered_employee'=>$this->Hr_model->count_registered_employee(),
+
+			'get_all_locator'=>$this->Locator_model->get_all_locator()
 		]; 
 		$this->call->view('hr/index',$data);
 	}

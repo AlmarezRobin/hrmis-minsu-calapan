@@ -259,6 +259,7 @@ public function get_previlage_info($var)
 		return $this->db->table('pds_special_privilege_info')->where('user_id',$var)->get();
 	}
 
+
 		
 
 	}

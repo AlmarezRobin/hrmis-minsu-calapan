@@ -21,9 +21,19 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
             <!-- Main -->
             <!-- <main class="col-md-9 ms-sm-auto col-lg-10 px-md-2 bg-white maincontent"> -->
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-2 maincontent">
+                <!-- BreadCrumb -->
+                <nav aria-label="breadcrumb" class="pt-3 mb-2 bg-white border-bottom mx-2">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="" class="breadcrumb-link"><i class="fa fa-dashboard"></i>
+                                Dashboard</a></li>
+                        <li class="breadcrumb-item"> Leave </li>
+                    </ul>
+                </nav>
+                <!-- End BreadCrumb -->
+
                 <!-- title -->
                 <div class="justify-content-between align-items-center pt-1 pb-2 mb-3 border-bottom mx-2">
-                    <h5 class="h5 mt-3 mb-0 color-darkgray"> Registered Employee's <small></small></h5>
+                    <h5 class="h5 mt-3 mb-0 color-darkgray"> Leave <small>Types</small></h5>
                 </div>
                 <!-- end title -->
                 <!-- container-fluid -->
@@ -37,7 +47,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                 <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseTable"
                                     aria-expanded="true" aria-controls="collapseTable" >
                                     <span class="card-icon"><i class="fa fa-plus"></i></span>
-                                    Registered New Employee<i class="fa fa-caret-down pull-right"></i>
+                                    Type of Leave<i class="fa fa-caret-down pull-right"></i>
                                 </div>
                                 <div class="card-body accordion-collapse collapse show" id="collapseTable-d">
                                     <?php if(isset($data['leave_id'])): ?>
@@ -47,10 +57,6 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                                 <div class="col-md-12 mb-2">
                                                     <label for="f1" class="form-label">Leave Description</label>
                                                     <input type="text" class="form-control form-control-sm" name="leave_description" id="" value="<?= $data['leave_desc'] ?>" required>
-                                                </div>
-                                                <div class="col-md-12 mb-2">
-                                                    <label for="f1" class="form-label">Number of Days</label>
-                                                    <input type="text" class="form-control form-control-sm" name="no_of_days" id="" value="<?= $data['no_of_days'] ?>" required>
                                                 </div>
                                                 <div class="col-md-12 mb-2">
                                                     <label for="f1" class="form-label">Leave Specification</label>
@@ -70,10 +76,6 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                                 <div class="col-md-12 mb-2">
                                                     <label for="f1" class="form-label">Leave Description</label>
                                                     <input type="text" class="form-control form-control-sm" name="leave_description" id="" required>
-                                                </div>
-                                                <div class="col-md-12 mb-2">
-                                                    <label for="f1" class="form-label">Number of Days</label>
-                                                    <input type="text" class="form-control form-control-sm" name="no_of_days" id="" required>
                                                 </div>
                                                 <div class="col-md-12 mb-2">
                                                     <label for="f1" class="form-label">Leave Specification</label>

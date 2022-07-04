@@ -10,26 +10,21 @@
 
             <a href="" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none logotext">
                 <img src="public/img/logo.png" height="100px" class="topbrand" alt="DA">
-                <span style="color:#3bbf0f"><b style="color:#ffd900">UNIVERSITY DASHBOARD</b> STUDENT PORTAL</span>
+                <span style="color:#3bbf0f"><b style="color:#ffd900">HUMAN RESOURCE MANAGEMENT INFORMATION SYSTEM</b> MINSU</span>
             </a>
 
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 menu1">
                 <li><a href="#" class="nav-link px-2 text-white"> Home </a></li>
-                <li><a href="#" class="nav-link px-2 text-white"> About </a></li>
-                <li><a href="#" class="nav-link px-2 text-white"> Contact Us </a></li>
+                <li><a href="#" class="nav-link px-2 text-white">  </a></li>
+                <li><a href="#" class="nav-link px-2 text-white">   </a></li>
             </ul>
 
-            <form action="" class="col-12 col-lg-auto mb-3 mb-lg-0 me-0 justify-content-center d-flex searchform" method="POST">
-
+            <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-0 justify-content-left d-flex">
                 <button class="navbar-toggler d-md-none collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="text-white"> <i class="fa fa-icon fa-bars"></i> </span>
-                    </button>
-
-                <input type="search" name="search" class="form-control form-control-sm form-control-dark searchbar" style="font-size: 12px" placeholder="Search..." required>
-                <input type="submit" class="btn btn-success btn-sm ms-2" style="font-size: 12px" value="Search">
-            </form>
-
+                    <span class="text-white "> <i class="fa fa-icon fa-bars "></i> </span>
+                </button>
+</div>
             <ul class="social-links">
                 <a href="https://www.facebook.com/" class="text-white pb-0 mb-0 mx-2"> <i class="fa fa-facebook"></i>
                 </a>

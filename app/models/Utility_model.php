@@ -169,7 +169,7 @@
     }
     
 
-    public function add_leave($desc, $days, $spec){
+    public function add_leave($desc, $spec){
       $leave = array('leave_desc'=>$desc, 'leave_specification'=> $spec);
       return $this->db->table('leave_tbl')->insert($leave);
 
@@ -179,10 +179,9 @@
       return $this->db->table('leave_tbl')->where('leave_id', $id)->get();
     }
 
-    public function update_leave($id, $desc, $days, $spec){
+    public function update_leave($id, $desc, $spec){
       $data = [
         'leave_desc' => $desc,
-        'no_of_days' => $days,
         'leave_specification' => $spec
       ];
       return $this->db->table('leave_tbl')->where('leave_id', $id)->update($data);

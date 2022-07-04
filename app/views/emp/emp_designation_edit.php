@@ -49,7 +49,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
                                                 <input type="hidden" name="designation_id" value="<?= $data['designation_id']?>">
                                                 <div class="row">
                                                   <div class="col-md-12 mb-2">
-                                                        <label for="gender" class="form-label"> of Designation*</label>
+                                                        <label for="gender" class="form-label">Description of Designation*</label>
                                                         <select class="form-control form-control-sm" name="" id=""
                                                             data-toggle="tooltip" data-placement="right" title=""
                                                             required>

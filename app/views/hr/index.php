@@ -150,9 +150,9 @@ redirect('Admin');
 
                     </div>
 
-                    <!-- title -->
+                <!-- title -->
                 <div class="justify-content-between align-items-center pt-1 pb-2 mb-3 border-bottom mx-2">
-                    <h5 class="h5 mt-3 mb-0 color-darkgray"> Student <small>List</small></h5>
+                    <h5 class="h5 mt-3 mb-0 color-darkgray"> Employee's <small>List</small></h5>
                 </div>
                 <!-- end title -->
 
@@ -167,58 +167,49 @@ redirect('Admin');
 
                         </div>
                         <div class="col-md-12 p-2 float-sm-start">
-
                             <div class="card">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="card card-outline-info">
-                                            <div class="card-header">
-                                                <h4 class="m-b-0 text-dark"><i class="fa fa-user-o" aria-hidden="true"></i> Employee List</h4>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="table-responsive ">
-                                                    <!-- Table -->
-                                            <table id="example2"
-                                            class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                <div class="card-header">
+                                    <span class="card-icon"><i class="fa fa-th"></i></span>
+                                    Employee's
+                                </div>
+                                <div class="card-body accordion-collapse collapse show p-0" id="collapseTable">
+                                    <div class="table-responsive m-3    ">
+                                        <!-- Table -->
+                                        <table id="example2" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <td>Full Name</td>
+                                                    <td>Employment</td>
+                                                    <th>Options</th>
+                                                </tr>
+                                            </thead>
 
-                                                <thead>
-                                                    <tr>
-                                                        <td>Full Name</td>
-                                                        <td>Employment</td>
-                                                        <th>Options</th>
-                                                    </tr>
-                                                </thead>
+                                            <tbody>
+                                                <?php foreach($get_user_profile as $emp): ?>
 
-                                                <tbody>
-                                                    <?php foreach($get_user_profile as $emp): ?>
+                                                <tr class="odd">
+                                                    <td><?php echo $emp['f_name' ] . ' '. $emp[ 'm_name'] . ' '. $emp[ 'l_name'] ?></td>
+                                                    <td><?php echo $emp['designation_desc'] ?></td>
+                                                    <td>
+                                                        <a href="<?= site_url('hr/view_emp_profile/'. $emp['user_id']); ?>"><button class="btn btn-mini btn-info">View Profile</button></a>
+                                                    </td>
+                                                </tr>
+                                                <?php endforeach; ?>
+                                            </tbody>
 
-                                                    <tr class="odd">
-                                                        <td><?php echo $emp['f_name' ] . ' '. $emp[ 'm_name'] . ' '. $emp[ 'l_name'] ?></td>
-                                                        <td><?php echo $emp['designation_desc'] ?></td>
-                                                        <td>
-                                                            <a href="<?= site_url('hr/view_emp_profile/'. $emp['user_id']); ?>"><button class="btn btn-mini btn-info">View Profile</button></a>
-                                                        </td>
-                                                    </tr>
-                                                    <?php endforeach; ?>
-                                                </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td>Full Name</td>
+                                                    <td>Employment</td>
+                                                    <th>Options</th>
+                                                </tr>
+                                            </tfoot>
 
-                                                <tfoot>
-                                                    <tr>
-                                                        <td>Full Name</td>
-                                                        <td>Employment</td>
-                                                        <th>Options</th>
-                                                    </tr>
-                                                </tfoot>
-
-                                            </table>
-                                            <!-- End Table -->
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
+                                        </table>
+                                        <!-- End Table -->
+                                        
                                     </div>
                                 </div>
-
                             </div>
                             <!-- End card -->
 
@@ -232,6 +223,76 @@ redirect('Admin');
                 </div>
                 <!-- End container-fluid -->
 
+
+                <div class="col-md-12 p-2 float-sm-start">
+                    <!-- title -->
+                    <div class="justify-content-between align-items-center pt-1 pb-2 mb-3 border-bottom mx-2">
+                        <h5 class="h5 mt-3 mb-0 color-darkgray"> Locator's <small>Request</small></h5>
+                    </div>
+                    <!-- end title -->
+                    <div class="card">
+                        <div class="card-header" >
+                            <span class="card-icon"><i class="fa fa-th"></i></span>
+                            Locator
+                        </div>
+                        <div class="card-body accordion-collapse collapse show p-0" id="collapseTable">
+
+                            <!-- Table Div -->
+                            <div class="table-responsive2 m-3">
+
+                                <!-- Table -->
+                                <table id="example1" class="table table-bordered table-hover table-striped table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Employee Name</th>
+                                            <th>Date Filed</th>
+                                            <th>Departure Time</th>
+                                            <th>Location</th>
+                                            <th>Reason</th>
+                                            <th>Expected Arrival Time</th>
+                                            <th>Type</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <?php foreach($get_all_locator as $locator): ?>
+                                        <tr class="odd">
+                                            <td><?php echo $locator['l_name']. ' ' . $locator['f_name']?></td>
+                                            <td><?php echo $locator['current_datetime']?></td>
+                                            <td><?php echo $locator['departure_time']?></td>
+                                            <td><?php echo $locator['location']?></td>
+                                            <td><?php echo $locator['reason']?></td>
+                                            <td><?php echo $locator['expected_arrival_time']?></td>
+                                            <td><?php echo $locator['locator_type']?></td>
+                                            <td><?php echo $locator['status']?></td>
+
+                                            
+                                        </tr>
+                                        <?php endforeach; ?>
+
+                                    </tbody>
+
+                                    <tfoot>
+                                        <tr></tr>
+                                    </tfoot>
+                                </table>
+                                <!-- End Table -->
+
+                            </div>
+                            <!-- End Table Div -->
+
+                        </div>
+                        <!-- End Card Body -->
+                    </div>
+                    <!-- End card -->
+
+                </div>
+
+
+               
+
+               
 
 
                 <!-- Footer -->

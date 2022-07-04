@@ -18,9 +18,32 @@ class Leave extends Controller {
 
 
 
-			'get_myleave'=>$this->Employee_model->get_myleave()
+			'get_myleave'=>$this->Employee_model->get_myleave(),
+			'leave_type'=>$this->Leave_model->leave_type()
         ];
 		$this->call->view('emp/leave/index.php',$data);
+	}
+
+	public function file_leave(){
+		if($this->form_validation->run()){
+			$this->form_validation->name('type')->name('details')->name('specify')->name('no_days_applied_for')->name('from')->name('to')->name('commutation');
+			if($this->form_validation->submitted())
+			{
+				$this->Request_model->file_leave(
+					$this->io->post('type'),
+					$this->io->post('details'),
+					$this->io->post('specify'),
+					$this->io->post('no_days_applied_for'),
+					$this->io->post('from'),
+					$this->io->post('to'),
+					$this->io->post('commutation'),
+					$this->io->post('dept'),
+					$this->io->post('desig'));
+				
+				// $this->Request_model->insert_request($this->io->post('type'),$this->io->post('stat_of_app'));
+				 redirect('Leave');
+			}
+		}
 	}
 }
 ?>

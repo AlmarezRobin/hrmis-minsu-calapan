@@ -24,7 +24,7 @@ class Locator extends Controller {
 			
 		];
 
-		$this->call->view('emp/locator/create_new_locator',$data);
+		$this->call->view('emp/locator/index',$data);
 	}
 
 	public function file_locator(){

@@ -64,9 +64,18 @@
                                     <div class="card">
                                         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                                             <?php if(isset($emp_profile['photo'])): ?>
-                                                <img src="<?= BASE_URL . 'uploads/' . $emp_profile['photo'] ;?>" alt="" srcset="" class="rounded-circle" height="150" width="150">
+                                                <div>
+                                                    <div class="p-2" style="text-align:center;">
+                                                        <img src="<?= BASE_URL . 'uploads/' . $emp_profile['photo'] ;?>" width="100px" height="100px" alt="DA" style="border-radius:50%;border-top: 1px solid rgb(255, 255, 255); ">
+                                                        
+                                                    </div>
+                                                </div>
                                             <?php else: ?>
-                                                <img src="" alt="Profile Photo" srcset="" class="img-circle" height="150" width="150">
+                                                <div>
+                                                    <div class="p-2" style="text-align:center">
+                                                        <img src="<?php echo BASE_URL . PUBLIC_DIR;?>/public/img/profile.png" height="100px" alt="DA">
+                                                    </div>
+                                                </div>
                                             <?php endif; ?>
                                             <a href="<?=site_url('Employee/view_upload')?>" class="fa fa-camera fa-lg" data-toogle="tooltip" title="Upload Your Profile" ></a>
                                         </div>

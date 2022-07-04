@@ -23,11 +23,21 @@ redirect('Admin');
                     <img src="<?= BASE_URL . PUBLIC_DIR;?>/images/newlogo.png" width="100px" height="100px" alt="DA" style="border-radius:50%;border-top: 1px solid rgb(255, 255, 255); ">
                 </div>
             </div> -->
-            <div class="top-active align-items-center brandside">
-                <div class="p-2" style="text-align:center">
-                    <img src="<?= BASE_URL . PUBLIC_DIR;?>/images/newlogo.png" width="100px" height="100px" alt="DA" >
+           
+            <?php if(isset($emp_profile['photo'])): ?>
+                <div class="top-active align-items-center brandside">
+                    <div class="p-2" style="text-align:center;">
+                        <img src="<?= BASE_URL . 'uploads/' . $emp_profile['photo'] ;?>" width="100px" height="100px" alt="DA" style="border-radius:50%;border-top: 1px solid rgb(255, 255, 255); ">
+                        
+                    </div>
                 </div>
-            </div>
+            <?php else: ?>
+                <div class="top-active align-items-center brandside">
+                    <div class="p-2" style="text-align:center">
+                        <img src="<?php echo BASE_URL . PUBLIC_DIR;?>/public/img/profile.png" height="100px" alt="DA">
+                    </div>
+                </div>
+            <?php endif; ?>
 
             <!-- <div class="list-group-item list-group-item-action top-active py-3 lh-tight" aria-current="true"> -->
             <div style="text-align:center; background-color: rgb(212, 212, 212); border-bottom: 2px solid rgb(12, 114, 56)">
